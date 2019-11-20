@@ -24,10 +24,10 @@ and open the template in the editor.
 
 
 
-        <footer >
+        <footer id="big-footer" class="big-footer" >
             <div class="container" >
             <div class="row">
-            <div class="col-sm-4 footer-content " >
+            <div class="col-md-4 footer-content " >
                 
                 <ul class="footer-section1" >
                     <li class="footer-links" >
@@ -40,7 +40,7 @@ and open the template in the editor.
                  
             </div>
 
-            <div  class="col-sm-4 footer-content social-links ">
+            <div  class="col-md-4  footer-content social-links ">
                 <center>
                 
                 <a href="https://www.facebook.com/" class="facebook"><span style="font-size: 30px; color: white;"><i class="fab fa-facebook-square"></i></span> </a>    
@@ -53,7 +53,7 @@ and open the template in the editor.
                 </center>
             </div>
 
-            <div  class="col-sm-4 footer-content">
+            <div  class="col-md-4  footer-content">
 <!--                <center>-->
                 
                 <ul class="footer-section3" >
@@ -77,6 +77,67 @@ and open the template in the editor.
 
 
 
+        
+        
+        
+         <footer id="small-footer" class="small-footer" >
+            <div class="container" >
+            <div class="row">
+
+            <div  class="col-md-12  footer-content social-links ">
+                <center>
+                
+                <a href="https://www.facebook.com/" class="facebook"><span style="font-size: 30px; color: white;"><i class="fab fa-facebook-square"></i></span> </a>    
+                
+                <a href="https://twitter.com/" class="twitter"> <span style="font-size: 30px; color: white;"><i class="fab fa-twitter-square"></i></span></a>
+                
+                <a href="https://ie.linkedin.com/" class="linkedin"> <span style="font-size: 30px; color: white;"><i class="fab fa-linkedin"></i></span></a>
+                
+                
+                </center>
+            </div>
+
+            <div  class="col-md-12  footer-content small-footer-section">
+               
+                
+                <ul class="small-footer-section-links" >
+                <li>
+                    <a class="footer-links" href="FAQ.php" >FAQ's</a>
+                </li>
+                <li>
+                    <a class="footer-links" href="#" >Contact Us</a>
+                </li>
+                </ul>
+               
+            </div>
+                
+                
+                 <div class="col-md-12 footer-content " >
+                     <center>
+                
+                         <p class="footer-links footer-contact-details" >  <img src="images/icons-logos/phone-white.png" width="5%" alt=""/>  Number: +353 863505611   <img src="images/icons-logos/letter-white.png" width="5%" alt=""/> Email: studentlife@info.com </p>
+                         
+                         <p class="footer-links footer-contact-details-tiny" >  <img src="images/icons-logos/phone-white.png" width="5%" alt=""/>  Number: +353 863505611  </p> <p class="footer-links footer-contact-details-tiny"> <img src="images/icons-logos/letter-white.png" width="5%" alt=""/> Email: studentlife@info.com </p>
+                         
+                    
+                 <p class="footer-links" >© 2019 Student Life | All Rights Reserved </p>
+                 </center>
+            </div>
+                
+                
+
+            </div>
+
+                
+            </div>
+        </footer>
+        
+        
+        
+        
+        
+        
+        
 
 
 
