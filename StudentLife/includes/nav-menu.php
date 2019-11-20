@@ -41,7 +41,7 @@ and open the template in the editor.
                     <a class="nav-link" href="index.php">Home</a>
                 </li>
                 <li class="nav-hover nav-item">
-                    <a class="nav-link" href="sign-up.php">Login</a>
+                    <a class="nav-link" href="login.php">Login</a>
                 </li>
                 <li class="nav-hover nav-item">
                     <a class="nav-link" href="profile.php">Profile</a>
