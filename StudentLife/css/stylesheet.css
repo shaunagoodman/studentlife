@@ -15,6 +15,18 @@ h1{
     color: #022644;
 }
 
+h2{
+    font-family: 'Ubuntu', sans-serif;
+    color: #022644;
+    font-weight: 400;
+}
+
+h5{
+    font-family: 'Montserrat', sans-serif;
+    color: #1481ba;
+    font-weight: 400;
+}
+
 p{
     font-family: 'Montserrat', sans-serif;
 }
@@ -202,6 +214,61 @@ button.navbar-toggler{
 
 /* *********************** FOOTER CSS **********************    */
 
+@media only screen and (min-width: 992px) {
+
+
+    footer#small-footer{
+        display: none;
+    }
+
+
+}
+
+@media only screen and (max-width: 991px) {
+
+
+    footer#big-footer{
+        display: none;
+    }
+
+
+    .small-footer-section-links{
+        text-align: center;
+        padding-bottom: 3%;
+    }
+
+}
+@media only screen and (min-width: 532px) {
+
+    .small-footer-section-links{
+        text-align: center;
+        padding-bottom: 3%;
+    }
+    p.footer-contact-details-tiny{
+        display: none;
+    }
+
+}
+
+@media only screen and (max-width: 531px) {
+
+
+    footer#big-footer{
+        display: none;
+    }
+
+
+    .small-footer-section-links{
+        text-align: center;
+        padding-bottom: 3%;
+    }
+
+    p.footer-contact-details{
+        display: none;
+    }
+
+}
+
 footer{
     background-color: #022644;
 }
@@ -220,7 +287,7 @@ footer{
 
 a.footer-links{
     text-decoration: none;
-     padding: 10%;
+    padding: 10%;
 }
 
 a.footer-links:hover{
@@ -261,7 +328,7 @@ footer{
 
 .faq-heading{
     margin-top: 3%;
-    
+
     text-align: center;
 }
 .faq-line{
@@ -277,7 +344,7 @@ footer{
     border-radius: 20px;
     border-color: #bdb9b6;
     box-shadow: 3px 3px 5px 0px rgba(209,209,209,1);
-    
+
 }
 
 .card-header{
@@ -319,4 +386,130 @@ button.btn-link:hover{
 
 .fa-paper-plane{
     color:#1481ba;
+}
+
+
+
+/* *********************** PROFILE PAGE CSS **********************    */
+
+
+.profile-body{
+    background-image: url("../images/profile-back.jpg");
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.profile-title1{
+    color: #fffd77;
+}
+
+.profile-user-info{
+    background-color: white;
+    border-radius: 15px;
+    border-color: #1481ba;
+    border-width: 1px;
+}
+
+.user-info{
+    padding:5%;
+}
+
+.user-name{
+    margin-left:30%;
+}
+
+
+.fave-info{
+    background-color: white;
+    border-radius: 15px;
+    border-color: #1481ba;
+    border-width: 1px;
+    margin-top:3%;
+    margin-bottom: 3%
+}
+
+
+.profile-buttons{
+    background-color: white;
+    border-radius: 15px;
+}
+
+.calendar-button{
+    background-image: url("../images/calendar.jpg"); 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top:5%;
+}
+
+.budget-button{
+    background-image: url("../images/budget2.jpg"); 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.recipe-button{
+    background-image: url("../images/recipes.png"); 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.my-calendar{
+    padding-left:30%;
+}
+
+.my-budget{
+    padding-left:30%;
+}
+
+.recipes{
+    padding-left:35%;
+}
+
+
+
+@media only screen and (min-width: 992px) {
+
+
+    div.mobile-profile{
+        display: none;
+    }
+    .mobile-profile-info{
+        display: none;
+    }
+
+}
+
+@media only screen and (max-width: 991px) {
+
+
+    div.desktop-profile{
+        display: none;
+    }
+
+    .user-info{
+        color: #1481ba;
+    }
+
+    .profile-user-info{
+        background-color: transparent;
+    }
+
+    .user-name{
+        color: #fffd77;
+    }
+
+    .fave-title{
+        color: #022644;
+        margin-left:35%
+    }
+
+    h5{
+        display: none;
+    }
+
 }
