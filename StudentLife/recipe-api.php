@@ -1,4 +1,4 @@
-<!-- Still need to add equioment, image and price -->
+<!-- Still need to add equioment and price -->
 <!-- Refresh page when user wants a different recipe-->
 <html>
     <?php
