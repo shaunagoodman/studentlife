@@ -45,10 +45,16 @@ request.onload = function() {
       ingredientImages.push(data.extendedIngredients[i].image);
     }
     }
+    else {
+      document.getElementById("selectedRecipe").innerHTML += "No ingredients provided";
+    }
   if(data.analyzedInstructions != null) {
     for(i = 0; i <data.analyzedInstructions[0].steps.length; i++) {
       steps.push(data.analyzedInstructions[0].steps[i].step);
     }
+  }
+  else {
+    document.getElementById("selectedRecipe").innerHTML += "No steps provided";
   }
   }
   var img = document.createElement("img");
