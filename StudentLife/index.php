@@ -14,7 +14,6 @@ and open the template in the editor.
         <link href="includes/stylesheet.css" rel="stylesheet" type="text/css"/>
 
 
-
     </head>
     <body>
         <?php include_once 'includes/nav-menu.php'; ?>  
