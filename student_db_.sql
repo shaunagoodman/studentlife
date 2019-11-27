@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2019 at 02:15 PM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.11
+-- Generation Time: Nov 12, 2019 at 06:53 PM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -64,20 +64,6 @@ CREATE TABLE `college` (
 INSERT INTO `college` (`college_ID`, `college_name`) VALUES
 (1, 'Dundalk IT'),
 (2, 'University College Dublin');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `contact`
---
-
-CREATE TABLE `contact` (
-  `contact_ID` int(11) NOT NULL,
-  `contact_name` varchar(30) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `phone_no` varchar(20) NOT NULL,
-  `message` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -150,24 +136,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`user_ID`, `college_ID`, `u_name`, `u_email`, `u_password`, `location`) VALUES
 (1, 1, 'Shauna', 'student@dkit.ie', 'Password1', 'Dundalk'),
 (2, 1, 'Jessica', 'jessica@student.dkit.ie', 'Password123', 'Dundalk'),
-(4, 2, 'Daniel', 'daniel@student.ucd.ie', 'Danny12', 'Dublin'),
-(5, 2, 'Louise', 'louise@student.ucd.ie', 'P@ssword11', 'Dublin'),
-(6, 1, 'Killian', 'Killian@student.dkit.ie', 'killo123', 'Dundalk'),
-(7, 1, 'Sarah', 'Sarah@student.dkit.ie', 'sarah123', 'Dundalk'),
-(13, 2, 'Hayley', 'hayls@student.com', 'llama', 'Drogheda'),
-(14, 2, 'Hayley', 'hayls@student.com', 'llama', 'Drogheda'),
-(15, 4, 'Jacqueline', 'jackie@studend.dcu', 'Passw0RD', 'Dublin'),
-(16, 4, 'Jacqueline', 'jackie@studend.dcu', 'Passw0RD', 'Dublin'),
-(17, 4, 'Jacqueline', 'jackie@studend.dcu', 'Passw0RD', 'Dublin'),
-(18, 4, 'Jacqueline', 'jackie@studend.dcu', 'Passw0RD', 'Dublin'),
-(19, 4, 'Jacqueline', 'jackie@studend.dcu', 'Passw0RD', 'Dublin'),
-(20, 27, 'Veronica', 'student@tcd.ie', 'passwordpassword', 'Dublin'),
-(21, 16, 'Archie', 'archie@archie.com', 'Archie1', 'Mayo'),
-(27, 3, 'Betty', 'betty@cit.ie', 'corkcorkbetty', 'Cork'),
-(29, 9, 'Jughead', 'judhead@itt.com', 'riverdale11', 'riverdale11'),
-(30, 6, 'Stephanie', 'steph@steph.ie', 'stephlovesart', 'Dublin'),
-(32, 7, 'Thomas', 'tomtom@carlow.ie', 'tomtom11', 'Carlow'),
-(33, 7, 'Thomas', 'tomtom@carlow.ie', 'tomtom11', 'Carlow');
+(4, 2, 'Daniel', 'daniel@student.ucd.ie', 'Danny12', 'Dublin');
 
 --
 -- Indexes for dumped tables
@@ -184,12 +153,6 @@ ALTER TABLE `budget`
 --
 ALTER TABLE `college`
   ADD PRIMARY KEY (`college_ID`);
-
---
--- Indexes for table `contact`
---
-ALTER TABLE `contact`
-  ADD PRIMARY KEY (`contact_ID`);
 
 --
 -- Indexes for table `event`
@@ -226,12 +189,6 @@ ALTER TABLE `college`
   MODIFY `college_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `contact`
---
-ALTER TABLE `contact`
-  MODIFY `contact_ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
@@ -247,7 +204,7 @@ ALTER TABLE `saved_recipies`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
