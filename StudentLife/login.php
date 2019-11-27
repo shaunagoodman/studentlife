@@ -30,7 +30,6 @@ $db_name = "Student_db";
     }
  }
 ?>
-
 <body>
 <?php include_once 'includes/nav-menu.php'; ?>
     <form method = "post">
