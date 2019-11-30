@@ -7,7 +7,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Home</title>
+        <title>Register</title>
 
         <?php session_start();
         include_once 'includes/CDNs.php'; 
@@ -42,15 +42,56 @@ and open the template in the editor.
     </head>
 <body>
 <?php include_once 'includes/nav-menu.php'; ?> 
-</br>
-<form action="" method="post">
 
-Name: <input type="text" name="fname" /><br><br>
-Surname:<input type="text" name="lname" /><br><br>
-Email: <input type="text" name="email" /><br><br>
-Password: <input type="text" name="password" /><br><br>
- <button type="submit" name="submit" >Submit</button>
+<div class="container" >
+
+
+<center> <img class="login-logo" src="images/recipeasy-icons-logos/Capture.png" width="18%" alt="..."> </center>
+
+
+<form class="login-form" action="" method="post">
+   
+    <fieldset>
+        <div class="form-row">
+
+            <div class="form-group col-md-12">
+                <label>First Name :</label>
+                <input class="form-control" type="text" name="fname">
+            </div>
+
+            <div class="form-group col-md-12">
+                <label>Surname :</label>
+                <input class="form-control" type="text" name="lname">
+            </div>
+
+            <div class="form-group col-md-12">
+                <label>Email :</label>
+                <input class="form-control" type="text" name="email">
+            </div>
+
+            <div class="form-group col-md-12">
+                <label>Password :</label>
+                <input class="form-control" type="password" name="password" />
+            </div>
+
+            <div class="form-group col-md-12">
+                <button type="submit" name="submit" value=" Submit " class="btn btn-light">
+                    Register</button>
+                <br> <br>
+                
+            </div>
+
+        </div>
+    </fieldset>
 </form>
+
+
+
+
+
+
+
+</div>
 
 <?php
 include_once 'includes/footer.php';

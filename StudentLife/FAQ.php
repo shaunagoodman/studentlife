@@ -35,7 +35,7 @@ and open the template in the editor.
 
 
                     <div id="accordion">
-                        <div class="card">
+                        <div class="card faq-card">
                             <div class="card-header" id="headingOne">
                                 <h5 class="mb-0">
                                     <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -53,7 +53,7 @@ and open the template in the editor.
                         
                         <br>
                         
-                        <div class="card">
+                        <div class="card faq-card">
                             <div class="card-header" id="headingTwo">
                                 <h5 class="mb-0">
                                     <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -70,7 +70,7 @@ and open the template in the editor.
                         
                         <br>
                         
-                        <div class="card">
+                        <div class="card faq-card">
                             <div class="card-header" id="headingThree">
                                 <h5 class="mb-0">
                                     <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -86,7 +86,7 @@ and open the template in the editor.
                         </div>
                         <br>
                         
-                        <div class="card">
+                        <div class="card faq-card">
                             <div class="card-header" id="headingFour">
                                 <h5 class="mb-0">
                                     <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">

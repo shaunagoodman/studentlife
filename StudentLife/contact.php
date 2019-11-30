@@ -19,7 +19,6 @@ and open the template in the editor.
     <body>
         <?php include_once 'includes/nav-menu.php'; ?>  
 
-        <div class="container" >
        <section id="contact">
   
   <h1 class="section-header">CONTACT</h1>
@@ -84,8 +83,6 @@ and open the template in the editor.
   
 
         
-        
-            </div>
         
 
 
