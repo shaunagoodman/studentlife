@@ -99,77 +99,60 @@ and open the template in the editor.
                     lectus arcu. Purus non enim praesent elementum facilisis leo vel. Scelerisque varius morbi enim nunc faucibus a.
                     Eu feugiat pretium nibh ipsum. </p>
 
-=======
-            <div class="row" >
+              
+                <div class="row">
 
-                <div class="col-lg-6" >
-                    <h1 class="home-title1" > Organisation has never been so easy</h1>
-                    <hr align="left" >
-                    <p>HELLO THERE Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    <p>checking is it working</p>
-                    <button class="btn btn-light" href="#" style="float: right;"> Get Started</button>
-
-
-            </div>
-
-            <div class="col-lg-12">
-                <h1 class="home-title1"> New Recipes</h1>
-                    <hr align="left">
-            </div>
-
-            <div class="col-lg-4">
-
-                <div class="card" style="width: 18rem;">
-                    <img src="images/recipes/wrap.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Chicken Wrap</h5>
-                        <p class="card-text">Easy to make and tatse delicious.</p>
-                        <a href="#" class="btn btn-light">More Info</a>
+                    <div class="col-lg-12">
+                        <h1 class="home-title1"> New Recipes</h1>
+                        <hr align="left">
                     </div>
-                </div>
 
-            </div>
+                    <div class="col-lg-4">
 
+                        <div class="card" style="width: 18rem;">
+                            <img src="images/recipes/wrap.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Chicken Wrap</h5>
+                                <p class="card-text">Easy to make and tatse delicious.</p>
+                                <a href="#" class="btn btn-light">More Info</a>
+                            </div>
+                        </div>
 
-            <div class="col-lg-4">
-
-                <div class="card" style="width: 18rem;">
-                    <img src="images/recipes/protein-pan.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Protein Pancakes</h5>
-                        <p class="card-text">Simple to make and healthy too!</p>
-                        <a href="#" class="btn btn-light">More Info</a>
                     </div>
-                </div>
 
-            </div>
 
-            <div class="col-lg-4 bottom-home">
+                    <div class="col-lg-4">
 
-                <div class="card" style="width: 18rem;">
-                    <img src="images/recipes/spaghetti.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Simple Spaghetti</h5>
-                        <p class="card-text">A classic Italian dish made easy</p>
-                        <a href="#" class="btn btn-light">More Info</a>
+                        <div class="card" style="width: 18rem;">
+                            <img src="images/recipes/protein-pan.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Protein Pancakes</h5>
+                                <p class="card-text">Simple to make and healthy too!</p>
+                                <a href="#" class="btn btn-light">More Info</a>
+                            </div>
+                        </div>
+
                     </div>
+
+                    <div class="col-lg-4 bottom-home">
+
+                        <div class="card" style="width: 18rem;">
+                            <img src="images/recipes/spaghetti.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Simple Spaghetti</h5>
+                                <p class="card-text">A classic Italian dish made easy</p>
+                                <a href="#" class="btn btn-light">More Info</a>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
-
             </div>
-
-
-
-
-
-
-
-            <!--   <button class="btn btn-light" href="#" style="float: right;"> Get Started</button> -->
-
         </div>
 
-
     </div>
+
 
 
 
