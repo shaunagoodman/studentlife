@@ -43,7 +43,7 @@ and open the template in the editor.
                     <a class="nav-link" href="index.php">Home</a>
                 </li>
                 <li class="nav-hover nav-item">
-                    <a class="nav-link" href="#">Recipes</a>
+                    <a class="nav-link" href="recipe-api">Recipes</a>
                 </li>
                 <li class="nav-hover nav-item">
                     <a class="nav-link" href="login.php">Login</a>
