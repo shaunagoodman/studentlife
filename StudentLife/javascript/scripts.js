@@ -35,14 +35,14 @@ request.open("GET", requestString, true);
 request.onload = function() {
   var data = JSON.parse(this.response);
   var ingredients = [];
-  var ingredientImages = [];
+  // var ingredientImages = [];
   var equipment = [];
   var steps = [];
   if (request.status >= 200 && request.status < 400) {
     if(data.extendedIngredients != null) {
       for (i = 0; i< data.extendedIngredients.length; i++) {
       ingredients.push(data.extendedIngredients[i].name);
-      ingredientImages.push(data.extendedIngredients[i].image);
+      // ingredientImages.push(data.extendedIngredients[i].image);
     }
     }
     else {
@@ -60,10 +60,9 @@ request.onload = function() {
   var img = document.createElement("img");
   document.getElementById("selectedRecipe").innerHTML += "INGREDIENTS </br>";
   for(i = 0; i < ingredients.length; i++) {
-    img.src = "https://spoonacular.com/cdn/ingredients_100x100/" + ingredientImages[i];
-    console.log(img.src);
-    var doc = document.getElementById("selectedRecipe");
-    doc.appendChild(img);
+    // img.src = "https://spoonacular.com/cdn/ingredients_100x100/" + ingredientImages[i];
+    // var doc = document.getElementById("selectedRecipe");
+    // doc.appendChild(img);
     document.getElementById("selectedRecipe").innerHTML += ingredients[i] + "</br>";
   }
   document.getElementById("selectedRecipe").innerHTML += "</br>";
