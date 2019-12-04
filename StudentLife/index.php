@@ -1,3 +1,11 @@
+<?php
+// Initialize the session
+session_start();
+?>
+
+
+
+
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -107,9 +115,9 @@ and open the template in the editor.
                         <hr align="left">
                     </div>
 
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 bottom-home ">
 
-                        <div class="card" style="width: 18rem;">
+                        <div class="card home-card" >
                             <img src="images/recipes/wrap.png" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Chicken Wrap</h5>
@@ -121,9 +129,9 @@ and open the template in the editor.
                     </div>
 
 
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 bottom-home ">
 
-                        <div class="card" style="width: 18rem;">
+                        <div class="card home-card" >
                             <img src="images/recipes/protein-pan.png" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Protein Pancakes</h5>
@@ -134,9 +142,9 @@ and open the template in the editor.
 
                     </div>
 
-                    <div class="col-lg-4 bottom-home">
+                    <div class="col-lg-4  bottom-home">
 
-                        <div class="card" style="width: 18rem;">
+                        <div class="card home-card">
                             <img src="images/recipes/spaghetti.png" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Simple Spaghetti</h5>
