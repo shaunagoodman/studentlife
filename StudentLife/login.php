@@ -32,20 +32,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $sql = ("SELECT * FROM user WHERE u_email = '$email' and u_password = '$password'");
     $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    $active = $row['active'];
+
     $count = mysqli_num_rows($result);
 
     // If result matched $email and $mypassword, table row must be 1 row
     if ($count == 1) {
         session_start();
-    
-      
-      
+        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+        print_r("<pre>");
+        print_r($row);
+        print_r("</pre>");
         $_SESSION["loggedin"] = true;
         $_SESSION["u_email"] = $email;
-        $_SESSION['fname'] = $fname;
-        $_SESSION['lname'] = $lname;
+        $_SESSION['fname'] = $row['fname'];
+        $_SESSION['lname'] = $row['lname'];
 
        
  

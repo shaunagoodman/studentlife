@@ -1,7 +1,4 @@
-<?php
-// Initialize the session
-session_start();
-?>
+
 
 
 <!DOCTYPE html>
@@ -13,6 +10,42 @@ and open the template in the editor.
 <html>
 
 <head>
+
+<?php
+// Initialize the session
+session_start();
+
+
+
+
+        include_once 'includes/CDNs.php'; 
+        $servername = "localhost";
+        $username = "student_user";
+        $password = "";
+        $db_name = "Student_db";
+        
+        // Create connection
+        $conn = mysqli_connect($servername, $username, $password, $db_name);
+        // Check connection
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+        if(isset($_POST["submit"])) 
+{
+            $name = $_POST["contact_name"];
+            $email = $_POST["email"];
+            $phone = $_POST["phone_no"];
+            $message = $_POST["message"];
+        
+        $sql = ("INSERT INTO contact(contact_name, email, phone_no, message) VALUES ('$name', '$email', '$phone', '$message')");
+        if (mysqli_query($conn, $sql)) {
+            echo " Message sent successfully";
+        }
+        else {
+            echo "Message not sent";
+        }
+    }
+?>
     <meta charset="UTF-8">
     <title>Contact</title>
 
@@ -41,22 +74,22 @@ and open the template in the editor.
 
         <div class="col-md-5">
 
-<form id="contact-form" method="post" action="#">
+<form id="contact-form" method="post" action="">
     <br>
     <br>
     <div class="form-group">
     <label>Name :</label>
-        <input type="text" class="form-control input-form" name="firstName" value="" placeholder="">
+        <input type="text" class="form-control input-form" name="contact_name"  placeholder="">
     </div>
     <br>
     <div class="form-group">
     <label>Email :</label>
-        <input type="email" class="form-control" name="email" value="" placeholder="">
+        <input type="email" class="form-control" name="email"  placeholder="">
     </div>
     <br>
     <div class="form-group">
     <label>Phone :</label>
-        <input type="text" class="form-control" name="phone" value="" placeholder="">
+        <input type="text" class="form-control" name="phone_no" placeholder="">
     </div>
     <br>
     <div class="form-group">
@@ -65,7 +98,7 @@ and open the template in the editor.
     </div>
 
 
-    <button class="btn btn-light" type="submit">Send</button>
+    <button class="btn btn-light" name="submit" type="submit">Send</button>
 
 </form>
 </div>
