@@ -38,10 +38,14 @@ request.onload = function() {
   // var ingredientImages = [];
   var equipment = [];
   var steps = [];
+  var amount = [];
+  var unit = [];
   if (request.status >= 200 && request.status < 400) {
     if(data.extendedIngredients != null) {
       for (i = 0; i< data.extendedIngredients.length; i++) {
       ingredients.push(data.extendedIngredients[i].name);
+      amount.push(data.extendedIngredients[i].measures.metric.amount);
+      unit.push(data.extendedIngredients[i].measures.metric.unitShort);
       // ingredientImages.push(data.extendedIngredients[i].image);
     }
     }
@@ -57,13 +61,13 @@ request.onload = function() {
     document.getElementById("selectedRecipe").innerHTML += "No steps provided";
   }
   }
-  var img = document.createElement("img");
+  // var img = document.createElement("img");
   document.getElementById("selectedRecipe").innerHTML += "INGREDIENTS </br>";
   for(i = 0; i < ingredients.length; i++) {
     // img.src = "https://spoonacular.com/cdn/ingredients_100x100/" + ingredientImages[i];
     // var doc = document.getElementById("selectedRecipe");
     // doc.appendChild(img);
-    document.getElementById("selectedRecipe").innerHTML += ingredients[i] + "</br>";
+    document.getElementById("selectedRecipe").innerHTML += amount[i] + " " + unit[i] + " " + ingredients[i] + "</br>";
   }
   document.getElementById("selectedRecipe").innerHTML += "</br>";
   document.getElementById("selectedRecipe").innerHTML += "STEPS </br>";
