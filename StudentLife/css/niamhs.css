@@ -58,8 +58,21 @@ body{
 }
 
 /*  ********************** CSS CARDS - HOME PAGE **********************    */
+@media (max-width: 991px) {
 
+.home-card{
+    width: 80%;
+    margin-left:15%;
+}
+}
 
+@media (max-width: 670px) {
+
+    .home-card{
+        width: 80%;
+        margin-left:10%;
+    }
+    }
 
 
 /*  ********************** CSS FOR NAV **********************    */
@@ -290,7 +303,6 @@ footer{
 
 a.footer-links{
     text-decoration: none;
-    padding: 10%;
 }
 
 a.footer-links:hover{
@@ -350,9 +362,21 @@ footer{
 
 }
 
+
+/* .faq-card:active{
+    box-shadow: 
+           inset 
+                 0 0  0 2px rgb(255,255,255),
+                 0.3em 0.3em 1em rgba(0,0,0,0.3);
+
+}
+*/
+
+
 .card-header{
     background-color: white;
     border:none;
+    
 }
 
 .card-header:first-child {
@@ -376,20 +400,24 @@ button.btn-link:hover{
 }
 
 .fa-cog{
-    color:#1481ba;
+    color:#FB6107;
 }
 
 .fa-search{
-    color:#1481ba;
+    color:#FB6107;
 }
 
 .fa-share-alt    {
-    color:#1481ba;
+    color:#FB6107;
 }
 
 .fa-paper-plane{
-    color:#1481ba;
+    color:#FB6107;
 }
+
+
+
+
 
 
 
@@ -397,7 +425,7 @@ button.btn-link:hover{
 
 
 .profile-body{
-    background-image: url("../images/profile-back.jpg");
+    background-image: url("../images/backgrounds/background-blur.jpg");
     height: 100%; 
     background-position: center;
     background-repeat: no-repeat;
@@ -411,23 +439,35 @@ button.btn-link:hover{
 .profile-user-info{
     background-color: white;
     border-radius: 15px;
-    border-color: #1481ba;
-    border-width: 1px;
+    border: 1px solid;
+    border-color: #f09451;
+    padding:5%;
+    padding-bottom: 10%;
+    box-shadow: 
+       inset 0 0  0 2px rgb(255,255,255),
+             0.3em 0.3em 1em rgba(0,0,0,0.3);
 }
+
 
 .profile-h5{
     color:#f09451;
 }
 
 
-.user-info{
-    padding:5%;
+
+
+.user-col{
+    margin-left: 25%;
 }
 
 .user-name{
     margin-left:30%;
 }
 
+
+.h5-profile{
+    color:#FB6107;
+}
 
 .fave-info{
     background-color: white;
@@ -442,14 +482,19 @@ button.btn-link:hover{
 .profile-buttons{
     background-color: white;
     border-radius: 15px;
+    padding:5%;
+    padding-bottom: 10%;
+    border: 1px solid;
+    border-color: #f09451;
+   
 }
 
-.calendar-button{
-    background-image: url("../images/calendar.jpg"); 
+.favourites-button{
+    background-image: url("../images/backgrounds/pancake-blur.jpg"); 
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    margin-top:5%;
+    margin-top:10%;
 }
 
 .budget-button{
@@ -457,6 +502,7 @@ button.btn-link:hover{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    margin-top:10%;
 }
 
 .recipe-button{
@@ -464,18 +510,27 @@ button.btn-link:hover{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    margin-top:10%;
 }
 
-.my-calendar{
-    padding-left:30%;
+.my-favourites{
+    padding-top:3%;
+    padding-left:25%;
 }
 
 .my-budget{
-    padding-left:30%;
+    padding-top:3%;
+    padding-left:25%;
 }
 
 .recipes{
-    padding-left:35%;
+    padding-top:3%;
+    padding-left:23%;
+}
+
+.div-button{
+    padding-top:5%;
+    padding-bottom:5%;
 }
 
 
@@ -499,12 +554,11 @@ button.btn-link:hover{
         display: none;
     }
 
-    .user-info{
-        color: #1481ba;
-    }
+    
 
     .profile-user-info{
-        background-color: transparent;
+       margin-top: 10%;
+       margin-bottom:10%;
     }
 
     .user-name{
@@ -516,9 +570,17 @@ button.btn-link:hover{
         margin-left:35%
     }
 
-    h5{
-        display: none;
-    }
+   .my-favourites{
+       padding-left: 32%;
+   }
+
+   .my-budget{
+    padding-left: 35%;
+}
+
+.recipes{
+    padding-left: 39%;
+}
 
 }
 
@@ -642,3 +704,11 @@ label{
 .api-button{
     margin-top: 2%;
 }
+
+@media (max-width: 767px) {
+
+    .api-form-control{
+        width: 60%;
+        margin-right: 10%;
+    }
+    }

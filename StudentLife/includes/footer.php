@@ -105,7 +105,7 @@ and open the template in the editor.
                     <a class="footer-links" href="FAQ.php" >FAQ's</a>
                 </li>
                 <li>
-                    <a class="footer-links" href="#" >Contact Us</a>
+                    <a class="footer-links" href="contact-us.php" >Contact Us</a>
                 </li>
                 </ul>
                

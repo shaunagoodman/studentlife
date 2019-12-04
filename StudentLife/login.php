@@ -1,10 +1,22 @@
+
 <html>
 <?php
+
+
+// Initialize the session
+session_start();
+ 
+// Check if the user is already logged in, if yes then redirect him to welcome page
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    header("location: profile.php");
+    exit;
+}
+
 include_once 'includes/CDNs.php';
 $servername = "localhost";
 $username = "student_user";
 $password = "";
-$db_name = "Student_db";
+$db_name = "student_db";
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $db_name);
@@ -12,10 +24,12 @@ $conn = mysqli_connect($servername, $username, $password, $db_name);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-session_start();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
+   
+
     $sql = ("SELECT * FROM user WHERE u_email = '$email' and u_password = '$password'");
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
@@ -24,11 +38,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // If result matched $email and $mypassword, table row must be 1 row
     if ($count == 1) {
-        header("location: index.php");
+        session_start();
+    
+      
+      
+        $_SESSION["loggedin"] = true;
+        $_SESSION["u_email"] = $email;
+        $_SESSION['fname'] = $fname;
+        $_SESSION['lname'] = $lname;
+
+       
+ 
+                             
+        
+        // Redirect user to welcome page
+        header("location: profile.php");
     } else {
         echo "Login Not Successful";
     }
 }
+
 ?>
 
 <head>

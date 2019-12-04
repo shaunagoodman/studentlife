@@ -43,14 +43,47 @@ and open the template in the editor.
                     <a class="nav-link" href="index.php">Home</a>
                 </li>
                 <li class="nav-hover nav-item">
-                    <a class="nav-link" href="recipe-api">Recipes</a>
+                    <a class="nav-link" href="recipe-api.php">Recipes</a>
                 </li>
-                <li class="nav-hover nav-item">
-                    <a class="nav-link" href="login.php">Login</a>
-                </li>
-                <li class="nav-hover nav-item">
-                    <a class="nav-link" href="profile.php">Profile</a>
-                </li>
+                <li class=" nav-hover nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <?php
+    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+
+        echo "Profile";
+       
+    }
+    else
+    {
+        echo "Login";
+        
+        
+    }
+?>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                
+                
+                
+              
+                              <?php
+    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+
+        echo '<a class="dropdown-item" href="profile.php">View Profile</a>';
+        echo '<a class="dropdown-item" href="logout.php">Logout</a>';
+       
+    }
+    else
+    {
+        echo '<a class="dropdown-item" href="login.php">Login</a>';
+        echo '<a class="dropdown-item" href="staffLogin.php">Staff Login</a>';
+        echo '<a class="dropdown-item" href="sign-up.php">Register</a>';
+        
+        
+    }
+?>
+              </div>
+            </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

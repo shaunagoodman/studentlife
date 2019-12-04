@@ -1,3 +1,11 @@
+<?php
+// Initialize the session
+session_start();
+?>
+
+
+
+
 <!-- Still need to add equioment and price -->
 <!-- Refresh page when user wants a different recipe-->
 <html>
@@ -31,14 +39,14 @@ include_once 'includes/CDNs.php';
   <div class="col-md-6 recipe-api" >
 
 
-    <input class="form-control" name='ingredients' id='ingredients'  placeholder="eggs, milk, butter" />
+    <input class="form-control api-form-control" name='ingredients' id='ingredients'  placeholder="eggs, milk, butter" />
 
     <button class="btn api-button" onclick="findRecipe()">Submit</button>
 
     <div id="result"></div>
 
     <br>
-    <select class="form-control" id="selectIngredients">
+    <select class="form-control api-form-control" id="selectIngredients">
       <option>Choose a recipe</option>
     </select>
 
