@@ -43,13 +43,12 @@ include_once 'includes/CDNs.php';
 
     <button class="btn api-button" onclick="findRecipe()">Submit</button>
 
-    <div id="result"></div>
+    <div id="result" class = "hide">
 
     <br>
     <select class="form-control api-form-control" id="selectIngredients">
       <option>Choose a recipe</option>
     </select>
-
     <button class="btn api-button" onClick="viewRecipe()"> View Recipe</button>
     </div>
 
