@@ -21,16 +21,20 @@ for (i = 0; i< data.results.length; i++) {
 }
 }
 request.send(); 
+const el = document.querySelector('#result');
+  if (el.classList.contains("hide")) {
+    el.classList.remove("hide");
+}
 }
     //https://api.spoonacular.com/recipes/324694/analyzedInstructions?apiKey=53bea2eb3c79445188bc4d3f00895d15
 function viewRecipe () {
+  document.getElementById("selectedRecipe").innerHTML = " ";
   var request = new XMLHttpRequest();
   var select = document.getElementById("selectIngredients");
   var id = select.value;
 var urlString1 = "https://api.spoonacular.com/recipes/"
 var urlString2 = "/information?apiKey=53bea2eb3c79445188bc4d3f00895d15";
 var requestString = urlString1 + id + urlString2;
-console.log(requestString);
 request.open("GET", requestString, true);
 request.onload = function() {
   var data = JSON.parse(this.response);
@@ -76,4 +80,5 @@ request.onload = function() {
   }
 }
 request.send();
+
 }

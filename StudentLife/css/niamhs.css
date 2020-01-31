@@ -660,6 +660,9 @@ label{
 
 
 /* *********************** RECIPE API CSS  **********************    */
+.hide {
+    display: none;
+}
 
 .recipe-api{
    
