@@ -60,7 +60,7 @@ include_once 'includes/CDNs.php';
     </div>
 
 <br>
-
+</div>
 
   </div>
 

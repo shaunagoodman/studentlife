@@ -42,7 +42,7 @@ and open the template in the editor.
 
                 <div class="col-lg-12">
                     <center>
-                        <h1 class="profile-title1"> Welcome,<?php echo $_SESSION["fname"]["lname"]; ?></h1>
+                        <h1 class="profile-title1"> Welcome,<?php echo $_SESSION["fname"] . " " . $_SESSION["lname"]; ?></h1>
                     </center>
                 </div>
 
@@ -51,7 +51,7 @@ and open the template in the editor.
 
                     <div class="user-info profile-user-info">
 
-                        <h2 class="user-name"><?php echo ($_SESSION["fname"]["lname"]); ?></h2>
+                        <h2 class="user-name"><?php echo $_SESSION["fname"] . " " . $_SESSION["lname"]; ?></h2>
                         <hr>
                         <h5 class="h5-profile">Email:</h5>
                         <p><?php echo htmlspecialchars($_SESSION["u_email"]); ?></p>
@@ -72,19 +72,19 @@ and open the template in the editor.
 
             <div class="col-lg-4">
                 <div class="user-info profile-buttons favourites-button">
-                    <h2 class="my-favourites">Favourites</h2>
+                    <h2 onclick="myFunction()" class="my-favourites">Favourites</h2>
                 </div>
             </div>
 
             <div class="col-lg-4">
                 <div class="user-info profile-buttons budget-button">
-                    <h2 class="my-budget">My Budget</h2>
+                    <h2 onclick="myFunction()" class="my-budget">My Budget</h2>
                 </div>
             </div>
 
             <div class="col-lg-4">
                 <div class="user-info profile-buttons recipe-button">
-                    <h2 class="recipes">My Recipes</h2>
+                    <h2 onclick="myFunction()" class="recipes">My Recipes</h2>
                 </div>
             </div>
 

@@ -30,6 +30,11 @@
 <!-- Custom CSS -->
 
 <link href="css/niamhs.css" rel="stylesheet" type="text/css"/>
+
+
+<!-- Custom JS -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="javascript/swal-alert.js" type="text/javascript"></script>
         
     </body>
 </html>
