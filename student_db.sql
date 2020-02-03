@@ -7,6 +7,7 @@
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -19,7 +20,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `student_db_test`
+-- Database: `student_db`
 --
 
 -- --------------------------------------------------------
@@ -330,7 +331,6 @@ ALTER TABLE `contact`
 ALTER TABLE `difficulties`
   ADD PRIMARY KEY (`difficultyID`);
 
---
 -- Indexes for table `favourites`
 --
 ALTER TABLE `favourites`
@@ -356,6 +356,7 @@ ALTER TABLE `recipes`
   ADD PRIMARY KEY (`recipe_ID`),
   ADD KEY `user_ID` (`user_ID`),
   ADD KEY `difficultyID` (`difficultyID`);
+
 
 --
 -- Indexes for table `recipesteps`
@@ -453,6 +454,7 @@ ALTER TABLE `recipeingredient`
 ALTER TABLE `recipes`
   ADD CONSTRAINT `recipes_ibfk_1` FOREIGN KEY (`user_ID`) REFERENCES `user` (`user_ID`),
   ADD CONSTRAINT `recipes_ibfk_2` FOREIGN KEY (`difficultyID`) REFERENCES `difficulties` (`difficultyID`);
+
 
 --
 -- Constraints for table `recipesteps`
