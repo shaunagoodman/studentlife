@@ -1,3 +1,4 @@
+
 <?php
 require_once 'config.php';
 $dsn= "mysql:host=$servername;dbname=$db_name";
