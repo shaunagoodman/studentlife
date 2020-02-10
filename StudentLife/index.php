@@ -20,7 +20,7 @@ and open the template in the editor.
 
     <?php include_once 'includes/CDNs.php'; ?>
 
-    <link href="includes/stylesheet.css" rel="stylesheet" type="text/css" />
+   
 
 
 </head>

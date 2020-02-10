@@ -1,0 +1,2 @@
+ - To access database, create your own database called 'student_db' on phpmyadmin. 
+ - Once this is created, import the file 'student_db.sql' to the database. 

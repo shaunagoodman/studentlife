@@ -100,7 +100,7 @@ and open the template in the editor.
             <h3>Sort By Difficulty</h3>
             <?php
             //get the results from the categories variable(usuing a loop)
-            echo "<ul>"; echo "<p> Test </p> " ;
+            echo "<ul>"; 
             foreach($difficulties as $difficulty) :
             //add a list
             echo "<li>";

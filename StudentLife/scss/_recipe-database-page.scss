@@ -1,0 +1,82 @@
+/* *********************** RECIPE LIST PAGE FROM DATABASE CSS  **********************    */
+
+.sub-menu{
+    padding-top: 2.5%;
+    border-bottom: 1px solid $mediumOrange;
+}
+
+// .diff-menu-a{
+//     font-size: 200%;
+// }
+
+.allRecipes-h1{
+    padding-top: 5%;
+}
+
+.diff-class{
+    text-decoration: none;
+    
+}
+
+#div-difficulty-list {
+   text-align: right;
+    display:inline;      
+}
+#ul-difficulty-list li{
+    display: inline;
+}
+
+
+
+.li-diff-list{
+    font-family: 'Montserrat', sans-serif;
+    margin-right: 2%;
+}
+
+
+li.li-diff-list > a {
+    position: relative;
+    color: #000;
+    text-decoration: none;
+}
+
+li.li-diff-list > a:hover {
+    color: #000;
+}
+
+li.li-diff-list > a:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: $darkOrange;
+    visibility: hidden;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+
+li.li-diff-list > a:hover:before {
+    visibility: visible;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+}
+
+
+
+
+
+
+
+#text{
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.recipe-difficulty{
+    margin-bottom:0.1%;
+}

@@ -29,7 +29,7 @@ and open the template in the editor.
             <div class="row">
             <div class="col-md-4 footer-content " >
                 
-                <ul class="footer-section1" >
+                <ul class="footer-section1 footer-ul" >
                     <li class="footer-links" >
                         <img src="images/icons-logos/phone-white.png" width="5%" alt=""/>  Number: +353 863505611
                     </li>
@@ -56,7 +56,7 @@ and open the template in the editor.
             <div  class="col-md-4  footer-content">
 <!--                <center>-->
                 
-                <ul class="footer-section3" >
+                <ul class="footer-section3 footer-ul" >
                 <li>
                     <a class="footer-links" href="FAQ.php" >FAQ's</a>
                 </li>
@@ -76,7 +76,7 @@ and open the template in the editor.
 
 
 
-
+<!-- ---------------------- -->
         
         
         
@@ -100,7 +100,7 @@ and open the template in the editor.
             <div  class="col-md-12  footer-content small-footer-section">
                
                 
-                <ul class="small-footer-section-links" >
+                <ul class="small-footer-section-links footer-ul" >
                 <li>
                     <a class="footer-links" href="FAQ.php" >FAQ's</a>
                 </li>
@@ -112,7 +112,7 @@ and open the template in the editor.
             </div>
                 
                 
-                 <div class="col-md-12 footer-content " >
+                 <div class="col-md-12 footer-content footer-ul" >
                      <center>
                 
                          <p class="footer-links footer-contact-details" >  <img src="images/icons-logos/phone-white.png" width="5%" alt=""/>  Number: +353 863505611   <img src="images/icons-logos/letter-white.png" width="5%" alt=""/> Email: studentlife@info.com </p>
