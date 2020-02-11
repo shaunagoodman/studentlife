@@ -30,7 +30,7 @@
         $statement->execute();
         $result = $statement->fetchAll();
         
-        foreach ($result as $row => $row) 
+        foreach ($result as $row) 
         {
             echo $row['name'];
         }
