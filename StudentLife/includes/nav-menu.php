@@ -84,7 +84,7 @@ and open the template in the editor.
                     </div>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0" method="post" action="recipe-search.php">
+            <form class="form-inline my-2 my-lg-0" method="post" action="recipes-list.php">
                 <input class="form-control mr-sm-2" type="search" name = "something"placeholder="Search" aria-label="Search" value="<?= isset($_POST['something']) ? htmlspecialchars($_POST['something']) : '' ?>">
                 <button class="btn my-2 my-sm-0" type="submit" name = "submit"> <img src="images/recipeasy-icons-logos/white-search.png" class="d-inline-block align-top" alt="" /></button>
             </form> 
