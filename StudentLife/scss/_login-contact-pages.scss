@@ -1,0 +1,41 @@
+/* *********************** LOGIN FROM & CONTACT FORM CSS **********************    */
+
+.login-form{
+    margin-left:35%;
+    margin-right: 35%;
+    padding-top: 2%;
+}
+
+
+.login-logo{
+    padding-top: 4%;
+}
+
+input[type=text] {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid $darkOrange;
+}
+
+input[type=password] {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid $darkOrange;
+}
+
+input[type=email] {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid $darkOrange;
+}
+
+textarea {
+    background: transparent!important;
+    border: none!important;
+    border-bottom: 1px solid $darkOrange!important;
+}
+
+label{
+    font-family: 'Montserrat', sans-serif;
+    color:$darkOrange;
+}

@@ -29,7 +29,7 @@
 
 <!-- Custom CSS -->
 
-<link href="css/niamhs.css" rel="stylesheet" type="text/css"/>
+<link href="scss/niamh-main.css" rel="stylesheet" type="text/css"/>
 
 
 <!-- Custom JS -->

@@ -42,56 +42,53 @@ and open the template in the editor.
                 <li class="nav-hover nav-item">
                     <a class="nav-link" href="index.php">Home</a>
                 </li>
-                <li class="nav-hover nav-item">
-                    <a class="nav-link" href="recipe-api.php">Recipes</a>
-                </li>
                 <li class=" nav-hover nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <?php
-    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   Recipes </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
 
-        echo "Profile";
-       
-    }
-    else
-    {
-        echo "Login";
-        
-        
-    }
-?>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                
-                
-                
-              
-                              <?php
-    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+                        <a class="dropdown-item" href="recipes-list.php">All Recipes</a>
+                        <a class="dropdown-item" href="recipe-api.php">Whats in my fridge?</a>
 
-        echo '<a class="dropdown-item" href="profile.php">View Profile</a>';
-        echo '<a class="dropdown-item" href="logout.php">Logout</a>';
-       
-    }
-    else
-    {
-        echo '<a class="dropdown-item" href="login.php">Login</a>';
-        echo '<a class="dropdown-item" href="staffLogin.php">Staff Login</a>';
-        echo '<a class="dropdown-item" href="sign-up.php">Register</a>';
-        
-        
-    }
-?>
-              </div>
-            </li>
+                    </div>
+                </li>
+
+
+                <li class=" nav-hover nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <?php
+                        if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+
+                            echo "Profile";
+                        } else {
+                            echo "Login";
+                        }
+                        ?>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+
+
+
+
+                        <?php
+                        if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+
+                            echo '<a class="dropdown-item" href="profile.php">View Profile</a>';
+                            echo '<a class="dropdown-item" href="logout.php">Logout</a>';
+                        } else {
+                            echo '<a class="dropdown-item" href="login.php">Login</a>';
+                            echo '<a class="dropdown-item" href="staffLogin.php">Staff Login</a>';
+                            echo '<a class="dropdown-item" href="sign-up.php">Register</a>';
+                        }
+                        ?>
+                    </div>
+                </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" method="post" action="recipes-list.php">
                 <input class="form-control mr-sm-2" type="search" name = "something"placeholder="Search" aria-label="Search" value="<?= isset($_POST['something']) ? htmlspecialchars($_POST['something']) : '' ?>">
                 <button class="btn my-2 my-sm-0" type="submit" name = "submit"> <img src="images/recipeasy-icons-logos/white-search.png" class="d-inline-block align-top" alt="" /></button>
-            </form>      
-
+            </form> 
         </div>
     </nav>
 </body>
-
 </html>

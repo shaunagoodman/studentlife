@@ -1,48 +1,43 @@
 function findRecipe() {
-  var checkList = document.getElementById('list1');
-var items = document.getElementById('items');
-        checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
-            if (items.classList.contains('visible')){
-                items.classList.remove('visible');
-                items.style.display = "none";
-            }
-            
-            else{
-                items.classList.add('visible');
-                items.style.display = "block";
-            }
-            
-            
-        }
-
-        items.onblur = function(evt) {
-            items.classList.remove('visible');
-        }
-  var request = new XMLHttpRequest();
+  let request = new XMLHttpRequest();
   const urlString1 = "https://api.spoonacular.com/recipes/complexSearch?maxReadyTime=";
   const urlString2 = "&apiKey=53bea2eb3c79445188bc4d3f00895d15&query=";
-  var ingredients =document.getElementById('ingredients').value;
-  var maxTime =document.getElementById('time').value;
-  var intolerance = document.getElementById("selectIntolerance").value;
-  var dietRestriction = document.getElementById("selectDietRestriction").value;
-  console.log(intolerance);
-  console.log(dietRestriction);
-    if(maxTime === "") {
-      maxTime = 10;
-    }
-  var requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerance}&diet=${dietRestriction}`;
+  let ingredients =document.getElementById('ingredients').value;
+  let maxTime =document.getElementById('time').value;
+  let intoleranceIndex = document.getElementById("selectIntolerance").selectedIndex;
+  let intolerance = document.getElementById("selectIntolerance").value;
+  let requestString;
+  let dietRestrictionIndex = document.getElementById("selectDietRestriction").selectedIndex;
+  let dietRestriction = document.getElementById("selectDietRestriction").value;
+  if(maxTime === "") {
+    maxTime = 10;
+  }
+
+  if(intoleranceIndex == 0 && dietRestrictionIndex == 0)
+  {
+    requestString = `${urlString1}${maxTime}${urlString2}${ingredients}`;
+  }
+  else if (intoleranceIndex == 0) {
+    requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&diet=${dietRestriction}`;
+  }
+  else if (dietRestrictionIndex == 0) {
+    requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerance}`;
+  }
+  else {
+    requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerance}&diet=${dietRestriction}`;
+  }
   console.log(requestString);
   request.open("GET", requestString, true);
   request.onload = function() {
-    var data = JSON.parse(this.response);
+    let data = JSON.parse(this.response);
     if (request.status >= 200 && request.status < 400) {
-      var idArr;
-      var titleArr;
+      let idArr;
+      let titleArr;
     for (i = 0; i< data.results.length; i++) {
-      var select = document.getElementById("selectIngredients");
-      var id = data.results[i].id;
-      var title = data.results[i].title;
-      var el = document.createElement("option");
+      let select = document.getElementById("selectIngredients");
+      let id = data.results[i].id;
+      let title = data.results[i].title;
+      let el = document.createElement("option");
       el.textContent = title;
       el.value = id;
       select.appendChild(el);
@@ -58,21 +53,21 @@ var items = document.getElementById('items');
 function viewRecipe () {
   document.getElementById("ingredientList").innerHTML = " ";
   document.getElementById("methodList").innerHTML = " ";
-  var request = new XMLHttpRequest();
-  var select = document.getElementById("selectIngredients");
-  var id = select.value;
-var urlString1 = "https://api.spoonacular.com/recipes/"
-var urlString2 = "/information?apiKey=53bea2eb3c79445188bc4d3f00895d15";
-var requestString = urlString1 + id + urlString2;
+  let request = new XMLHttpRequest();
+  let select = document.getElementById("selectIngredients");
+  let id = select.value;
+let urlString1 = "https://api.spoonacular.com/recipes/"
+let urlString2 = "/information?apiKey=53bea2eb3c79445188bc4d3f00895d15";
+let requestString = urlString1 + id + urlString2;
 console.log(requestString);
 request.open("GET", requestString, true);
 request.onload = function() {
-  var data = JSON.parse(this.response);
-  var ingredients = [];
-  var equipment = [];
-  var steps = [];
-  var amount = [];
-  var unit = [];
+  let data = JSON.parse(this.response);
+  let ingredients = [];
+  let equipment = [];
+  let steps = [];
+  let amount = [];
+  let unit = [];
   if (request.status >= 200 && request.status < 400) { 
     if(data.extendedIngredients.length != 0) {
       for (i = 0; i< data.extendedIngredients.length; i++) {
@@ -82,15 +77,15 @@ request.onload = function() {
     }
     }
     else {
-      ingredients.push("No ingredients");
+      ingredients.push("No ingredients listed");
     }
-  if(data.analyzedInstructions != null) { 
+  if(data.analyzedInstructions === null) { 
+    steps.push("No steps listed.");
+  }
+  else {
     for(i = 0; i <data.analyzedInstructions[0].steps.length; i++) { 
       steps.push(data.analyzedInstructions[0].steps[i].step);
     }
-  }
-  else {
-    steps.push("No ingredients listed.");
   }
   }
 
@@ -102,17 +97,18 @@ request.onload = function() {
   }
   document.getElementById("ingredientList").innerHTML += "</br>";
   document.getElementById("methodList").innerHTML = "<h3 class = 'resultHeading'> Method </h3> </br>";// H for heading is set here
-  var result = "";
+  let result = "";
   for(i = 0; i < steps.length; i++) {
     result += "<li>" + steps[i]+ "</li>";
   }
   document.getElementById("methodList").innerHTML += result;
-  var favouriteButton = document.createElement("button");
+  let favouriteButton = document.createElement("button");
   favouriteButton.innerHTML = "Add to Favourites";
-  var aboveButton = document.getElementById("methodList");
+  let aboveButton = document.getElementById("methodList");
   aboveButton.appendChild(favouriteButton);
   favouriteButton.setAttribute("class", "favouriteButton");
 }
 request.send();
+
 
 }

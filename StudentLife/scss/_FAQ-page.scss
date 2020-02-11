@@ -1,0 +1,76 @@
+/* *********************** FAQ CSS **********************    */
+
+.faq-heading{
+    margin-top: 3%;
+
+    text-align: center;
+}
+.faq-line{
+    margin-bottom: 3%;
+}
+
+.accordion-section{
+    padding-bottom: 10%;
+}
+
+.faq-card{
+    margin-bottom: 6px;
+    border-radius: 20px;
+    border-color: #bdb9b6;
+    box-shadow: 3px 3px 5px 0px rgba(209,209,209,1);
+
+}
+
+
+/* .faq-card:active{
+    box-shadow: 
+           inset 
+                 0 0  0 2px rgb(255,255,255),
+                 0.3em 0.3em 1em rgba(0,0,0,0.3);
+
+}
+*/
+
+
+.card-header{
+    background-color: white;
+    border:none;
+    
+}
+
+.card-header:first-child {
+    border-radius: 20px; 
+}
+
+button.btn-link{
+    text-decoration: none!important;
+    color: black!important;
+    font-family: 'Montserrat', sans-serif;
+}
+
+button.btn-link:hover{
+    color: #1481ba!important;
+}
+
+
+.faq-p{
+    color:gray;
+    padding-left: 5%;
+}
+
+.fa-cog{
+    color:$darkOrange;
+}
+
+.fa-search{
+    color:$darkOrange;
+}
+
+.fa-share-alt    {
+    color:$darkOrange;
+}
+
+.fa-paper-plane{
+    color:$darkOrange;
+}
+

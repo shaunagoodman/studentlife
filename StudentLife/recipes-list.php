@@ -10,6 +10,7 @@ try {
     //run my query 
     //prepare the query (PDO)
     $statement = $conn->prepare($query);
+
     //bind data if required  (if i need to contrain using a WHERE clause) not needed rn cos we need all categories
     //execute the query
     $statement->execute();
@@ -54,6 +55,7 @@ else if(empty($_POST['submit'])) {
 
     //prepare the query (PDO)
     $statement2 = $conn->prepare($query);
+
     //bind data if required  (if i need to contrain using a WHERE clause)
     $statement2->bindValue(":difficulty_id", $difficultyID);
     //execute the query
@@ -63,13 +65,12 @@ else if(empty($_POST['submit'])) {
     //close the statement
     $statement2->closeCursor();
 }
+
 } catch (Exception $ex) {
     $errorMessage = $e->getMessage();
     echo $errorMessage;
     exit();
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -79,42 +80,83 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Create a Recipe</title>
 
-        <?php session_start();
-        include_once 'includes/CDNs.php'; 
-        require_once 'includes/database/connection.php';
-        ?> 
-        <link href="includes/stylesheet.css" rel="stylesheet" type="text/css"/>
-        <script src="javascript/addInput.js"></script>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <?php include_once 'includes/CDNs.php'; ?>
+    <link href="includes/stylesheet.css" rel="stylesheet" type="text/css" />
+
+
+</head>
+
 <body>
-<?php include_once 'includes/nav-menu.php'; ?> 
+    <?php include_once 'includes/nav-menu.php'; ?>
 
-<div id="recipe-list" >
-    <?php
-    $sql = 'SELECT * FROM recipes';
-    echo "<div class = 'recipe-details'>";
-    foreach ($conn->query($sql) as $row) {
-        echo $row['name'] . "</br>";
-        echo "Difficulty: " . $row['difficulty'] . "</br>";
-        echo "Serves: " . $row['servings'] . "</br>";
-        $maxTime = $row["maxTime"];
-                $time = explode(':', $maxTime);
-                $minutes = ($time[0] * 60.0 + $time[1] * 1.0);
-                echo $minutes . " minutes</br>";
-                echo "<href = ''>Link to recipe</a> </br>";
-    }
-    echo "</div>";
-    ?>
-</div>
+    <div class="container">
+    
 
-<?php
-include_once 'includes/footer.php';
-$conn = null; 
-?>
+
+    <div class='sub-menu' >
+        <!--dynamic categories (All categories)
+            output $categories (from my query above)
+            add a link (a tag) around each category name to call this page again (passing through the category id)
+            -->
+
+        <?php
+        //get the results from the categories variable(usuing a loop)
+        echo "<div id='div-difficulty-list' >";
+        echo "<ul class='diff-list' id='ul-difficulty-list' >";
+        // print_r("<pre>");
+        // print_r($difficulties);
+        // print_r("</pre>");
+        echo "<li class='li-diff-list' > <a href='recipes-list.php'>Show All </li>";
+        foreach ($difficulties as $difficulty) :
+            //add a list
+            echo "<li class='li-diff-list'>";
+            //output category name
+            echo "<a class='diff-menu-a' href='recipes-list.php?difficulty_id=" . $difficulty['difficultyID'] . "'>";
+            echo $difficulty['diffName'];
+            echo "</a>";
+            echo "</li>";
+        //close loop  
+        endforeach;
+        echo "</ul>";
+        echo "</div>";
+        ?>
+
+    </div>
+
+
+    <h1 class="allRecipes-h1" >All Recipes</h1>
+    <hr align="left">
+    
+
+        <?php
+        echo "<div class='row' >";
+        //get the results from the $products variable(using a loop)
+        foreach ($recipes as $recipe) : ?>
+
+             <div class='col-lg-4' >
+             <!-- <img src='images/recipes/pancakes.jpg' alt='dish image' height='250' width='270'> -->
+             <img src='images/recipes/<?php echo $recipe['image'];  ?>' alt='dish image' height='250' width='270'>
+             <h4 class='recipe-name'> <?php echo $recipe['name']; ?> </h4>
+             <h5 class='recipe-difficulty' >  Difficulty: <?php echo $recipe['difficulty-text']; ?> </h5>
+             <h5 class='recipe-time' > <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%'  alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
+            </h5>
+            <br>
+            </div>
+
+        <?php endforeach;
+        echo "</div>" ?>
+        
+
+    </div>
+
+
+
+
+    <?php include_once 'includes/footer.php'; ?>
+
 </body>
 </html>
-<html>
