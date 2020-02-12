@@ -144,6 +144,7 @@ and open the template in the editor.
              <h5 class='recipe-difficulty' >  Difficulty: <?php echo $recipe['difficulty-text']; ?> </h5>
              <h5 class='recipe-time' > <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%'  alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
             </h5>
+            <a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID']?>"><button type="button" class="btn btn-sm btn-outline-secondary">View Recipe</button></a>
             <br>
             </div>
 

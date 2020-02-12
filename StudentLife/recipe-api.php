@@ -37,21 +37,32 @@ include_once 'includes/CDNs.php';
           <input class="form-control api-form-control" name='ingredients' id='ingredients'  placeholder="eggs, milk, butter" />
           <p> Enter how many minutes long you want to spend cooking </p>
           <input class="form-control api-form-control" name='time' id='time'/>
-          <select class="form-control api-form-control" id="selectIntolerance">
-            <option>Select an intolerance</option>
-            <option>Dairy</option>
-            <option>Egg</option>
-            <option>Gluten</option>
-            <option>Grain</option>
-            <option>Peanut</option>
-            <option>Seafood</option>
-            <option>Sesame</option>
-            <option>Shellfish</option>
-            <option>Soy</option>
-            <option>Sulfite</option>
-            <option>Tree Nut</option>
-            <option>Wheat</option>
-          </select>
+          
+	<p>Select any of the following intolerances: </p></br>
+	<input type="checkbox" name="intolerance" value="dairy">Dairy<br>
+	<input type="checkbox" name="intolerance" value="egg">Egg<br>
+	<input type="checkbox" name="intolerance" value="gluten">Gluten<br>
+	<input type="checkbox" name="intolerance" value="grain">Grain<br>
+	<input type="checkbox" name="intolerance" value="peanut">Peanut<br>
+	<input type="checkbox" name="intolerance" value="seafood">Seafood<br>
+	<input type="checkbox" name="intolerance" value="sesame">Sesame<br>
+	<input type="checkbox" name="intolerance" value="shellfish">Shellfish<br>
+	<input type="checkbox" name="intolerance" value="soy">Soy<br>
+	<input type="checkbox" name="intolerance" value="sulfite">Sulfite<br>
+	<input type="checkbox" name="intolerance" value="tree nut">Tree Nut<br>
+	<input type="checkbox" name="intolerance" value="wheat">Wheat<br>
+
+  <p>Select any of the following Diet Restrictions:</p>
+  <input type="checkbox" name="dietRestriction" value="gluten free">Gluten Free<br>
+  <input type="checkbox" name="dietRestriction" value="ketogenic">Ketogenic<br>
+  <input type="checkbox" name="dietRestriction" value="paleo">Paleo<br>
+  <input type="checkbox" name="dietRestriction" value="pescetarian">Pescetarian<br>
+  <input type="checkbox" name="dietRestriction" value="primal">Primal<br>
+  <input type="checkbox" name="dietRestriction" value="vegan">Vegan<br>
+  <input type="checkbox" name="dietRestriction" value="vegetarian">Vegetarian<br>
+  <input type="checkbox" name="dietRestriction" value="whole30">Whole30<br>
+<!-- 
+
 
           <select class="form-control api-form-control" id="selectDietRestriction">
             <option>Select Diet Restriction</option>
@@ -63,7 +74,7 @@ include_once 'includes/CDNs.php';
             <option>Paleo</option>
             <option>Primal</option>
             <option>Whole30</option>
-          </select>
+          </select> -->
           <button class="btn api-button" onclick="findRecipe()">Submit</button>
       </div>
 
