@@ -1,6 +1,23 @@
 <?php
+
+
 // Initialize the session
 session_start();
+
+
+// Include config file
+require_once "includes/database/connection.php";
+
+
+$query ="SELECT * FROM recipes ORDER BY date_created";
+$statement = $conn->prepare($query);
+$statement->execute();
+$recipes = $statement->fetchAll();
+//close the statement
+$statement->closeCursor();
+
+
+
 ?>
 
 
@@ -114,46 +131,24 @@ and open the template in the editor.
                         <h1 class="home-title1"> New Recipes</h1>
                         <hr align="left">
                     </div>
+<?php foreach ($recipes as $recipe) :
 
+?>
                     <div class="col-lg-4 bottom-home ">
 
                         <div class="card home-card" >
-                            <img src="images/recipes/wrap.png" class="card-img-top" alt="...">
+                            <img src="images/recipes/<?php echo $recipe['image'];  ?>" class="card-img-top" alt='dish image' height='250' width='270'>
                             <div class="card-body">
-                                <h5 class="card-title">Chicken Wrap</h5>
+                                <h5 class="card-title"><?php echo $recipe['name'];  ?></h5>
                                 <p class="card-text">Easy to make and tatse delicious.</p>
-                                <a href="#" class="btn btn-light">More Info</a>
+                                <a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID']?>" class="btn btn-light">More Info</a>
                             </div>
                         </div>
 
                     </div>
 
-
-                    <div class="col-lg-4 bottom-home ">
-
-                        <div class="card home-card" >
-                            <img src="images/recipes/protein-pan.png" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Protein Pancakes</h5>
-                                <p class="card-text">Simple to make and healthy too!</p>
-                                <a href="#" class="btn btn-light">More Info</a>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-lg-4  bottom-home">
-
-                        <div class="card home-card">
-                            <img src="images/recipes/spaghetti.png" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Simple Spaghetti</h5>
-                                <p class="card-text">A classic Italian dish made easy</p>
-                                <a href="#" class="btn btn-light">More Info</a>
-                            </div>
-                        </div>
-
-                    </div>
+<?php endforeach;?>
+                   
 
                 </div>
             </div>
