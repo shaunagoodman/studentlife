@@ -1,4 +1,0 @@
-**Stage files**
-- When you commit the code before pushing it. 
-- No one has the changes. 
-- You will then need to push. 
