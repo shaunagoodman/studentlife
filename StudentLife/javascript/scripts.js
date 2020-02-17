@@ -4,32 +4,35 @@ function findRecipe() {
   const urlString2 = "&apiKey=53bea2eb3c79445188bc4d3f00895d15&query=";
   let ingredients =document.getElementById('ingredients').value;
   let maxTime =document.getElementById('time').value;
-  let intolerances = getIntolerances();
-  let dietRestriction = getDietRestrictions();
-  if(maxTime === "") {
-    maxTime = 30;
-  }
+  let intoleranceIndex = document.getElementById("selectIntolerance").selectedIndex;
+  let intolerance = document.getElementById("selectIntolerance").value;
   let requestString;
-  if(intolerances.length == 0 && dietRestriction == 0) {
-      requestString = `${urlString1}${maxTime}${urlString2}${ingredients}`;
+  let dietRestrictionIndex = document.getElementById("selectDietRestriction").selectedIndex;
+  let dietRestriction = document.getElementById("selectDietRestriction").value;
+  if(maxTime === "") {
+    maxTime = 10;
   }
-  else if(intolerances.length == 0 && dietRestriction != 0) {
-      requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&diet=${dietRestriction}`;
+
+  if(intoleranceIndex == 0 && dietRestrictionIndex == 0)
+  {
+    requestString = `${urlString1}${maxTime}${urlString2}${ingredients}`;
   }
-  else if(intolerances.length != 0 && dietRestriction == 0) {
-      requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerances}`;
+  else if (intoleranceIndex == 0) {
+    requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&diet=${dietRestriction}`;
+  }
+  else if (dietRestrictionIndex == 0) {
+    requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerance}`;
   }
   else {
-      requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerances}&diet=${dietRestriction}`;
+    requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerance}&diet=${dietRestriction}`;
   }
-  
- 
-
   console.log(requestString);
   request.open("GET", requestString, true);
   request.onload = function() {
     let data = JSON.parse(this.response);
     if (request.status >= 200 && request.status < 400) {
+      let idArr;
+      let titleArr;
     for (i = 0; i< data.results.length; i++) {
       let select = document.getElementById("selectIngredients");
       let id = data.results[i].id;
@@ -84,8 +87,6 @@ request.onload = function() {
       steps.push(data.analyzedInstructions[0].steps[i].step);
     }
   }
-
-
   }
 
   /* Only change below for where the method is being displayed*/
@@ -111,25 +112,3 @@ request.send();
 
 
 }
-
-function getIntolerances(){
-  var intolerances=document.getElementsByName('intolerance');
-  var selectedItems="";
-  for(var i=0; i<intolerances.length; i++){
-    if(intolerances[i].type=='checkbox' && intolerances[i].checked==true)
-      selectedItems+=intolerances[i].value+",";
-  }
-  let newSelectedItems = selectedItems.substring(0, selectedItems.length - 1);
-  return newSelectedItems;
-}	
-
-function getDietRestrictions(){
-  var dietRestriction=document.getElementsByName('dietRestriction');
-  var selectedItems="";
-  for(var i=0; i<dietRestriction.length; i++){
-    if(dietRestriction[i].type=='checkbox' && dietRestriction[i].checked==true)
-      selectedItems+=dietRestriction[i].value+",";
-  }
-  let newSelectedItems = selectedItems.substring(0, selectedItems.length - 1);
-  return newSelectedItems;
-}	

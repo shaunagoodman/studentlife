@@ -11,3 +11,4 @@ $dsn= "mysql:host=$servername;dbname=$db_name";
             // report error message
             echo $e->getMessage();
            }
+           ?>
