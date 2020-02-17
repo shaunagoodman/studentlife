@@ -135,13 +135,15 @@ and open the template in the editor.
         <?php
         echo "<div class='row' >";
         //get the results from the $products variable(using a loop)
-        foreach ($recipes as $recipe) : ?>
+        foreach ($recipes as $recipe) :  
+        
+        ?>
 
              <div class='col-lg-4' >
              <!-- <img src='images/recipes/pancakes.jpg' alt='dish image' height='250' width='270'> -->
              <img src='images/recipes/<?php echo $recipe['image'];  ?>' alt='dish image' height='250' width='270'>
              <h4 class='recipe-name'> <?php echo $recipe['name']; ?> </h4>
-             <h5 class='recipe-difficulty' >  Difficulty: <?php echo $recipe['difficulty-text']; ?> </h5>
+             <h5 class='recipe-difficulty' >  Difficulty: <?php echo $recipe['difficulty_text']; ?> </h5>
              <h5 class='recipe-time' > <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%'  alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
             </h5>
             <a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID']?>"><button type="button" class="btn btn-sm btn-outline-secondary">View Recipe</button></a>

@@ -56,7 +56,9 @@ and open the template in the editor.
                        
                         <p><?php echo htmlspecialchars($_SESSION["u_email"]); ?></p>
                        
-                        <a href="edit_details_test.php" class="btn btn-warning">Edit Profile</a>
+                        <a href="edit_details.php" class="btn btn-warning">Edit Profile</a>
+
+                        <a href="reset_password.php" class="btn btn-warning">Reset Password</a>
                        
                         
                     </div>
@@ -75,7 +77,7 @@ and open the template in the editor.
 
             <div class="col-lg-6">
                 <div class="user-info profile-buttons favourites-button">
-               <a href="my-recipes.php"  class="recipes">Favourites</a>
+               <a href="favourites.php"  class="recipes">Favourites</a>
                 </div>
             </div>
 
@@ -83,7 +85,7 @@ and open the template in the editor.
 
             <div class="col-lg-6">
                 <div class="user-info profile-buttons recipe-button">
-                    <h2 onclick="myFunction()" class="recipes">My Recipes</h2>
+                <a href="show-all-recipes.php"  class="recipes">Recipes</a>
                 </div>
             </div>
 

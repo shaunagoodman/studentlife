@@ -56,7 +56,7 @@ and open the template in the editor.
 		    
 		    <center><h2 class="heading"><?php echo $recipe['name'] ?> </h2></center> 
     		    <center><figure>
-                <center> <p class="text-muted"><strong>Difficulty: </strong><?php echo $recipe['difficulty-text'] ?></p></center>
+                <center> <p class="text-muted"><strong>Difficulty: </strong><?php echo $recipe['difficulty_text'] ?></p></center>
                 <img src='images/recipes/<?php echo $recipe['image'];  ?>' alt='dish image' height='250' width='270'>
     			</figure></center>
 		  
@@ -86,7 +86,7 @@ and open the template in the editor.
 
         
 <?php foreach ($ingredients as $ingredient) : ?>
-            <center> <p class="text-muted"><?php echo $ingredient['amount'] ?> <?php echo $ingredient['unit'] ?><?php echo $ingredient['name'] ?></p></center><?php endforeach; ?>
+            <center> <p class="text-muted"><?php echo $ingredient['name'] ?> <?php echo $ingredient['amount'] ?> <?php echo $ingredient['unit'] ?></p></center><?php endforeach; ?>
                   <?php endforeach; ?>
           <?php endforeach; ?>
 
