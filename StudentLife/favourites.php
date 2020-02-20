@@ -6,7 +6,7 @@ require_once 'includes/database/connection.php';
 if (isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true) {
     try {
         $userID = $_SESSION['user_ID'];
-        $sql = "SELECT * FROM recipes WHERE isFavourite = 1 AND user_ID = $userID";
+        $sql = "SELECT * FROM recipes WHERE isFavourite = 1 AND favourited_by = $userID";
         $statement = $conn->prepare($sql);
         $statement->execute();
         $recipes = $statement->fetchAll();
