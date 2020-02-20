@@ -1,110 +1,71 @@
-<?php 
-
+<?php
+// Initialize the session
 session_start();
-// Check if the user is logged in, if not then redirect him to login page
-if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+require_once 'includes/database/connection.php';
+if (isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true) {
+    try {
+        $userID = $_SESSION['user_ID'];
+        $query = "SELECT * FROM recipes WHERE user_ID = $userID";
+        $statement2 = $conn->prepare($query);
+        $statement2->bindValue(":userID", $userID);
+        $statement2->execute();
+        $recipes = $statement2->fetchAll();
+        $statement2->closeCursor();
+    } catch (Exception $ex) {
+        $errorMessage = $e->getMessage();
+        echo $errorMessage;
+        exit();
+    }
+}
+else {
     header("location: login.php");
     exit;
 }
-
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
-    <style type="text/css">
-        .wrapper{
-            width: 650px;
-            margin: 0 auto;
-        }
-        .page-header h2{
-            margin-top: 0;
-        }
-        table tr td:last-child a{
-            margin-right: 15px;
-        }
-    </style>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('[data-toggle="tooltip"]').tooltip();   
-        });
-    </script>
+    <title>Recipes</title>
+    <?php include_once 'includes/CDNs.php'; ?>
 </head>
+
 <body>
-    <div class="wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="page-header clearfix">
-                        <h2 class="pull-left">Recipes Details</h2>
-                        <a href="add_recipe.php" class="btn btn-success pull-right">Add New Recipe</a>
-                    </div>
-                    <?php
-                    // Include config file
-                    require_once "includes/database/connection.php";
-                    
-                    // Attempt select query execution
-                    $query = "SELECT * FROM recipes ";
-                    if($result = $conn->query($query)){
-                        if($result->rowCount() > 0){
-                            echo "<table class='table table-bordered table-striped'>";
-                                echo "<thead>";
-                                    echo "<tr>";
-                                        echo "<th>Recipe ID #</th>";
-                                        echo "<th>User ID #</th>";
-                                        echo "<th>Name</th>";
-                                        echo "<th>Image</th>";
-                                        echo "<th>Video Name</th>";
-                                        echo "<th>Rating</th>";
-                                        echo "<th>Servings</th>";
-                                        echo "<th>Difficulty</th>";
-                                        echo "<th>Max Time</th>";
-                                        echo "<th>Difficulty ID</th>";
-                                        echo "<th>Date Created</th>";
-                                    echo "</tr>";
-                                echo "</thead>";
-                                echo "<tbody>";
-                                while($row = $result->fetch()){
-                                    echo "<tr>";
-                                        echo "<td>" . $row['recipe_ID'] . "</td>";
-                                        echo "<td>" . $row['user_ID'] . "</td>";
-                                        echo "<td>" . $row['name'] . "</td>";
-                                        echo "<td>" . $row['image'] . "</td>";
-                                        echo "<td>" . $row['video_name'] . "</td>";
-                                        echo "<td>" . $row['rating'] . "</td>";
-                                        echo "<td>" . $row['servings'] . "</td>";
-                                        echo "<td>" . $row['difficulty_text'] . "</td>";
-                                        echo "<td>" . $row['maxTime'] . "</td>";
-                                        echo "<td>" . $row['difficultyID'] . "</td>";
-                                        echo "<td>" . $row['date_created'] . "</td>";
-                                        echo "<td>";
-                                            echo "<a href='recipe-read.php?recipe_ID=". $row['recipe_ID'] ."' title='View Recipe' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
-                                            echo "<a href='update_recipe.php?recipe_ID=". $row['recipe_ID'] ."' title='Update Recipe' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                            echo "<a href='delete_recipe.php?recipe_ID=". $row['recipe_ID'] ."' title='Delete Recipe' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
-                                        echo "</td>";
-                                    echo "</tr>";
-                                }
-                                echo "</tbody>";                            
-                            echo "</table>";
-                            // Free result set
-                            unset($result);
-                        } else{
-                            echo "<p class='lead'><em>No Recipes were found.</em></p>";
-                        }
-                    } else{
-                        echo "ERROR: Could not able to execute $query. " . $mysqli->error;
-                    }
-                    
-                    // Close connection
-                    unset($conn);
-                    ?>
-                </div>
-            </div>        
-        </div>
+    <?php include_once 'includes/nav-menu.php'; ?>
+
+        <div class="container">
+
+
+    <h1 class="allRecipes-h1" >All Recipes</h1>
+    <hr align="left">
+    
+
+        <?php
+        echo "<div class='row' >";
+        //get the results from the $products variable(using a loop)
+        foreach ($recipes as $recipe) :  
+        
+        ?>
+
+             <div class='col-lg-4' >
+             <!-- <img src='images/recipes/pancakes.jpg' alt='dish image' height='250' width='270'> -->
+             <img src='images/recipes/<?php echo $recipe['image'];  ?>' alt='dish image' height='250' width='270'>
+             <h4 class='recipe-name'> <?php echo $recipe['name']; ?> </h4>
+             <h5 class='recipe-difficulty' >  Difficulty: <?php echo $recipe['difficulty_text']; ?> </h5>
+             <h5 class='recipe-time' > <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%'  alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
+            </h5>
+            <a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID']?>"><button type="button" class="btn btn-sm btn-outline-secondary">View Recipe</button></a>
+            <br>
+            </div>
+
+        <?php endforeach;
+        echo "</div>" ?>
+        <a href = "add_recipe.php"><button> Add recipe </button></a>
     </div>
+    
+    <?php include_once 'includes/footer.php'; ?>
+
 </body>
 </html>
