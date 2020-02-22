@@ -62,7 +62,7 @@ else {
 
         <?php endforeach;
         echo "</div>" ?>
-        <a href = "add_recipe.php"><button> Add recipe </button></a>
+        <a href = "add-recipe.php"><button> Add recipe </button></a>
     </div>
     
     <?php include_once 'includes/footer.php'; ?>
