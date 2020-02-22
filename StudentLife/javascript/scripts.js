@@ -133,3 +133,66 @@ function getDietRestrictions(){
   let newSelectedItems = selectedItems.substring(0, selectedItems.length - 1);
   return newSelectedItems;
 }	
+let countIngredient = 1;
+function addIngredient() {
+  var area = document.getElementById("addedIngredient");
+  var num = document.createElement("p");
+  numText = document.createTextNode(countIngredient + ". ");
+  num.appendChild(numText);
+  area.appendChild(num);
+  //Ingredient Name
+  var ingredientNameLabel = document.createElement("p");
+  ingredientNameLabelText = document.createTextNode("Name");
+  ingredientNameLabel.appendChild(ingredientNameLabelText);
+  area.appendChild(ingredientNameLabel);
+  countIngredient++;
+
+  var ingredientNameInput = document.createElement("INPUT");
+  ingredientNameInput.setAttribute("name", "ingredient_name[]");
+  ingredientNameInput.setAttribute("type", "text");
+  ingredientNameInput.setAttribute("class", "form-control");
+  ingredientNameInput.setAttribute("class", "ingName");
+  area.appendChild(ingredientNameInput);
+
+  //Ingredient Measure
+  var ingredientMeasureLabel = document.createElement("p");
+  ingredientMeasureLabelText = document.createTextNode("Measure");
+  ingredientMeasureLabel.appendChild(ingredientMeasureLabelText);
+  area.appendChild(ingredientMeasureLabel);
+
+  var ingredientMeasureInput = document.createElement("INPUT");
+  ingredientMeasureInput.setAttribute("name", "ingredient_measure[]");
+  ingredientMeasureInput.setAttribute("type", "text");
+  ingredientMeasureInput.setAttribute("class", "form-control");
+  ingredientMeasureInput.setAttribute("class", "ingMeasure");
+  area.appendChild(ingredientMeasureInput);
+
+   //Ingredient Unit
+   var ingredientUnitLabel = document.createElement("p");
+   ingredientUnitLabelText = document.createTextNode("Unit");
+   ingredientUnitLabel.appendChild(ingredientUnitLabelText);
+   area.appendChild(ingredientUnitLabel);
+ 
+   var ingredientUnitInput = document.createElement("INPUT");
+   ingredientUnitInput.setAttribute("name", "ingredient_unit[]");
+   ingredientUnitInput.setAttribute("type", "text");
+   ingredientUnitInput.setAttribute("class", "form-control");
+   ingredientUnitInput.setAttribute("class", "ingUnit");
+   
+   area.appendChild(ingredientUnitInput);
+}
+let countStep = 1;
+function addStep() {
+  var area = document.getElementById("addedStep");
+  var step = document.createElement("p");
+   stepText = document.createTextNode(countStep + ". ");
+   countStep++;
+   step.appendChild(stepText);
+   area.appendChild(step);
+ 
+   var stepInput = document.createElement("INPUT");
+   stepInput.setAttribute("name", "steps[]");
+   stepInput.setAttribute("type", "text");
+   stepInput.setAttribute("class", "form-control");
+   area.appendChild(stepInput);
+}
