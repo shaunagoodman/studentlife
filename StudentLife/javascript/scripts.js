@@ -1,76 +1,135 @@
 function findRecipe() {
-var request = new XMLHttpRequest();
-const urlString = "https://api.spoonacular.com/recipes/complexSearch?maxReadyTime=15&apiKey=53bea2eb3c79445188bc4d3f00895d15&query=";
-var ingredients =document.getElementById('ingredients').value;
-var requestString = urlString + ingredients;
-request.open("GET", requestString, true);
-request.onload = function() {
-  var data = JSON.parse(this.response);
-  if (request.status >= 200 && request.status < 400) {
-    var idArr;
-    var titleArr;
-for (i = 0; i< data.results.length; i++) {
-  var select = document.getElementById("selectIngredients");
-  var id = data.results[i].id;
-  var title = data.results[i].title;
-  var el = document.createElement("option");
-  el.textContent = title;
-  el.value = id;
-  select.appendChild(el);
+  let request = new XMLHttpRequest();
+  const urlString1 = "https://api.spoonacular.com/recipes/complexSearch?maxReadyTime=";
+  const urlString2 = "&apiKey=53bea2eb3c79445188bc4d3f00895d15&query=";
+  let ingredients =document.getElementById('ingredients').value;
+  let maxTime =document.getElementById('time').value;
+  let intolerances = getIntolerances();
+  let dietRestriction = getDietRestrictions();
+  if(maxTime === "") {
+    maxTime = 30;
+  }
+  let requestString;
+  if(intolerances.length == 0 && dietRestriction == 0) {
+      requestString = `${urlString1}${maxTime}${urlString2}${ingredients}`;
+  }
+  else if(intolerances.length == 0 && dietRestriction != 0) {
+      requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&diet=${dietRestriction}`;
+  }
+  else if(intolerances.length != 0 && dietRestriction == 0) {
+      requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerances}`;
+  }
+  else {
+      requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerances}&diet=${dietRestriction}`;
+  }
+  
+ 
+
+  console.log(requestString);
+  request.open("GET", requestString, true);
+  request.onload = function() {
+    let data = JSON.parse(this.response);
+    if (request.status >= 200 && request.status < 400) {
+    for (i = 0; i< data.results.length; i++) {
+      let select = document.getElementById("selectIngredients");
+      let id = data.results[i].id;
+      let title = data.results[i].title;
+      let el = document.createElement("option");
+      el.textContent = title;
+      el.value = id;
+      select.appendChild(el);
+    }
+    }
+  }
+  request.send(); 
+  const el = document.querySelector('#result');
+    if (el.classList.contains("hide")) {
+      el.classList.remove("hide");
+  }
 }
-}
-}
-request.send(); 
-}
-    //https://api.spoonacular.com/recipes/324694/analyzedInstructions?apiKey=53bea2eb3c79445188bc4d3f00895d15
 function viewRecipe () {
-  var request = new XMLHttpRequest();
-  var select = document.getElementById("selectIngredients");
-  var id = select.value;
-var urlString1 = "https://api.spoonacular.com/recipes/"
-var urlString2 = "/information?apiKey=53bea2eb3c79445188bc4d3f00895d15";
-var requestString = urlString1 + id + urlString2;
+  document.getElementById("ingredientList").innerHTML = " ";
+  document.getElementById("methodList").innerHTML = " ";
+  let request = new XMLHttpRequest();
+  let select = document.getElementById("selectIngredients");
+  let id = select.value;
+let urlString1 = "https://api.spoonacular.com/recipes/"
+let urlString2 = "/information?apiKey=53bea2eb3c79445188bc4d3f00895d15";
+let requestString = urlString1 + id + urlString2;
 console.log(requestString);
 request.open("GET", requestString, true);
 request.onload = function() {
-  var data = JSON.parse(this.response);
-  var ingredients = [];
-  var ingredientImages = [];
-  var equipment = [];
-  var steps = [];
-  if (request.status >= 200 && request.status < 400) {
-    if(data.extendedIngredients != null) {
+  let data = JSON.parse(this.response);
+  let ingredients = [];
+  let equipment = [];
+  let steps = [];
+  let amount = [];
+  let unit = [];
+  if (request.status >= 200 && request.status < 400) { 
+    if(data.extendedIngredients.length != 0) {
       for (i = 0; i< data.extendedIngredients.length; i++) {
       ingredients.push(data.extendedIngredients[i].name);
-      ingredientImages.push(data.extendedIngredients[i].image);
+      amount.push(data.extendedIngredients[i].measures.metric.amount);
+      unit.push(data.extendedIngredients[i].measures.metric.unitShort);
     }
     }
     else {
-      document.getElementById("selectedRecipe").innerHTML += "No ingredients provided";
+      ingredients.push("No ingredients listed");
     }
-  if(data.analyzedInstructions != null) {
-    for(i = 0; i <data.analyzedInstructions[0].steps.length; i++) {
+  if(data.analyzedInstructions === null) { 
+    steps.push("No steps listed.");
+  }
+  else {
+    for(i = 0; i <data.analyzedInstructions[0].steps.length; i++) { 
       steps.push(data.analyzedInstructions[0].steps[i].step);
     }
   }
-  else {
-    document.getElementById("selectedRecipe").innerHTML += "No steps provided";
+
+
   }
-  }
-  var img = document.createElement("img");
-  document.getElementById("selectedRecipe").innerHTML += "INGREDIENTS </br>";
+
+  /* Only change below for where the method is being displayed*/
+  document.querySelector("#recipeName").innerHTML = data.title;
+  document.getElementById("ingredientList").innerHTML = "<h3 class = 'resultHeading'> Ingredients </h3> </br>"; // H for heading is set here
   for(i = 0; i < ingredients.length; i++) {
-    img.src = "https://spoonacular.com/cdn/ingredients_100x100/" + ingredientImages[i];
-    console.log(img.src);
-    var doc = document.getElementById("selectedRecipe");
-    doc.appendChild(img);
-    document.getElementById("selectedRecipe").innerHTML += ingredients[i] + "</br>";
+    document.getElementById("ingredientList").innerHTML += amount[i] + " " + unit[i] + " " + ingredients[i] + "</br>";
   }
-  document.getElementById("selectedRecipe").innerHTML += "</br>";
-  document.getElementById("selectedRecipe").innerHTML += "STEPS </br>";
+  document.getElementById("ingredientList").innerHTML += "</br>";
+  document.getElementById("methodList").innerHTML = "<h3 class = 'resultHeading'> Method </h3> </br>";// H for heading is set here
+  let result = "";
   for(i = 0; i < steps.length; i++) {
-    document.getElementById("selectedRecipe").innerHTML += "Step " + (i+1) + ": " + steps[i] + "</br>";
+    result += "<li>" + steps[i]+ "</li>";
   }
+  document.getElementById("methodList").innerHTML += result;
+  let favouriteButton = document.createElement("button");
+  favouriteButton.innerHTML = "Add to Favourites";
+  let aboveButton = document.getElementById("methodList");
+  aboveButton.appendChild(favouriteButton);
+  favouriteButton.setAttribute("class", "favouriteButton");
 }
 request.send();
+
+
 }
+
+function getIntolerances(){
+  var intolerances=document.getElementsByName('intolerance');
+  var selectedItems="";
+  for(var i=0; i<intolerances.length; i++){
+    if(intolerances[i].type=='checkbox' && intolerances[i].checked==true)
+      selectedItems+=intolerances[i].value+",";
+  }
+  let newSelectedItems = selectedItems.substring(0, selectedItems.length - 1);
+  return newSelectedItems;
+}	
+
+function getDietRestrictions(){
+  var dietRestriction=document.getElementsByName('dietRestriction');
+  var selectedItems="";
+  for(var i=0; i<dietRestriction.length; i++){
+    if(dietRestriction[i].type=='checkbox' && dietRestriction[i].checked==true)
+      selectedItems+=dietRestriction[i].value+",";
+  }
+  let newSelectedItems = selectedItems.substring(0, selectedItems.length - 1);
+  return newSelectedItems;
+}	

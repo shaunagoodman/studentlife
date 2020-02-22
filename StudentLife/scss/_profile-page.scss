@@ -1,0 +1,161 @@
+/* *********************** PROFILE PAGE CSS **********************    */
+
+
+.profile-body{
+    background-image: url("../images/backgrounds/background-blur.jpg");
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.profile-title1{
+    color: #fffd77;
+}
+
+.profile-user-info{
+    background-color: white;
+    border-radius: 15px;
+    border: 1px solid;
+    border-color: $mediumOrange;
+    padding:5%;
+    padding-bottom: 10%;
+    box-shadow: 
+       inset 0 0  0 2px rgb(255,255,255),
+             0.3em 0.3em 1em rgba(0,0,0,0.3);
+}
+
+
+.profile-h5{
+    color:$mediumOrange;
+}
+
+
+
+
+.user-col{
+    margin-left: 25%;
+}
+
+.user-name{
+    margin-left:30%;
+}
+
+
+.h5-profile{
+    color:$darkOrange;
+}
+
+.fave-info{
+    background-color: white;
+    border-radius: 15px;
+    border-color: #1481ba;
+    border-width: 1px;
+    margin-top:3%;
+    margin-bottom: 3%
+}
+
+
+.profile-buttons{
+    background-color: white;
+    border-radius: 15px;
+    padding:5%;
+    padding-bottom: 10%;
+    border: 1px solid;
+    border-color: $mediumOrange;
+   
+}
+
+.favourites-button{
+    background-image: url("../images/backgrounds/pancake-blur.jpg"); 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top:10%;
+}
+
+.budget-button{
+    background-image: url("../images/budget2.jpg"); 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top:10%;
+}
+
+.recipe-button{
+    background-image: url("../images/recipes.png"); 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top:10%;
+}
+
+.my-favourites{
+    padding-top:3%;
+    padding-left:25%;
+}
+
+.my-budget{
+    padding-top:3%;
+    padding-left:25%;
+}
+
+.recipes{
+    padding-top:3%;
+    padding-left:23%;
+}
+
+.div-button{
+    padding-top:5%;
+    padding-bottom:5%;
+}
+
+
+
+@media only screen and (min-width: 992px) {
+
+
+    div.mobile-profile{
+        display: none;
+    }
+    .mobile-profile-info{
+        display: none;
+    }
+
+}
+
+@media only screen and (max-width: 991px) {
+
+
+    div.desktop-profile{
+        display: none;
+    }
+
+    
+
+    .profile-user-info{
+       margin-top: 10%;
+       margin-bottom:10%;
+    }
+
+    .user-name{
+        color: #fffd77;
+    }
+
+    .fave-title{
+        color: #022644;
+        margin-left:35%
+    }
+
+   .my-favourites{
+       padding-left: 32%;
+   }
+
+   .my-budget{
+    padding-left: 35%;
+}
+
+.recipes{
+    padding-left: 39%;
+}
+}

@@ -29,7 +29,12 @@
 
 <!-- Custom CSS -->
 
-<link href="css/stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="scss/niamh-main.css" rel="stylesheet" type="text/css"/>
+
+
+<!-- Custom JS -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="javascript/swal-alert.js" type="text/javascript"></script>
         
     </body>
 </html>
