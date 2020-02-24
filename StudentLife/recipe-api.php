@@ -61,20 +61,6 @@ include_once 'includes/CDNs.php';
   <input type="checkbox" name="dietRestriction" value="vegan">Vegan<br>
   <input type="checkbox" name="dietRestriction" value="vegetarian">Vegetarian<br>
   <input type="checkbox" name="dietRestriction" value="whole30">Whole30<br>
-<!-- 
-
-
-          <select class="form-control api-form-control" id="selectDietRestriction">
-            <option>Select Diet Restriction</option>
-            <option>Gluten Free</option>
-            <option>Ketogenic</option>
-            <option>Vegetarian</option>
-            <option>Vegan</option>
-            <option>Pescetarian</option>
-            <option>Paleo</option>
-            <option>Primal</option>
-            <option>Whole30</option>
-          </select> -->
           <button class="btn api-button" onclick="findRecipe()">Submit</button>
       </div>
 
