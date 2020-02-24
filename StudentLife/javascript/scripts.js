@@ -4,35 +4,32 @@ function findRecipe() {
   const urlString2 = "&apiKey=53bea2eb3c79445188bc4d3f00895d15&query=";
   let ingredients =document.getElementById('ingredients').value;
   let maxTime =document.getElementById('time').value;
-  let intoleranceIndex = document.getElementById("selectIntolerance").selectedIndex;
-  let intolerance = document.getElementById("selectIntolerance").value;
-  let requestString;
-  let dietRestrictionIndex = document.getElementById("selectDietRestriction").selectedIndex;
-  let dietRestriction = document.getElementById("selectDietRestriction").value;
+  let intolerances = getIntolerances();
+  let dietRestriction = getDietRestrictions();
   if(maxTime === "") {
-    maxTime = 10;
+    maxTime = 30;
   }
-
-  if(intoleranceIndex == 0 && dietRestrictionIndex == 0)
-  {
-    requestString = `${urlString1}${maxTime}${urlString2}${ingredients}`;
+  let requestString;
+  if(intolerances.length == 0 && dietRestriction == 0) {
+      requestString = `${urlString1}${maxTime}${urlString2}${ingredients}`;
   }
-  else if (intoleranceIndex == 0) {
-    requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&diet=${dietRestriction}`;
+  else if(intolerances.length == 0 && dietRestriction != 0) {
+      requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&diet=${dietRestriction}`;
   }
-  else if (dietRestrictionIndex == 0) {
-    requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerance}`;
+  else if(intolerances.length != 0 && dietRestriction == 0) {
+      requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerances}`;
   }
   else {
-    requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerance}&diet=${dietRestriction}`;
+      requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerances}&diet=${dietRestriction}`;
   }
+  
+ 
+
   console.log(requestString);
   request.open("GET", requestString, true);
   request.onload = function() {
     let data = JSON.parse(this.response);
     if (request.status >= 200 && request.status < 400) {
-      let idArr;
-      let titleArr;
     for (i = 0; i< data.results.length; i++) {
       let select = document.getElementById("selectIngredients");
       let id = data.results[i].id;
@@ -87,6 +84,8 @@ request.onload = function() {
       steps.push(data.analyzedInstructions[0].steps[i].step);
     }
   }
+
+
   }
 
   /* Only change below for where the method is being displayed*/
@@ -111,4 +110,89 @@ request.onload = function() {
 request.send();
 
 
+}
+
+function getIntolerances(){
+  var intolerances=document.getElementsByName('intolerance');
+  var selectedItems="";
+  for(var i=0; i<intolerances.length; i++){
+    if(intolerances[i].type=='checkbox' && intolerances[i].checked==true)
+      selectedItems+=intolerances[i].value+",";
+  }
+  let newSelectedItems = selectedItems.substring(0, selectedItems.length - 1);
+  return newSelectedItems;
+}	
+
+function getDietRestrictions(){
+  var dietRestriction=document.getElementsByName('dietRestriction');
+  var selectedItems="";
+  for(var i=0; i<dietRestriction.length; i++){
+    if(dietRestriction[i].type=='checkbox' && dietRestriction[i].checked==true)
+      selectedItems+=dietRestriction[i].value+",";
+  }
+  let newSelectedItems = selectedItems.substring(0, selectedItems.length - 1);
+  return newSelectedItems;
+}	
+let countIngredient = 1;
+function addIngredient() {
+  var area = document.getElementById("addedIngredient");
+  var num = document.createElement("p");
+  numText = document.createTextNode(countIngredient + ". ");
+  num.appendChild(numText);
+  area.appendChild(num);
+  //Ingredient Name
+  var ingredientNameLabel = document.createElement("p");
+  ingredientNameLabelText = document.createTextNode("Name");
+  ingredientNameLabel.appendChild(ingredientNameLabelText);
+  area.appendChild(ingredientNameLabel);
+  countIngredient++;
+
+  var ingredientNameInput = document.createElement("INPUT");
+  ingredientNameInput.setAttribute("name", "ingredient_name[]");
+  ingredientNameInput.setAttribute("type", "text");
+  ingredientNameInput.setAttribute("class", "form-control");
+  ingredientNameInput.setAttribute("class", "ingName");
+  area.appendChild(ingredientNameInput);
+
+  //Ingredient Measure
+  var ingredientMeasureLabel = document.createElement("p");
+  ingredientMeasureLabelText = document.createTextNode("Measure");
+  ingredientMeasureLabel.appendChild(ingredientMeasureLabelText);
+  area.appendChild(ingredientMeasureLabel);
+
+  var ingredientMeasureInput = document.createElement("INPUT");
+  ingredientMeasureInput.setAttribute("name", "ingredient_measure[]");
+  ingredientMeasureInput.setAttribute("type", "text");
+  ingredientMeasureInput.setAttribute("class", "form-control");
+  ingredientMeasureInput.setAttribute("class", "ingMeasure");
+  area.appendChild(ingredientMeasureInput);
+
+   //Ingredient Unit
+   var ingredientUnitLabel = document.createElement("p");
+   ingredientUnitLabelText = document.createTextNode("Unit");
+   ingredientUnitLabel.appendChild(ingredientUnitLabelText);
+   area.appendChild(ingredientUnitLabel);
+ 
+   var ingredientUnitInput = document.createElement("INPUT");
+   ingredientUnitInput.setAttribute("name", "ingredient_unit[]");
+   ingredientUnitInput.setAttribute("type", "text");
+   ingredientUnitInput.setAttribute("class", "form-control");
+   ingredientUnitInput.setAttribute("class", "ingUnit");
+   
+   area.appendChild(ingredientUnitInput);
+}
+let countStep = 1;
+function addStep() {
+  var area = document.getElementById("addedStep");
+  var step = document.createElement("p");
+   stepText = document.createTextNode(countStep + ". ");
+   countStep++;
+   step.appendChild(stepText);
+   area.appendChild(step);
+ 
+   var stepInput = document.createElement("INPUT");
+   stepInput.setAttribute("name", "steps[]");
+   stepInput.setAttribute("type", "text");
+   stepInput.setAttribute("class", "form-control");
+   area.appendChild(stepInput);
 }
