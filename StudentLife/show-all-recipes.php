@@ -46,7 +46,7 @@ else {
         echo "<div class='row' >";
         //get the results from the $products variable(using a loop)
         foreach ($recipes as $recipe) :  
-            if($recipe['difficultyID'] == 1) {
+                 if($recipe['difficultyID'] == 1) {
                 $difficulty = "Easy";
             }
             else if ($recipe['difficultyID'] == 2) {
