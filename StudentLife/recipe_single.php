@@ -41,6 +41,18 @@ and open the template in the editor.
          <?php include_once 'includes/nav-menu.php'; ?>
 
              <?php foreach ($recipes as $recipe) : 
+             if($recipe['difficultyID'] == 1) {
+                $difficulty = "Easy";
+            }
+            else if ($recipe['difficultyID'] == 2) {
+                $difficulty = "Medium";
+            }
+            else if ($recipe['difficultyID'] == 3) {
+                $difficulty = "Hard";
+            }
+            else {
+                $difficulty = "No difficulty selected.";
+            }
         $querysteps = 'SELECT * FROM recipesteps WHERE recipe_ID=:recipe_ID';
         $statement3 = $conn->prepare($querysteps);
         $statement3->bindValue(':recipe_ID', $recipe["recipe_ID"]);
@@ -48,15 +60,9 @@ and open the template in the editor.
         $steps = $statement3->fetchAll();
         $statement3->closeCursor();
        ?>
-
-       
-
-
-
-		    
 		    <center><h2 class="heading"><?php echo $recipe['name'] ?> </h2></center> 
     		    <center><figure>
-                <center> <p class="text-muted"><strong>Difficulty: </strong><?php echo $recipe['difficulty_text'] ?></p></center>
+                <center> <p class="text-muted"><strong>Difficulty: </strong><?php echo $difficulty ?></p></center>
                 <img src='images/recipes/<?php echo $recipe['image'];  ?>' alt='dish image' height='250' width='270'>
     			</figure></center>
 		  

@@ -25,9 +25,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $recipeName = $input_name;
     }
-    
-    // Validate image
-    $image = trim($_POST["image"]);
+
 
 
   // Validate rating
@@ -87,77 +85,76 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 
-    // /******************** Add to ingredients table ************************/
-    // if(!empty($_POST["ingredient_name"]) && !empty($_POST["ingredient_measure"]) && !empty($_POST["ingredient_unit"])) {
-    //     $names = [];
-    //     $measures = [];
-    //     $units = [];
+    /******************** Add to ingredients table ************************/
+    if(!empty($_POST["ingredient_name"]) && !empty($_POST["ingredient_measure"]) && !empty($_POST["ingredient_unit"])) {
+        $names = [];
+        $measures = [];
+        $units = [];
 
 
-    //     foreach($_POST["ingredient_name"] as $key => $name){
-    //         array_push($names, $name);
-    //     }
-    //     foreach($_POST["ingredient_measure"] as $key => $measure){
-    //         array_push($measures, $measure);
-    //     }
-    //     foreach($_POST["ingredient_unit"] as $key => $unit){
-    //         array_push($units, $unit);
-    //     }
+        foreach($_POST["ingredient_name"] as $key => $name){
+            array_push($names, $name);
+        }
+        foreach($_POST["ingredient_measure"] as $key => $measure){
+            array_push($measures, $measure);
+        }
+        foreach($_POST["ingredient_unit"] as $key => $unit){
+            array_push($units, $unit);
+        }
 
-    //     $count = count($names);
-    //     for($x = 0; $x < $count; $x++){
-    //         $sql = "INSERT INTO ingredients (ingredient_ID, name, amount, unit) VALUES (null,'$names[$x]','$measures[$x]','$units[$x]')";
-    //         $statement = $conn->prepare($sql);
-    //         $statement->execute();
-    //         $recipes = $statement->fetchAll();
-    //         $ingredient_ID = $conn->lastInsertId();
-    //     }
-    // }
+        $count = count($names);
+        for($x = 0; $x < $count; $x++){
+            $sql = "INSERT INTO ingredients (ingredient_ID, name, amount, unit) VALUES (null,'$names[$x]','$measures[$x]','$units[$x]')";
+            $statement = $conn->prepare($sql);
+            $statement->execute();
+            $recipes = $statement->fetchAll();
+            $ingredient_ID = $conn->lastInsertId();
+        }
+    }
 
     
-    // /******************** Add to recipes table ************************/
-    // if(empty($name_err) && empty($rating_err) && empty($servings_err) && empty($maxTime_err)){
-    //     $query = "INSERT INTO recipes (user_ID, name, image, video_name, rating, servings, maxTime, difficultyID) VALUES 
-    //     (:user_ID, :recipeName, :image, :video_name, :rating, :servings, :maxTime, :difficultyID)";
-    //     if($stmt = $conn->prepare($query)){
-    //         // Bind variables to the prepared statement as parameters
-    //         $stmt->bindParam(":user_ID", $_SESSION["user_ID"]);
-    //         $stmt->bindParam(":recipeName", $recipeName);
-    //         $stmt->bindParam(":image", $image);
-    //         $stmt->bindParam(":video_name", $video_name);
-    //         $stmt->bindParam(":rating", $rating);
-    //         $stmt->bindParam(":servings", $servings);
-    //         $stmt->bindParam(":maxTime", $maxTime);
-    //         $stmt->bindParam(":difficultyID", $difficultyID);
+    /******************** Add to recipes table ************************/
+    if(empty($name_err) && empty($rating_err) && empty($servings_err) && empty($maxTime_err)){
+        $query = "INSERT INTO recipes (user_ID, name, image, video_name, rating, servings, maxTime, difficultyID) VALUES 
+        (:user_ID, :recipeName, :image, :video_name, :rating, :servings, :maxTime, :difficultyID)";
+        if($stmt = $conn->prepare($query)){
+            // Bind variables to the prepared statement as parameters
+            $stmt->bindParam(":user_ID", $_SESSION["user_ID"]);
+            $stmt->bindParam(":recipeName", $recipeName);
+            $stmt->bindParam(":image", $image);
+            $stmt->bindParam(":video_name", $video_name);
+            $stmt->bindParam(":rating", $rating);
+            $stmt->bindParam(":servings", $servings);
+            $stmt->bindParam(":maxTime", $maxTime);
+            $stmt->bindParam(":difficultyID", $difficultyID);
             
-    //         // Set parameters
-    //         $param_name = $recipeName;
-    //         $param_image = $image;
-    //         $param_video_name = $video_name;
-    //         $param_rating = $rating;
-    //         $param_servings = $servings;
-    //         $param_maxTime = $maxTime;
-    //         $param_difficultyID = $difficultyID;
+            // Set parameters
+            $param_name = $recipeName;
+            $param_image = $image;
+            $param_video_name = $video_name;
+            $param_rating = $rating;
+            $param_servings = $servings;
+            $param_maxTime = $maxTime;
+            $param_difficultyID = $difficultyID;
 
-    //         if($stmt->execute()){
-    //             $recipe_ID = $conn->lastInsertId();
-    //            echo "Added recipe";
-    //         } else{
-    //             echo "Something went wrong. Please try again later.";
-    //         }
-    //     }
-    //     unset($stmt);
-    // }
-    // else {
-    //     echo "Could not do task";
-    // }
+            if($stmt->execute()){
+                $recipe_ID = $conn->lastInsertId();
+            } else{
+                echo "Something went wrong. Please try again later.";
+            }
+        }
+        unset($stmt);
+    }
+    else {
+        echo "Could not do task";
+    }
 
-    // /******************** Add to recipeIngredient table ************************/
-    // $query3 = "INSERT INTO recipeingredient (recipe_ID, ingredient_ID) VALUES ('$recipe_ID','$ingredient_ID')";
-    // $statement = $conn->prepare($query3);
-    // $statement->execute();
-    // $recipeIngredient = $statement->fetchAll();
-    // $statement->closeCursor();
+    /******************** Add to recipeIngredient table ************************/
+    $query3 = "INSERT INTO recipeingredient (recipe_ID, ingredient_ID) VALUES ('$recipe_ID','$ingredient_ID')";
+    $statement = $conn->prepare($query3);
+    $statement->execute();
+    $recipeIngredient = $statement->fetchAll();
+    $statement->closeCursor();
 
 
 
@@ -173,23 +170,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         echo $sql;
         $statement = $conn->prepare($sql);
         if($statement->execute()) {
+            $step_ID = $conn->lastInsertId();
         }
         else {
             echo "Something went wrong. Please try again later.";
         }
         $recipes = $statement->fetchAll();
-        $step_ID = $conn->lastInsertId();
+        
     }
     else {
         echo "Enter steps";
     }
 
-    // /******************** Add to recipesteps table ************************/
-    // $query4 = "INSERT INTO recipesteps(recipe_ID, steps_ID) VALUES ('$recipe_ID', '$step_ID')";
-    // $statement = $conn->prepare($query4);
-    // $statement->execute();
-    // $recipeStep = $statement->fetchAll();
-    // $statement->closeCursor();
+    /******************** Add to recipesteps table ************************/
+    $query4 = "INSERT INTO recipesteps(recipe_ID, steps_ID) VALUES ('$recipe_ID', '$step_ID')";
+    $statement = $conn->prepare($query4);
+    $statement->execute();
+    $recipeStep = $statement->fetchAll();
+    $statement->closeCursor();
 }
 ?>
  
@@ -206,7 +204,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     ?>
     <h2>Create Recipe</h2>
     <p>Please fill this form and submit recipe to the database.</p>
-    <form class = "login-form" action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
+    <form class = "login-form" enctype="multipart/form-data"action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
         <div class="form-group <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
             <label>Name</label>
             <input type="text" name="recipeName" class="form-control">
@@ -214,8 +212,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
         <div class="form-group">
             <label>Image</label>
-            <textarea name="image" class="form-control"><?php echo $image; ?></textarea>
-            <span class="help-block"></span>
+            <input type="file" name="uploaded_file"></input><br />
+            <input type="submit" value="Upload"></input>
         </div>
         <div class="form-group">
             <label>Video Name</label>

@@ -98,28 +98,17 @@ and open the template in the editor.
 
 
     <div class='sub-menu' >
-        <!--dynamic categories (All categories)
-            output $categories (from my query above)
-            add a link (a tag) around each category name to call this page again (passing through the category id)
-            -->
-
         <?php
         //get the results from the categories variable(usuing a loop)
         echo "<div id='div-difficulty-list' >";
         echo "<ul class='diff-list' id='ul-difficulty-list' >";
-        // print_r("<pre>");
-        // print_r($difficulties);
-        // print_r("</pre>");
         echo "<li class='li-diff-list' > <a href='recipes-list.php'>Show All </li>";
         foreach ($difficulties as $difficulty) :
-            //add a list
             echo "<li class='li-diff-list'>";
-            //output category name
             echo "<a class='diff-menu-a' href='recipes-list.php?difficulty_id=" . $difficulty['difficultyID'] . "'>";
             echo $difficulty['diffName'];
             echo "</a>";
-            echo "</li>";
-        //close loop  
+            echo "</li>"; 
         endforeach;
         echo "</ul>";
         echo "</div>";
@@ -136,14 +125,25 @@ and open the template in the editor.
         echo "<div class='row' >";
         //get the results from the $products variable(using a loop)
         foreach ($recipes as $recipe) :  
-        
+        if($recipe['difficultyID'] == 1) {
+            $difficulty = "Easy";
+        }
+        else if ($recipe['difficultyID'] == 2) {
+            $difficulty = "Medium";
+        }
+        else if ($recipe['difficultyID'] == 3) {
+            $difficulty = "Hard";
+        }
+        else {
+            $difficulty = "No difficulty selected.";
+        }
         ?>
 
              <div class='col-lg-4' >
              <!-- <img src='images/recipes/pancakes.jpg' alt='dish image' height='250' width='270'> -->
              <img src='images/recipes/<?php echo $recipe['image'];  ?>' alt='dish image' height='250' width='270'>
              <h4 class='recipe-name'> <?php echo $recipe['name']; ?> </h4>
-             <h5 class='recipe-difficulty' >  Difficulty: <?php echo $recipe['difficulty_text']; ?> </h5>
+             <h5 class='recipe-difficulty' >  Difficulty: <?php echo $difficulty; ?> </h5>
              <h5 class='recipe-time' > <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%'  alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
             </h5>
             <a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID']?>"><button type="button" class="btn btn-sm btn-outline-secondary">View Recipe</button></a>
