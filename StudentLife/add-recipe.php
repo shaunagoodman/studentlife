@@ -27,17 +27,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $recipeName = $input_name;
     }
+    $recipeName = $input_name;
     
     // Validate image
-    $image = trim($_POST["image"]);
+    $image = trim($_FILES["image"]["name"]);
     $imgFile = $_FILES["image"]["name"];
     $tmp_dir = $_FILES["image"]["tmp_name"];
     $imgSize = $_FILES["image"]["size"];
 
- 
+     // Validate  Video
+     $video_name = trim($_POST["video_name"]);
 
 
-    $upload_dir = "images/"; // upload directory
+
+    $upload_dir = "images/recipes/"; // upload directory
 
 $imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); // get image extension
 
@@ -61,38 +64,6 @@ else{
 $error_message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";		
 }
 
-    // Validate Video
-    $video_name = trim($_POST["video_name"]);
-    $vidFile = $_FILES["video_name"]["name"];
-    $vid_dir = $_FILES["video_name"]["tmp_name"];
-    $vidSize = $_FILES["video_name"]["size"];
-
- 
-
-
-    $upload_dir = "videos/"; // upload directory
-
-$vidExt = strtolower(pathinfo($vidFile,PATHINFO_EXTENSION)); // get video extension
-
-// valid image extensions
-$valid_extensions = array("mp4", "wav"); // valid extensions
-
-// rename uploading image
-$video = rand(1000,1000000).".".$vidExt;
-
-// allow valid image file formats
-if(in_array($vidExt, $valid_extensions)){			
-// Check file size "5MB"
-if($vidSize < 5000000)				{
-move_uploaded_file($tmp_dir,$upload_dir.$vid);
-}
-else{
-$error_message = "Sorry, your file is too large.";
-}
-}
-else{
-$error_message = "Sorry, only MP4, WAV files are allowed.";		
-}
 
 
 
@@ -185,6 +156,8 @@ $error_message = "Sorry, only MP4, WAV files are allowed.";
     if(empty($name_err) && empty($rating_err) && empty($servings_err) && empty($maxTime_err)){
         $query = "INSERT INTO recipes (user_ID, name, image, video_name, rating, servings, maxTime, difficultyID) VALUES 
         (:user_ID, :recipeName, :image, :video_name, :rating, :servings, :maxTime, :difficultyID)";
+        $user_ID = $_SESSION["user_ID"] ;
+        //echo "INSERT INTO recipes (user_ID, name, image, video_name, rating, servings, maxTime, difficultyID) VALUES ($user_ID, $recipeName, $image, $video_name, $rating, $servings, $maxTime, $difficultyID)";
         if($stmt = $conn->prepare($query)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":user_ID", $_SESSION["user_ID"]);
@@ -197,65 +170,70 @@ $error_message = "Sorry, only MP4, WAV files are allowed.";
             $stmt->bindParam(":difficultyID", $difficultyID);
             
             // Set parameters
-            $param_name = $recipeName;
+            /*$param_name = $recipeName;
             $param_image = $image;
             $param_video_name = $video_name;
             $param_rating = $rating;
             $param_servings = $servings;
             $param_maxTime = $maxTime;
-            $param_difficultyID = $difficultyID;
+            $param_difficultyID = $difficultyID;*/
+
+            
 
             if($stmt->execute()){
                 $recipe_ID = $conn->lastInsertId();
+
+                /******************** Add to recipeIngredient table ************************/
+                $query3 = "INSERT INTO recipeingredient (recipe_ID, ingredient_ID) VALUES ('$recipe_ID','$ingredient_ID')";
+                $statement = $conn->prepare($query3);
+                $statement->execute();
+                $recipeIngredient = $statement->fetchAll();
+                $statement->closeCursor();
+
+
+
+                // /******************** Add to steps table ************************/
+                if(!empty($_POST["steps"])) {
+                    $input = "";
+                    $count = 1;
+                    foreach($_POST["steps"] as $key => $step){
+                        $input .= $count . ". " . $step . " ";
+                        $count++;
+                    }
+                    $sql = "INSERT INTO steps(steps_ID, description) VALUES (null,'$input')";
+                   
+                    $statement = $conn->prepare($sql);
+                    if($statement->execute()) {
+                        $step_ID = $conn->lastInsertId();
+                    }
+                    else {
+                        echo "Something went wrong. Please try again later.";
+                    }
+                    $recipes = $statement->fetchAll();
+                    
+                }
+                else {
+                    echo "Enter steps";
+                }
+
+                /******************** Add to recipesteps table ************************/
+                $query4 = "INSERT INTO recipesteps(recipe_ID, steps_ID) VALUES ('$recipe_ID', '$step_ID')";
+                $statement = $conn->prepare($query4);
+                $statement->execute();
+                $recipeStep = $statement->fetchAll();
+                $statement->closeCursor();
             } else{
                 echo "Something went wrong. Please try again later.";
             }
         }
         unset($stmt);
+        header("refresh:2;show-all-recipes.php");
     }
     else {
         echo "Could not do task";
     }
 
-    /******************** Add to recipeIngredient table ************************/
-    $query3 = "INSERT INTO recipeingredient (recipe_ID, ingredient_ID) VALUES ('$recipe_ID','$ingredient_ID')";
-    $statement = $conn->prepare($query3);
-    $statement->execute();
-    $recipeIngredient = $statement->fetchAll();
-    $statement->closeCursor();
-
-
-
-    // /******************** Add to steps table ************************/
-    if(!empty($_POST["steps"])) {
-        $input = "";
-        $count = 1;
-	    foreach($_POST["steps"] as $key => $step){
-            $input .= $count . ". " . $step . " ";
-            $count++;
-        }
-        $sql = "INSERT INTO steps(steps_ID, description) VALUES (null,'$input')";
-        echo $sql;
-        $statement = $conn->prepare($sql);
-        if($statement->execute()) {
-            $step_ID = $conn->lastInsertId();
-        }
-        else {
-            echo "Something went wrong. Please try again later.";
-        }
-        $recipes = $statement->fetchAll();
-        
-    }
-    else {
-        echo "Enter steps";
-    }
-
-    /******************** Add to recipesteps table ************************/
-    $query4 = "INSERT INTO recipesteps(recipe_ID, steps_ID) VALUES ('$recipe_ID', '$step_ID')";
-    $statement = $conn->prepare($query4);
-    $statement->execute();
-    $recipeStep = $statement->fetchAll();
-    $statement->closeCursor();
+    
 }
 ?>
  
@@ -272,7 +250,7 @@ $error_message = "Sorry, only MP4, WAV files are allowed.";
     ?>
     <h2>Create Recipe</h2>
     <p>Please fill this form and submit recipe to the database.</p>
-    <form class = "login-form" enctype="multipart/form-data"action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
+    <form class = "login-form" enctype="multipart/form-data" action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
         <div class="form-group <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
             <label>Name</label>
             <input type="text" name="recipeName" class="form-control">
@@ -280,12 +258,12 @@ $error_message = "Sorry, only MP4, WAV files are allowed.";
         </div>
         <div class="form-group">
             <label>Image</label>
-            <input type="file" name="uploaded_file"></input><br />
-            <input type="submit" value="Upload"></input>
+            <input class="input-group" type="file" name="image" accept="image/*" />
+            
         </div>
         <div class="form-group">
             <label>Video Name</label>
-            <input class="input-group" type="file" name="video" accept="video/*" /></td>
+            <input class="input-group" type="text" name="video_name" />
             <span class="help-block"></span>
         </div>
         

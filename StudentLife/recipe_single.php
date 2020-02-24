@@ -65,6 +65,11 @@ and open the template in the editor.
                 <center> <p class="text-muted"><strong>Difficulty: </strong><?php echo $difficulty ?></p></center>
                 <img src='images/recipes/<?php echo $recipe['image'];  ?>' alt='dish image' height='250' width='270'>
     			</figure></center>
+              
+               <center> <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $recipe["video_name"]?>"
+                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
+                
+</video> </center>
 		  
 		    <center> <p class="text-muted"><strong>Servings:</strong> <?php echo $recipe['servings'] ?></p></center>
     		  
