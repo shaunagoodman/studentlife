@@ -14,6 +14,8 @@ $recipeName = $image = $video_name = $rating = $servings = $maxTime = $difficult
 $name_err = $rating_err = $ingredient_err = $servings_err = $maxTime_err = $difficultyID_err = "";
 $ingredient_ID = $recipe_ID = $step_ID = "";
  
+
+
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     
@@ -25,12 +27,78 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $recipeName = $input_name;
     }
+    
+    // Validate image
+    $image = trim($_POST["image"]);
+    $imgFile = $_FILES["image"]["name"];
+    $tmp_dir = $_FILES["image"]["tmp_name"];
+    $imgSize = $_FILES["image"]["size"];
+
+ 
+
+
+    $upload_dir = "images/"; // upload directory
+
+$imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); // get image extension
+
+// valid image extensions
+$valid_extensions = array("jpeg", "jpg", "png", "gif"); // valid extensions
+
+// rename uploading image
+$image = rand(1000,1000000).".".$imgExt;
+
+// allow valid image file formats
+if(in_array($imgExt, $valid_extensions)){			
+// Check file size "5MB"
+if($imgSize < 5000000)				{
+move_uploaded_file($tmp_dir,$upload_dir.$image);
+}
+else{
+$error_message = "Sorry, your file is too large.";
+}
+}
+else{
+$error_message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";		
+}
+
+    // Validate Video
+    $video_name = trim($_POST["video_name"]);
+    $vidFile = $_FILES["video_name"]["name"];
+    $vid_dir = $_FILES["video_name"]["tmp_name"];
+    $vidSize = $_FILES["video_name"]["size"];
+
+ 
+
+
+    $upload_dir = "videos/"; // upload directory
+
+$vidExt = strtolower(pathinfo($vidFile,PATHINFO_EXTENSION)); // get video extension
+
+// valid image extensions
+$valid_extensions = array("mp4", "wav"); // valid extensions
+
+// rename uploading image
+$video = rand(1000,1000000).".".$vidExt;
+
+// allow valid image file formats
+if(in_array($vidExt, $valid_extensions)){			
+// Check file size "5MB"
+if($vidSize < 5000000)				{
+move_uploaded_file($tmp_dir,$upload_dir.$vid);
+}
+else{
+$error_message = "Sorry, your file is too large.";
+}
+}
+else{
+$error_message = "Sorry, only MP4, WAV files are allowed.";		
+}
 
 
 
   // Validate rating
-  if(isset($_POST['rating'])){
-    $rating = $_POST['rating'];  // Storing Selected Value In Variable
+  if(isset($_POST["rating"])){
+    $rating = $_POST["rating"];  // Storing Selected Value In Variable
 }
 
 
@@ -78,8 +146,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
 
-    if(isset($_POST['difficulty'])){
-        $difficultyID = $_POST['difficulty'];  // Storing Selected Value In Variable
+    if(isset($_POST["difficulty"])){
+        $difficultyID = $_POST["difficulty"];  // Storing Selected Value In Variable
     }
 
 
@@ -217,7 +285,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
         <div class="form-group">
             <label>Video Name</label>
-            <input type="text" name="video_name" class="form-control" value="<?php echo $video_name; ?>">
+            <input class="input-group" type="file" name="video" accept="video/*" /></td>
             <span class="help-block"></span>
         </div>
         
