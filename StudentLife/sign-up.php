@@ -3,8 +3,8 @@
 require_once "includes/database/connection.php";
  
 // Define variables and initialize with empty values
- $fname = $lname = $u_email = $u_password = $confirm_u_password = "";
- $fname_err = $lname_err = $u_email_err = $u_password_err = $confirm_u_password_err = "";
+ $fname = $lname = $u_email = $u_password = $confirm_u_password = $intolerance_ID = $dietRestriction_ID = "";
+ $fname_err = $lname_err = $u_email_err = $u_password_err = $confirm_u_password_err = $intolerance_ID_err = $dietRestriction_ID_err = "";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -33,6 +33,7 @@ if(empty(trim($_POST["lname"]))){
     $lname = trim($_POST["lname"]);
 
 }
+
   
 if($stmt = $conn->prepare($query)){
     // Bind variables to the prepared statement as parameters
@@ -75,12 +76,21 @@ unset($stmt);
             $confirm_u_password_err = "Password did not match.";
         }
     }
+    //Validate Intolerance
+if(isset($_POST["intolerance"])){
+    $intolerance_ID = $_POST["intolerance"];  
+}
+
+//Validate Diet Restriction
+if(isset($_POST["dietRestriction"])){
+    $dietRestriction_ID = $_POST["diet_restriction"];  
+}
     
     // Check input errors before inserting in database
-    if(empty($fname_err) && empty($lname_err) && empty($u_email_err) && empty($u_password_err) && empty($confirm_u_password_err)){
+    if(empty($fname_err) && empty($lname_err) && empty($u_email_err) && empty($u_password_err) && empty($confirm_u_password_err)  && empty($intolerance_ID_err)){
         
         // Prepare an insert statement
-        $query = "INSERT INTO user (fname, lname, u_email, u_password) VALUES (:fname, :lname, :u_email, :u_password)";
+        $query = "INSERT INTO user (fname, lname, u_email, u_password, intolerance_ID) VALUES (:fname, :lname, :u_email, :u_password, :intolerance_ID)";
          
         if($stmt = $conn->prepare($query)){
             // Bind variables to the prepared statement as parameters
@@ -89,30 +99,37 @@ unset($stmt);
             $stmt->bindParam(":lname", $param_lname, PDO::PARAM_STR);
             $stmt->bindParam(":u_email", $param_u_email, PDO::PARAM_STR);
             $stmt->bindParam(":u_password", $param_u_password, PDO::PARAM_STR);
+            $stmt->bindParam(":intolerance_ID", $intolerance_ID);
+            //$stmt->bindParam(":dietRestriction_ID", $dietRestriction_ID);
+
             
-            // Set parameters
+            
+            
+        //    // Set parameters
         
             $param_fname = $fname;
             $param_lname = $lname;
             $param_u_email = $u_email;
             $param_u_password = password_hash($u_password, PASSWORD_DEFAULT); // Creates a u_password hash
+            $param_intolerance_ID = $intolerance_ID;
             
-            // Attempt to execute the prepared statement
-            if($stmt->execute()){
-                // Redirect to login page
-                header("location: login.php");
-            } else{
-                echo "Something went wrong. Please try again later.";
-            }
+           // Attempt to execute the prepared statement
+                if($stmt->execute()){
+                    // Redirect to login page
+                    header("location: login.php");
+                } else{
+                    echo "Something went wrong. Please try again later.";
+                }
         }
          
         // Close statement
         unset($stmt);
     }
     
-    // Close connection
-    unset($pdo);
+ 
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -159,6 +176,7 @@ and open the template in the editor.
                 <input type="text" name="u_email" class="form-control" value="<?php echo $u_email; ?>">
                 <span class="help-block"><?php echo $u_email_err; ?></span>
             </div>
+          
             <div class="form-group col-md-12 <?php echo (!empty($u_password_err)) ? 'has-error' : ''; ?>">
                 <label>Password</label>
                 <input type="password" name="u_password" class="form-control" value="<?php echo $u_password; ?>">
@@ -169,6 +187,34 @@ and open the template in the editor.
                 <input type="password" name="confirm_u_password" class="form-control" value="<?php echo $confirm_u_password; ?>">
                 <span class="help-block"><?php echo $confirm_u_password_err; ?></span>
             </div>
+            <div class="form-group <?php echo (!empty($intolerance_ID_err)) ? 'has-error' : ''; ?>">
+            <label>Intolerance Selection</label>
+                <select id = "intolerance" name = "intolerance">
+                    <option value = "1">Dairy </option>
+                    <option value = "2">Egg</option>
+                    <option value="3">Gluten</option>
+                    <option value="4">Grain</option>
+                    <option value="5">Peanut</option>
+                    <option value="6">Seafood</option>
+                    <option value="7">Sesame</option>
+                    <option value="8">Shellfish</option>
+                    <option value="9">Soy</option>
+                    <option value="10">Sulfite</option>
+                    <option value="11">Tree Nut</option>
+                    <option value="12">Wheat</option>
+                    <option value="13">None</option>
+                </select>
+            <span class="help-block"><?php echo $intolerance_ID_err;?></span>
+        </div>
+        <!-- <div class="form-group <?php echo (!empty($difficultyID_err)) ? 'has-error' : ''; ?>">
+            <label>Difficulty</label>
+                <select id = "difficulty" name = "difficulty">
+                    <option value = "1">Easy </option>
+                    <option value = "2">Medium</option>
+                    <option value="3">Hard</option>
+                </select>
+            <span class="help-block"><?php echo $difficultyID_err;?></span>
+        </div> -->
             <div class="form-group col-md-12">
             <button type="submit" name="submit" value=" Submit " class="btn btn-light">
                     Register</button>

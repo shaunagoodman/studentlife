@@ -39,7 +39,7 @@ session_start();
         
         $sql = ("INSERT INTO contact(contact_name, email, phone_no, message) VALUES ('$name', '$email', '$phone', '$message')");
         if (mysqli_query($conn, $sql)) {
-            echo " Message sent successfully";
+            header("refresh:2;thank_you.php");
         }
         else {
             echo "Message not sent";

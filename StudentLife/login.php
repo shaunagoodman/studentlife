@@ -40,7 +40,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($u_email_err) && empty($u_password_err)){
         // Prepare a select statement
-        $query = "SELECT user_ID, u_type, fname, lname, u_email, u_password FROM user WHERE u_email = :u_email";
+        $query = "SELECT user_ID, u_type, fname, lname, u_email, u_password, intolerance_ID FROM user WHERE u_email = :u_email";
         
         if($stmt = $conn->prepare($query)){
             // Bind variables to the prepared statement as parameters
@@ -60,6 +60,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $fname =$row["fname"];
                         $lname =$row["lname"];
                         $u_email = $row["u_email"];
+                        $intolerance_ID = $row["intolerance_ID"];
                        
                        
                         $hashed_password = $row["u_password"];
@@ -74,6 +75,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["u_email"] = $u_email;
                             $_SESSION['fname'] = $fname;
                             $_SESSION['lname'] = $lname;   
+                            $_SESSION["intolerance_ID"] = $intolerance_ID;
                                                    
                             
                             // Redirect user to welcome page

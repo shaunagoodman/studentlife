@@ -55,6 +55,7 @@ and open the template in the editor.
                         <h5 class="h5-profile">Email:</h5>
                        
                         <p><?php echo htmlspecialchars($_SESSION["u_email"]); ?></p>
+                        <p><?php echo $_SESSION["intolerance_ID"]; ?></p>
                        
                         <a href="edit_details.php" class="btn btn-warning">Edit Profile</a>
 
