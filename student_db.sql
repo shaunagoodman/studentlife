@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 24, 2020 at 02:39 PM
+-- Generation Time: Feb 25, 2020 at 03:12 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.26
 
@@ -34,6 +34,17 @@ CREATE TABLE `contact` (
   `email` varchar(50) NOT NULL,
   `phone_no` varchar(20) NOT NULL,
   `message` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cuisine`
+--
+
+CREATE TABLE `cuisine` (
+  `cuisine_ID` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -149,6 +160,17 @@ INSERT INTO `intolerance` (`intolerance_ID`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `recipecuisine`
+--
+
+CREATE TABLE `recipecuisine` (
+  `recipe_ID` int(11) NOT NULL,
+  `cuisine_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `recipeingredient`
 --
 
@@ -195,17 +217,18 @@ CREATE TABLE `recipes` (
   `difficultyID` int(11) NOT NULL,
   `date_created` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
   `isFavourite` tinyint(1) NOT NULL,
-  `favourited_by` int(11) DEFAULT NULL
+  `favourited_by` int(11) DEFAULT NULL,
+  `cuisine_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `recipes`
 --
 
-INSERT INTO `recipes` (`recipe_ID`, `user_ID`, `name`, `image`, `video_name`, `rating`, `servings`, `maxTime`, `difficultyID`, `date_created`, `isFavourite`, `favourited_by`) VALUES
-(24, 102, 'Pancakes', 'pancakes.jpg', NULL, NULL, 12, '00:20:00', 1, '2020-02-24 11:27:06.182677', 0, 0),
-(25, 102, 'Chicken and Broccoli Stir Fry', 'chicken-and-broccoli-stir-fry.jpg', NULL, NULL, 2, '00:35:00', 2, '2020-02-24 11:27:14.118948', 0, 0),
-(26, 102, 'Cajun Stuffed Chicken', 'cajun-stuffed-chicken.jpg', NULL, NULL, 4, '00:45:00', 3, '2020-02-24 11:27:22.300507', 0, 0);
+INSERT INTO `recipes` (`recipe_ID`, `user_ID`, `name`, `image`, `video_name`, `rating`, `servings`, `maxTime`, `difficultyID`, `date_created`, `isFavourite`, `favourited_by`, `cuisine_ID`) VALUES
+(24, 102, 'Pancakes', 'pancakes.jpg', NULL, NULL, 12, '00:20:00', 1, '2020-02-24 11:27:06.182677', 0, 0, 0),
+(25, 102, 'Chicken and Broccoli Stir Fry', 'chicken-and-broccoli-stir-fry.jpg', NULL, NULL, 2, '00:35:00', 2, '2020-02-24 11:27:14.118948', 0, 0, 0),
+(26, 102, 'Cajun Stuffed Chicken', 'cajun-stuffed-chicken.jpg', NULL, NULL, 4, '00:45:00', 3, '2020-02-24 11:27:22.300507', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -309,6 +332,12 @@ ALTER TABLE `contact`
   ADD PRIMARY KEY (`contact_ID`);
 
 --
+-- Indexes for table `cuisine`
+--
+ALTER TABLE `cuisine`
+  ADD PRIMARY KEY (`cuisine_ID`);
+
+--
 -- Indexes for table `dietrestriction`
 --
 ALTER TABLE `dietrestriction`
@@ -331,6 +360,13 @@ ALTER TABLE `ingredients`
 --
 ALTER TABLE `intolerance`
   ADD PRIMARY KEY (`intolerance_ID`);
+
+--
+-- Indexes for table `recipecuisine`
+--
+ALTER TABLE `recipecuisine`
+  ADD KEY `recipe_ID` (`recipe_ID`),
+  ADD KEY `cuisine_ID` (`cuisine_ID`);
 
 --
 -- Indexes for table `recipeingredient`
@@ -391,6 +427,12 @@ ALTER TABLE `contact`
   MODIFY `contact_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `cuisine`
+--
+ALTER TABLE `cuisine`
+  MODIFY `cuisine_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `dietrestriction`
 --
 ALTER TABLE `dietrestriction`
@@ -400,7 +442,7 @@ ALTER TABLE `dietrestriction`
 -- AUTO_INCREMENT for table `ingredients`
 --
 ALTER TABLE `ingredients`
-  MODIFY `ingredient_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `ingredient_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT for table `intolerance`
@@ -412,13 +454,13 @@ ALTER TABLE `intolerance`
 -- AUTO_INCREMENT for table `recipes`
 --
 ALTER TABLE `recipes`
-  MODIFY `recipe_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `recipe_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `steps`
 --
 ALTER TABLE `steps`
-  MODIFY `steps_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `steps_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -429,6 +471,13 @@ ALTER TABLE `user`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `recipecuisine`
+--
+ALTER TABLE `recipecuisine`
+  ADD CONSTRAINT `recipecuisine_ibfk_1` FOREIGN KEY (`recipe_ID`) REFERENCES `recipes` (`recipe_ID`),
+  ADD CONSTRAINT `recipecuisine_ibfk_2` FOREIGN KEY (`cuisine_ID`) REFERENCES `cuisine` (`cuisine_ID`);
 
 --
 -- Constraints for table `recipeingredient`
