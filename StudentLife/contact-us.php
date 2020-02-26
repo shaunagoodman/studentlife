@@ -1,16 +1,4 @@
 
-
-
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-
-<head>
-
 <?php
 // Initialize the session
 session_start();
@@ -39,13 +27,25 @@ session_start();
         
         $sql = ("INSERT INTO contact(contact_name, email, phone_no, message) VALUES ('$name', '$email', '$phone', '$message')");
         if (mysqli_query($conn, $sql)) {
-            echo " Message sent successfully";
+            header("refresh:2;thank_you.php");
         }
         else {
-            echo "Message not sent";
+            echo "Failed";
         }
     }
 ?>
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+
+<head>
+
+
     <meta charset="UTF-8">
     <title>Contact</title>
 
