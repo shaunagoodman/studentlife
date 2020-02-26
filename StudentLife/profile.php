@@ -41,7 +41,7 @@ and open the template in the editor.
             <div class="row">
 
                 <div class="col-lg-12">
-                  
+
                 </div>
 
 
@@ -50,17 +50,17 @@ and open the template in the editor.
                     <div class="user-info profile-user-info">
 
                         <h2 class="user-name"><?php echo $_SESSION["fname"] . " " . $_SESSION["lname"]; ?></h2>
-           
+
                         <hr>
                         <h5 class="h5-profile">Email:</h5>
-                       
-                        <p><?php echo htmlspecialchars($_SESSION["u_email"]); ?></p>
-                       
-                        <a href="edit_details.php" class="btn btn-warning">Edit Profile</a>
 
-                        <a href="reset_password.php" class="btn btn-warning">Reset Password</a>
-                       
-                        
+                        <p><?php echo htmlspecialchars($_SESSION["u_email"]); ?></p>
+
+                        <a href="edit_details.php" class="btn btn-light btn-sm">Edit Profile</a>
+
+                        <a href="reset_password.php" class="btn btn-light btn-sm">Reset Password</a>
+
+
                     </div>
                 </div>
             </div>
@@ -75,17 +75,17 @@ and open the template in the editor.
 
         <div class="row">
 
-            <div class="col-lg-6">
+            <div class="col-lg-6 ">
                 <div class="user-info profile-buttons favourites-button">
-               <a href="favourites.php"  class="recipes">Favourites</a>
+                    <h2><a href="favourites.php" class="recipes my-favourites">Favourites</a></h2>
                 </div>
             </div>
 
-      
+
 
             <div class="col-lg-6">
                 <div class="user-info profile-buttons recipe-button">
-                <a href="show-all-recipes.php"  class="recipes">Recipes</a>
+                    <h2><a href="show-all-recipes.php" class="recipes">Recipes</a></h2>
                 </div>
             </div>
 
@@ -110,12 +110,16 @@ and open the template in the editor.
 
                     <div class="user-info profile-user-info">
 
-                        <h2 class="user-name">Emmaaaaaaaa Byrne</h2>
+                        <h2 class="user-name"><?php echo $_SESSION["fname"] . " " . $_SESSION["lname"]; ?></h2>
                         <hr>
                         <center class="mobile-profile-info">
 
                             <h5 class="h5-profile">Email:</h5>
                             <p><?php echo htmlspecialchars($_SESSION["u_email"]); ?></p>
+
+                            <a href="edit_details.php" class="btn btn-light btn-sm">Edit Profile</a>
+
+                            <a href="reset_password.php" class="btn btn-light btn-sm">Reset Password</a>
 
                         </center>
                     </div>
@@ -123,29 +127,23 @@ and open the template in the editor.
 
             </div>
         </div>
-        </div>
+    </div>
 
-        <div class="container mobile-profile">
+    <div class="container mobile-profile">
 
         <div class="row">
 
             <div class="col-md-12">
 
                 <div class="user-info profile-buttons favourites-button">
-
-                    <h2 class="my-favourites">My Calendar</h2>
+                    <h2><a href="favourites.php" class="recipes my-favourites">Favourites</a></h2>
                 </div>
 
-                <br>
-
-                <div class="user-info profile-buttons budget-button">
-                    <h2 class="my-budget">My Budget</h2>
-                </div>
 
                 <br>
 
                 <div class="user-info profile-buttons recipe-button">
-                    <h2 class="recipes">Recipes</h2>
+                <h2><a href="show-all-recipes.php" class="recipes">Recipes</a></h2>
                 </div>
 
             </div>
@@ -154,10 +152,10 @@ and open the template in the editor.
         </div>
 
 
-        </div>
+    </div>
 
 
-    
+
 
     <br>
 

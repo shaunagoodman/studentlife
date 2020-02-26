@@ -14,6 +14,7 @@
 }
 
 .profile-user-info{
+    margin-top:5%;
     background-color: white;
     border-radius: 15px;
     border: 1px solid;
@@ -31,7 +32,10 @@
 }
 
 
-
+a.recipes{
+    color:#212529;
+    text-decoration: none;
+}
 
 .user-col{
     margin-left: 25%;
@@ -63,8 +67,9 @@
     padding-bottom: 10%;
     border: 1px solid;
     border-color: $mediumOrange;
-   
 }
+
+
 
 .favourites-button{
     background-image: url("../images/backgrounds/pancake-blur.jpg"); 
@@ -74,13 +79,7 @@
     margin-top:10%;
 }
 
-.budget-button{
-    background-image: url("../images/budget2.jpg"); 
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin-top:10%;
-}
+
 
 .recipe-button{
     background-image: url("../images/recipes.png"); 
@@ -95,20 +94,25 @@
     padding-left:25%;
 }
 
-.my-budget{
-    padding-top:3%;
-    padding-left:25%;
-}
 
 .recipes{
-    padding-top:3%;
-    padding-left:23%;
+    padding-top:5%;
+    padding-left:33%;
 }
 
 .div-button{
     padding-top:5%;
     padding-bottom:5%;
 }
+
+
+
+a.recipes:hover {
+    color: $darkOrange;
+    transition: 0.2s;
+  }
+
+
 
 
 
@@ -138,9 +142,7 @@
        margin-bottom:10%;
     }
 
-    .user-name{
-        color: #fffd77;
-    }
+    
 
     .fave-title{
         color: #022644;
@@ -148,14 +150,10 @@
     }
 
    .my-favourites{
-       padding-left: 32%;
+       padding-left: 30%;
    }
 
-   .my-budget{
-    padding-left: 35%;
-}
-
 .recipes{
-    padding-left: 39%;
+    padding-left: 35%;
 }
 }
