@@ -11,6 +11,7 @@ nav {
 
 .nav-link:hover{
     color: $yellow!important;
+    transition: 0.3s;
 }
 
 
@@ -83,6 +84,9 @@ a.dropdown-item{
         transform: scaleX(1);
     }
 }
+
+
+
 
 
 /* *** hides hover animation for mobile nav  ********    */

@@ -21,16 +21,15 @@ try {
     //close the statement
     $statement->closeCursor();
 
-    if(isset($_POST['submit'])) {
+    if (isset($_POST['submit'])) {
         $searchString = $_POST['something'];
-        $array = explode(" ",$searchString);
+        $array = explode(" ", $searchString);
         $sql = "SELECT * FROM recipes WHERE name ";
         $count = 0;
-        forEach($array as $value) {
+        foreach ($array as $value) {
             if ($count == 0) {
                 $sql .= " LIKE '%" . $value . "%'";
-            }
-            else {
+            } else {
                 $sql .= " OR '%" . $value . "%'";
             }
             $count++;
@@ -38,34 +37,30 @@ try {
         $statement = $conn->prepare($sql);
         $statement->execute();
         $recipes = $statement->fetchAll();
-        
+    } else if (empty($_POST['submit'])) {
+        //get the category id from the URL (if there is one)
+        $difficultyID = filter_input(INPUT_GET, "difficulty_id", FILTER_VALIDATE_INT);
+        //write a query to get the dynamic products (all products - from the categories ive selected) 
+        if ($difficultyID != "") {
+            //query if a value has been passed for category id
+            $query = "SELECT * from recipes WHERE difficultyID = :difficulty_id";
+        } else {
+            //query if a value has NOT been passed for category id
+            $query = "SELECT * from recipes";
+        }
 
-}
-else if(empty($_POST['submit'])) {
-    //get the category id from the URL (if there is one)
-    $difficultyID = filter_input(INPUT_GET, "difficulty_id", FILTER_VALIDATE_INT);
-    //write a query to get the dynamic products (all products - from the categories ive selected) 
-    if ($difficultyID != "") {
-        //query if a value has been passed for category id
-        $query = "SELECT * from recipes WHERE difficultyID = :difficulty_id";
-    } else {
-        //query if a value has NOT been passed for category id
-        $query = "SELECT * from recipes";
+        //prepare the query (PDO)
+        $statement2 = $conn->prepare($query);
+
+        //bind data if required  (if i need to contrain using a WHERE clause)
+        $statement2->bindValue(":difficulty_id", $difficultyID);
+        //execute the query
+        $statement2->execute();
+        //create a variable to save the result set ($products)
+        $recipes = $statement2->fetchAll();
+        //close the statement
+        $statement2->closeCursor();
     }
-
-    //prepare the query (PDO)
-    $statement2 = $conn->prepare($query);
-
-    //bind data if required  (if i need to contrain using a WHERE clause)
-    $statement2->bindValue(":difficulty_id", $difficultyID);
-    //execute the query
-    $statement2->execute();
-    //create a variable to save the result set ($products)
-    $recipes = $statement2->fetchAll();
-    //close the statement
-    $statement2->closeCursor();
-}
-
 } catch (Exception $ex) {
     $errorMessage = $e->getMessage();
     echo $errorMessage;
@@ -83,7 +78,7 @@ and open the template in the editor.
 
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>All Recipes</title>
     <?php include_once 'includes/CDNs.php'; ?>
     <link href="includes/stylesheet.css" rel="stylesheet" type="text/css" />
 
@@ -94,65 +89,64 @@ and open the template in the editor.
     <?php include_once 'includes/nav-menu.php'; ?>
 
     <div class="container">
-    
 
 
-    <div class='sub-menu' >
-        <?php
-        //get the results from the categories variable(usuing a loop)
-        echo "<div id='div-difficulty-list' >";
-        echo "<ul class='diff-list' id='ul-difficulty-list' >";
-        echo "<li class='li-diff-list' > <a href='recipes-list.php'>Show All </li>";
-        foreach ($difficulties as $difficulty) :
-            echo "<li class='li-diff-list'>";
-            echo "<a class='diff-menu-a' href='recipes-list.php?difficulty_id=" . $difficulty['difficultyID'] . "'>";
-            echo $difficulty['diffName'];
-            echo "</a>";
-            echo "</li>"; 
-        endforeach;
-        echo "</ul>";
-        echo "</div>";
-        ?>
 
-    </div>
+        <div class='sub-menu'>
+            <?php
+            //get the results from the categories variable(usuing a loop)
+            echo "<div id='div-difficulty-list' >";
+            echo "<ul class='diff-list' id='ul-difficulty-list' >";
+            echo "<li class='li-diff-list' > <a href='recipes-list.php'>Show All </li>";
+            foreach ($difficulties as $difficulty) :
+                echo "<li class='li-diff-list'>";
+                echo "<a class='diff-menu-a' href='recipes-list.php?difficulty_id=" . $difficulty['difficultyID'] . "'>";
+                echo $difficulty['diffName'];
+                echo "</a>";
+                echo "</li>";
+            endforeach;
+            echo "</ul>";
+            echo "</div>";
+            ?>
+
+        </div>
 
 
-    <h1 class="allRecipes-h1" >All Recipes</h1>
-    <hr align="left">
-    
+        <h1 class="allRecipes-h1">All Recipes</h1>
+        <hr align="left">
 
-        <?php
-        echo "<div class='row' >";
-        //get the results from the $products variable(using a loop)
-        foreach ($recipes as $recipe) :  
-        if($recipe['difficultyID'] == 1) {
-            $difficulty = "Easy";
-        }
-        else if ($recipe['difficultyID'] == 2) {
-            $difficulty = "Medium";
-        }
-        else if ($recipe['difficultyID'] == 3) {
-            $difficulty = "Hard";
-        }
-        else {
-            $difficulty = "No difficulty selected.";
-        }
-        ?>
+        <div class='all-recipes-section'>
+            <?php
+            echo "<div class='row' >";
+            //get the results from the $products variable(using a loop)
+            foreach ($recipes as $recipe) :
+                if ($recipe['difficultyID'] == 1) {
+                    $difficulty = "Easy";
+                } else if ($recipe['difficultyID'] == 2) {
+                    $difficulty = "Medium";
+                } else if ($recipe['difficultyID'] == 3) {
+                    $difficulty = "Hard";
+                } else {
+                    $difficulty = "No difficulty selected.";
+                }
+            ?>
 
-             <div class='col-lg-4' >
-             <!-- <img src='images/recipes/pancakes.jpg' alt='dish image' height='250' width='270'> -->
-             <img src='images/recipes/<?php echo $recipe['image'];  ?>' alt='dish image' height='250' width='270'>
-             <h4 class='recipe-name'> <?php echo $recipe['name']; ?> </h4>
-             <h5 class='recipe-difficulty' >  Difficulty: <?php echo $difficulty; ?> </h5>
-             <h5 class='recipe-time' > <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%'  alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
-            </h5>
-            <a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID']?>"><button type="button" class="btn btn-sm btn-outline-secondary">View Recipe</button></a>
-            <br>
-            </div>
+                <div class="col-lg-4 bottom-home ">
+                    <div class="card home-card recipe-page-card">
+                        <img src="images/recipes/<?php echo $recipe['image'];  ?>" class="card-img-top" alt='dish image' height='315' width='328'>
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $recipe['name'];  ?></h5>
+                            <p class="card-text" class='recipe-difficulty'> Difficulty: <?php echo $difficulty; ?> </p>
+                            <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
+                            </p>
+                            <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light">View Recipe</button></a> </center>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach;
+            echo "</div>" ?>
+        </div>
 
-        <?php endforeach;
-        echo "</div>" ?>
-        
 
     </div>
 
@@ -162,4 +156,5 @@ and open the template in the editor.
     <?php include_once 'includes/footer.php'; ?>
 
 </body>
+
 </html>

@@ -170,9 +170,9 @@ and open the template in the editor.
                 <span class="help-block"><?php echo $confirm_u_password_err; ?></span>
             </div>
             <div class="form-group col-md-12">
-            <button type="submit" name="submit" value=" Submit " class="btn btn-light">
+            <button type="submit" name="submit" value=" Submit " class="btn btn-light btn-sm">
                     Register</button>
-                <input type="reset" class="btn btn-default" value="Reset">
+                <input type="reset" class="btn btn-light btn-sm" value="Reset">
             </div>
             <br><br>
             <p>Already have an account? Login <a href="login.php" class="here-link">Login Here</a>.</p>
