@@ -1,3 +1,10 @@
+let ingredients = [];
+let cuisine = [];
+let utensils = [];
+let steps = [];
+let amount = [];
+let unit = [];
+let title = "";
 function findRecipe() {
   let request = new XMLHttpRequest();
   const urlString1 = "https://api.spoonacular.com/recipes/complexSearch?maxReadyTime=";
@@ -38,6 +45,10 @@ function findRecipe() {
       el.textContent = title;
       el.value = id;
       select.appendChild(el);
+      if (select == null) {
+        alert("There is no recipe which match your criteria. Please make a new search");
+  location.reload();
+      }
     }
     }
   }
@@ -48,6 +59,10 @@ function findRecipe() {
   }
 }
 function viewRecipe () {
+  const el = document.querySelector('#displayedRecipe');
+    if (el.classList.contains("hide")) {
+      el.classList.remove("hide");
+  }
   document.getElementById("ingredientList").innerHTML = " ";
   document.getElementById("methodList").innerHTML = " ";
   let request = new XMLHttpRequest();
@@ -56,60 +71,122 @@ function viewRecipe () {
 let urlString1 = "https://api.spoonacular.com/recipes/"
 let urlString2 = "/information?apiKey=53bea2eb3c79445188bc4d3f00895d15";
 let requestString = urlString1 + id + urlString2;
-console.log(requestString);
 request.open("GET", requestString, true);
 request.onload = function() {
   let data = JSON.parse(this.response);
-  let ingredients = [];
-  let equipment = [];
-  let steps = [];
-  let amount = [];
-  let unit = [];
-  if (request.status >= 200 && request.status < 400) { 
+  title = data.title;
+  if (request.status >= 200 && request.status < 400) {
+    // GET CUISINE
+    if(data.cuisines.length != 0) {
+      for(i = 0; i < data.cuisines.length; i++) {
+        cuisine.push(data.cuisines[i]);
+      }
+    }
+
+    // GET SERVINGS
+    let servingsInt = JSON.parse(data.servings);
+
+    // GET INGREDIENTS 
     if(data.extendedIngredients.length != 0) {
       for (i = 0; i< data.extendedIngredients.length; i++) {
-      ingredients.push(data.extendedIngredients[i].name);
-      amount.push(data.extendedIngredients[i].measures.metric.amount);
-      unit.push(data.extendedIngredients[i].measures.metric.unitShort);
-    }
+        ingredients.push(data.extendedIngredients[i].name);
+        amount.push(data.extendedIngredients[i].measures.metric.amount);
+        unit.push(data.extendedIngredients[i].measures.metric.unitShort);
+      }
     }
     else {
       ingredients.push("No ingredients listed");
     }
-  if(data.analyzedInstructions === null) { 
-    steps.push("No steps listed.");
-  }
-  else {
-    for(i = 0; i <data.analyzedInstructions[0].steps.length; i++) { 
-      steps.push(data.analyzedInstructions[0].steps[i].step);
+    // GET STEPS
+    let stepArr = data.analyzedInstructions[0].steps;
+
+    if(data.analyzedInstructions === null) { 
+      steps.push("No steps listed.");
     }
-  }
-
-
-  }
+    else {
+      for(i = 0; i <stepArr.length; i++) { // 0   5
+        steps.push(stepArr[i].step);
+      }
+    }
+  
+    //GET EQUIPMENT
+    for(i = 0; i < stepArr.length; i++) {
+      for(j = 0; j < stepArr[i].equipment.length; j++) {
+        if (stepArr[i].equipment[j] != null) {
+          utensils.push(stepArr[i].equipment[j].name);
+        }
+      }
+    }
+  
 
   /* Only change below for where the method is being displayed*/
-  document.querySelector("#recipeName").innerHTML = data.title;
-  document.getElementById("ingredientList").innerHTML = "<h3 class = 'resultHeading'> Ingredients </h3> </br>"; // H for heading is set here
+  // Recipe Name
+  let titleArea = document.getElementById("recipeName");
+  titleArea.innerHTML += title;
+
+  // //Servings
+  let servingsArea = document.getElementById("servings");
+  servingsArea.innerHTML += servingsInt;
+  console.log(servingsInt); 
+
+  // Cuisine
+  for(i = 0; i < cuisine.length; i++) {
+    document.getElementById("cuisine").innerHTML += cuisine[i] + "</br>";
+  }
+  // document.getElementById("cuisine").innerHTML += "</br>";
+
+  //Ingredients
   for(i = 0; i < ingredients.length; i++) {
     document.getElementById("ingredientList").innerHTML += amount[i] + " " + unit[i] + " " + ingredients[i] + "</br>";
   }
   document.getElementById("ingredientList").innerHTML += "</br>";
-  document.getElementById("methodList").innerHTML = "<h3 class = 'resultHeading'> Method </h3> </br>";// H for heading is set here
+
+  // Equipment
+  for(i = 0; i < utensils.length; i++) {
+    document.getElementById("equipment").innerHTML += utensils[i] + "</br>";
+  }
+  document.getElementById("equipment").innerHTML += "</br>";
+
+  //Method
   let result = "";
   for(i = 0; i < steps.length; i++) {
     result += "<li>" + steps[i]+ "</li>";
   }
   document.getElementById("methodList").innerHTML += result;
-  let favouriteButton = document.createElement("button");
-  favouriteButton.innerHTML = "Add to Favourites";
-  let aboveButton = document.getElementById("methodList");
-  aboveButton.appendChild(favouriteButton);
-  favouriteButton.setAttribute("class", "favouriteButton");
+}
+else {
+  alert("There is no recipe which match your criteria. Please make a new search");
+  location.reload();
+}
 }
 request.send();
 
 
+}
+
+function toggleIntolerances() {
+  var checked = document.getElementById("selectIntolerance").checked;
+  if (checked) {
+    document.getElementById("intoleranceList").style.display = "block";
+  } else {
+    document.getElementById("intoleranceList").style.display = "none";
+  }
+}
+function toggleDietRestrictions() {
+  var checked = document.getElementById("selectDietRestriction").checked;
+  if (checked) {
+    document.getElementById("dietRestrictionsList").style.display = "block";
+  } else {
+    document.getElementById("dietRestrictionsList").style.display = "none";
+  }
+}
+function toggleTime() {
+  var checked = document.getElementById("addTime").checked;
+  if (checked) {
+    document.getElementById("addedTime").style.display = "block";
+  } else {
+    document.getElementById("addedTime").style.display = "none";
+  }
 }
 
 function getIntolerances(){
@@ -196,3 +273,10 @@ function addStep() {
    stepInput.setAttribute("class", "form-control");
    area.appendChild(stepInput);
 }
+
+function displayEquipment() {
+  for(i = 0; i < utensils.length; i++) {
+    console.log(utensils[i] );
+  }
+}
+

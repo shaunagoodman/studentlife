@@ -168,17 +168,6 @@ $error_message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
             $stmt->bindParam(":servings", $servings);
             $stmt->bindParam(":maxTime", $maxTime);
             $stmt->bindParam(":difficultyID", $difficultyID);
-            
-            // Set parameters
-            /*$param_name = $recipeName;
-            $param_image = $image;
-            $param_video_name = $video_name;
-            $param_rating = $rating;
-            $param_servings = $servings;
-            $param_maxTime = $maxTime;
-            $param_difficultyID = $difficultyID;*/
-
-            
 
             if($stmt->execute()){
                 $recipe_ID = $conn->lastInsertId();
