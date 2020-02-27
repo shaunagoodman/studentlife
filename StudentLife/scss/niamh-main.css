@@ -454,6 +454,64 @@ li.li-diff-list > a:hover:before {
   display: none;
 }
 
+#intoleranceList, #dietRestrictionsList, #addedTime {
+  display: none;
+}
+
+.recipe-api {
+  margin-left: 25%;
+}
+
+#selectedRecipe {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.api-button:hover,
+.api-button:focus,
+.api-button:active,
+.api-button {
+  color: #FFF8F2;
+  /*writing*/
+  background-color: #FB6107;
+  border-color: #FB6107;
+  border-width: 1px;
+  border-radius: 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.api-button:hover,
+.api-button:focus,
+.api-button:active,
+.api-button.active {
+  color: #FB6107;
+  /*writing*/
+  background-color: white;
+  border-color: #FB6107;
+  border-width: 1px;
+  border-radius: 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}
+
+.api-button {
+  margin-top: 2%;
+}
+
+@media (max-width: 767px) {
+  .api-form-control {
+    width: 60%;
+    margin-right: 10%;
+  }
+}
+
+/* *********************** RECIPE API CSS  **********************    */
+.hide {
+  display: none;
+}
+
 .recipe-api {
   margin-left: 25%;
 }
@@ -557,7 +615,6 @@ li.li-diff-list > a:hover:before {
                  0.3em 0.3em 1em rgba(0,0,0,0.3);
 
 }
-
 */
 .card-header {
   background-color: white;
