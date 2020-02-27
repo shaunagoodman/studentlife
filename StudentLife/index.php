@@ -34,7 +34,7 @@ and open the template in the editor.
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-
+    <link rel="icon" href="images/recipeasy-icons-logos/Capture.png">
     <?php include_once 'includes/CDNs.php'; ?>
 
    

@@ -577,6 +577,21 @@ li.li-diff-list > a:hover:before {
   }
 }
 
+/* *********************** MY RECIPES PAGE & CREATE RECIPE PAGE CSS **********************    */
+a.add-my-recipe {
+  color: #FB6107;
+}
+
+a.add-my-recipe:hover {
+  color: #f29e4c;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+form.create-recipe-form {
+  padding-bottom: 3%;
+}
+
 /* *********************** CONTACT  **********************    */
 .here-link {
   color: #FB6107;
