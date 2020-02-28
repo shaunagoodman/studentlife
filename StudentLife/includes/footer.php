@@ -49,8 +49,9 @@ and open the template in the editor.
                 <a href="https://twitter.com/" class="twitter"> <span style="font-size: 30px; color: white;"><i class="fab fa-twitter-square"></i></span></a>
                 
                 <a href="https://ie.linkedin.com/" class="linkedin"> <span style="font-size: 30px; color: white;"><i class="fab fa-linkedin"></i></span></a>
-                
-                <p class="footer-links" >© 2019 Student Life | All Rights Reserved </p>
+                <br>
+                <img src="images/recipeasy-icons-logos/recipeasy-logo-2.png" class="d-inline-block align-top" alt="" />
+                <p class="footer-links" >© 2019 Recipeasy | All Rights Reserved </p>
                 </center>
             </div>
 
@@ -120,8 +121,9 @@ and open the template in the editor.
                          
                          <p class="footer-links footer-contact-details-tiny" >  <img src="images/icons-logos/phone-white.png" width="5%" alt=""/>  Number: +353 863505611  </p> <p class="footer-links footer-contact-details-tiny"> <img src="images/icons-logos/letter-white.png" width="5%" alt=""/> Email: studentlife@info.com </p>
                          
+                         <img src="images/recipeasy-icons-logos/recipeasy-logo-2.png" class="d-inline-block align-top" alt="" />
                     
-                 <p class="footer-links" >© 2019 Student Life | All Rights Reserved </p>
+                 <p class="footer-links" >© 2019 Recipeasy | All Rights Reserved </p>
                  </center>
             </div>
                 
