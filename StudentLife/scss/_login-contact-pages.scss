@@ -43,3 +43,128 @@ label{
     font-family: 'Montserrat', sans-serif;
     color:$darkOrange;
 }
+
+
+/* *********************** THANK YOU PAGE CSS **********************    */
+
+.thank-you-section{
+    background-color: white;
+    border-radius: 15px;
+    margin:0 auto;
+    margin-bottom: 5%;
+    opacity: 0.2;
+}
+
+.thank-message{
+    padding-left: 6%;
+    padding-right:6%;
+    padding: 8%;
+}
+
+.thanks-body{
+    background-image: url("../images/backgrounds/super-background-blur-white.png");
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+
+/*******************FADE IN ANIMATION CSS*****************************/
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+  
+
+@-webkit-keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+  }
+
+
+  .thank-hr
+{
+    animation-delay: 0.1s;
+}
+
+@-webkit-keyframes fadeIn2 {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn2 {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn2 {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+
+.thank-you-section
+{
+    animation-delay: 0.2s;
+}
+
+@-webkit-keyframes fadeIn3 {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn3 {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn3 {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+  
+  /*-------------*/
