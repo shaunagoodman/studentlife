@@ -160,18 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bindParam(":rating", $rating);
             $stmt->bindParam(":servings", $servings);
             $stmt->bindParam(":maxTime", $maxTime);
-            $stmt->bindParam(":difficultyID", $difficultyID);
-
-            // Set parameters
-            /*$param_name = $recipeName;
-            $param_image = $image;
-            $param_video_name = $video_name;
-            $param_rating = $rating;
-            $param_servings = $servings;
-            $param_maxTime = $maxTime;
-            $param_difficultyID = $difficultyID;*/
-
-
+            $stmt->bindParam(":difficultyID", $difficultyID);  
 
             if ($stmt->execute()) {
                 $recipe_ID = $conn->lastInsertId();
