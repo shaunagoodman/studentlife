@@ -1,4 +1,6 @@
 /* *********************** RECIPE API CSS  **********************    */
+
+
 .hide {
     display: none;
 }
@@ -6,9 +8,10 @@
     display: none;
 }
 
-.recipe-api{
-   
-    margin-left: 25%;
+@media(min-width: 768px){
+    .recipe-api{
+        margin-left: 25%;
+    }
 }
 
 
@@ -58,61 +61,34 @@
     }
     }
 
-
-
-/* *********************** RECIPE API CSS  **********************    */
-.hide {
-    display: none;
-}
-
-.recipe-api{
-   
-    margin-left: 25%;
-}
-
-
-#selectedRecipe{
-    font-family: 'Montserrat', sans-serif;
-}
-
-
-.api-button:hover,
-.api-button:focus,
-.api-button:active,
-.api-button {
-    color: $white;                  /*writing*/
-    background-color: $darkOrange;
-    border-color: $darkOrange;
-    border-width: 1px;
-    border-radius:50px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.api-button:hover,
-.api-button:focus,
-.api-button:active,
-.api-button.active {
-    color: $darkOrange;                  /*writing*/
-    background-color: white ;
-    border-color: $darkOrange;
-    border-width: 1px;
-    border-radius:50px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-}
-
-
-.api-button{
-    margin-top: 2%;
-}
-
-@media (max-width: 767px) {
-
-    .api-form-control{
-        width: 60%;
-        margin-right: 10%;
+    .api-line{
+        width: 80%;
+        border: 0.5px solid $darkOrange;
+        margin-top: 0%;
+        text-align: left;
     }
+    
+    p.sub-head-api{
+        margin-bottom: 0%;
     }
+    
+
+#ingredientList,#equipment,#recipeName,#cuisine,#methodList{
+    @include mont-medium-font;
+}
+
+input.checkbox-api{
+    margin-right: 1%;
+}
+
+ul.ingredients-list{
+    list-style-type:circle;
+}
+
+.api-recipe{
+    margin-bottom: 4%;
+}
+
+.resultHeading{
+    color: $darkOrange;
+}

@@ -1,0 +1,36 @@
+/* *************************** SINGLE RECIPE PAGE CSS *****************************     */
+
+.single-recipe-pic{
+    max-width: 100%;
+        max-height: 100%;
+        display: block;
+}
+
+.single-recipe-line{
+    width: 20%;
+    border: 1px solid $darkOrange;
+    margin-top: 0%;
+    text-align: left;
+}
+
+.single-recipe-line-ingredients{
+    width: 25%;
+    border: 1px solid $darkOrange;
+    margin-top: 0%;
+    text-align: left;
+}
+
+.single-recipe-topRow{
+    margin-bottom: 5%;
+}
+
+
+.fake-comment{
+    border: 1px solid $mediumOrange;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.fake-textBox{
+    background-color: white!important;
+}
