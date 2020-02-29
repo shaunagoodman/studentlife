@@ -1,0 +1,16 @@
+/* *********************** MY RECIPES PAGE & CREATE RECIPE PAGE CSS **********************    */
+
+a.add-my-recipe{
+    
+    color: $darkOrange;
+}
+
+a.add-my-recipe:hover {
+    color: $lightOrange;
+    transition: 0.2s;
+  }
+
+
+form.create-recipe-form{
+    padding-bottom: 3%;
+}

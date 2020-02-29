@@ -34,7 +34,7 @@ and open the template in the editor.
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-
+    <link rel="icon" href="images/recipeasy-icons-logos/Capture.png">
     <?php include_once 'includes/CDNs.php'; ?>
 
    
@@ -109,7 +109,7 @@ and open the template in the editor.
 
         <div class="row">
 
-            <div class="col-lg-12">
+            <div class="col-lg-12" >
                 <h1 class="home-title1"> What We Do</h1>
                 <hr align="left">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -136,7 +136,7 @@ and open the template in the editor.
 ?>
                     <div class="col-lg-4 bottom-home ">
 
-                        <div class="card home-card" >
+                        <div class="card home-card test-card"  >
                             <img src="images/recipes/<?php echo $recipe['image'];  ?>" class="card-img-top" alt='dish image' height='250' width='270'>
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $recipe['name'];  ?></h5>
