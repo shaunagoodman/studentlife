@@ -9,7 +9,7 @@ session_start();
 require_once "includes/database/connection.php";
 
 
-$query ="SELECT * FROM recipes ORDER BY date_created";
+$query ="SELECT * FROM recipes WHERE user_ID = '117' ORDER BY date_created";
 $statement = $conn->prepare($query);
 $statement->execute();
 $recipes = $statement->fetchAll();

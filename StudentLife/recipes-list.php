@@ -129,11 +129,17 @@ and open the template in the editor.
                 } else {
                     $difficulty = "No difficulty selected.";
                 }
+                if($recipe['isAPI'] == 1) {
+                    $src = $recipe['image'];
+                }
+                else {
+                    $src = 'images/recipes/'.$recipe['image'];
+                }
             ?>
 
                 <div class="col-lg-4 bottom-home ">
                     <div class="card home-card recipe-page-card">
-                        <img src="images/recipes/<?php echo $recipe['image'];  ?>" class="card-img-top" alt='dish image' height='315' width='328'>
+                        <img src="<?php echo $src;?>" class="card-img-top" alt='dish image' height='315' width='328'>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $recipe['name'];  ?></h5>
                             <p class="card-text" class='recipe-difficulty'> Difficulty: <?php echo $difficulty; ?> </p>
