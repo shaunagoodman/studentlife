@@ -54,6 +54,10 @@ and open the template in the editor.
                     </div>
                 </li>
 
+                <li class="nav-hover nav-item">
+                    <a class="nav-link" href="blog_single.php">Blog</a>
+                </li>
+
 
                 <li class=" nav-hover nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
