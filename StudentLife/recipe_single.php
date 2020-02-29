@@ -56,56 +56,44 @@ and open the template in the editor.
             } else {
                 $difficulty = "No difficulty selected.";
             }
-            if(empty($recipe['image'])) {
-                $recipe['image'] = "placeholder.png";
-            }
             if($recipe['isAPI'] == 1) {
                 $src = $recipe['image'];
             }
             else {
                 $src = 'images/recipes/'.$recipe['image'];
             }
-        $querysteps = 'SELECT * FROM recipesteps WHERE recipe_ID=:recipe_ID';
-        $statement3 = $conn->prepare($querysteps);
-        $statement3->bindValue(':recipe_ID', $recipe["recipe_ID"]);
-        $statement3->execute();
-        $steps = $statement3->fetchAll();
-        $statement3->closeCursor();
-       ?>
-		    <center><h2 class="heading"><?php echo $recipe['name'] ?> </h2></center> 
-    		    <center><figure>
-                <center> <p class="text-muted"><strong>Difficulty: </strong><?php echo $difficulty ?></p></center>
-                <img src='<?php echo $src;  ?>' alt='dish image' height='250' width='270'>
-    			</figure></center>
-              
-               <center> <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $recipe["video_name"]?>"
-                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
-                
-</video> </center>
-		  
-		    <center> <p class="text-muted"><strong>Servings:</strong> <?php echo $recipe['servings'] ?></p></center>
-    		  
-                <center> <p class="text-muted"><strong>Cooking Time: </strong><?php echo $recipe['maxTime'] ?></p></center>
+            $querysteps = 'SELECT * FROM recipesteps WHERE recipe_ID=:recipe_ID';
+            $statement3 = $conn->prepare($querysteps);
+            $statement3->bindValue(':recipe_ID', $recipe["recipe_ID"]);
+            $statement3->execute();
+            $steps = $statement3->fetchAll();
+            $statement3->closeCursor();
+        ?>
 
-                <center> <p class="text-muted">  <strong>Ingredients: </strong></p></center>
 
-                <?php foreach ($recipes as $recipe) : 
-        $queryrecipeings = 'SELECT * FROM recipeingredient WHERE recipe_ID=:recipe_ID';
-        $statement4 = $conn->prepare($queryrecipeings);
-        $statement4->bindValue(':recipe_ID', $recipe["recipe_ID"]);
-        $statement4->execute();
-        $recipeings = $statement4->fetchAll();
-        $statement4->closeCursor();
-       ?>
 
-       <?php foreach ($recipeings as $recipeing) : 
-        $querydesc = 'SELECT * FROM ingredients WHERE ingredient_ID=:ingredient_ID';
-        $statement6 = $conn->prepare($querydesc);
-        $statement6->bindValue(':ingredient_ID', $recipeing["ingredient_ID"]);
-        $statement6->execute();
-        $ingredients = $statement6->fetchAll();
-        $statement6->closeCursor();
+            <h2 class="heading allRecipes-h1"><?php echo $recipe['name'] ?> </h2>
+            <hr align="left">
 
+            <div class=row>
+                <div class='col-md-5 single-recipe-topRow'>
+                    <img class='single-recipe-pic' src='<?php echo $src;  ?>' alt='dish image'>
+                </div>
+
+                <div class='col-md-7 single-recipe-topRow'>
+                    <p><img src='images/recipeasy-icons-logos/gauge.png' style='margin-right:1.5%' alt='clock icon' height='35' width='35'><strong>Difficulty: </strong><?php echo $difficulty ?>
+                        <img src='images/recipeasy-icons-logos/knife-fork.png' style='margin-right:1.5%' alt='clock icon' height='35' width='35'><strong>Servings:</strong> <?php echo $recipe['servings'] ?>
+                        <img src='images/recipeasy-icons-logos/clock.png' style='margin-right:1.5%' alt='clock icon' height='30' width='30'><strong>Cooking Time: </strong><?php echo $recipe['maxTime'] ?></p>
+
+                    <h5> <strong>Ingredients: </strong></h5>
+                    <hr align="left" class="single-recipe-line-ingredients">
+                    <?php foreach ($recipes as $recipe) :
+                        $queryrecipeings = 'SELECT * FROM recipeingredient WHERE recipe_ID=:recipe_ID';
+                        $statement4 = $conn->prepare($queryrecipeings);
+                        $statement4->bindValue(':recipe_ID', $recipe["recipe_ID"]);
+                        $statement4->execute();
+                        $recipeings = $statement4->fetchAll();
+                        $statement4->closeCursor();
                     ?>
 
                         <?php foreach ($recipeings as $recipeing) :

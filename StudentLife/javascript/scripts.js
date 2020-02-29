@@ -165,11 +165,11 @@ request.onload = function() {
 
   /* Only change below for where the method is being displayed*/
   // Image
-  let imageArea = document.getElementById("image");
-  var img = document.createElement("img");
-  img.src = image;
-  var src = document.getElementById("image");
-  src.appendChild(img);
+  // let imageArea = document.getElementById("image");
+  // var img = document.createElement("img");
+  // img.src = image;
+  // var src = document.getElementById("image");
+  // src.appendChild(img);
   // Recipe Name
   let titleArea = document.getElementById("recipeName");
   titleArea.innerHTML += title;

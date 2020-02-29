@@ -129,11 +129,17 @@ and open the template in the editor.
                 } else {
                     $difficulty = "No difficulty selected.";
                 }
+                if($recipe['isAPI'] == 1) {
+                    $src = $recipe['image'];
+                }
+                else {
+                    $src = 'images/recipes/'.$recipe['image'];
+                }
             ?>
 
                 <div class="col-lg-4 bottom-home ">
                     <div class="card home-card recipe-page-card">
-                        <img src="images/recipes/<?php echo $recipe['image'];  ?>" class="card-img-top" alt='dish image' height='315' width='328'>
+                        <img src="<?php echo $src;?>" class="card-img-top" alt='dish image' height='315' width='328'>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $recipe['name'];  ?></h5>
                             <p class="card-text" class='recipe-difficulty'> Difficulty: <?php echo $difficulty; ?> </p>
@@ -146,63 +152,6 @@ and open the template in the editor.
             <?php endforeach;
             echo "</div>" ?>
         </div>
-
-        <?php
-        echo "<div class='row' >";
-        //get the results from the $products variable(using a loop)
-        if(!empty($recipes)) {
-        foreach ($recipes as $recipe) :  
-        if($recipe['difficultyID'] == 1) {
-            $difficulty = "Easy";
-        }
-        else if ($recipe['difficultyID'] == 2) {
-            $difficulty = "Medium";
-        }
-        else if ($recipe['difficultyID'] == 3) {
-            $difficulty = "Hard";
-        }
-        else {
-            $difficulty = "No difficulty selected.";
-        }
-        
-        if($recipe['image'] == null)  {
-            $recipe['image'] = 'placeholder.png';
-        }
-        if($recipe['isAPI'] == 1) {
-            $src = $recipe['image'];
-        }
-        else {
-            $src = 'images/recipes/'.$recipe['image'];
-        }
-        ?>
-             <div class='col-lg-4' >
-             <!-- <img src='images/recipes/pancakes.jpg' alt='dish image' height='250' width='270'> -->
-             <img src='<?php echo $src;  ?>' alt='dish image' height='250' width='270'>
-             <h4 class='recipe-name'> <?php echo $recipe['name']; ?> </h4>
-             <h5 class='recipe-difficulty' >  Difficulty: <?php echo $difficulty; ?> </h5>
-             <h5 class='recipe-time' > <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%'  alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
-            </h5>
-            <a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID']?>"><button type="button" class="btn btn-sm btn-outline-secondary">View Recipe</button></a>
-            <br>
-            </div>
-
-        <?php endforeach;
-        } 
-        else {
-            echo "<script language = javascript>
-            swal({  title: 'Oops!',
-             text: 'It seems like we dont have ay recipes which match your search. Why not make a new search using the recipes you have?',  
-            type: 'success',    
-            showCancelButton: false,   
-            closeOnConfirm: false,   
-            confirmButtonText: 'Aceptar', 
-            showLoaderOnConfirm: true, }).then(function() {
-                window.location = 'recipe-api.php';
-            });;
-        </script>";
-        }
-        echo "</div>" ;
-        ?>
 
 
     </div>
