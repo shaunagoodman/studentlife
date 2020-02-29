@@ -11,20 +11,24 @@
 
 </head>
 
-<body>
+<body class='thanks-body' >
 
 
     <?php include_once 'includes/nav-menu.php'; ?>
     <div class='container'>
 
-        <h1>Thank you!</h1>
-        <hr align="left">
+        <h1 class="allRecipes-h1 animated fadeIn" >Thank you!</h1>
+        <hr class='thank-hr animated fadeIn2' align="left">
 
         <div class="container">
 
-            <center>
-                <h3>Thanks for taking the time to contact us. It means a lot to us, we will be in touch shortly.</h3>
-            </center>
+           
+                <div class='col-lg-5 thank-you-section animated fadeIn3' >
+                    <h3 class='thank-message' >Thank you for taking the time to contact us. 
+                    We've received your message!    
+                    It means a lot to us, we will get back in touch shortly.</h3>
+                </div>
+            
         </div>
 
 

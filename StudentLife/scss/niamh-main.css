@@ -1,6 +1,6 @@
 /* **********************VARIABLES STYLES****************************/
 /* *************************** GENERAL CSS *****************************     */
-/* --------------- MIXINS ------------------     */
+/* --------------- MIXINS HELLO------------------     */
 /* ------------------------------------*/
 h1 {
   font-family: "Ubuntu", sans-serif;
@@ -394,6 +394,117 @@ label {
   color: #FB6107;
 }
 
+/* *********************** THANK YOU PAGE CSS **********************    */
+.thank-you-section {
+  background-color: white;
+  border-radius: 15px;
+  margin: 0 auto;
+  margin-bottom: 5%;
+  opacity: 0.2;
+}
+
+.thank-message {
+  padding-left: 6%;
+  padding-right: 6%;
+  padding: 8%;
+}
+
+.thanks-body {
+  background-image: url("../images/backgrounds/super-background-blur-white.png");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/*******************FADE IN ANIMATION CSS*****************************/
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+.thank-hr {
+  -webkit-animation-delay: 0.1s;
+          animation-delay: 0.1s;
+}
+
+@-webkit-keyframes fadeIn2 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn2 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn2 {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+.thank-you-section {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+}
+
+@-webkit-keyframes fadeIn3 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn3 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn3 {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+/*-------------*/
 /* *********************** RECIPE LIST PAGE FROM DATABASE CSS  **********************    */
 .sub-menu {
   padding-top: 2.5%;
@@ -469,13 +580,54 @@ li.li-diff-list > a:hover:before {
   margin-right: 3%;
 }
 
+/* *************************** SINGLE RECIPE PAGE CSS *****************************     */
+.single-recipe-pic {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}
+
+.single-recipe-line {
+  width: 20%;
+  border: 1px solid #FB6107;
+  margin-top: 0%;
+  text-align: left;
+}
+
+.single-recipe-line-ingredients {
+  width: 25%;
+  border: 1px solid #FB6107;
+  margin-top: 0%;
+  text-align: left;
+}
+
+.single-recipe-topRow {
+  margin-bottom: 5%;
+}
+
+.fake-comment {
+  border: 1px solid #f09451;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.fake-textBox {
+  background-color: white !important;
+}
+
 /* *********************** RECIPE API CSS  **********************    */
 .hide {
   display: none;
 }
 
-.recipe-api {
-  margin-left: 25%;
+#intoleranceList, #dietRestrictionsList, #addedTime {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .recipe-api {
+    margin-left: 25%;
+  }
 }
 
 #selectedRecipe {
@@ -523,58 +675,52 @@ li.li-diff-list > a:hover:before {
   }
 }
 
-/* *********************** RECIPE API CSS  **********************    */
-.hide {
-  display: none;
+.api-line {
+  width: 80%;
+  border: 0.5px solid #FB6107;
+  margin-top: 0%;
+  text-align: left;
 }
 
-.recipe-api {
-  margin-left: 25%;
+p.sub-head-api {
+  margin-bottom: 0%;
 }
 
-#selectedRecipe {
-  font-family: 'Montserrat', sans-serif;
-}
-
-.api-button:hover,
-.api-button:focus,
-.api-button:active,
-.api-button {
-  color: #FFF8F2;
-  /*writing*/
-  background-color: #FB6107;
-  border-color: #FB6107;
-  border-width: 1px;
-  border-radius: 50px;
-  font-family: 'Montserrat', sans-serif;
+#ingredientList, #equipment, #recipeName, #cuisine, #methodList {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
   font-weight: 400;
-  padding-left: 10px;
-  padding-right: 10px;
 }
 
-.api-button:hover,
-.api-button:focus,
-.api-button:active,
-.api-button.active {
+input.checkbox-api {
+  margin-right: 1%;
+}
+
+ul.ingredients-list {
+  list-style-type: circle;
+}
+
+.api-recipe {
+  margin-bottom: 4%;
+}
+
+.resultHeading {
   color: #FB6107;
-  /*writing*/
-  background-color: white;
-  border-color: #FB6107;
-  border-width: 1px;
-  border-radius: 50px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
 }
 
-.api-button {
-  margin-top: 2%;
+/* *********************** MY RECIPES PAGE & CREATE RECIPE PAGE CSS **********************    */
+a.add-my-recipe {
+  color: #FB6107;
 }
 
-@media (max-width: 767px) {
-  .api-form-control {
-    width: 60%;
-    margin-right: 10%;
-  }
+a.add-my-recipe:hover {
+  color: #f29e4c;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+form.create-recipe-form {
+  padding-bottom: 3%;
 }
 
 /* *********************** CONTACT  **********************    */
