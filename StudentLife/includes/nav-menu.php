@@ -78,7 +78,6 @@ and open the template in the editor.
                             echo '<a class="dropdown-item" href="logout.php">Logout</a>';
                         } else {
                             echo '<a class="dropdown-item" href="login.php">Login</a>';
-                            echo '<a class="dropdown-item" href="staffLogin.php">Staff Login</a>';
                             echo '<a class="dropdown-item" href="sign-up.php">Register</a>';
                         }
                         ?>

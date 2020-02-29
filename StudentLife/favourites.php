@@ -33,7 +33,7 @@ and open the template in the editor.
 
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Favourites</title>
     <?php include_once 'includes/CDNs.php'; ?>
     <link href="includes/stylesheet.css" rel="stylesheet" type="text/css" />
 </head>
@@ -85,6 +85,7 @@ and open the template in the editor.
                <a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID']?>"><button type="button" class="btn btn-sm btn-outline-secondary">View Recipe</button></a>
                <br>
                </div>
+
    
            <?php endforeach;
         }

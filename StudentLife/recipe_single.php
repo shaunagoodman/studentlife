@@ -1,15 +1,15 @@
 <?php
 session_start();
- include_once 'includes/database/connection.php'; ?>
+include_once 'includes/database/connection.php'; ?>
 
 <?php
 // Initialize the session
 
 
 
-  $recipe_ID = filter_input(INPUT_GET, "recipe_ID");
-  if ($recipe_ID == NULL) {
-       header("location:recipes-list.php");
+$recipe_ID = filter_input(INPUT_GET, "recipe_ID");
+if ($recipe_ID == NULL) {
+    header("location:recipes-list.php");
 }
 // Get recipes
 $query = 'SELECT * FROM recipes WHERE recipe_ID=:recipe_ID';
@@ -37,20 +37,23 @@ and open the template in the editor.
 
 
 </head>
-    <body>
-         <?php include_once 'includes/nav-menu.php'; ?>
 
-             <?php foreach ($recipes as $recipe) : 
-             if($recipe['difficultyID'] == 1) {
+<body>
+    <?php include_once 'includes/nav-menu.php'; ?>
+
+
+
+    <div class='container'>
+
+
+        <?php foreach ($recipes as $recipe) :
+            if ($recipe['difficultyID'] == 1) {
                 $difficulty = "Easy";
-            }
-            else if ($recipe['difficultyID'] == 2) {
+            } else if ($recipe['difficultyID'] == 2) {
                 $difficulty = "Medium";
-            }
-            else if ($recipe['difficultyID'] == 3) {
+            } else if ($recipe['difficultyID'] == 3) {
                 $difficulty = "Hard";
-            }
-            else {
+            } else {
                 $difficulty = "No difficulty selected.";
             }
             if(empty($recipe['image'])) {
@@ -102,45 +105,113 @@ and open the template in the editor.
         $statement6->execute();
         $ingredients = $statement6->fetchAll();
         $statement6->closeCursor();
+
                     ?>
 
-        
-<?php foreach ($ingredients as $ingredient) : ?>
-            <center> <p class="text-muted"><?php echo $ingredient['name'] ?> <?php echo $ingredient['amount'] ?> <?php echo $ingredient['unit'] ?></p></center><?php endforeach; ?>
-                  <?php endforeach; ?>
-          <?php endforeach; ?>
+                        <?php foreach ($recipeings as $recipeing) :
+                            $querydesc = 'SELECT * FROM ingredients WHERE ingredient_ID=:ingredient_ID';
+                            $statement6 = $conn->prepare($querydesc);
+                            $statement6->bindValue(':ingredient_ID', $recipeing["ingredient_ID"]);
+                            $statement6->execute();
+                            $ingredients = $statement6->fetchAll();
+                            $statement6->closeCursor();
+                        ?>
 
-                <?php foreach ($steps as $step) :   
-                 
-        $querydesc = 'SELECT * FROM steps WHERE steps_ID=:steps_ID';
-        $statement5 = $conn->prepare($querydesc);
-        $statement5->bindValue(':steps_ID', $step["steps_ID"]);
-        $statement5->execute();
-        $descriptions = $statement5->fetchAll();
-        $statement5->closeCursor();
+                            <?php foreach ($ingredients as $ingredient) : ?>
+                                <p><?php echo $ingredient['name'] ?> <?php echo $ingredient['amount'] ?> <?php echo $ingredient['unit'] ?></p><?php endforeach; ?>
+
+                        <?php endforeach; ?>
+
+                    <?php endforeach; ?>
+
+                    <?php foreach ($steps as $step) :
+
+                        $querydesc = 'SELECT * FROM steps WHERE steps_ID=:steps_ID';
+                        $statement5 = $conn->prepare($querydesc);
+                        $statement5->bindValue(':steps_ID', $step["steps_ID"]);
+                        $statement5->execute();
+                        $descriptions = $statement5->fetchAll();
+                        $statement5->closeCursor();
                     ?>
-<?php foreach ($descriptions as $description) : ?>
 
-                <center> <p class="text-muted"><strong>Method: </strong><?php echo $description['description'] ?></p></center><?php endforeach; ?><?php endforeach; ?>
-    		</div>
-		
-    	
-    	    </div>
-    	</div>
+                        <?php foreach ($descriptions as $description) : ?>
+                            <h5><strong>Method: </strong></h5>
+                            <hr align="left" class="single-recipe-line">
+                            <p><?php echo $description['description'] ?></p>
+                            <?php endforeach; ?><?php endforeach; ?>
+                </div>
 
-	<?php endforeach; ?>
-   
+                <div class='col-lg-5'>
+                    <h3>Comments</h3>
+
+                    <div class='fake-comment'>
+                        <h5>Really Cool!</h5>
+                        <p>
+                            Minim sit qui ut dolore reprehenderit velit ipsum.
+                            Aute in nulla commodo velit. Voluptate duis minim nisi est enim.
+                            Laborum non ipsum laboris ea veniam ut exercitation ea voluptate
+                            adipisicing sint ut. Nisi duis reprehenderit irure labore non id cillum.
+                        </p>
+                    </div>
+                    <br>
+                    <div class='fake-comment'>
+                        <h5> Could Use salt</h5>
+                        <p>
+                            Voluptate duis minim nisi est enim.
+                            Laborum non ipsum laboris ea veniam ut exercitation ea voluptate
+                        </p>
+                    </div>
+
+                    <form>
+                        <div class="form-group">
+                            <label>Comment Here</label>
+                            <textarea class="form-control fake-textBox" name="message" rows="3" placeholder=""></textarea>
+                        </div>
+                        <button class='btn btn-light btn-sm' >Send</button>
+                    </form>
+<br>
+                </div>
+                                
+
+                <div class='col-lg-7'>
+                    <h3>Video Tutorial</h3>
+                    <center>
+                        <iframe width="600" height="338" src="https://www.youtube.com/embed/<?php echo $recipe["video_name"] ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                        </video>
+
+                    </center>
+                </div>
+
+            </div>
 
 
 
 
 
-    <?php include_once 'includes/footer.php'; ?>
 
 
 
+    </div>
+
+
+    </div>
+    </div>
+
+<?php endforeach; ?>
+
+
+
+
+
+
+<?php include_once 'includes/footer.php'; ?>
+
+
+</div>
 
 
 
 </body>
+
 </html>

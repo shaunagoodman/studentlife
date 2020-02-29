@@ -16,8 +16,7 @@ if (isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true) {
         echo $errorMessage;
         exit();
     }
-}
-else {
+} else {
     header("location: login.php");
     exit;
 }
@@ -28,34 +27,36 @@ else {
 
 <head>
     <meta charset="UTF-8">
-    <title>Recipes</title>
+    <title>My Recipes</title>
     <?php include_once 'includes/CDNs.php'; ?>
 </head>
 
 <body>
     <?php include_once 'includes/nav-menu.php'; ?>
 
-        <div class="container">
+    <div class="container">
 
 
-    <h1 class="allRecipes-h1" >All Recipes</h1>
-    <hr align="left">
-    
+        <h1 class="allRecipes-h1">All Your Recipes</h1>
+        <hr align="left">
+
+        
+
+            <h5>Can't get enough of creating new recipes? Why not create more of your own unique recipes <a class='add-my-recipe' href = "add-recipe.php"> here </a>?</h5>
+
+            <br>
 
         <?php
         echo "<div class='row' >";
         //get the results from the $products variable(using a loop)
-        foreach ($recipes as $recipe) :  
-            if($recipe['difficultyID'] == 1) {
+        foreach ($recipes as $recipe) :
+            if ($recipe['difficultyID'] == 1) {
                 $difficulty = "Easy";
-            }
-            else if ($recipe['difficultyID'] == 2) {
+            } else if ($recipe['difficultyID'] == 2) {
                 $difficulty = "Medium";
-            }
-            else if ($recipe['difficultyID'] == 3) {
+            } else if ($recipe['difficultyID'] == 3) {
                 $difficulty = "Hard";
-            }
-            else {
+            } else {
                 $difficulty = "No difficulty selected.";
             }
             if(empty($recipe['image'])) {
@@ -77,14 +78,15 @@ else {
             </h5>
             <a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID']?>"><button type="button" class="btn btn-sm btn-outline-secondary">View Recipe</button></a>
             <br>
+
             </div>
 
         <?php endforeach;
         echo "</div>" ?>
-        <a href = "add-recipe.php"><button> Add recipe </button></a>
     </div>
-    
+
     <?php include_once 'includes/footer.php'; ?>
 
 </body>
+
 </html>

@@ -62,12 +62,15 @@ session_start();
         <!--CHOOSE RECIPE-->
         <div id="result" class = "hide">
           <select class="form-control api-form-control" name = "selectIngredients" id="selectIngredients">
+
             <option>Choose a recipe</option>
           </select>
           <button class="btn api-button" onClick="viewRecipe()"> View Recipe</button>
         </div>
       </div>
-      <?php 
+        <br>
+      </div>
+      <?php
       $title = $servings = "";
       $ingredients = [];
       $unit = [];
@@ -122,5 +125,69 @@ session_start();
     </div>
   </div>
 <?php include_once 'includes/footer.php';?>
+
+
+      ?>
+      <!-- ################# Recipe Displayed Below ################# -->
+      <div id="displayedRecipe" class="hide row">
+        <!-- <div class='row'> -->
+
+          <div class='col-lg-4 api-recipe'>
+            <h5 class='resultHeading'> Title </h5> 
+            <div id="recipeName"></div>
+          </div>
+
+          <div class='col-lg-4 api-recipe'>
+            <h5 class='resultHeading'> Serves </h5>
+            <div id="servings"></div>
+          </div>
+
+          <div class='col-lg-4 api-recipe'>
+            <h5 class='resultHeading'> Cuisine </h5>
+            <div id="cuisine"></div>
+          </div>
+
+          <div class='col-lg-7 api-recipe'>
+            <h5 class='resultHeading'> Method </h5> 
+            <ol id="methodList"style='padding-left: 4.5%;'></ol>
+          </div>
+
+          <div class='col-lg-5 api-recipe'>
+            <h5 class='resultHeading'> Ingredients </h5> 
+           <!-- <ul class='ingredients-list' > <div id="ingredientList"></div></ul> -->
+           <ol id="ingredientList" style='padding-left: 4.5%;'></ol>
+          </div>
+
+          <div class='col-lg-6 api-recipe'>
+            <h5 class='resultHeading'> Equipment </h5> 
+            <div id="equipment"></div>
+          </div>
+
+          
+
+        <!-- </div> -->
+
+
+
+
+
+
+        <div class="col-md-6 recipe-api">
+          <!--Search Area-->
+          <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
+            <input type="submit" name="btnFav" value="Submit" />
+          </form>
+
+          <?php include_once 'includes/database/APItoDatabase.php'; ?>
+          <!-- <button type = "submit" name = "favouriteButton">Add to Favourites </button> -->
+        </div>
+        <!--End of recipe display-->
+      </div>
+    </div>
+    <!--End recipe container-->
+  </div>
+  <?php
+  include_once 'includes/footer.php';
+  ?>
 </body>
 </html>
