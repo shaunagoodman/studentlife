@@ -28,13 +28,13 @@ $statement4->closeCursor();
 </head>
 
 <body>
-         <?php include_once 'includes/nav-menu.php'; ?>
-
-
-
-<p class="text-muted"><?php echo $blogs['blogContent'] ?></p>
+<?php include_once 'includes/nav-menu.php'; 
+foreach($blog as $content) {?>
+    <p class="text-muted">
+        <?php echo $content['blogContent']; ?>
+    </p>
+<?php} ?>
 
 <?php include_once 'includes/footer.php'; ?>
 </body>
-
 </html>
