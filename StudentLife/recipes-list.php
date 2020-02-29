@@ -24,20 +24,25 @@ try {
     if(isset($_POST['submit'])) {
         $searchString = $_POST['something'];
         $array = explode(" ",$searchString);
-        $sql = "SELECT * FROM recipes WHERE name ";
-        $count = 0;
-        forEach($array as $value) {
-            if ($count == 0) {
-                $sql .= " LIKE '%" . $value . "%'";
+        if(!empty($array))
+        {
+            $sql = "SELECT * FROM recipes WHERE name ";
+            $count = 0;
+            forEach($array as $value) {
+                if ($count == 0) {
+                    $sql .= " LIKE '%" . $value . "%'";
+                }
+                else {
+                    $sql .= " OR '%" . $value . "%'";
+                }
+                $count++;
             }
-            else {
-                $sql .= " OR '%" . $value . "%'";
-            }
-            $count++;
+            $statement = $conn->prepare($sql);
+            $statement->execute();
+            $recipes = $statement->fetchAll();
         }
-        $statement = $conn->prepare($sql);
-        $statement->execute();
-        $recipes = $statement->fetchAll();
+
+        
         
 
 }
@@ -124,6 +129,7 @@ and open the template in the editor.
         <?php
         echo "<div class='row' >";
         //get the results from the $products variable(using a loop)
+        if(!empty($recipes)) {
         foreach ($recipes as $recipe) :  
         if($recipe['difficultyID'] == 1) {
             $difficulty = "Easy";
@@ -137,11 +143,20 @@ and open the template in the editor.
         else {
             $difficulty = "No difficulty selected.";
         }
+        
+        if($recipe['image'] == null)  {
+            $recipe['image'] = 'placeholder.png';
+        }
+        if($recipe['isAPI'] == 1) {
+            $src = $recipe['image'];
+        }
+        else {
+            $src = 'images/recipes/'.$recipe['image'];
+        }
         ?>
-
              <div class='col-lg-4' >
              <!-- <img src='images/recipes/pancakes.jpg' alt='dish image' height='250' width='270'> -->
-             <img src='images/recipes/<?php echo $recipe['image'];  ?>' alt='dish image' height='250' width='270'>
+             <img src='<?php echo $src;  ?>' alt='dish image' height='250' width='270'>
              <h4 class='recipe-name'> <?php echo $recipe['name']; ?> </h4>
              <h5 class='recipe-difficulty' >  Difficulty: <?php echo $difficulty; ?> </h5>
              <h5 class='recipe-time' > <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%'  alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
@@ -151,8 +166,22 @@ and open the template in the editor.
             </div>
 
         <?php endforeach;
-        echo "</div>" ?>
-        
+        } 
+        else {
+            echo "<script language = javascript>
+            swal({  title: 'Oops!',
+             text: 'It seems like we dont have ay recipes which match your search. Why not make a new search using the recipes you have?',  
+            type: 'success',    
+            showCancelButton: false,   
+            closeOnConfirm: false,   
+            confirmButtonText: 'Aceptar', 
+            showLoaderOnConfirm: true, }).then(function() {
+                window.location = 'recipe-api.php';
+            });;
+        </script>";
+        }
+        echo "</div>" ;
+        ?>
 
     </div>
 

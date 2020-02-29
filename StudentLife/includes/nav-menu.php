@@ -49,6 +49,7 @@ and open the template in the editor.
 
                         <a class="dropdown-item" href="recipes-list.php">All Recipes</a>
                         <a class="dropdown-item" href="recipe-api.php">Whats in my fridge?</a>
+                        <a class="dropdown-item" href="random-recipe.php">Random Recipe Generator</a>
 
                     </div>
                 </li>

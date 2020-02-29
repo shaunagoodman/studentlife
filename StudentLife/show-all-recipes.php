@@ -58,11 +58,19 @@ else {
             else {
                 $difficulty = "No difficulty selected.";
             }
+            if(empty($recipe['image'])) {
+                $recipe['image'] = "placeholder.png";
+            }
+            if($recipe['isAPI'] == 1) {
+                $src = $recipe['image'];
+            }
+            else {
+                $src = 'images/recipes/'.$recipe['image'];
+            }
         ?>
-
              <div class='col-lg-4' >
              <!-- <img src='images/recipes/pancakes.jpg' alt='dish image' height='250' width='270'> -->
-             <img src='images/recipes/<?php echo $recipe['image'];  ?>' alt='dish image' height='250' width='270'>
+             <img src='<?php echo $src;  ?>' alt='dish image' height='250' width='270'>
              <h4 class='recipe-name'> <?php echo $recipe['name']; ?> </h4>
              <h5 class='recipe-difficulty' >  Difficulty: <?php echo $difficulty; ?> </h5>
              <h5 class='recipe-time' > <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%'  alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>

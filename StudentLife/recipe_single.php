@@ -53,6 +53,15 @@ and open the template in the editor.
             else {
                 $difficulty = "No difficulty selected.";
             }
+            if(empty($recipe['image'])) {
+                $recipe['image'] = "placeholder.png";
+            }
+            if($recipe['isAPI'] == 1) {
+                $src = $recipe['image'];
+            }
+            else {
+                $src = 'images/recipes/'.$recipe['image'];
+            }
         $querysteps = 'SELECT * FROM recipesteps WHERE recipe_ID=:recipe_ID';
         $statement3 = $conn->prepare($querysteps);
         $statement3->bindValue(':recipe_ID', $recipe["recipe_ID"]);
@@ -63,7 +72,7 @@ and open the template in the editor.
 		    <center><h2 class="heading"><?php echo $recipe['name'] ?> </h2></center> 
     		    <center><figure>
                 <center> <p class="text-muted"><strong>Difficulty: </strong><?php echo $difficulty ?></p></center>
-                <img src='images/recipes/<?php echo $recipe['image'];  ?>' alt='dish image' height='250' width='270'>
+                <img src='<?php echo $src;  ?>' alt='dish image' height='250' width='270'>
     			</figure></center>
               
                <center> <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $recipe["video_name"]?>"
