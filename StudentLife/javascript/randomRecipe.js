@@ -26,7 +26,6 @@ function findRecipe() {
   request.open("GET", requestString, true);
   request.onload = function() {
     let data = JSON.parse(this.response);
-    if (data.recipes.length > 0) {
       if (request.status >= 200 && request.status < 400) {
         for (i = 0; i< data.recipes.length; i++) {
           let title = data.recipes[0].title;
@@ -101,8 +100,17 @@ function findRecipe() {
           methodListArea.innerHTML += result;
         }
     }
+    else {
+      swal({  title: 'Something has gone wrong!',
+                     text: 'We have no available recipes right now. Please try again later!',  
+                    type: 'fail',    
+                    showCancelButton: false,   
+                    closeOnConfirm: false,   
+                    confirmButtonText: 'Aceptar', 
+                    showLoaderOnConfirm: true, }).then(function() {
+                        window.location = 'index.php';
+                    });
+                  }
   }
-  
-}
   request.send();
 }
