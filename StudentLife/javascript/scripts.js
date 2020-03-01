@@ -29,27 +29,45 @@ function findRecipe() {
   else {
       requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerances}&diet=${dietRestriction}`;
   }
-  
- 
 
-  console.log(requestString);
   request.open("GET", requestString, true);
   request.onload = function() {
     let data = JSON.parse(this.response);
-    if (request.status >= 200 && request.status < 400) {
-    for (i = 0; i< data.results.length; i++) {
-      let select = document.getElementById("selectIngredients");
-      let id = data.results[i].id;
-      let title = data.results[i].title;
-      let el = document.createElement("option");
-      el.textContent = title;
-      el.value = id;
-      select.appendChild(el);
-      if (select == null) {
-        alert("There is no recipe which match your criteria. Please make a new search");
-  location.reload();
-      }
+    if (data.results.length > 0) {
+      if (request.status >= 200 && request.status < 400) {
+        for (i = 0; i< data.results.length; i++) {
+          let select = document.getElementById("selectIngredients");
+          let id = data.results[i].id;
+          let title = data.results[i].title;
+          let el = document.createElement("option");
+          el.textContent = title;
+          el.value = id;
+          el.setAttribute("name", "recipeResult");
+          select.appendChild(el);
+          if (select == null) {
+            swal({  title: 'Something has gone wrong!',
+                   text: 'There is no recipe which match your criteria. Please make a new search.',  
+                  type: 'fail',    
+                  showCancelButton: false,   
+                  closeOnConfirm: false,   
+                  confirmButtonText: 'Aceptar', 
+                  showLoaderOnConfirm: true, }).then(function() {
+                      window.location = 'recipe-api.php';
+                  });
+          }
+        }
+        }
     }
+    else {
+      swal({  title: 'Something has gone wrong!',
+                   text: 'We do not have any recipes that match your search. Please try again!',  
+                  type: 'fail',    
+                  showCancelButton: false,   
+                  closeOnConfirm: false,   
+                  confirmButtonText: 'Aceptar', 
+                  showLoaderOnConfirm: true, }).then(function() {
+                      window.location = 'recipe-api.php';
+                  });;
     }
   }
   request.send(); 
@@ -65,9 +83,17 @@ function viewRecipe () {
   }
   document.getElementById("ingredientList").innerHTML = " ";
   document.getElementById("methodList").innerHTML = " ";
+  document.getElementById("servings").innerHTML = " ";
+  document.getElementById("equipment").innerHTML = " ";
+  document.getElementById("cuisine").innerHTML = " ";
+
+
+
+
   let request = new XMLHttpRequest();
   let select = document.getElementById("selectIngredients");
   let id = select.value;
+  setCookie("recipe_ID", id);
 let urlString1 = "https://api.spoonacular.com/recipes/"
 let urlString2 = "/information?apiKey=53bea2eb3c79445188bc4d3f00895d15";
 let requestString = urlString1 + id + urlString2;
@@ -82,44 +108,68 @@ request.onload = function() {
         cuisine.push(data.cuisines[i]);
       }
     }
+    else {
+      cuisine.push("No cuisine listed");
+    }
+    // GET IMAGE
+    let image = data.image;
 
     // GET SERVINGS
     let servingsInt = JSON.parse(data.servings);
 
     // GET INGREDIENTS 
-    if(data.extendedIngredients.length != 0) {
+    if(data.extendedIngredients.length > 0) {
       for (i = 0; i< data.extendedIngredients.length; i++) {
-        ingredients.push(data.extendedIngredients[i].name);
-        amount.push(data.extendedIngredients[i].measures.metric.amount);
-        unit.push(data.extendedIngredients[i].measures.metric.unitShort);
+        if(!ingredients.includes(data.extendedIngredients[i].name)) {
+          ingredients.push(data.extendedIngredients[i].name);
+          amount.push(data.extendedIngredients[i].measures.metric.amount);
+          unit.push(data.extendedIngredients[i].measures.metric.unitShort);
+        }
       }
     }
     else {
       ingredients.push("No ingredients listed");
     }
     // GET STEPS
-    let stepArr = data.analyzedInstructions[0].steps;
+    if(data.analyzedInstructions.length > 0) {
+      let stepArr = data.analyzedInstructions[0].steps;
 
-    if(data.analyzedInstructions === null) { 
-      steps.push("No steps listed.");
-    }
-    else {
-      for(i = 0; i <stepArr.length; i++) { // 0   5
-        steps.push(stepArr[i].step);
+      if(data.analyzedInstructions === null) { 
+        steps.push("No steps listed.");
       }
-    }
-  
-    //GET EQUIPMENT
-    for(i = 0; i < stepArr.length; i++) {
-      for(j = 0; j < stepArr[i].equipment.length; j++) {
-        if (stepArr[i].equipment[j] != null) {
-          utensils.push(stepArr[i].equipment[j].name);
+      else {
+        for(i = 0; i <stepArr.length; i++) { // 0   5
+          if(!steps.includes(stepArr[i].step)) {
+            steps.push(stepArr[i].step);
+          }
         }
       }
+    
+      //GET EQUIPMENT
+      for(i = 0; i < stepArr.length; i++) {
+        for(j = 0; j < stepArr[i].equipment.length; j++) {
+          if (stepArr[i].equipment[j] != null) {
+            if(!utensils.includes(stepArr[i].equipment[j].name)) {
+            utensils.push(stepArr[i].equipment[j].name);
+            }
+          }
+          else utensils.push("No equipment listed");
+        }
+      }
+    }
+    else {
+      utensils.push("No equipment listed");
+      steps.push("No steps listed");
     }
   
 
   /* Only change below for where the method is being displayed*/
+  // Image
+  // let imageArea = document.getElementById("image");
+  // var img = document.createElement("img");
+  // img.src = image;
+  // var src = document.getElementById("image");
+  // src.appendChild(img);
   // Recipe Name
   let titleArea = document.getElementById("recipeName");
   titleArea.innerHTML += title;
@@ -127,7 +177,6 @@ request.onload = function() {
   // //Servings
   let servingsArea = document.getElementById("servings");
   servingsArea.innerHTML += servingsInt;
-  console.log(servingsInt); 
 
   // Cuisine
   for(i = 0; i < cuisine.length; i++) {
@@ -155,8 +204,15 @@ request.onload = function() {
   document.getElementById("methodList").innerHTML += result;
 }
 else {
-  alert("There is no recipe which match your criteria. Please make a new search");
-  location.reload();
+  swal({  title: 'Something has gone wrong!',
+  text: 'There is no recipe which match your criteria. Please make a new search.',  
+ type: 'fail',    
+ showCancelButton: false,   
+ closeOnConfirm: false,   
+ confirmButtonText: 'Aceptar', 
+ showLoaderOnConfirm: true, }).then(function() {
+     window.location = 'recipe-api.php';
+ });
 }
 }
 request.send();
@@ -280,3 +336,7 @@ function displayEquipment() {
   }
 }
 
+function setCookie(cname, cvalue) {
+
+  document.cookie = cname + "=" + cvalue + ";" + "path=/";
+}
