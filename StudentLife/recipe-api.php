@@ -159,15 +159,7 @@ include_once 'includes/CDNs.php';
       }
         else {
           echo "<script language = javascript>
-                  swal({  title: 'Not Logged In!',
-                   text: 'You must be logged in to favourite a recipe.',  
-                  type: 'success',    
-                  showCancelButton: false,   
-                  closeOnConfirm: false,   
-                  confirmButtonText: 'Aceptar', 
-                  showLoaderOnConfirm: true, }).then(function() {
-                      window.location = 'login.php';
-                  });;
+                  favouritePopUp();
               </script>";
             }
         }

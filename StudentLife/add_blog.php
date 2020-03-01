@@ -55,8 +55,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <body>
 <?php include_once 'includes/nav-menu.php'; ?>
-
-<h2>Post New Blog</h2>
+<div class='container' >
+<h2 class="allRecipes-h1" >Post New Blog</h2>
+<hr align="left">
 
 <form class = "blog-form" enctype="multipart/form-data" action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
 
@@ -75,7 +76,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <input type="submit" class="btn btn-primary" value="Submit">
 <a href="show-all-recipes.php" class="btn btn-default">Cancel</a>
     </form>
-	
+	</div>
 	    <?php include_once 'includes/footer.php'; ?>
 
 
