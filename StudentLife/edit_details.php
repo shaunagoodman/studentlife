@@ -132,8 +132,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
            
            
             <div class="form-group col-md-12">
-                <input type="submit" class="btn btn-light" value="Submit">
-                <a class="here-link" href="profile.php">Cancel</a>
+                <input type="submit" class="btn btn-light btn-sm" value="Submit">
+                <a  class="btn btn-light-invert btn-sm" href="profile.php">Cancel</a>
             </div>
         </form>
     </div> 
