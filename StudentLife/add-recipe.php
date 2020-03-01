@@ -29,16 +29,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $recipeName = $input_name;
 
-    // Validate image
-    $image = trim($_FILES["image"]["name"]);
-    $imgFile = $_FILES["image"]["name"];
-    $tmp_dir = $_FILES["image"]["tmp_name"];
-    $imgSize = $_FILES["image"]["size"];
+    
 
     // Validate  Video
     $video_name = trim($_POST["video_name"]);
 
 
+    // Validate image
+    $image = trim($_FILES["image"]["name"]);
+    $imgFile = $_FILES["image"]["name"];
+    $tmp_dir = $_FILES["image"]["tmp_name"];
+    $imgSize = $_FILES["image"]["size"];
 
     $upload_dir = "images/recipes/"; // upload directory
 
@@ -48,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $valid_extensions = array("jpeg", "jpg", "png", "gif"); // valid extensions
 
     // rename uploading image
-    $image = rand(1000, 1000000) . "." . $imgExt;
+     $image = rand(1000, 1000000) . "." . $imgExt;
 
     // allow valid image file formats
     if (in_array($imgExt, $valid_extensions)) {
@@ -206,7 +207,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
         unset($stmt);
-        header("refresh:2;show-all-recipes.php");
+        echo "<script language = javascript>
+                  swal({  title: 'Success!',
+                   text: 'You have successfully created a recipe.',  
+                  type: 'success',    
+                  showCancelButton: false,   
+                  closeOnConfirm: false,   
+                  confirmButtonText: 'Aceptar', 
+                  showLoaderOnConfirm: true, }).then(function() {
+                      window.location = 'show-all-recipes.php';
+                  });;
+              </script>";
     } else {
         echo "Could not do task";
     }

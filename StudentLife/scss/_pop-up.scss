@@ -1,0 +1,23 @@
+.swal-overlay {
+    background-color: rgba(43, 44, 43, 0.5);
+  }
+
+  .swal-modal {
+    border: 3px solid $mediumOrange;
+   // background-image: url ("http://127.0.0.1/wordpress/wp-content/uploads/2020/01/bee.jpg");
+  }
+
+  .swal-title {
+    @include heading-font;
+    font-size: 50px;
+  }
+
+  .swal-text{
+    @include mont-medium-font;
+    font-size: 20px;
+  }
+
+  .swal-button { 
+    background-color: $mediumOrange;
+    @include mont-medium-font;
+  }

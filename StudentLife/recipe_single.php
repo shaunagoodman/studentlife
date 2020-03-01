@@ -56,6 +56,12 @@ and open the template in the editor.
             } else {
                 $difficulty = "No difficulty selected.";
             }
+            if($recipe['isAPI'] == 1) {
+                $src = $recipe['image'];
+            }
+            else {
+                $src = 'images/recipes/'.$recipe['image'];
+            }
             $querysteps = 'SELECT * FROM recipesteps WHERE recipe_ID=:recipe_ID';
             $statement3 = $conn->prepare($querysteps);
             $statement3->bindValue(':recipe_ID', $recipe["recipe_ID"]);
@@ -71,7 +77,7 @@ and open the template in the editor.
 
             <div class=row>
                 <div class='col-md-5 single-recipe-topRow'>
-                    <img class='single-recipe-pic' src='images/recipes/<?php echo $recipe['image'];  ?>' alt='dish image'>
+                    <img class='single-recipe-pic' src='<?php echo $src;  ?>' alt='dish image'>
                 </div>
 
                 <div class='col-md-7 single-recipe-topRow'>

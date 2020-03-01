@@ -11,47 +11,34 @@ if (isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true) {
 $recipeID = "";
 include_once 'includes/CDNs.php';
 ?>
-
 <head>
-
   <meta charset="UTF-8">
   <title>Recipe API</title>
-
-
-
   <script src="javascript/scripts.js"></script>
 </head>
-
 <body>
-
   <?php include_once 'includes/nav-menu.php'; ?>
-
   <div class="container">
-
     <br>
-    <center>
-      <h1>What's in your fridge?</h1>
-    </center>
+    <center><h1>What's in your fridge?</h1></center>
     <hr class="faq-line">
     <p>Can't decide what to make? Just enter below what food you have at home and we'll give you some delicious
       recipes that you can make with them!</p>
-
     <div class="col-md-6 recipe-api">
       <!--Search Area-->
       <!--Search Ingredients-->
       <div id="ingredientInput">
         <input class="form-control api-form-control" name='ingredients' id='ingredients' placeholder="eggs, milk, butter" /> <br>
         <p> <input class='checkbox-api' type="checkbox" id="addTime" onClick="toggleTime()" />Select if you wish to add a time limit (If you do not set a limit it will defualt to 10 mins).</p>
+        
+        <!--TIME -->
         <div id="addedTime">
           <p> Enter how many minutes long you want to spend cooking </p>
           <input class="form-control api-form-control" name='time' id='time' />
         </div>
         <br>
-
-        <!-- -------------------------------------------- -->
-
+         <!--INTOLERANCE -->
         <div class='row'>
-
           <div class='col-lg-6'>
             <p class='sub-head-api'> <input class='checkbox-api' type="checkbox" id="selectIntolerance" onClick="toggleIntolerances()" />Select if you have an Intolerance</p>
             <hr align="left" class="api-line">
@@ -72,7 +59,7 @@ include_once 'includes/CDNs.php';
             </div>
           </div>
 
-          <!-- ------------------------- -->
+          <!-- ----------DIET RESTRICTION---------->
 
           <div class='col-lg-6'>
 
@@ -118,6 +105,10 @@ include_once 'includes/CDNs.php';
       <div id="displayedRecipe" class="hide row">
         <!-- <div class='row'> -->
 
+          <!-- <div class='col-lg-4 api-recipe'>
+            <div id="image"></div>
+          </div> -->
+
           <div class='col-lg-4 api-recipe'>
             <h5 class='resultHeading'> Title </h5> 
             <div id="recipeName"></div>
@@ -150,23 +141,30 @@ include_once 'includes/CDNs.php';
           </div>
 
           
-
+          <form action="" method="POST">
+             <input class="btn api-button" type="submit" name="btnFav" value="Favourite"/>
+          </form>
         <!-- </div> -->
-
-
-
-
-
-
         <div class="col-md-6 recipe-api">
           <!--Search Area-->
-          <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
-            <input type="submit" name="btnFav" value="Submit" />
-          </form>
-
-          <?php include_once 'includes/database/APItoDatabase.php'; ?>
-          <!-- <button type = "submit" name = "favouriteButton">Add to Favourites </button> -->
-        </div>
+          <?php 
+      $cookie_name = "recipe_ID";
+      if(isset($_COOKIE[$cookie_name])) {
+        $recipe_ID = $_COOKIE[$cookie_name];
+      }
+      if (isset($_POST['btnFav'])) {
+        if (isset($_SESSION["loggedin"])) {
+          $user = $_SESSION['user_ID'];
+          include_once 'includes/database/APItoDatabase.php';
+      }
+        else {
+          echo "<script language = javascript>
+                  favouritePopUp();
+              </script>";
+            }
+        }
+      ?>
+      </div>
         <!--End of recipe display-->
       </div>
     </div>

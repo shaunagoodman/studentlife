@@ -52,20 +52,42 @@ and open the template in the editor.
         echo "<div class='row' >";
         //get the results from the $products variable(using a loop)
         if($recipes != null) {
-            foreach ($recipes as $recipe) : ?>
+            foreach ($recipes as $recipe) : 
+            if($recipe['difficultyID'] == 1) {
+                $difficulty = "Easy";
+            }
+            else if ($recipe['difficultyID'] == 2) {
+                $difficulty = "Medium";
+            }
+            else if ($recipe['difficultyID'] == 3) {
+                $difficulty = "Hard";
+            }
+            else {
+                $difficulty = "No difficulty selected.";
+            }
+            if(empty($recipe['image'])) {
+                $recipe['image'] = "placeholder.png";
+            }
+            if($recipe['isAPI'] == 1) {
+                $src = $recipe['image'];
+            }
+            else {
+                $src = 'images/recipes/'.$recipe['image'];
+            }
+            ?>
 
-<div class="col-lg-4 bottom-home ">
-                <div class="card home-card recipe-page-card">
-                    <img src="images/recipes/<?php echo $recipe['image'];  ?>" class="card-img-top" alt='dish image' height='315' width='328'>
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo $recipe['name'];  ?></h5>
-                        <p class="card-text" class='recipe-difficulty'> Difficulty: <?php echo $difficulty; ?> </p>
-                        <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
-                        </p>
-                        <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light">View Recipe</button></a> </center>
+               <div class="col-lg-4 bottom-home ">
+                    <div class="card home-card recipe-page-card">
+                        <img src="<?php echo $src;?>" class="card-img-top" alt='dish image' height='315' width='328'>
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $recipe['name'];  ?></h5>
+                            <p class="card-text" class='recipe-difficulty'> Difficulty: <?php echo $difficulty; ?> </p>
+                            <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
+                            </p>
+                            <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light">View Recipe</button></a> </center>
+                        </div>
                     </div>
                 </div>
-            </div>
    
            <?php endforeach;
         }
