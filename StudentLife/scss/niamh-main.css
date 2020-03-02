@@ -1098,4 +1098,12 @@ textarea.blog-post {
   -webkit-box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
           box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
 }
+
+.table1, tr, td {
+  border: 1px solid !important;
+  border-color: #f29e4c !important;
+  -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+          justify-content: center !important;
+}
 /*# sourceMappingURL=niamh-main.css.map */
