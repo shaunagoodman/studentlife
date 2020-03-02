@@ -144,14 +144,16 @@ and open the template in the editor.
             $difficulty = "No difficulty selected.";
         }
         
-        if(empty($recipe['image'])) {
-            $recipe['image'] = "images/recipes/placeholder.png";
-        }
         if($recipe['isAPI'] == 1) {
             $src = $recipe['image'];
         }
         else {
-            $src = 'images/recipes/'.$recipe['image'];
+            if(empty($recipe['image'])) {
+                $src = "images/recipes/placeholder.png";
+            }
+            else {
+                $src = 'images/recipes/'.$recipe['image']; 
+            }     
         }
         ?>
              <div class="col-lg-4 bottom-home ">
