@@ -121,8 +121,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 
-<body>
+<body class='site' >
     <?php include_once 'includes/nav-menu.php'; ?>
+
+    <main class='site-content' >
 
     <div class="container">
 
@@ -152,7 +154,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
     </div>
-
+    </main>
     <?php include_once 'includes/footer.php';?>
  
 

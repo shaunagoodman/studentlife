@@ -16,8 +16,11 @@ include_once 'includes/CDNs.php';
   <title>Recipe API</title>
   <script src="javascript/scripts.js"></script>
 </head>
-<body>
+<body class='site' >
   <?php include_once 'includes/nav-menu.php'; ?>
+
+  <main class='site-content' >
+
   <div class="container">
     <br>
     <center><h1>What's in your fridge?</h1></center>
@@ -159,15 +162,7 @@ include_once 'includes/CDNs.php';
       }
         else {
           echo "<script language = javascript>
-                  swal({  title: 'Not Logged In!',
-                   text: 'You must be logged in to favourite a recipe.',  
-                  type: 'success',    
-                  showCancelButton: false,   
-                  closeOnConfirm: false,   
-                  confirmButtonText: 'Aceptar', 
-                  showLoaderOnConfirm: true, }).then(function() {
-                      window.location = 'login.php';
-                  });;
+                  favouritePopUp();
               </script>";
             }
         }
@@ -178,6 +173,8 @@ include_once 'includes/CDNs.php';
     </div>
     <!--End recipe container-->
   </div>
+
+  </main>
   <?php
   include_once 'includes/footer.php';
   ?>

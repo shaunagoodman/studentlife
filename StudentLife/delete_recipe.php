@@ -43,22 +43,18 @@ if(isset($_POST["recipe_ID"]) && !empty($_POST["recipe_ID"])){
 <head>
     <meta charset="UTF-8">
     <title>View Record</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style type="text/css">
-        .wrapper{
-            width: 500px;
-            margin: 0 auto;
-        }
-    </style>
+    <?php include_once 'includes/CDNs.php'; ?> 
+
 </head>
-<body>
-    <div class="wrapper">
-        <div class="container-fluid">
+<body class='site' >
+<?php include_once 'includes/nav-menu.php'; ?>
+<main class='site-content' >
+        <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="page-header">
+                    
                         <h1>Delete Record</h1>
-                    </div>
+                  
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="alert alert-danger fade in">
                             <input type="hidden" name="recipe_ID" value="<?php echo trim($_GET["recipe_ID"]); ?>"/>
@@ -72,6 +68,7 @@ if(isset($_POST["recipe_ID"]) && !empty($_POST["recipe_ID"])){
                 </div>
             </div>        
         </div>
-    </div>
+</main>
+<?php include_once 'includes/footer.php';?>
 </body>
 </html>
