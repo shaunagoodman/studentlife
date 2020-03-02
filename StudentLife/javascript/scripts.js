@@ -67,7 +67,7 @@ function findRecipe() {
                   confirmButtonText: 'Aceptar', 
                   showLoaderOnConfirm: true, }).then(function() {
                       window.location = 'recipe-api.php';
-                  });;
+                  });
     }
   }
   request.send(); 
