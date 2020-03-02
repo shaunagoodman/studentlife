@@ -83,49 +83,49 @@ include_once 'includes/database/connection.php';
                 $recipeIngredient = $statement->fetchAll();
                 $statement->closeCursor();
                 $recipe_ID = $conn->lastInsertId();
-// //  **************** ADD TO INGREDIENTS TABLE ****************
-//                 $ingLength = sizeof($ingredients);
-//                 for($x = 0; $x < $ingLength; $x++) {
-//                     $ingredientName = $ingredients[$x];
-//                     $ingredientAmount = $amount[$x];
-//                     $ingredientMeasure = $unit[$x];
-//                     $addToIngredients = "INSERT INTO ingredients (ingredient_ID, name, amount, unit) VALUES (null,'$ingredientName','$ingredientAmount','$ingredientAmount')";
-//                     $statement = $conn->prepare($addToIngredients);
-//                     if(!$statement->execute()) {
-//                     echo "Could not access ingredients table";
-//                     }
-//                     $recipeIngredient = $statement->fetchAll();
-//                     $statement->closeCursor();
-//                     $ingredient_ID = $conn->lastInsertId();
-// //   **************** ADD TO RECIPEINGREDIENTS TABLE ****************
-//                 $addToRecipeIngredients = "INSERT INTO recipeingredient (recipe_ID, ingredient_ID) VALUES ('$recipe_ID','$ingredient_ID')";
-//                 $statement = $conn->prepare($addToRecipeIngredients);
-//                 $statement->execute();
-//                 $recipeIngredient = $statement->fetchAll();
-//                 $statement->closeCursor();
-//                 }
-// //   **************** ADD TO STEPS TABLE ****************
-//                 $methodLength = sizeof($method);
-//                 $input = "";
-//                 $count = 1;
-//                 for($x = 0; $x < $methodLength; $x++) {
-//                         $input .= $count . ". " . $method[$x] . " ";
-//                         $count++;
-//                 }
-//                     $addToSteps = "INSERT INTO steps(steps_ID, description) VALUES (null,'$input')";
-//                     $statement = $conn->prepare($addToSteps);
-//                     if(!$statement->execute()) {
-//                     echo "Could not access steps table";
-//                     }
-//                     $recipeIngredient = $statement->fetchAll();
-//                     $statement->closeCursor();
-//                     $step_ID = $conn->lastInsertId();
-// //   **************** ADD TO RECIPESTEPS TABLE ****************
-//                 $addToRecipeSteps = "INSERT INTO recipesteps(recipe_ID, steps_ID) VALUES ('$recipe_ID', '$step_ID')";
-//                 $statement = $conn->prepare($addToRecipeSteps);
-//                 $statement->execute();
-//                 $recipeIngredient = $statement->fetchAll();
-//                 $statement->closeCursor();
+//  **************** ADD TO INGREDIENTS TABLE ****************
+                $ingLength = sizeof($ingredients);
+                for($x = 0; $x < $ingLength; $x++) {
+                    $ingredientName = $ingredients[$x];
+                    $ingredientAmount = $amount[$x];
+                    $ingredientMeasure = $unit[$x];
+                    $addToIngredients = "INSERT INTO ingredients (ingredient_ID, name, amount, unit) VALUES (null,'$ingredientName','$ingredientAmount','$ingredientAmount')";
+                    $statement = $conn->prepare($addToIngredients);
+                    if(!$statement->execute()) {
+                    echo "Could not access ingredients table";
+                    }
+                    $recipeIngredient = $statement->fetchAll();
+                    $statement->closeCursor();
+                    $ingredient_ID = $conn->lastInsertId();
+//   **************** ADD TO RECIPEINGREDIENTS TABLE ****************
+                $addToRecipeIngredients = "INSERT INTO recipeingredient (recipe_ID, ingredient_ID) VALUES ('$recipe_ID','$ingredient_ID')";
+                $statement = $conn->prepare($addToRecipeIngredients);
+                $statement->execute();
+                $recipeIngredient = $statement->fetchAll();
+                $statement->closeCursor();
+                }
+//   **************** ADD TO STEPS TABLE ****************
+                $methodLength = sizeof($method);
+                $input = "";
+                $count = 1;
+                for($x = 0; $x < $methodLength; $x++) {
+                        $input .= $count . ". " . $method[$x] . " ";
+                        $count++;
+                }
+                    $addToSteps = "INSERT INTO steps(steps_ID, description) VALUES (null,'$input')";
+                    $statement = $conn->prepare($addToSteps);
+                    if(!$statement->execute()) {
+                    echo "Could not access steps table";
+                    }
+                    $recipeIngredient = $statement->fetchAll();
+                    $statement->closeCursor();
+                    $step_ID = $conn->lastInsertId();
+//   **************** ADD TO RECIPESTEPS TABLE ****************
+                $addToRecipeSteps = "INSERT INTO recipesteps(recipe_ID, steps_ID) VALUES ('$recipe_ID', '$step_ID')";
+                $statement = $conn->prepare($addToRecipeSteps);
+                $statement->execute();
+                $recipeIngredient = $statement->fetchAll();
+                $statement->closeCursor();
 }
 
 }
