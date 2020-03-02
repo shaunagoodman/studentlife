@@ -51,7 +51,7 @@ and open the template in the editor.
 		<div class='row'>
 			<?php foreach ($blog as $blogs) { ?>
 				<div class="col-lg-4 bottom-home ">
-					<div class="card home-card test-card">
+					<div class="hvr-shadow card home-card test-card">
 						<div class="card-body">
 							<h5 class="card-title"><?php echo $blogs['blogTitle']; ?></h5>
 							<p class="card-text">To read more click</p>
