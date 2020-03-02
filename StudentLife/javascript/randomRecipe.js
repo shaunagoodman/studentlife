@@ -6,7 +6,10 @@ let amount = [];
 let unit = [];
 let title = "";
 function findRecipe() {
-  let select = document.getElementById("displayedRecipe");
+  const el = document.querySelector('#displayedRecipe');
+    if (el.classList.contains("hide")) {
+      el.classList.remove("hide");
+  }
   let titleArea = document.getElementById("recipeName");
   let timeArea = document.getElementById("time");
   let servingsArea = document.getElementById("servings");
