@@ -49,8 +49,13 @@ and open the template in the editor.
 
                         <a class="dropdown-item" href="recipes-list.php">All Recipes</a>
                         <a class="dropdown-item" href="recipe-api.php">Whats in my fridge?</a>
+                        <a class="dropdown-item" href="random-recipe.php">Random Recipe Generator</a>
 
                     </div>
+                </li>
+
+                <li class="nav-hover nav-item">
+                    <a class="nav-link" href="blog_single.php">Blog</a>
                 </li>
 
 
@@ -77,7 +82,6 @@ and open the template in the editor.
                             echo '<a class="dropdown-item" href="logout.php">Logout</a>';
                         } else {
                             echo '<a class="dropdown-item" href="login.php">Login</a>';
-                            echo '<a class="dropdown-item" href="staffLogin.php">Staff Login</a>';
                             echo '<a class="dropdown-item" href="sign-up.php">Register</a>';
                         }
                         ?>

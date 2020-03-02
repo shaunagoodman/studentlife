@@ -24,20 +24,25 @@ try {
     if(isset($_POST['submit'])) {
         $searchString = $_POST['something'];
         $array = explode(" ",$searchString);
-        $sql = "SELECT * FROM recipes WHERE name ";
-        $count = 0;
-        forEach($array as $value) {
-            if ($count == 0) {
-                $sql .= " LIKE '%" . $value . "%'";
+        if(!empty($array))
+        {
+            $sql = "SELECT * FROM recipes WHERE name ";
+            $count = 0;
+            forEach($array as $value) {
+                if ($count == 0) {
+                    $sql .= " LIKE '%" . $value . "%'";
+                }
+                else {
+                    $sql .= " OR '%" . $value . "%'";
+                }
+                $count++;
             }
-            else {
-                $sql .= " OR '%" . $value . "%'";
-            }
-            $count++;
+            $statement = $conn->prepare($sql);
+            $statement->execute();
+            $recipes = $statement->fetchAll();
         }
-        $statement = $conn->prepare($sql);
-        $statement->execute();
-        $recipes = $statement->fetchAll();
+
+        
         
 
 }
@@ -124,6 +129,7 @@ and open the template in the editor.
         <?php
         echo "<div class='row' >";
         //get the results from the $products variable(using a loop)
+        if(!empty($recipes)) {
         foreach ($recipes as $recipe) :  
         if($recipe['difficultyID'] == 1) {
             $difficulty = "Easy";
@@ -137,22 +143,49 @@ and open the template in the editor.
         else {
             $difficulty = "No difficulty selected.";
         }
+        
+        if($recipe['isAPI'] == 1) {
+            $src = $recipe['image'];
+        }
+        else {
+            if(empty($recipe['image'])) {
+                $src = "images/recipes/placeholder.png";
+            }
+            else {
+                $src = 'images/recipes/'.$recipe['image']; 
+            }     
+        }
         ?>
-
-             <div class='col-lg-4' >
-             <!-- <img src='images/recipes/pancakes.jpg' alt='dish image' height='250' width='270'> -->
-             <img src='images/recipes/<?php echo $recipe['image'];  ?>' alt='dish image' height='250' width='270'>
-             <h4 class='recipe-name'> <?php echo $recipe['name']; ?> </h4>
-             <h5 class='recipe-difficulty' >  Difficulty: <?php echo $difficulty; ?> </h5>
-             <h5 class='recipe-time' > <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%'  alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
-            </h5>
-            <a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID']?>"><button type="button" class="btn btn-sm btn-outline-secondary">View Recipe</button></a>
-            <br>
-            </div>
+             <div class="col-lg-4 bottom-home ">
+                    <div class="card home-card recipe-page-card">
+                        <img src="<?php echo $src;?>" class="card-img-top" alt='dish image' height='315' width='328'>
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $recipe['name'];  ?></h5>
+                            <p class="card-text" class='recipe-difficulty'> Difficulty: <?php echo $difficulty; ?> </p>
+                            <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
+                            </p>
+                            <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light">View Recipe</button></a> </center>
+                        </div>
+                    </div>
+                </div>
 
         <?php endforeach;
-        echo "</div>" ?>
-        
+        } 
+        else {
+            echo "<script language = javascript>
+            swal({  title: 'Oops!',
+             text: 'It seems like we dont have ay recipes which match your search. Why not make a new search using the recipes you have?',  
+            type: 'success',    
+            showCancelButton: false,   
+            closeOnConfirm: false,   
+            confirmButtonText: 'Aceptar', 
+            showLoaderOnConfirm: true, }).then(function() {
+                window.location = 'recipe-api.php';
+            });;
+        </script>";
+        }
+        echo "</div>" ;
+        ?>
 
     </div>
 

@@ -1,0 +1,72 @@
+<?php
+session_start();
+require_once 'includes/database/connection.php';
+
+$query = "SELECT * FROM blog";
+$statement = $conn->prepare($query);
+$statement->execute();
+$blog = $statement->fetchAll();
+$statement->closeCursor();
+
+
+?>
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Blogs</title>
+	<?php include_once 'includes/CDNs.php'; ?>
+	<link href="includes/stylesheet.css" rel="stylesheet" type="text/css" />
+
+
+</head>
+
+<body>
+	<?php include_once 'includes/nav-menu.php'; ?>
+
+	<div class="container">
+
+		<div class='sub-menu'>
+			<div style='text-align: right'>
+				<ul class='diff-list' id='ul-difficulty-list'>
+					<li class='li-diff-list'> <a href='add_blog.php'>Add New Post </a></li>
+				</ul>
+			</div>
+		</div>
+
+
+
+
+		<h1 class="allRecipes-h1">Blogs</h1>
+		<hr align="left">
+
+		<!-- <p><a href="add_blog.php"><button type="button" class="btn btn-light">New Blog Post</button></a></p> -->
+
+		<div class='row'>
+			<?php foreach ($blog as $blogs) { ?>
+				<div class="col-lg-4 bottom-home ">
+					<div class="card home-card test-card">
+						<div class="card-body">
+							<h5 class="card-title"><?php echo $blogs['blogTitle']; ?></h5>
+							<p class="card-text">To read more click</p>
+							<a href="blog_single.php?blogId=<?php echo $blogs['blogId'] ?>"><button type="button" class="btn btn-light btn-sm">View Post</button></a>
+						</div>
+					</div>
+				</div>
+				<br>
+			<?php } ?>
+			<br> <br>
+		</div>
+	</div>
+
+	<?php include_once 'includes/footer.php'; ?>
+
+</body>
+
+</html>

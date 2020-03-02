@@ -1,3 +1,10 @@
+let ingredients = [];
+let cuisine = [];
+let utensils = [];
+let steps = [];
+let amount = [];
+let unit = [];
+let title = "";
 function findRecipe() {
   let request = new XMLHttpRequest();
   const urlString1 = "https://api.spoonacular.com/recipes/complexSearch?maxReadyTime=";
@@ -22,23 +29,45 @@ function findRecipe() {
   else {
       requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerances}&diet=${dietRestriction}`;
   }
-  
- 
 
-  console.log(requestString);
   request.open("GET", requestString, true);
   request.onload = function() {
     let data = JSON.parse(this.response);
-    if (request.status >= 200 && request.status < 400) {
-    for (i = 0; i< data.results.length; i++) {
-      let select = document.getElementById("selectIngredients");
-      let id = data.results[i].id;
-      let title = data.results[i].title;
-      let el = document.createElement("option");
-      el.textContent = title;
-      el.value = id;
-      select.appendChild(el);
+    if (data.results.length > 0) {
+      if (request.status >= 200 && request.status < 400) {
+        for (i = 0; i< data.results.length; i++) {
+          let select = document.getElementById("selectIngredients");
+          let id = data.results[i].id;
+          let title = data.results[i].title;
+          let el = document.createElement("option");
+          el.textContent = title;
+          el.value = id;
+          el.setAttribute("name", "recipeResult");
+          select.appendChild(el);
+          if (select == null) {
+            swal({  title: 'Something has gone wrong!',
+                   text: 'There is no recipe which match your criteria. Please make a new search.',  
+                  type: 'fail',    
+                  showCancelButton: false,   
+                  closeOnConfirm: false,   
+                  confirmButtonText: 'Aceptar', 
+                  showLoaderOnConfirm: true, }).then(function() {
+                      window.location = 'recipe-api.php';
+                  });
+          }
+        }
+        }
     }
+    else {
+      swal({  title: 'Something has gone wrong!',
+                   text: 'We do not have any recipes that match your search. Please try again!',  
+                  type: 'fail',    
+                  showCancelButton: false,   
+                  closeOnConfirm: false,   
+                  confirmButtonText: 'Aceptar', 
+                  showLoaderOnConfirm: true, }).then(function() {
+                      window.location = 'recipe-api.php';
+                  });
     }
   }
   request.send(); 
@@ -48,68 +77,172 @@ function findRecipe() {
   }
 }
 function viewRecipe () {
+  const el = document.querySelector('#displayedRecipe');
+    if (el.classList.contains("hide")) {
+      el.classList.remove("hide");
+  }
   document.getElementById("ingredientList").innerHTML = " ";
   document.getElementById("methodList").innerHTML = " ";
+  document.getElementById("servings").innerHTML = " ";
+  document.getElementById("equipment").innerHTML = " ";
+  document.getElementById("cuisine").innerHTML = " ";
+
+
+
+
   let request = new XMLHttpRequest();
   let select = document.getElementById("selectIngredients");
   let id = select.value;
+  setCookie("recipe_ID", id);
 let urlString1 = "https://api.spoonacular.com/recipes/"
 let urlString2 = "/information?apiKey=53bea2eb3c79445188bc4d3f00895d15";
 let requestString = urlString1 + id + urlString2;
-console.log(requestString);
 request.open("GET", requestString, true);
 request.onload = function() {
   let data = JSON.parse(this.response);
-  let ingredients = [];
-  let equipment = [];
-  let steps = [];
-  let amount = [];
-  let unit = [];
-  if (request.status >= 200 && request.status < 400) { 
-    if(data.extendedIngredients.length != 0) {
-      for (i = 0; i< data.extendedIngredients.length; i++) {
-      ingredients.push(data.extendedIngredients[i].name);
-      amount.push(data.extendedIngredients[i].measures.metric.amount);
-      unit.push(data.extendedIngredients[i].measures.metric.unitShort);
+  title = data.title;
+  if (request.status >= 200 && request.status < 400) {
+    // GET CUISINE
+    if(data.cuisines.length != 0) {
+      for(i = 0; i < data.cuisines.length; i++) {
+        cuisine.push(data.cuisines[i]);
+      }
     }
+    else {
+      cuisine.push("No cuisine listed");
+    }
+    // GET IMAGE
+    let image = data.image;
+
+    // GET SERVINGS
+    let servingsInt = JSON.parse(data.servings);
+
+    // GET INGREDIENTS 
+    if(data.extendedIngredients.length > 0) {
+      for (i = 0; i< data.extendedIngredients.length; i++) {
+        if(!ingredients.includes(data.extendedIngredients[i].name)) {
+          ingredients.push(data.extendedIngredients[i].name);
+          amount.push(data.extendedIngredients[i].measures.metric.amount);
+          unit.push(data.extendedIngredients[i].measures.metric.unitShort);
+        }
+      }
     }
     else {
       ingredients.push("No ingredients listed");
     }
-  if(data.analyzedInstructions === null) { 
-    steps.push("No steps listed.");
-  }
-  else {
-    for(i = 0; i <data.analyzedInstructions[0].steps.length; i++) { 
-      steps.push(data.analyzedInstructions[0].steps[i].step);
+    // GET STEPS
+    if(data.analyzedInstructions.length > 0) {
+      let stepArr = data.analyzedInstructions[0].steps;
+
+      if(data.analyzedInstructions === null) { 
+        steps.push("No steps listed.");
+      }
+      else {
+        for(i = 0; i <stepArr.length; i++) { // 0   5
+          if(!steps.includes(stepArr[i].step)) {
+            steps.push(stepArr[i].step);
+          }
+        }
+      }
+    
+      //GET EQUIPMENT
+      for(i = 0; i < stepArr.length; i++) {
+        for(j = 0; j < stepArr[i].equipment.length; j++) {
+          if (stepArr[i].equipment[j] != null) {
+            if(!utensils.includes(stepArr[i].equipment[j].name)) {
+            utensils.push(stepArr[i].equipment[j].name);
+            }
+          }
+          else utensils.push("No equipment listed");
+        }
+      }
     }
-  }
-
-
-  }
+    else {
+      utensils.push("No equipment listed");
+      steps.push("No steps listed");
+    }
+  
 
   /* Only change below for where the method is being displayed*/
-  document.querySelector("#recipeName").innerHTML = data.title;
-  document.getElementById("ingredientList").innerHTML = "<h3 class = 'resultHeading'> Ingredients </h3> </br>"; // H for heading is set here
+  // Image
+  // let imageArea = document.getElementById("image");
+  // var img = document.createElement("img");
+  // img.src = image;
+  // var src = document.getElementById("image");
+  // src.appendChild(img);
+  // Recipe Name
+  let titleArea = document.getElementById("recipeName");
+  titleArea.innerHTML += title;
+
+  // //Servings
+  let servingsArea = document.getElementById("servings");
+  servingsArea.innerHTML += servingsInt;
+
+  // Cuisine
+  for(i = 0; i < cuisine.length; i++) {
+    document.getElementById("cuisine").innerHTML += cuisine[i] + "</br>";
+  }
+  // document.getElementById("cuisine").innerHTML += "</br>";
+
+  //Ingredients
   for(i = 0; i < ingredients.length; i++) {
     document.getElementById("ingredientList").innerHTML += amount[i] + " " + unit[i] + " " + ingredients[i] + "</br>";
   }
   document.getElementById("ingredientList").innerHTML += "</br>";
-  document.getElementById("methodList").innerHTML = "<h3 class = 'resultHeading'> Method </h3> </br>";// H for heading is set here
+
+  // Equipment
+  for(i = 0; i < utensils.length; i++) {
+    document.getElementById("equipment").innerHTML += utensils[i] + "</br>";
+  }
+  document.getElementById("equipment").innerHTML += "</br>";
+
+  //Method
   let result = "";
   for(i = 0; i < steps.length; i++) {
     result += "<li>" + steps[i]+ "</li>";
   }
   document.getElementById("methodList").innerHTML += result;
-  let favouriteButton = document.createElement("button");
-  favouriteButton.innerHTML = "Add to Favourites";
-  let aboveButton = document.getElementById("methodList");
-  aboveButton.appendChild(favouriteButton);
-  favouriteButton.setAttribute("class", "favouriteButton");
+}
+else {
+  swal({  title: 'Something has gone wrong!',
+  text: 'There is no recipe which match your criteria. Please make a new search.',  
+ type: 'fail',    
+ showCancelButton: false,   
+ closeOnConfirm: false,   
+ confirmButtonText: 'Aceptar', 
+ showLoaderOnConfirm: true, }).then(function() {
+     window.location = 'recipe-api.php';
+ });
+}
 }
 request.send();
 
 
+}
+
+function toggleIntolerances() {
+  var checked = document.getElementById("selectIntolerance").checked;
+  if (checked) {
+    document.getElementById("intoleranceList").style.display = "block";
+  } else {
+    document.getElementById("intoleranceList").style.display = "none";
+  }
+}
+function toggleDietRestrictions() {
+  var checked = document.getElementById("selectDietRestriction").checked;
+  if (checked) {
+    document.getElementById("dietRestrictionsList").style.display = "block";
+  } else {
+    document.getElementById("dietRestrictionsList").style.display = "none";
+  }
+}
+function toggleTime() {
+  var checked = document.getElementById("addTime").checked;
+  if (checked) {
+    document.getElementById("addedTime").style.display = "block";
+  } else {
+    document.getElementById("addedTime").style.display = "none";
+  }
 }
 
 function getIntolerances(){
@@ -195,4 +328,15 @@ function addStep() {
    stepInput.setAttribute("type", "text");
    stepInput.setAttribute("class", "form-control");
    area.appendChild(stepInput);
+}
+
+function displayEquipment() {
+  for(i = 0; i < utensils.length; i++) {
+    console.log(utensils[i] );
+  }
+}
+
+function setCookie(cname, cvalue) {
+
+  document.cookie = cname + "=" + cvalue + ";" + "path=/";
 }

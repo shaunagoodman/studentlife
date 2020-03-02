@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 24, 2020 at 02:39 PM
+-- Generation Time: Mar 01, 2020 at 03:01 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.26
 
@@ -25,6 +25,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `blog`
+--
+
+CREATE TABLE `blog` (
+  `blogId` int(11) NOT NULL,
+  `blogTitle` varchar(100) NOT NULL,
+  `blogContent` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `blog`
+--
+
+INSERT INTO `blog` (`blogId`, `blogTitle`, `blogContent`) VALUES
+(1, 'Title', 'Example blog');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `contact`
 --
 
@@ -35,6 +54,50 @@ CREATE TABLE `contact` (
   `phone_no` varchar(20) NOT NULL,
   `message` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cuisine`
+--
+
+CREATE TABLE `cuisine` (
+  `cuisine_ID` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cuisine`
+--
+
+INSERT INTO `cuisine` (`cuisine_ID`, `name`) VALUES
+(1, 'African'),
+(2, 'America'),
+(3, 'British'),
+(4, 'Cajun'),
+(5, 'Caribbean'),
+(6, 'Chinese'),
+(7, 'Eastern European'),
+(8, 'European'),
+(9, 'French'),
+(10, 'German'),
+(11, 'Greek'),
+(12, 'Indian'),
+(13, 'Irish'),
+(14, 'Italian'),
+(15, 'Japanese'),
+(16, 'Jewish'),
+(17, 'Korean'),
+(18, 'Latin American'),
+(19, 'Mediterranean'),
+(20, 'Mexican'),
+(21, 'Middle Eastern'),
+(22, 'Nordic'),
+(23, 'Southern'),
+(24, 'Spanish'),
+(25, 'Thai'),
+(26, 'Vietnamese'),
+(27, 'Asian');
 
 -- --------------------------------------------------------
 
@@ -114,7 +177,9 @@ INSERT INTO `ingredients` (`ingredient_ID`, `name`, `amount`, `unit`) VALUES
 (33, 'Extra-virgin olive o', 2, 'tbsp'),
 (34, 'Onion', 120, 'g'),
 (35, 'Chicken Breast', 800, 'g'),
-(36, 'Cajun Seasoning', 2, 'tbsp');
+(36, 'Cajun Seasoning', 2, 'tbsp'),
+(197, 'One', 5, 'g'),
+(198, 'Two', 5, 'g');
 
 -- --------------------------------------------------------
 
@@ -149,6 +214,17 @@ INSERT INTO `intolerance` (`intolerance_ID`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `recipecuisine`
+--
+
+CREATE TABLE `recipecuisine` (
+  `recipe_ID` int(11) NOT NULL,
+  `cuisine_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `recipeingredient`
 --
 
@@ -175,7 +251,8 @@ INSERT INTO `recipeingredient` (`recipe_ID`, `ingredient_ID`) VALUES
 (26, 33),
 (26, 34),
 (26, 36),
-(25, 29);
+(25, 29),
+(82, 198);
 
 -- --------------------------------------------------------
 
@@ -192,20 +269,23 @@ CREATE TABLE `recipes` (
   `rating` int(11) DEFAULT NULL,
   `servings` int(11) NOT NULL,
   `maxTime` time NOT NULL,
-  `difficultyID` int(11) NOT NULL,
+  `difficultyID` int(11) DEFAULT NULL,
   `date_created` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
   `isFavourite` tinyint(1) NOT NULL,
-  `favourited_by` int(11) DEFAULT NULL
+  `favourited_by` int(11) DEFAULT NULL,
+  `isAPI` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `recipes`
 --
 
-INSERT INTO `recipes` (`recipe_ID`, `user_ID`, `name`, `image`, `video_name`, `rating`, `servings`, `maxTime`, `difficultyID`, `date_created`, `isFavourite`, `favourited_by`) VALUES
-(24, 102, 'Pancakes', 'pancakes.jpg', NULL, NULL, 12, '00:20:00', 1, '2020-02-24 11:27:06.182677', 0, 0),
-(25, 102, 'Chicken and Broccoli Stir Fry', 'chicken-and-broccoli-stir-fry.jpg', NULL, NULL, 2, '00:35:00', 2, '2020-02-24 11:27:14.118948', 0, 0),
-(26, 102, 'Cajun Stuffed Chicken', 'cajun-stuffed-chicken.jpg', NULL, NULL, 4, '00:45:00', 3, '2020-02-24 11:27:22.300507', 0, 0);
+INSERT INTO `recipes` (`recipe_ID`, `user_ID`, `name`, `image`, `video_name`, `rating`, `servings`, `maxTime`, `difficultyID`, `date_created`, `isFavourite`, `favourited_by`, `isAPI`) VALUES
+(24, 117, 'Pancakes', 'pancakes.jpg', NULL, NULL, 12, '00:20:00', 1, '2020-02-29 00:01:18.570850', 0, 0, 0),
+(25, 117, 'Chicken and Broccoli Stir Fry', 'chicken-and-broccoli-stir-fry.jpg', NULL, NULL, 2, '00:35:00', 2, '2020-02-29 00:01:27.317474', 0, 0, 0),
+(26, 117, 'Cajun Stuffed Chicken', 'cajun-stuffed-chicken.jpg', NULL, NULL, 4, '00:45:00', 3, '2020-02-29 00:26:32.107275', 0, NULL, 0),
+(81, 102, 'Easiest Belgian Waffle Recipe', 'https://spoonacular.com/recipeImages/1103015-556x370.jpg', NULL, NULL, 5, '00:10:00', NULL, '2020-02-29 13:13:41.727811', 1, 102, 1),
+(82, 102, 'Example', '487012.jpg', '', 1, 34, '00:00:04', 1, '2020-02-29 14:03:17.153498', 0, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -225,7 +305,8 @@ CREATE TABLE `recipesteps` (
 INSERT INTO `recipesteps` (`recipe_ID`, `steps_ID`) VALUES
 (26, 12),
 (25, 11),
-(24, 10);
+(24, 10),
+(82, 60);
 
 -- --------------------------------------------------------
 
@@ -245,7 +326,8 @@ CREATE TABLE `steps` (
 INSERT INTO `steps` (`steps_ID`, `description`) VALUES
 (10, '1. Add flour, eggs, milk and oil to a large bowl and whisk until a smooth batter is created. 2. Heat a medium sized frying pan or crêpe pan over a medium heat and add a drop off oil to it 3. Cook each pancake on each side for 1 min. 4. Serve.'),
 (11, '1. Mix together all sauce ingredients in a bowl. 2. Heat oil over a nonstick pan and add chicken, stirring until cooked. 3. Pour sauce in a pan and stir to coat meat. 4. Once the sauce is bubbling, add the vegetables to the pan and stir again to coat. 5. Cook until meat is cooked through and vegetables are soft. 6. Serve over rice or alone.'),
-(12, '1. Preheat oven to 350 degrees. Using a frying pan over a medium heat, add onions and peppers and cook until soft for 5 minutes. Season with salt and pepper and remove from heat to let it cool slightly. 2. With a sharp paring knife, create a pocket in each chicken breast. Stuff each with the vegetable mixture and then top with cheddar. Season the chicken all over with Cajun seasoning, salt and pepper. 3. Add chicken to the pan and bake until cooked through for about 25 minutes.  ');
+(12, '1. Preheat oven to 350 degrees. Using a frying pan over a medium heat, add onions and peppers and cook until soft for 5 minutes. Season with salt and pepper and remove from heat to let it cool slightly. 2. With a sharp paring knife, create a pocket in each chicken breast. Stuff each with the vegetable mixture and then top with cheddar. Season the chicken all over with Cajun seasoning, salt and pepper. 3. Add chicken to the pan and bake until cooked through for about 25 minutes.  '),
+(60, '1. Oneoneoneone 2. Twotwotwo ');
 
 -- --------------------------------------------------------
 
@@ -259,22 +341,20 @@ CREATE TABLE `user` (
   `fname` varchar(20) NOT NULL,
   `lname` varchar(20) NOT NULL,
   `u_email` varchar(30) NOT NULL,
-  `u_password` varchar(255) NOT NULL,
-  `intolerance_ID` int(11) NOT NULL,
-  `dietRestriction_ID` int(11) NOT NULL
+  `u_password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_ID`, `u_type`, `fname`, `lname`, `u_email`, `u_password`, `intolerance_ID`, `dietRestriction_ID`) VALUES
-(102, 0, 'Shauna', 'Goodman', 'shauna@dkit.ie', '$2y$10$ZHP2tg/08x1qqmUjbU4ZU.MdupaNng0.Hr1atPh0N7Bwi8iEm0mxm', 0, 0),
-(105, 0, 'Simon', 'Smith', 'simonsmith@gmail.com', '$2y$10$V3mG0lP0.ohlCZVTRNlkJeZsszhIJKes3KvvxeWz8ePAX81EB2cmu', 0, 0),
-(114, 0, 'Mary', 'Finnegan', 'maryfinnegan@iol.ie', '$2y$10$d7Znl8yogoPuTELlOk88W.f36/ThUqX4DgpCnwZNdfGV//KikDKwy', 0, 0),
-(117, 0, 'Admin', '', 'adminstudentlife@gmail.com', 'StudentLife2020@', 0, 0),
-(118, 0, 'Mateusz', 'Kowalski', 'matiorex5@gmail.com', 'Student123', 0, 0),
-(122, 1, 'Mateusz', 'Kowalski', 'matiorex15@gmail.com', '$2y$10$S9.tZHzH4Jnyr4hrDhnx7ORhVrGCOWPDqxedfJFYWLeRyxmi9Lffa', 0, 0);
+INSERT INTO `user` (`user_ID`, `u_type`, `fname`, `lname`, `u_email`, `u_password`) VALUES
+(102, 0, 'Shauna', 'Goodman', 'shauna@dkit.ie', '$2y$10$ZHP2tg/08x1qqmUjbU4ZU.MdupaNng0.Hr1atPh0N7Bwi8iEm0mxm'),
+(105, 0, 'Simon', 'Smith', 'simonsmith@gmail.com', '$2y$10$V3mG0lP0.ohlCZVTRNlkJeZsszhIJKes3KvvxeWz8ePAX81EB2cmu'),
+(114, 0, 'Mary', 'Finnegan', 'maryfinnegan@iol.ie', '$2y$10$d7Znl8yogoPuTELlOk88W.f36/ThUqX4DgpCnwZNdfGV//KikDKwy'),
+(117, 0, 'Admin', '', 'adminstudentlife@gmail.com', 'StudentLife2020@'),
+(118, 0, 'Mateusz', 'Kowalski', 'matiorex5@gmail.com', 'Student123'),
+(122, 1, 'Mateusz', 'Kowalski', 'matiorex15@gmail.com', '$2y$10$S9.tZHzH4Jnyr4hrDhnx7ORhVrGCOWPDqxedfJFYWLeRyxmi9Lffa');
 
 -- --------------------------------------------------------
 
@@ -303,10 +383,22 @@ CREATE TABLE `userrestriction` (
 --
 
 --
+-- Indexes for table `blog`
+--
+ALTER TABLE `blog`
+  ADD PRIMARY KEY (`blogId`);
+
+--
 -- Indexes for table `contact`
 --
 ALTER TABLE `contact`
   ADD PRIMARY KEY (`contact_ID`);
+
+--
+-- Indexes for table `cuisine`
+--
+ALTER TABLE `cuisine`
+  ADD PRIMARY KEY (`cuisine_ID`);
 
 --
 -- Indexes for table `dietrestriction`
@@ -331,6 +423,13 @@ ALTER TABLE `ingredients`
 --
 ALTER TABLE `intolerance`
   ADD PRIMARY KEY (`intolerance_ID`);
+
+--
+-- Indexes for table `recipecuisine`
+--
+ALTER TABLE `recipecuisine`
+  ADD KEY `recipe_ID` (`recipe_ID`),
+  ADD KEY `cuisine_ID` (`cuisine_ID`);
 
 --
 -- Indexes for table `recipeingredient`
@@ -385,10 +484,22 @@ ALTER TABLE `userrestriction`
 --
 
 --
+-- AUTO_INCREMENT for table `blog`
+--
+ALTER TABLE `blog`
+  MODIFY `blogId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
   MODIFY `contact_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `cuisine`
+--
+ALTER TABLE `cuisine`
+  MODIFY `cuisine_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `dietrestriction`
@@ -400,7 +511,7 @@ ALTER TABLE `dietrestriction`
 -- AUTO_INCREMENT for table `ingredients`
 --
 ALTER TABLE `ingredients`
-  MODIFY `ingredient_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `ingredient_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=199;
 
 --
 -- AUTO_INCREMENT for table `intolerance`
@@ -412,13 +523,13 @@ ALTER TABLE `intolerance`
 -- AUTO_INCREMENT for table `recipes`
 --
 ALTER TABLE `recipes`
-  MODIFY `recipe_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `recipe_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT for table `steps`
 --
 ALTER TABLE `steps`
-  MODIFY `steps_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `steps_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -429,6 +540,13 @@ ALTER TABLE `user`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `recipecuisine`
+--
+ALTER TABLE `recipecuisine`
+  ADD CONSTRAINT `recipecuisine_ibfk_1` FOREIGN KEY (`recipe_ID`) REFERENCES `recipes` (`recipe_ID`),
+  ADD CONSTRAINT `recipecuisine_ibfk_2` FOREIGN KEY (`cuisine_ID`) REFERENCES `cuisine` (`cuisine_ID`);
 
 --
 -- Constraints for table `recipeingredient`

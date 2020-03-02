@@ -16,6 +16,49 @@
     border-radius: 15px;
 }
 
+.home-icons{
+    width:25%;
+    margin-bottom: 5%;
+}
+
+.icon-padding{
+    padding-left:3%;
+    padding-right:3%;
+}
+
+a.carousel-recipe{
+    
+    color: white;
+    text-decoration: none;
+}
+
+a.carousel-recipe:hover {
+    color: $yellow;
+    transition: 0.2s;
+  }
+
+
+/*  ********************** 1st CONTAINER **********************    */
+.first-home-container{
+    margin-bottom: 5%;
+}
+
+
+/*  ********************** 2nd CONTAINER **********************    */
+.second-home-container{
+    background-color: $lightOrange;
+   // background-image: url("../images/backgrounds/background-blur.jpg");
+}
+
+
+/*  ********************** 3rd CONTAINER **********************    */
+
+
+
+
+
+
+
 /*  ********************** CSS CARDS - HOME PAGE **********************    */
 @media (max-width: 991px) {
 
@@ -32,3 +75,5 @@
         margin-left:10%;
     }
     }
+
+

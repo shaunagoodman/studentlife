@@ -16,8 +16,7 @@ if (isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true) {
         echo $errorMessage;
         exit();
     }
-}
-else {
+} else {
     header("location: login.php");
     exit;
 }
@@ -28,55 +27,68 @@ else {
 
 <head>
     <meta charset="UTF-8">
-    <title>Recipes</title>
+    <title>My Recipes</title>
     <?php include_once 'includes/CDNs.php'; ?>
 </head>
 
 <body>
     <?php include_once 'includes/nav-menu.php'; ?>
 
-        <div class="container">
+    <div class="container">
 
 
-    <h1 class="allRecipes-h1" >All Recipes</h1>
-    <hr align="left">
-    
+        <h1 class="allRecipes-h1">All Your Recipes</h1>
+        <hr align="left">
+
+        
+
+            <h5>Can't get enough of creating new recipes? Why not create more of your own unique recipes <a class='add-my-recipe' href = "add-recipe.php"> here </a>?</h5>
+
+            <br>
 
         <?php
         echo "<div class='row' >";
         //get the results from the $products variable(using a loop)
-        foreach ($recipes as $recipe) :  
-                 if($recipe['difficultyID'] == 1) {
+        foreach ($recipes as $recipe) :
+            if ($recipe['difficultyID'] == 1) {
                 $difficulty = "Easy";
-            }
-            else if ($recipe['difficultyID'] == 2) {
+            } else if ($recipe['difficultyID'] == 2) {
                 $difficulty = "Medium";
-            }
-            else if ($recipe['difficultyID'] == 3) {
+            } else if ($recipe['difficultyID'] == 3) {
                 $difficulty = "Hard";
+            } else {
+                $difficulty = "No difficulty selected.";
+            }
+            if(empty($recipe['image'])) {
+                $recipe['image'] = "images/recipes/placeholder.png";
+            }
+            if($recipe['isAPI'] == 1) {
+                $src = $recipe['image'];
             }
             else {
-                $difficulty = "No difficulty selected.";
+                $src = 'images/recipes/'.$recipe['image'];
             }
         ?>
 
-             <div class='col-lg-4' >
-             <!-- <img src='images/recipes/pancakes.jpg' alt='dish image' height='250' width='270'> -->
-             <img src='images/recipes/<?php echo $recipe['image'];  ?>' alt='dish image' height='250' width='270'>
-             <h4 class='recipe-name'> <?php echo $recipe['name']; ?> </h4>
-             <h5 class='recipe-difficulty' >  Difficulty: <?php echo $difficulty; ?> </h5>
-             <h5 class='recipe-time' > <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%'  alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
-            </h5>
-            <a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID']?>"><button type="button" class="btn btn-sm btn-outline-secondary">View Recipe</button></a>
-            <br>
+            <div class="col-lg-4 bottom-home ">
+                <div class="card home-card recipe-page-card">
+                    <img src="<?php echo $src;?>" class="card-img-top" alt='dish image' height='315' width='328'>
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $recipe['name'];  ?></h5>
+                        <p class="card-text" class='recipe-difficulty'> Difficulty: <?php echo $difficulty; ?> </p>
+                        <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
+                        </p>
+                        <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light">View Recipe</button></a> </center>
+                    </div>
+                </div>
             </div>
 
         <?php endforeach;
         echo "</div>" ?>
-        <a href = "add-recipe.php"><button> Add recipe </button></a>
     </div>
-    
+
     <?php include_once 'includes/footer.php'; ?>
 
 </body>
+
 </html>
