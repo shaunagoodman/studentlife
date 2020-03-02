@@ -2,7 +2,7 @@
 session_start();
 include_once 'includes/database/connection.php';
 $user = 0;
-if (isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true) {
+if (isset($_SESSION["loggedin"])) {
   $user = $_SESSION['user_ID'];
 }
 ?>
@@ -159,7 +159,15 @@ include_once 'includes/CDNs.php';
       }
         else {
           echo "<script language = javascript>
-                  favouritePopUp();
+                  swal({  title: 'Not Logged In!',
+                   text: 'You must be logged in to favourite a recipe.',  
+                  type: 'success',    
+                  showCancelButton: false,   
+                  closeOnConfirm: false,   
+                  confirmButtonText: 'Aceptar', 
+                  showLoaderOnConfirm: true, }).then(function() {
+                      window.location = 'login.php';
+                  });;
               </script>";
             }
         }
