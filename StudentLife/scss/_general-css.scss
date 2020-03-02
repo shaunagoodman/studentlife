@@ -117,3 +117,18 @@ body{
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
 }
+
+
+.site {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  
+  .site-content {
+    flex: 1;
+  }
+
+  .card-body {
+    box-shadow: -1px 17px 16px -5px rgba(122,122,122,0.52);
+  }

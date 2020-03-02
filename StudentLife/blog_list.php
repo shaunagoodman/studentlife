@@ -27,18 +27,18 @@ and open the template in the editor.
 
 </head>
 
-<body>
+<body class='site' >
 	<?php include_once 'includes/nav-menu.php'; ?>
-
+	<main class='site-content' >
 	<div class="container">
 
-		<div class='sub-menu'>
+		<!-- <div class='sub-menu'>
 			<div style='text-align: right'>
 				<ul class='diff-list' id='ul-difficulty-list'>
 					<li class='li-diff-list'> <a href='add_blog.php'>Add New Post </a></li>
 				</ul>
 			</div>
-		</div>
+		</div> -->
 
 
 
@@ -66,7 +66,7 @@ and open the template in the editor.
 	</div>
 
 	<?php include_once 'includes/footer.php'; ?>
-
+	</main>
 </body>
 
 </html>

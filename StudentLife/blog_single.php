@@ -35,9 +35,10 @@ $statement->closeCursor();
 
 </head>
 
-<body>
+<body class='site' >
     <?php include_once 'includes/nav-menu.php'; ?>
 
+    <main class='site-content' >
     <div class='container'>
 
         <?php foreach ($blog as $blogs) { ?>
@@ -57,6 +58,7 @@ $statement->closeCursor();
         </div>
     </div>
     <?php include_once 'includes/footer.php'; ?>
+    </main>
 </body>
 
 </html>
