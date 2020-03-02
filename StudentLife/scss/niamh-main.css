@@ -157,7 +157,7 @@ a.carousel-recipe:hover {
 
 /*  ********************** 2nd CONTAINER **********************    */
 .second-home-container {
-  background-image: url("../images/backgrounds/background-blur.jpg");
+  background-color: #f29e4c;
 }
 
 /*  ********************** 3rd CONTAINER **********************    */
@@ -998,5 +998,29 @@ footer {
   font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: 400;
+}
+
+/* *********************** BLOG RELATED CSS **********************    */
+textarea.blog-post {
+  width: 200%;
+  margin-left: -50%;
+  background-color: white !important;
+}
+
+.add-blog-content-title {
+  margin-left: -50%;
+}
+
+.add-blog-title {
+  margin-left: -50%;
+}
+
+.blog-post-title {
+  margin-left: -50%;
+}
+
+/* --------------------------------------------*/
+.blog-content {
+  margin-left: 10%;
 }
 /*# sourceMappingURL=niamh-main.css.map */

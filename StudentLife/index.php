@@ -117,7 +117,7 @@ and open the template in the editor.
                 <div class="row">
                     <div class="col-lg-4 col-md-6 text-center icon-padding">
                         <img class='home-icons' src="images/recipeasy-icons-logos/burger.png" >
-                            <h3>Find Easy and Save Recipes</h3>
+                            <h3>Find Easy Recipes and Save them</h3>
                             <p>100's of simple and cheap to make recipes at your finger tips! </p>
                     </div>
 
