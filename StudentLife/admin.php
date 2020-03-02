@@ -94,7 +94,7 @@ and open the template in the editor.
                         <li class='li-diff-list' ><a href='recipes-list.php'>View All Recipes </a></li>
                         <li class='li-diff-list' ><a href='how-all-recipes.php.php'>All My Recipes </a></li>
                         <li class='li-diff-list' ><a href='favourites.php'>View All Favourites </a></li>
-                        <li class='li-diff-list' ><a href='#'>View All Users </a></li>   
+                        <li class='li-diff-list' ><a href='view-all-users.php'>View All Users </a></li>   
                     </ul>
                 </div>
             </div>
