@@ -17,7 +17,7 @@ include_once 'includes/CDNs.php';
 
   <div class="container">
         <button class="btn api-button" type="button" onclick="findRecipe()">Generate Recipe</button> 
-      <div id="displayedRecipe" class="hide">
+      <div id="displayedRecipe" class = "hide">
       <br>
     <center><h1>Recipe Generator</h1></center>
     <hr class="faq-line">
@@ -59,8 +59,26 @@ include_once 'includes/CDNs.php';
             <h5 class='resultHeading'> Equipment </h5> 
             <div id="equipment"></div>
           </div>
-      </div>
+     
+      <form action="" method="POST">
+             <input class="btn api-button" type="submit" name="btnFav" value="Favourite"/>
+      </form>
     </div>
+     </div>
+    <?php 
+      if (isset($_POST['btnFav'])) {
+        if (isset($_SESSION["loggedin"])) {
+          $user = $_SESSION['user_ID'];
+          include_once 'includes/database/randomToDb.php';
+      }
+        else {
+          echo "<script language = javascript>
+                  favouritePopUp();
+              </script>";
+            }
+        }
+      ?>
+
     
     <?php include_once 'includes/footer.php'; ?>
     </body>

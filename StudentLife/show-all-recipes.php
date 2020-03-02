@@ -59,6 +59,9 @@ if (isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true) {
             } else {
                 $difficulty = "No difficulty selected.";
             }
+            if(empty($recipe['image'])) {
+                $recipe['image'] = "images/recipes/placeholder.png";
+            }
             if($recipe['isAPI'] == 1) {
                 $src = $recipe['image'];
             }
