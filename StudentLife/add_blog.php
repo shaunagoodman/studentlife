@@ -9,7 +9,7 @@ $title_err = $content_err = "";
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 	if (isset($_POST['submit'])) {
-		echo "Hello";
+		//echo "Hello";
 		//Validate Blog Title	
 		$input_title = $_POST["blogTitle"];
 
@@ -28,16 +28,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		}
 
 		/******************** Add to Blog table ************************/
-		if(empty($title_err) && empty($content_err)){
-			$query = "INSERT INTO blog (blodId, blogTitle, blogContent) VALUES (null, '$blogTitle', '$blogContent')";
-			if($statement = $conn->prepare($query)){
-				$statement->bindParam(":blogTitle", $blogTitle);
-				$statement->bindParam(":blogContent", $blogContent);
-			if($statement->execute()) {
-				echo "sent";
+		if(!empty($input_title) && !empty($input_content)){
+			// echo "INSERT INTO blog (blogId, blogTitle, blogContent) VALUES (null, $blogTitle, $blogContent)";
+			$query = "INSERT INTO blog (blogId, blogTitle, blogContent) VALUES (null, :blogTitle, :blogContent)";
+			if($stmt = $conn->prepare($query)){
+				$stmt->bindParam(":blogTitle", $blogTitle);
+				$stmt->bindParam(":blogContent", $blogContent);
+			
+				// $param_ingredient_name = $ingredient_name;
+				// $param_ingredient_measure = $ingredient_measure;
+				// $param_ingredient_unit = $ingredient_unit;
+			
+			
+			if($stmt->execute()) {
+				//echo "sent";
 			}
-			$statement->fetchAll();
-			$statement->closeCursor();
+			else {
+				echo "Something went wrong. Please try again later.";
+			}
+			$stmt->closeCursor();
 			}
 		}
 	}
@@ -59,7 +68,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <h2 class="allRecipes-h1" >Post New Blog</h2>
 <hr align="left">
 
-<form class = "blog-form" enctype="multipart/form-data" action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
+<form class = "login-form" enctype="multipart/form-data" action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
 
 <div class = "form-group <?php echo (!empty($title_err)) ? 'has-error' : ''; ?>">
 <label>Title</label>
@@ -73,8 +82,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	<span class="help-block"><?php echo $content_err;?></span>
 </div>
 
-<input type="submit" class="btn btn-primary" value="Submit">
-<a href="show-all-recipes.php" class="btn btn-default">Cancel</a>
+<input type="hidden" name="blogId" value="<?php echo $id; ?>" />
+        <input type="submit" class="btn btn-primary" name="submit" value="Submit">
+        <a href=".php" class="btn btn-default">Cancel</a>
     </form>
 	</div>
 	    <?php include_once 'includes/footer.php'; ?>

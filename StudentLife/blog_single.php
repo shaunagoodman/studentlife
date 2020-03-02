@@ -4,7 +4,6 @@ session_start();
  
 <?php
 $blogId = filter_input(INPUT_GET, "blogId");
-echo $blogId;
 if ($blogId == NULL) {
 	header("location:blog_list.php");
 }
@@ -28,12 +27,14 @@ $statement4->closeCursor();
 </head>
 
 <body>
-<?php include_once 'includes/nav-menu.php'; 
-foreach($blog as $content) {?>
-    <p class="text-muted">
-        <?php echo $content['blogContent']; ?>
-    </p>
-<?php} ?>
+<?php include_once 'includes/nav-menu.php'; ?>
+<h5 class="card-title">
+<?php
+foreach($blog as $content) {
+     echo $content['blogContent']; 
+}
+?>
+    </h5>
 
 <?php include_once 'includes/footer.php'; ?>
 </body>
