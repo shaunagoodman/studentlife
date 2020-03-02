@@ -66,7 +66,7 @@ and open the template in the editor.
                 $difficulty = "No difficulty selected.";
             }
             if(empty($recipe['image'])) {
-                $recipe['image'] = "placeholder.png";
+                $recipe['image'] = "images/recipes/placeholder.png";
             }
             if($recipe['isAPI'] == 1) {
                 $src = $recipe['image'];
