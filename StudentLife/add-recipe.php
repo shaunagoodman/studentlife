@@ -8,8 +8,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 }
 // Include config file
 require_once "includes/database/connection.php";
-
-// Define variables and initialize with empty values
 $recipeName = $image = $video_name = $rating = $servings = $maxTime = $difficultyID = $time =  "";
 $name_err = $rating_err = $ingredient_err = $servings_err = $maxTime_err = $difficultyID_err = "";
 $ingredient_ID = $recipe_ID = $step_ID = "";
@@ -29,27 +27,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $recipeName = $input_name;
 
-    
-
     // Validate  Video
-    $video_name = trim($_POST["video_name"]);
-
+    $video = trim($_POST["video_name"]);
+    $video_name =  substr($video,-11);
+    echo $video_name;
 
     // Validate image
     $image = trim($_FILES["image"]["name"]);
     $imgFile = $_FILES["image"]["name"];
     $tmp_dir = $_FILES["image"]["tmp_name"];
     $imgSize = $_FILES["image"]["size"];
-
     $upload_dir = "images/recipes/"; // upload directory
-
     $imgExt = strtolower(pathinfo($imgFile, PATHINFO_EXTENSION)); // get image extension
 
     // valid image extensions
     $valid_extensions = array("jpeg", "jpg", "png", "gif"); // valid extensions
 
     // rename uploading image
-     $image = rand(1000, 1000000) . "." . $imgExt;
+    if(empty($image)) {
+        $image = "placeholder.png";
+    }
+    else {
+        $image = rand(1000, 1000000) . "." . $imgExt;
+    }
 
     // allow valid image file formats
     if (in_array($imgExt, $valid_extensions)) {
@@ -62,8 +62,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $error_message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
     }
-
-
 
 
     // Validate rating
@@ -110,117 +108,72 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
-
     if (isset($_POST["difficulty"])) {
         $difficultyID = $_POST["difficulty"];  // Storing Selected Value In Variable
     }
 
+    $names = [];
+    $measures = [];
+    $units = [];
 
+if (!empty($_POST["ingredient_name"]) && !empty($_POST["ingredient_measure"]) && !empty($_POST["ingredient_unit"])) {
 
-
-    /******************** Add to ingredients table ************************/
-    if (!empty($_POST["ingredient_name"]) && !empty($_POST["ingredient_measure"]) && !empty($_POST["ingredient_unit"])) {
-        $names = [];
-        $measures = [];
-        $units = [];
-
-
-        foreach ($_POST["ingredient_name"] as $key => $name) {
-            array_push($names, $name);
-        }
-        foreach ($_POST["ingredient_measure"] as $key => $measure) {
-            array_push($measures, $measure);
-        }
-        foreach ($_POST["ingredient_unit"] as $key => $unit) {
-            array_push($units, $unit);
-        }
-
-        $count = count($names);
-        for ($x = 0; $x < $count; $x++) {
-            $sql = "INSERT INTO ingredients (ingredient_ID, name, amount, unit) VALUES (null,'$names[$x]','$measures[$x]','$units[$x]')";
-            $statement = $conn->prepare($sql);
-            $statement->execute();
-            $recipes = $statement->fetchAll();
-            $ingredient_ID = $conn->lastInsertId();
-        }
+    foreach ($_POST["ingredient_name"] as $key => $name) {
+        array_push($names, $name);
     }
-
+    foreach ($_POST["ingredient_measure"] as $key => $measure) {
+        array_push($measures, $measure);
+    }
+    foreach ($_POST["ingredient_unit"] as $key => $unit) {
+        array_push($units, $unit);
+    }
+}
 
     /******************** Add to recipes table ************************/
     if (empty($name_err) && empty($rating_err) && empty($servings_err) && empty($maxTime_err)) {
-        $query = "INSERT INTO recipes (user_ID, name, image, video_name, rating, servings, maxTime, difficultyID) VALUES 
-        (:user_ID, :recipeName, :image, :video_name, :rating, :servings, :maxTime, :difficultyID)";
         $user_ID = $_SESSION["user_ID"];
-        //echo "INSERT INTO recipes (user_ID, name, image, video_name, rating, servings, maxTime, difficultyID) VALUES ($user_ID, $recipeName, $image, $video_name, $rating, $servings, $maxTime, $difficultyID)";
-        if ($stmt = $conn->prepare($query)) {
-            // Bind variables to the prepared statement as parameters
-            $stmt->bindParam(":user_ID", $_SESSION["user_ID"]);
-            $stmt->bindParam(":recipeName", $recipeName);
-            $stmt->bindParam(":image", $image);
-            $stmt->bindParam(":video_name", $video_name);
-            $stmt->bindParam(":rating", $rating);
-            $stmt->bindParam(":servings", $servings);
-            $stmt->bindParam(":maxTime", $maxTime);
-            $stmt->bindParam(":difficultyID", $difficultyID);  
-
-            if ($stmt->execute()) {
-                $recipe_ID = $conn->lastInsertId();
-
-                /******************** Add to recipeIngredient table ************************/
-                $query3 = "INSERT INTO recipeingredient (recipe_ID, ingredient_ID) VALUES ('$recipe_ID','$ingredient_ID')";
-                $statement = $conn->prepare($query3);
-                $statement->execute();
-                $recipeIngredient = $statement->fetchAll();
-                $statement->closeCursor();
-
-
-
-                // /******************** Add to steps table ************************/
-                if (!empty($_POST["steps"])) {
-                    $input = "";
-                    $count = 1;
-                    foreach ($_POST["steps"] as $key => $step) {
-                        $input .= $count . ". " . $step . " ";
-                        $count++;
-                    }
-                    $sql = "INSERT INTO steps(steps_ID, description) VALUES (null,'$input')";
-
-                    $statement = $conn->prepare($sql);
-                    if ($statement->execute()) {
-                        $step_ID = $conn->lastInsertId();
-                    } else {
-                        echo "Something went wrong. Please try again later.";
-                    }
-                    $recipes = $statement->fetchAll();
-                } else {
-                    echo "Enter steps";
-                }
-
-                /******************** Add to recipesteps table ************************/
-                $query4 = "INSERT INTO recipesteps(recipe_ID, steps_ID) VALUES ('$recipe_ID', '$step_ID')";
-                $statement = $conn->prepare($query4);
-                $statement->execute();
-                $recipeStep = $statement->fetchAll();
-                $statement->closeCursor();
-            } else {
-                echo "Something went wrong. Please try again later.";
-            }
-        }
-        unset($stmt);
-        echo "<script language = javascript>
-                  swal({  title: 'Success!',
-                   text: 'You have successfully created a recipe.',  
-                  type: 'success',    
-                  showCancelButton: false,   
-                  closeOnConfirm: false,   
-                  confirmButtonText: 'Aceptar', 
-                  showLoaderOnConfirm: true, }).then(function() {
-                      window.location = 'show-all-recipes.php';
-                  });;
-              </script>";
-    } else {
-        echo "Could not do task";
+        $query = "INSERT INTO recipes (user_ID, name, image, video_name, rating, servings, maxTime, difficultyID) VALUES 
+        ('$user_ID', '$recipeName', '$image', '$video_name', '$rating', '$servings', '$time', '$difficultyID')";
+        $statement1 = $conn->prepare($query);
+        $statement1->execute();
+        $recipe_ID = $conn->lastInsertId();
     }
+         /******************** Add to ingredients table ************************/
+            $count = count($names);
+            for ($x = 0; $x < $count; $x++) {
+             $sql = "INSERT INTO ingredients (ingredient_ID, name, amount, unit) VALUES (null,'$names[$x]','$measures[$x]','$units[$x]')";
+             $statement2 = $conn->prepare($sql);
+             if($statement2->execute()) {
+                 $ingredient_ID = $conn->lastInsertId();
+                 /******************** Add to recipeIngredient table ************************/
+                 $query3 = "INSERT INTO recipeingredient (recipe_ID, ingredient_ID) VALUES ('$recipe_ID','$ingredient_ID')";
+                 $statement3 = $conn->prepare($query3);
+                 $statement3->execute();
+             }
+         }
+         // /******************** Add to steps table ************************/
+        if (!empty($_POST["steps"])) {
+            $input = "";
+            $count = 1;
+            foreach ($_POST["steps"] as $key => $step) {
+                $input .= $count . ". " . $step . " ";
+                $count++;
+            }
+            $sql2 = "INSERT INTO steps(steps_ID, description) VALUES (null,'$input')";
+            $statement4 = $conn->prepare($sql2);
+        if ($statement4->execute()) {
+            $step_ID = $conn->lastInsertId();
+            /******************** Add to recipesteps table ************************/
+            $query4 = "INSERT INTO recipesteps(recipe_ID, steps_ID) VALUES ('$recipe_ID', '$step_ID')";
+            $statement5 = $conn->prepare($query4);
+            $statement5->execute();
+            $statement5->closeCursor();
+            unset($stmt);
+        } else {
+            echo "Something went wrong. Please try again later.";
+        }
+
+        }
 }
 ?>
 
