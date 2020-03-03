@@ -187,10 +187,10 @@ if (!empty($_POST["ingredient_name"]) && !empty($_POST["ingredient_measure"]) &&
     <?php include_once 'includes/CDNs.php'; ?>
 </head>
 
-<body>
+<body class='site' >
     <?php include_once 'includes/nav-menu.php';
     ?>
-
+<main class='site-content' >
 
     <div class='container' >
     <h2 class='allRecipes-h1'>Create Recipe</h2>
@@ -272,6 +272,7 @@ if (!empty($_POST["ingredient_name"]) && !empty($_POST["ingredient_measure"]) &&
     </form>
 
     </div>
+</main>
     <?php include_once 'includes/footer.php'; ?>
 </body>
 

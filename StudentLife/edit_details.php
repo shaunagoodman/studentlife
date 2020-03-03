@@ -103,8 +103,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 </head>
-<body>
+<body class='site' >
 <?php include_once 'includes/nav-menu.php'; ?>
+<main class='site-content' >
     <div class="container">
   <center> <h2>Reset your Personal Information</h2>  </center> 
        
@@ -137,6 +138,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
         </form>
     </div> 
+</main>
 
         <?php include_once 'includes/footer.php'; ?>   
 </body>

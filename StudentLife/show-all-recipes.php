@@ -31,9 +31,10 @@ if (isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true) {
     <?php include_once 'includes/CDNs.php'; ?>
 </head>
 
-<body>
+<body class='site' >
     <?php include_once 'includes/nav-menu.php'; ?>
 
+    <main class='site-content' >
     <div class="container">
 
 
@@ -86,6 +87,8 @@ if (isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true) {
         <?php endforeach;
         echo "</div>" ?>
     </div>
+
+    </main>
 
     <?php include_once 'includes/footer.php'; ?>
 

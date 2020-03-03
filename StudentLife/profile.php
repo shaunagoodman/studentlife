@@ -31,41 +31,42 @@ and open the template in the editor.
 
 </head>
 
-<body>
+<body class='site'>
 
     <?php include_once 'includes/nav-menu.php'; ?>
+    <main class='site-content' >
     <div class="profile-body desktop-profile">
+        
+            <div class="container desktop-profile">
 
-        <div class="container desktop-profile">
+                <div class="row">
 
-            <div class="row">
+                    <div class="col-lg-12">
 
-                <div class="col-lg-12">
-
-                </div>
-
-
-                <div class="col-lg-6 user-col ">
-
-                    <div class="user-info profile-user-info">
-
-                        <h2 class="user-name"><?php echo $_SESSION["fname"] . " " . $_SESSION["lname"]; ?></h2>
-
-                        <hr>
-                        <h5 class="h5-profile">Email:</h5>
-
-                        <p><?php echo htmlspecialchars($_SESSION["u_email"]); ?></p>
-
-                        <a href="edit_details.php" class="btn btn-light btn-sm">Edit Profile</a>
-
-                        <a href="reset_password.php" class="btn btn-light btn-sm">Reset Password</a>
+                    </div>
 
 
+                    <div class="col-lg-6 user-col ">
+
+                        <div class="user-info profile-user-info">
+
+                            <h2 class="user-name"><?php echo $_SESSION["fname"] . " " . $_SESSION["lname"]; ?></h2>
+
+                            <hr>
+                            <h5 class="h5-profile">Email:</h5>
+
+                            <p><?php echo htmlspecialchars($_SESSION["u_email"]); ?></p>
+
+                            <a href="edit_details.php" class="btn btn-light btn-sm">Edit Profile</a>
+
+                            <a href="reset_password.php" class="btn btn-light btn-sm">Reset Password</a>
+
+
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <br>
+            <br>
     </div>
 
 
@@ -143,7 +144,7 @@ and open the template in the editor.
                 <br>
 
                 <div class="user-info profile-buttons recipe-button">
-                <h2><a href="show-all-recipes.php" class="recipes">Recipes</a></h2>
+                    <h2><a href="show-all-recipes.php" class="recipes">Recipes</a></h2>
                 </div>
 
             </div>
@@ -168,7 +169,7 @@ and open the template in the editor.
 
     </div>
 
-
+    </main>
 
 
 
