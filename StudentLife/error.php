@@ -13,8 +13,9 @@
 
 </head>
 
-<body>
+<body class='site' >
     <?php include_once 'includes/nav-menu.php'; ?>
+    <main class='site-content' >
     <div class="container">
 
             <h1 class="allRecipes-h1">Invalid Request</h1>
@@ -23,6 +24,7 @@
 
             <p>Sorry, you've made an invalid request. Please <a class='add-my-recipe' href="index.php">go back</a> and try again.</p>
     </div>
+    </main>
 
     <?php include_once 'includes/footer.php'; ?>
 </body>

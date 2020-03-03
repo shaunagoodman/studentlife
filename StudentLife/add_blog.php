@@ -62,8 +62,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<?php include_once 'includes/CDNs.php'; ?>
 </head>
 
-<body>
+<body class='site' >
 	<?php include_once 'includes/nav-menu.php'; ?>
+	<main class='site-content' >
 	<div class='container'>
 
 		<h2 class="allRecipes-h1">Post New Blog</h2>
@@ -89,6 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		</form>
 		<br> <br>
 	</div>
+	</main>
 	<?php include_once 'includes/footer.php'; ?>
 
 

@@ -42,7 +42,7 @@ and open the template in the editor.
 
 </head>
 
-<body>
+<body class='site' >
     <?php include_once 'includes/nav-menu.php'; ?>
 
 
@@ -104,7 +104,7 @@ and open the template in the editor.
     </div>
     <!--/.Carousel Wrapper-->
 
-
+    <main class='site-content' >
     <div class="container first-home-container">
 
         <div class="row">
@@ -189,7 +189,7 @@ and open the template in the editor.
     
 
 
-
+</main>
 
 
 
