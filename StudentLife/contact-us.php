@@ -57,9 +57,10 @@ and open the template in the editor.
 
 </head>
 
-<body>
+<body class='site' >
     <?php include_once 'includes/nav-menu.php'; ?>
 
+    <main class='site-content' >
     <div class="container">
 
 
@@ -121,7 +122,7 @@ and open the template in the editor.
         </div>
     </div>
 
-
+    </main>
 
     <?php include_once 'includes/footer.php'; ?>
 
