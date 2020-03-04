@@ -1,6 +1,7 @@
 <?php
 // Initialize the session
 session_start();
+include_once 'includes/database/connection.php';
 // Check if the user is logged in, if not then redirect him to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
@@ -24,11 +25,8 @@ and open the template in the editor.
     <title>Profile</title>
 
     <?php include_once 'includes/CDNs.php'; ?>
-
+    <script src="javascript/scripts.js"></script>
     <link href="includes/stylesheet.css" rel="stylesheet" type="text/css" />
-
-
-
 </head>
 
 <body class='site'>
@@ -56,19 +54,34 @@ and open the template in the editor.
                             <h5 class="h5-profile">Email:</h5>
 
                             <p><?php echo htmlspecialchars($_SESSION["u_email"]); ?></p>
-
+                            <form method = "post">
                             <a href="edit_details.php" class="btn btn-light btn-sm">Edit Profile</a>
-
                             <a href="reset_password.php" class="btn btn-light btn-sm">Reset Password</a>
-
-
+                            <input type="submit" class="btn btn-light btn-sm" name="submitbutton" value="Deactivate Account"/>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
             <br>
     </div>
-
+    <?php
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $userID = $_SESSION['user_ID'];
+        $submitbutton= $_POST['submitbutton'];
+        if ($submitbutton){
+            $query = "UPDATE user SET isActive = 0 WHERE user_ID = $userID";
+            $statement = $conn->prepare($query);
+            if($statement->execute()) {
+               echo "<script language = javascript>
+               deactivated();
+              </script>";
+            }
+            $recipeIngredient = $statement->fetchAll();
+            $statement->closeCursor();
+        }
+    }
+    ?>
 
 
 

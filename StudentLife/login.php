@@ -40,7 +40,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($u_email_err) && empty($u_password_err)){
         // Prepare a select statement
-        $query = "SELECT user_ID, u_type, fname, lname, u_email, u_password FROM user WHERE u_email = :u_email";
+        $query = "SELECT user_ID, u_type, fname, lname, u_email, u_password FROM user WHERE u_email = :u_email AND isActive != 0";
         
         if($stmt = $conn->prepare($query)){
             // Bind variables to the prepared statement as parameters

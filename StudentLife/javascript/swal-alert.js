@@ -44,3 +44,15 @@ function noAccess() {
         window.location = 'index.php';
     });;
 }
+
+function deactivated() {
+    swal({  title: 'Account Deactivated!',
+    text: 'Please contact us if you wish for your details to be permanently deleted from our records',  
+   type: 'success',    
+   showCancelButton: false,   
+   closeOnConfirm: false,   
+   confirmButtonText: 'Aceptar', 
+   showLoaderOnConfirm: true, }).then(function() {
+       window.location = 'logout.php';
+   });;
+}

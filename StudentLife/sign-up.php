@@ -80,7 +80,7 @@ unset($stmt);
     if(empty($fname_err) && empty($lname_err) && empty($u_email_err) && empty($u_password_err) && empty($confirm_u_password_err)){
         
         // Prepare an insert statement
-        $query = "INSERT INTO user (fname, lname, u_email, u_password) VALUES (:fname, :lname, :u_email, :u_password)";
+        $query = "INSERT INTO user (fname, lname, u_email, u_password,isActive) VALUES (:fname, :lname, :u_email, :u_password, 1)";
          
         if($stmt = $conn->prepare($query)){
             // Bind variables to the prepared statement as parameters
