@@ -130,7 +130,7 @@ and open the template in the editor.
 
         <link href="includes/stylesheet.css" rel="stylesheet" type="text/css"/>
     </head>
-<body class='site' >
+<body class='site sign-up-body' >
 <?php include_once 'includes/nav-menu.php'; ?> 
 <main class='site-content' >
 <div class="container" >
