@@ -27,7 +27,9 @@ session_start();
         
         $sql = ("INSERT INTO contact(contact_name, email, phone_no, message) VALUES ('$name', '$email', '$phone', '$message')");
         if (mysqli_query($conn, $sql)) {
-            header("refresh:2;thank_you.php");
+            echo "<script language = javascript>
+                  thankYou();
+              </script>";
         }
         else {
             echo "Failed";
