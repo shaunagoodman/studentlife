@@ -91,9 +91,7 @@ and open the template in the editor.
                 <div style='text-align: right'>
                     <ul class='diff-list' id='ul-difficulty-list'>
                         <li class='li-diff-list'> <a href='add_blog.php'>Add New Post </a></li>
-                        <li class='li-diff-list' ><a href='recipes-list.php'>View All Recipes </a></li>
-                        <li class='li-diff-list' ><a href='how-all-recipes.php.php'>All My Recipes </a></li>
-                        <li class='li-diff-list' ><a href='favourites.php'>View All Favourites </a></li>
+                        <li class='li-diff-list' ><a href='view-recipes-admin.php'>View All Recipes </a></li>
                         <li class='li-diff-list' ><a href='view-all-users.php'>View All Users </a></li>   
                     </ul>
                 </div>
