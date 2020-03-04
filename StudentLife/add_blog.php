@@ -1,7 +1,10 @@
 <?php
 session_start();
 require_once "includes/database/connection.php";
-
+if (!isset($_SESSION["loggedin"]) ||  $_SESSION["u_type"] == 0) {
+	header("location: login.php");
+    exit;
+}
 // Define variables and initialize with empty values
 $blogTitle = $blogContent = "";
 $title_err = $content_err = "";
@@ -58,7 +61,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
 	<meta charset="UTF-8">
 	<title>Post Blog</title>
-	<script src="javascript/scripts.js"></script>
 	<?php include_once 'includes/CDNs.php'; ?>
 </head>
 
