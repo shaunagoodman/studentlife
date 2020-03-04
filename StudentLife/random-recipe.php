@@ -31,50 +31,52 @@ include_once 'includes/CDNs.php';
           </div> -->
         <div class='row random-row'>
           <div class='col-lg-8 random-recipe-list'>
-            <div class='col-lg-12 random-recipe'>
+            <div class='col-lg-12 random-recipe title-div'>
               <h4 class='randomResultHeading title'> Title </h4>
+              <hr class='title-random-line' >
               <h5 id="recipeName"></h5>
               <br>
             </div>
 
             <div class='row'>
-            <div class='col-lg-6 random-recipe'>
+            <div class='col-lg-5 random-recipe ingredients-div'>
               <h4 class='randomResultHeading'> Ingredients </h4>
+              <hr class='ingredient-random-line' >
               <ol id="ingredientList" style='padding-left: 4.5%;'></ol>
             </div>
 
             
-            <div class='col-lg-6 random-recipe'>
+            <div class='col-lg-3 random-recipe other-recipe-div'>
               <h4 class='randomResultHeading'> Serves </h4>
+              <hr class='serves-random-line' >
               <div id="servings"></div>
             
               <h4 class='randomResultHeading'> Time </h4>
+              <hr class='time-random-line' >
               <div id="time"></div>
+
+              <h4 class='randomResultHeading'> Equipment </h4>
+              <hr class='equipment-random-line' >
+              <div id="equipment"></div>
+
+              <h4 class='randomResultHeading'> Cuisine </h4>
+              <hr class='cuisine-random-line' >
+              <div id="cuisine"></div>
+
             </div>
             </div>
 
-            <div class='row'>
-            <div class='col-lg-6 random-recipe'>
-              <h4 class='randomResultHeading'> Equipment </h4>
-              <div id="equipment"></div>
-              <br>
-            </div>
-            <div class='col-lg-6 random-recipe'>
-              <h4 class='randomResultHeading'> Cuisine </h4>
-              <div id="cuisine"></div>
-            </div>
-            </div>
 
             
 
-            <div class='col-lg-12 random-recipe'>
+            <!-- <div class='col-lg-12 random-recipe'>
               <h4 class='randomResultHeading'> Ingredients </h4>
               <ol id="ingredientList" style='padding-left: 4.5%;'></ol>
-            </div>
+            </div> -->
 
             <div class='col-lg-12 random-recipe'>
               <h4 class='randomResultHeading'> Method </h4>
-              <hr class='random-line' >
+              <hr class='method-random-line' >
               <ol id="methodList" style='padding-left: 4.5%;'></ol>
             </div>
 
@@ -82,7 +84,8 @@ include_once 'includes/CDNs.php';
 
 
             <form action="" method="POST">
-              <input class="btn api-button" type="submit" name="btnFav" value="Favourite" />
+              <input class="btn api-button random-button" type="submit" name="btnFav" value="Favourite" />
+              <br>
             </form>
           </div>
         </div>

@@ -2,6 +2,15 @@
 session_start();
 require_once 'includes/database/connection.php';
 
+// Check if the user is logged in, if not then redirect him to login page
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+    header("location: login.php");
+    exit;
+} elseif (!isset($_SESSION["u_type"]) || $_SESSION["u_type"] != 1) {
+    header("location: profile.php");
+    exit;
+}
+
 $query = "SELECT * FROM user";
 $statement = $conn->prepare($query);
 $statement->execute();
@@ -29,49 +38,53 @@ and open the template in the editor.
     <main class='site-content'>
         <div class="container">
 
-        <h1 class="allRecipes-h1">View All Users</h1>
-		<hr align="left">
+            <h1 class="allRecipes-h1">View All Users</h1>
+            <hr align="left">
 
 
 
 
-            <table class = "table1">
-                        <tr>
-                            <th class="th1">User ID</th>
-                            <th class="th1">First Name</th>
-                            <th class="th1">Last Name </th>
-                            <th class="th1">Email</th>
-                            <th class="th1">Delete</th>
-                            <th class="th1">Edit</th>
-                        </tr>
-                        <?php foreach ($user as $users) : ?>
-                            <tr>
-                                <td class="td1"><p><?php echo $users['user_ID']; ?></p></td>
-                                <td class="td1"><p><?php echo $users['fname']; ?></p></td>
-                                <td class="td1"><p><?php echo $users['lname']; ?></p></td>
-                                <td class="td1"><p><?php echo $users['u_email']; ?></p></td>
-                                <td class="td1">
+            <table class="table1">
+                <tr>
+                    <th class="th1">User ID</th>
+                    <th class="th1">First Name</th>
+                    <th class="th1">Last Name </th>
+                    <th class="th1">Email</th>
+                    <th class="th1">Delete</th>
+                </tr>
+                <?php foreach ($user as $users) : ?>
+                    <tr>
+                        <td class="td1">
+                            <p><?php echo $users['user_ID']; ?></p>
+                        </td>
+                        <td class="td1">
+                            <p><?php echo $users['fname']; ?></p>
+                        </td>
+                        <td class="td1">
+                            <p><?php echo $users['lname']; ?></p>
+                        </td>
+                        <td class="td1">
+                            <p><?php echo $users['u_email']; ?></p>
+                        </td>
+                        <td class="td1">
 
-                                    <form action="delete_product.php" method="post"
-                                          id="delete_product_form">
-                                        <input type="hidden" name="item_id"
-                                               value="<?php echo $users['user_ID']; ?>">
-                                        <input class="btn btn-sm btn-light-invert" type="submit" value="Delete">
-                                    </form></td>
+                            <form action="delete-user.php" method="post" id="delete_user_form">
+                                <a href="delete-user.php?user_ID=<?php echo $users['user_ID'] ?>" class="add-my-recipe">Delete</a>
+                            </form>
+                        </td>
 
-                                <td class="td1"><form action="edit_product_form.php" method="post"
-                                                      id="edit_product_form">
-                                        <input type="hidden" name="item_id"
-                                               value="<?php echo $users['user_ID']; ?>">
-                                        <!-- <input type="hidden" name="category_id"
-                                               value="<?php echo $users['CID']; ?>"> -->
+
+                        <!-- <td class="td1"><form action="edit_user_form.php" method="post"
+                                                      id="edit_user_form">
+                                        <input type="hidden" name="user_id"
+                                               value="// echo $users['user_ID']; ">
                                         <input class="btn btn-sm btn-light-invert" type="submit" value="Edit">
-                                    </form></td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </table>
-<br>
-<br>
+                                    </form></td> -->
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+            <br>
+            <br>
 
 
 

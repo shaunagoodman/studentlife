@@ -164,23 +164,16 @@ and open the template in the editor.
 
         <div class="container mobile-profile">
 
-            <div class="row">
-
-                <div class="col-md-12">
-
-                    <div class="user-info profile-buttons favourites-button">
-                        <h2><a href="favourites.php" class="recipes my-favourites">Favourites</a></h2>
-                    </div>
-
-
-                    <br>
-
-                    <div class="user-info profile-buttons recipe-button">
-                        <h2><a href="show-all-recipes.php" class="recipes">Recipes</a></h2>
-                    </div>
-
+        <div class='sub-menu'>
+                <div style='text-align: right'>
+                    <ul class='diff-list' id='ul-difficulty-list'>
+                        <li class='li-diff-list'> <a href='add_blog.php'>Add New Post </a></li>
+                        <li class='li-diff-list' ><a href='recipes-list.php'>View All Recipes </a></li>
+                        <li class='li-diff-list' ><a href='how-all-recipes.php.php'>All My Recipes </a></li>
+                        <li class='li-diff-list' ><a href='favourites.php'>View All Favourites </a></li>
+                        <li class='li-diff-list' ><a href='view-all-users.php'>View All Users </a></li>   
+                    </ul>
                 </div>
-
             </div>
 
         </div>
