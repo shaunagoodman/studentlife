@@ -17,7 +17,7 @@ if(isset($_POST["recipe_ID"]) && !empty($_POST["recipe_ID"])){
         // Attempt to execute the prepared statement
         if($stmt->execute()){
             // Records deleted successfully. Redirect to landing page
-            header("location: show-all-recipes.php");
+            header("location: view-recipes-admin.php");
             exit();
         } else{
             echo "Oops! Something went wrong. Please try again later.";
@@ -42,7 +42,7 @@ if(isset($_POST["recipe_ID"]) && !empty($_POST["recipe_ID"])){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>View Record</title>
+    <title>Delete Recipe</title>
     <?php include_once 'includes/CDNs.php'; ?> 
 
 </head>
@@ -56,12 +56,12 @@ if(isset($_POST["recipe_ID"]) && !empty($_POST["recipe_ID"])){
                         <h1>Delete Record</h1>
                   
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                        <div class="alert alert-danger fade in">
+                        <div >
                             <input type="hidden" name="recipe_ID" value="<?php echo trim($_GET["recipe_ID"]); ?>"/>
                             <p>Are you sure you want to delete this record?</p><br>
                             <p>
                                 <input type="submit" value="Yes" class="btn btn-danger">
-                                <a href="show-all-recipes.php" class="btn btn-default">No</a>
+                                <a href="view-recipes-admin.php" class="btn btn-default">No</a>
                             </p>
                         </div>
                     </form>
