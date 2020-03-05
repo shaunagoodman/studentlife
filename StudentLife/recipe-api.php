@@ -32,18 +32,17 @@ include_once 'includes/CDNs.php';
       <!--Search Ingredients-->
       <div id="ingredientInput">
         <input class="form-control api-form-control" name='ingredients' id='ingredients' placeholder="eggs, milk, butter" /> <br>
-        <p> <input class='checkbox-api' type="checkbox" id="addTime" onClick="toggleTime()" />Select if you wish to add a time limit (If you do not set a limit it will defualt to 10 mins).</p>
+        <p> <input class='checkbox-api' type="checkbox" id="addTime" onClick="toggleTime()" />Add Time Limit (If you do not set a limit it will defualt to 30 mins).</p>
         
         <!--TIME -->
         <div id="addedTime">
-          <p> Enter how many minutes long you want to spend cooking </p>
           <input class="form-control api-form-control" name='time' id='time' />
         </div>
         <br>
          <!--INTOLERANCE -->
         <div class='row'>
           <div class='col-lg-6'>
-            <p class='sub-head-api'> <input class='checkbox-api' type="checkbox" id="selectIntolerance" onClick="toggleIntolerances()" />Select if you have an Intolerance</p>
+            <p class='sub-head-api'> <input class='checkbox-api' type="checkbox" id="selectIntolerance" onClick="toggleIntolerances()" />Have an Intolerance?</p>
             <hr align="left" class="api-line">
             <div id="intoleranceList">
               <p><strong>Select any of the following intolerances:</strong> </p>
@@ -66,7 +65,7 @@ include_once 'includes/CDNs.php';
 
           <div class='col-lg-6'>
 
-            <p class='sub-head-api'> <input class='checkbox-api' type="checkbox" id="selectDietRestriction" onClick="toggleDietRestrictions()" />Select if you have a Diet Restriction</p>
+            <p class='sub-head-api'> <input class='checkbox-api' type="checkbox" id="selectDietRestriction" onClick="toggleDietRestrictions()" />Have a Diet Restriction?</p>
             <hr align="left" class="api-line">
             <div id="dietRestrictionsList">
               <p><strong>Select any of the following Diet Restrictions:</strong></p>
