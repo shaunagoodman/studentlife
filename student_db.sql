@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2020 at 03:01 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.2.26
+-- Generation Time: Mar 11, 2020 at 03:48 PM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `student_db`
+-- Database: `student_db_test`
 --
 
 -- --------------------------------------------------------
@@ -179,7 +179,11 @@ INSERT INTO `ingredients` (`ingredient_ID`, `name`, `amount`, `unit`) VALUES
 (35, 'Chicken Breast', 800, 'g'),
 (36, 'Cajun Seasoning', 2, 'tbsp'),
 (197, 'One', 5, 'g'),
-(198, 'Two', 5, 'g');
+(198, 'Two', 5, 'g'),
+(199, '1 large chicken fill', 1, '1 lar'),
+(200, '1 banana 100 grams o', 1, '1 ban'),
+(201, '2 smoked rashers 2 s', 2, '2 smo'),
+(202, '100 grams of flour 1', 100, '100 g');
 
 -- --------------------------------------------------------
 
@@ -252,7 +256,11 @@ INSERT INTO `recipeingredient` (`recipe_ID`, `ingredient_ID`) VALUES
 (26, 34),
 (26, 36),
 (25, 29),
-(82, 198);
+(82, 198),
+(85, 199),
+(86, 200),
+(87, 201),
+(88, 202);
 
 -- --------------------------------------------------------
 
@@ -285,7 +293,13 @@ INSERT INTO `recipes` (`recipe_ID`, `user_ID`, `name`, `image`, `video_name`, `r
 (25, 117, 'Chicken and Broccoli Stir Fry', 'chicken-and-broccoli-stir-fry.jpg', NULL, NULL, 2, '00:35:00', 2, '2020-02-29 00:01:27.317474', 0, 0, 0),
 (26, 117, 'Cajun Stuffed Chicken', 'cajun-stuffed-chicken.jpg', NULL, NULL, 4, '00:45:00', 3, '2020-02-29 00:26:32.107275', 0, NULL, 0),
 (81, 102, 'Easiest Belgian Waffle Recipe', 'https://spoonacular.com/recipeImages/1103015-556x370.jpg', NULL, NULL, 5, '00:10:00', NULL, '2020-02-29 13:13:41.727811', 1, 102, 1),
-(82, 102, 'Example', '487012.jpg', '', 1, 34, '00:00:04', 1, '2020-02-29 14:03:17.153498', 0, NULL, 0);
+(82, 102, 'Example', '487012.jpg', '', 1, 34, '00:00:04', 1, '2020-02-29 14:03:17.153498', 0, NULL, 0),
+(83, 123, 'Prawn Stirfry', 'prawn-stirfry.jpg', 'AsMNso8yy_8', 3, 2, '00:00:30', 2, '2020-03-04 21:56:00.958370', 0, NULL, 0),
+(84, 123, 'Cheese and Bacon Omelette', 'omelette1.jpg', '5b_OKpnJAZk&t', 1, 1, '00:00:10', 1, '2020-03-04 21:54:10.047675', 0, NULL, 0),
+(85, 123, 'Chicken Broccoli Pasta Bake', 'chicken-bake.jpg', 'BSaGMEmwufY', 3, 2, '00:00:45', 2, '2020-03-04 21:54:57.509762', 0, NULL, 0),
+(86, 123, 'Breakfast Smoothie', 'breakfast-smoothie.jpg', '_JePWIoAxgs&t', 1, 1, '00:00:10', 1, '2020-03-04 21:55:17.791859', 0, NULL, 0),
+(87, 123, 'Oven Baked Risotto', 'risotto.jpg', 'GmWf58YcSig', 3, 2, '00:00:40', 2, '2020-03-04 21:55:39.209056', 0, NULL, 0),
+(88, 123, 'Pancakes', 'pancakes1.JPG', 'ksTuOtxA4C0', 1, 1, '00:00:10', 1, '2020-03-04 21:56:16.771667', 0, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -306,7 +320,13 @@ INSERT INTO `recipesteps` (`recipe_ID`, `steps_ID`) VALUES
 (26, 12),
 (25, 11),
 (24, 10),
-(82, 60);
+(82, 60),
+(83, 61),
+(84, 62),
+(85, 63),
+(86, 64),
+(87, 65),
+(88, 66);
 
 -- --------------------------------------------------------
 
@@ -327,7 +347,13 @@ INSERT INTO `steps` (`steps_ID`, `description`) VALUES
 (10, '1. Add flour, eggs, milk and oil to a large bowl and whisk until a smooth batter is created. 2. Heat a medium sized frying pan or crêpe pan over a medium heat and add a drop off oil to it 3. Cook each pancake on each side for 1 min. 4. Serve.'),
 (11, '1. Mix together all sauce ingredients in a bowl. 2. Heat oil over a nonstick pan and add chicken, stirring until cooked. 3. Pour sauce in a pan and stir to coat meat. 4. Once the sauce is bubbling, add the vegetables to the pan and stir again to coat. 5. Cook until meat is cooked through and vegetables are soft. 6. Serve over rice or alone.'),
 (12, '1. Preheat oven to 350 degrees. Using a frying pan over a medium heat, add onions and peppers and cook until soft for 5 minutes. Season with salt and pepper and remove from heat to let it cool slightly. 2. With a sharp paring knife, create a pocket in each chicken breast. Stuff each with the vegetable mixture and then top with cheddar. Season the chicken all over with Cajun seasoning, salt and pepper. 3. Add chicken to the pan and bake until cooked through for about 25 minutes.  '),
-(60, '1. Oneoneoneone 2. Twotwotwo ');
+(60, '1. Oneoneoneone 2. Twotwotwo '),
+(61, 'In a large pan over medium heat, heat olive oil. Add prawns cook until pink, 5 minutes, then remove from pan.\r\nAdd broccoli, peas, and pepper and cook until soft, 7 minutes. \r\nAdd soy sauce and simmer until cooked.'),
+(62, '1. Crack egg into a bowl and whisk until fully beaten. Leave to one side\r\n2. Heat pan and add oil. Fry bacon until browned. Leave to one side.\r\n3. Add beaten egg to pan and add the cooked bacon and cheese. Once cooked flip over and serve.'),
+(63, '1. Chop broccoli and chicken into bite sized pieces.\r\n2. Heat pan, add oil and then fry chicken until golden.\r\n3. Boil pasta and broccoli in water and then drain. Remove from saucepan and leave to one side.\r\n4. Melt butter in a saucepan and add flour and milk, whisk until thickens and then add half of the cheese.\r\n5. Add chicken, broccoli and pasta to the cheese sauce.\r\n6. Transfer mixture into an oven proof dish, add the remaining cheese on top and bake for 15 minutes.'),
+(64, '1. Chop banana into slices. \r\n2. Put banana, mixed berries, milk, porridge oats and honey into blender.\r\n3. Blend for 3-5 minutes until smooth.\r\n4. Serve in a chilled glass and garnish with extra berries.'),
+(65, '1. Chop onion and rashers. Heat pan, add oil and fry.\r\n2. Add the butter to the pan. When melted then add the rice and stir.\r\n3. Add the wine and leave to simmer for 15 minutes.\r\n4. When the rice has absorbed the liquid, transfer to an oven proof dish, sprinkle with parmesan and bake for 20 minutes.'),
+(66, '1. Add flour, eggs and milk to a jug and mix until smooth batter is formed.\r\n2. Heat pan and add oil. The pour some batter to fill the pan.\r\n3. Flip onto the other side once bubbles form on top.\r\n4. Serve when golden and garnish with maple syrup, fresh berries and sprinkle with icing sugar.');
 
 -- --------------------------------------------------------
 
@@ -341,20 +367,24 @@ CREATE TABLE `user` (
   `fname` varchar(20) NOT NULL,
   `lname` varchar(20) NOT NULL,
   `u_email` varchar(30) NOT NULL,
-  `u_password` varchar(255) NOT NULL
+  `u_password` varchar(255) NOT NULL,
+  `isActive` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_ID`, `u_type`, `fname`, `lname`, `u_email`, `u_password`) VALUES
-(102, 0, 'Shauna', 'Goodman', 'shauna@dkit.ie', '$2y$10$ZHP2tg/08x1qqmUjbU4ZU.MdupaNng0.Hr1atPh0N7Bwi8iEm0mxm'),
-(105, 0, 'Simon', 'Smith', 'simonsmith@gmail.com', '$2y$10$V3mG0lP0.ohlCZVTRNlkJeZsszhIJKes3KvvxeWz8ePAX81EB2cmu'),
-(114, 0, 'Mary', 'Finnegan', 'maryfinnegan@iol.ie', '$2y$10$d7Znl8yogoPuTELlOk88W.f36/ThUqX4DgpCnwZNdfGV//KikDKwy'),
-(117, 0, 'Admin', '', 'adminstudentlife@gmail.com', 'StudentLife2020@'),
-(118, 0, 'Mateusz', 'Kowalski', 'matiorex5@gmail.com', 'Student123'),
-(122, 1, 'Mateusz', 'Kowalski', 'matiorex15@gmail.com', '$2y$10$S9.tZHzH4Jnyr4hrDhnx7ORhVrGCOWPDqxedfJFYWLeRyxmi9Lffa');
+INSERT INTO `user` (`user_ID`, `u_type`, `fname`, `lname`, `u_email`, `u_password`, `isActive`) VALUES
+(102, 0, 'Shauna', 'Goodman', 'shauna@dkit.ie', '$2y$10$ZHP2tg/08x1qqmUjbU4ZU.MdupaNng0.Hr1atPh0N7Bwi8iEm0mxm', 0),
+(105, 0, 'Simon', 'Smith', 'simonsmith@gmail.com', '$2y$10$V3mG0lP0.ohlCZVTRNlkJeZsszhIJKes3KvvxeWz8ePAX81EB2cmu', 0),
+(114, 0, 'Mary', 'Finnegan', 'maryfinnegan@iol.ie', '$2y$10$d7Znl8yogoPuTELlOk88W.f36/ThUqX4DgpCnwZNdfGV//KikDKwy', 0),
+(117, 0, 'Admin', '', 'adminstudentlife@gmail.com', 'StudentLife2020@', 0),
+(118, 0, 'Mateusz', 'Kowalski', 'matiorex5@gmail.com', 'Student123', 0),
+(122, 1, 'Mateusz', 'Kowalski', 'matiorex15@gmail.com', '$2y$10$S9.tZHzH4Jnyr4hrDhnx7ORhVrGCOWPDqxedfJFYWLeRyxmi9Lffa', 0),
+(123, 0, 'Orlaith', 'Hanlon', 'orlaithhanlon@hotmail.com', '$2y$10$knC3pNZ.TYjMxu6mA3JWb.74A1UOKLTcT1YheDM6/e7XfOioohuiG', 0),
+(124, 1, 'Niamh', 'Curran', 'niamhthefabulous@gmail.com', '$2y$10$hSKcFK30wbRPpZkK/vhkWejHU8Ei4Xsbo63UmUgHzPD.KOXkLWLYC', 1),
+(125, 0, 'Emmet', 'Curran', 'emmet@gmail.com', '$2y$10$JMVxj/R1tlYlbVOikSXyGurKhquu09Q7JxnfFt7cZ4Qbx58IU4nEO', 1);
 
 -- --------------------------------------------------------
 
@@ -511,7 +541,7 @@ ALTER TABLE `dietrestriction`
 -- AUTO_INCREMENT for table `ingredients`
 --
 ALTER TABLE `ingredients`
-  MODIFY `ingredient_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=199;
+  MODIFY `ingredient_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
 
 --
 -- AUTO_INCREMENT for table `intolerance`
@@ -523,19 +553,19 @@ ALTER TABLE `intolerance`
 -- AUTO_INCREMENT for table `recipes`
 --
 ALTER TABLE `recipes`
-  MODIFY `recipe_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `recipe_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT for table `steps`
 --
 ALTER TABLE `steps`
-  MODIFY `steps_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `steps_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 
 --
 -- Constraints for dumped tables
