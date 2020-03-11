@@ -42,103 +42,68 @@ and open the template in the editor.
 
 </head>
 
-<body class='site' >
+<body class='site'>
+
     <?php include_once 'includes/nav-menu.php'; ?>
 
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container jumbo-title">
+            <h1 class="display-4 jumbo-text">Find a Recipe</h1>
+            <p class='jumbo-text' >This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
 
-    <!--Carousel Wrapper-->
-    <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
-        <!--Indicators-->
-        <ol class="carousel-indicators">
-            <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-example-2" data-slide-to="1"></li>
-            <li data-target="#carousel-example-2" data-slide-to="2"></li>
-        </ol>
-        <!--/.Indicators-->
-        <!--Slides-->
-        <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-                <div class="view">
-                    <img class="d-block w-100" src="images/backgrounds/spag2.jpg" alt="First slide">
-                    <div class="mask rgba-black-light"></div>
+         
+            <form class="form-inline" method="post" action="recipes-list.php">
+            <div class='row' >   
+            <div class='col-lg-12' >
+                <input class="form-control mr-sm-2" type="search" name="something" placeholder="Search" aria-label="Search" value="<?= isset($_POST['something']) ? htmlspecialchars($_POST['something']) : '' ?>"><br>
                 </div>
-                <div class="carousel-caption">
-                    <h3 class="h3-responsive"> <a class='carousel-recipe' href='recipes-list.php'> Simple Spaghetti </a> </h3>
-                    <p>Find out more here!</p>
+                
+                <div class='col-lg-12 jumbo-buttons' >
+                <button class='btn btn-sm btn-light'  type="submit" name="submit" >Click Me!</button> <button class='btn btn-sm btn-light-invert' >Click Me!</button>
                 </div>
             </div>
-            <div class="carousel-item">
-                <!--Mask color-->
-                <div class="view">
-                    <img class="d-block w-100" src="images/backgrounds/pizza.jpg" alt="Second slide">
-                    <div class="mask rgba-black-strong"></div>
-                </div>
-                <div class="carousel-caption">
-                    <h3 class="h3-responsive"><a class='carousel-recipe' href='recipes-list.php'>Classic Pizza</a></h3>
-                    <p>Find out more here!</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <!--Mask color-->
-                <div class="view">
-                    <img class="d-block w-100" src="images/backgrounds/noodles-1.jpg" alt="Third slide">
-                    <div class="mask rgba-black-slight"></div>
-                </div>
-                <div class="carousel-caption">
-                    <h3 class="h3-responsive"> <a class='carousel-recipe' href='recipes-list.php'>Tasty Noodles</a></h3>
-                    <p>Find out more here!</p>
-                </div>
-            </div>
+            </form>
+           
+
+            
         </div>
-        <!--/.Slides-->
-        <!--Controls-->
-        <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-        <!--/.Controls-->
     </div>
-    <!--/.Carousel Wrapper-->
 
-    <main class='site-content' >
-    <div class="container first-home-container">
+    <main class='site-content'>
+        <div class="container first-home-container">
 
-        <div class="row">
+            <div class="row">
 
-            <div class="col-lg-12">
-                <h1 class="home-title1"> Our Features</h1>
-                <hr align="left">
-                <br> <br>
+                <div class="col-lg-12">
+                    <h1 class="home-title1"> Our Features</h1>
+                    <hr align="left">
+                    <br> <br>
 
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 text-center icon-padding">
-                        <img class='home-icons' src="images/recipeasy-icons-logos/burger.png" >
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 text-center icon-padding">
+                            <img class='home-icons' src="images/recipeasy-icons-logos/burger.png">
                             <h3>Find Easy Recipes and Save them</h3>
                             <p>100's of simple and cheap to make recipes at your finger tips! </p>
-                    </div>
+                        </div>
 
-                    <div class="col-lg-4 col-md-6 text-center icon-padding">
-                        <img class='home-icons' src="images/recipeasy-icons-logos/fridge.png"  >
+                        <div class="col-lg-4 col-md-6 text-center icon-padding">
+                            <img class='home-icons' src="images/recipeasy-icons-logos/fridge.png">
                             <h3>Whats in your fridge?</h3>
-                            <p>Just put in the ingredient you have and find recipes you can make there and then</p>   
-                    </div>
+                            <p>Just put in the ingredient you have and find recipes you can make there and then</p>
+                        </div>
 
-                    <div class="col-lg-4 col-md-6 text-center icon-padding">
-                            <img class='home-icons' src="images/recipeasy-icons-logos/platter.png"  >
+                        <div class="col-lg-4 col-md-6 text-center icon-padding">
+                            <img class='home-icons' src="images/recipeasy-icons-logos/platter.png">
                             <h3>Random Recipe Generator</h3>
                             <p>Want to find something new and exciting to cook?</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
-    <!-- <div class="col-md-12  second-home-container background-gal ">
+        <!-- <div class="col-md-12  second-home-container background-gal ">
         <div class='container '>
 
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -156,7 +121,7 @@ and open the template in the editor.
         </div>
     </div> -->
 
-    
+
         <div class='container third-home-container'>
 
             <div class="row">
@@ -185,11 +150,11 @@ and open the template in the editor.
 
             </div>
         </div>
-    
-    
 
 
-</main>
+
+
+    </main>
 
 
 

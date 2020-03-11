@@ -3,7 +3,21 @@
 session_start();
 include_once 'includes/database/connection.php';
 // Check if the user is logged in, if not then redirect him to login page
-if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+if (isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true) {
+    try {
+        $userID = $_SESSION['user_ID'];
+        $sql = "SELECT * FROM recipes WHERE isFavourite = 1 AND favourited_by = $userID";
+        $statement = $conn->prepare($sql);
+        $statement->execute();
+        $recipes = $statement->fetchAll();
+
+    } catch (Exception $ex) {
+        $errorMessage = $e->getMessage();
+        echo $errorMessage;
+        exit();
+    }
+}
+else {
     header("location: login.php");
     exit;
 }
@@ -85,7 +99,7 @@ and open the template in the editor.
 
 
 
-    <div class="container div-button desktop-profile">
+    <!-- <div class="container div-button desktop-profile">
 
         <div class="row">
 
@@ -104,8 +118,50 @@ and open the template in the editor.
             </div>
 
         </div>
+    </div> -->
+
+
+
+    <div class="container div-button desktop-profile">
+
+<div class="row">
+
+    <div class="col-lg-6 ">
+        <div class="user-info profile-buttons favourites-button">
+            <h2><a href="favourites.php" class="recipes my-favourites">Favourites</a></h2>
+        </div>
     </div>
+
+
+
+    <div class="col-lg-6">
+        <div class="user-info profile-buttons recipe-button">
+            <h2><a href="show-all-recipes.php" class="recipes">Recipes</a></h2>
+        </div>
     </div>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
 
 
