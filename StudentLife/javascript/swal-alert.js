@@ -56,3 +56,11 @@ function deactivated() {
        window.location = 'logout.php';
    });;
 }
+
+function APIError() {
+    swal({
+        title: "Oops!",
+        type: "fail",
+        text: "Spoonacular seems to be having problems returning more data. Please try again tomorrow."
+    });
+}

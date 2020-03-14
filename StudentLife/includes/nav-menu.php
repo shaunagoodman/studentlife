@@ -9,10 +9,7 @@ and open the template in the editor.
 <head>
     <meta charset="UTF-8">
     <title></title>
-
-
-
-
+    <script src="javascript/example.js"></script>
     <?php include_once 'CDNs.php'; ?>
 
     <link href="niamh.css" rel="stylesheet" type="text/css" />
@@ -80,7 +77,8 @@ and open the template in the editor.
 
                             echo '<a class="dropdown-item" href="profile.php">View Profile</a>';
                             echo '<a class="dropdown-item" href="logout.php">Logout</a>';
-                        } else {
+                        } 
+                        else {
                             echo '<a class="dropdown-item" href="login.php">Login</a>';
                             echo '<a class="dropdown-item" href="sign-up.php">Register</a>';
                         }
@@ -88,7 +86,7 @@ and open the template in the editor.
                     </div>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0" method="post" action="recipes-list.php">
+            <form class="form-inline my-2 my-lg-0" method="post" action="recipeNew.php">
                 <input class="form-control mr-sm-2" type="search" name = "something"placeholder="Search" aria-label="Search" value="<?= isset($_POST['something']) ? htmlspecialchars($_POST['something']) : '' ?>">
                 <button class="btn my-2 my-sm-0" type="submit" name = "submit"> <img src="images/recipeasy-icons-logos/white-search.png" class="d-inline-block align-top" alt="" /></button>
             </form> 

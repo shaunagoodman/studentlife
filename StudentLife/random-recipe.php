@@ -14,7 +14,7 @@ include_once 'includes/CDNs.php';
   <script src="javascript/randomRecipe.js"></script>
 </head>
 
-<body class='site'>
+<body class='site' onload = "findRecipe()">
   <?php include_once 'includes/nav-menu.php'; ?>
 
   <main class='site-content'>
@@ -22,8 +22,6 @@ include_once 'includes/CDNs.php';
     <div class="container">
       <h1 class="allRecipes-h1">Recipe Generator</h1>
       <hr align="left">
-
-      <button class="btn api-button" type="button" onclick="findRecipe()">Generate Recipe</button>
       <div id="displayedRecipe" class="hide">
         <br>
         <!-- <div class='col-lg-4 api-recipe'>

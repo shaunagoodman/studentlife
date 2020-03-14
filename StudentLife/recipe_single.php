@@ -3,10 +3,6 @@ session_start();
 include_once 'includes/database/connection.php'; ?>
 
 <?php
-// Initialize the session
-
-
-
 $recipe_ID = filter_input(INPUT_GET, "recipe_ID");
 if ($recipe_ID == NULL) {
     header("location:recipes-list.php");
@@ -22,59 +18,19 @@ $statement2->closeCursor();
 
 
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
 
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-
     <?php include_once 'includes/CDNs.php'; ?>
-
-
 </head>
-
 <body class='site' >
     <?php include_once 'includes/nav-menu.php'; ?>
-
-
     <main class='site-content' >
     <div class='container'>
-
-
-        <?php foreach ($recipes as $recipe) :
-            if ($recipe['difficultyID'] == 1) {
-                $difficulty = "Easy";
-            } else if ($recipe['difficultyID'] == 2) {
-                $difficulty = "Medium";
-            } else if ($recipe['difficultyID'] == 3) {
-                $difficulty = "Hard";
-            } else {
-                $difficulty = "No difficulty selected.";
-            }
-            if($recipe['isAPI'] == 1) {
-                $src = $recipe['image'];
-            }
-            else {
-                $src = 'images/recipes/'.$recipe['image'];
-            }
-            $querysteps = 'SELECT * FROM recipesteps WHERE recipe_ID=:recipe_ID';
-            $statement3 = $conn->prepare($querysteps);
-            $statement3->bindValue(':recipe_ID', $recipe["recipe_ID"]);
-            $statement3->execute();
-            $steps = $statement3->fetchAll();
-            $statement3->closeCursor();
-        ?>
-
-
-
             <h2 class="heading allRecipes-h1"><?php echo $recipe['name'] ?> </h2>
             <hr align="left">
-
             <div class=row>
                 <div class='col-md-5 single-recipe-topRow'>
                     <img class='single-recipe-pic' src='<?php echo $src;  ?>' alt='dish image'>
