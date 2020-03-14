@@ -65,6 +65,10 @@ and open the template in the editor.
                 <li>
                     <a class="footer-links" href="contact-us.php" >Contact Us</a>
                 </li>
+
+                <li>
+                <a class="footer-links" href="blog_single.php">Blog</a>
+                </li>
                 </ul>
                     
                     <!--</center>-->
