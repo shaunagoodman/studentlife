@@ -83,7 +83,7 @@ and open the template in the editor.
                 <div class='col-md-7 single-recipe-topRow'>
                     <p><img src='images/recipeasy-icons-logos/gauge.png' style='margin-right:1.5%' alt='clock icon' height='35' width='35'><strong>Difficulty: </strong><?php echo $difficulty ?>
                         <img src='images/recipeasy-icons-logos/knife-fork.png' style='margin-right:1.5%' alt='clock icon' height='35' width='35'><strong>Servings:</strong> <?php echo $recipe['servings'] ?>
-                        <img src='images/recipeasy-icons-logos/clock.png' style='margin-right:1.5%' alt='clock icon' height='30' width='30'><strong>Cooking Time: </strong><?php echo $recipe['maxTime'] ?></p>
+                        <img src='images/recipeasy-icons-logos/clock.png' style='margin-right:1.5%' alt='clock icon' height='30' width='30'><strong>Cooking Time: </strong><?php echo $recipe['maxTime'] ?> minutes</p>
 
                     <h5> <strong>Ingredients: </strong></h5>
                     <hr align="left" class="single-recipe-line-ingredients">

@@ -14,21 +14,22 @@ include_once 'includes/CDNs.php';
   <script src="javascript/randomRecipe.js"></script>
 </head>
 
-<body class='site'>
+<body class='site' onload = "findRecipe()">
   <?php include_once 'includes/nav-menu.php'; ?>
 
   <main class='site-content'>
 
     <div class="container">
+
       <h1 class="allRecipes-h1"><span class="underline">Recipe Generator</span></h1>
      
 
       <button class="btn api-button" type="button" onclick="findRecipe()">Generate Recipe</button>
       <div id="displayedRecipe" class="hide">
         <br>
-        <!-- <div class='col-lg-4 api-recipe'>
+        <div class='col-lg-4 api-recipe'>
             <div id="image"></div>
-          </div> -->
+          </div>
         <div class='row random-row'>
           <div class='col-lg-8 random-recipe-list'>
             <div class='col-lg-12 random-recipe title-div'>
@@ -65,14 +66,6 @@ include_once 'includes/CDNs.php';
 
             </div>
             </div>
-
-
-            
-
-            <!-- <div class='col-lg-12 random-recipe'>
-              <h4 class='randomResultHeading'> Ingredients </h4>
-              <ol id="ingredientList" style='padding-left: 4.5%;'></ol>
-            </div> -->
 
             <div class='col-lg-12 random-recipe'>
               <h4 class='randomResultHeading'> Method </h4>
