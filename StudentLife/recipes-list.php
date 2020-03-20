@@ -124,8 +124,8 @@ and open the template in the editor.
     </div>
 
 
-    <h1 class="allRecipes-h1" >All Recipes</h1>
-    <hr align="left">
+    <h1 class="allRecipes-h1" ><span class="underline">All Recipes </span></h1>
+   
     
 
         <?php

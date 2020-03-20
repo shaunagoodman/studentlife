@@ -47,8 +47,8 @@ and open the template in the editor.
 
 
 
-		<h1 class="allRecipes-h1">Blogs</h1>
-		<hr align="left">
+		<h1 class="allRecipes-h1"><span class="underline">Blogs</span></h1>
+
 
 		<!-- <p><a href="add_blog.php"><button type="button" class="btn btn-light">New Blog Post</button></a></p> -->
 

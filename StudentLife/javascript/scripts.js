@@ -340,3 +340,23 @@ function setCookie(cname, cvalue) {
 
   document.cookie = cname + "=" + cvalue + ";" + "path=/";
 }
+
+
+
+// function toggleHideShowRecipes() {
+//   var x = document.getElementById("myRecipes");
+//   if (x.style.display === "none") {
+//     x.style.display = "block";
+//   } else {
+//     x.style.display = "none";
+//   }
+// }
+
+// function toggleHideShowFave() {
+//   var x = document.getElementById("myFaves");
+//   if (x.style.display === "none") {
+//     x.style.display = "block";
+//   } else {
+//     x.style.display = "none";
+//   }
+// }
