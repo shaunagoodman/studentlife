@@ -38,8 +38,7 @@ and open the template in the editor.
     <main class='site-content'>
         <div class="container">
 
-            <h1 class="allRecipes-h1">View All Recipes</h1>
-            <hr align="left">
+            <h1 class="allRecipes-h1"><span class="underline">View All Recipes</span></h1>
 
 
 

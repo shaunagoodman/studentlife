@@ -193,45 +193,72 @@ if (!empty($_POST["ingredient_name"]) && !empty($_POST["ingredient_measure"]) &&
 <main class='site-content' >
 
     <div class='container' >
-    <h2 class='allRecipes-h1'>Create Recipe</h2>
-    <hr align="left">
+    <h2 class='allRecipes-h1'><span class="underline">Create Recipe</span></h2>
     <p>Please fill this form and submit recipe to the database.</p>
 
-    <form class="login-form create-recipe-form" enctype="multipart/form-data" action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
+    <form class=" create-recipe-form" enctype="multipart/form-data" action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
 
-        <div class="form-group <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
+    <div class='row' > 
+        <div class="form-group col-md-6 <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
             <label>Name</label>
             <input type="text" name="recipeName" class="form-control">
             <span class="help-block"><?php echo $name_err; ?></span>
         </div>
 
-        <div class="form-group">
-            <label>Image</label>
-            <input class="input-group " type="file" name="image" accept="image/*" />
-
-        </div>
-
-        <div class="form-group">
+       
+    
+        <div class="form-group col-md-6">
             <label>Video Name</label>
-            <input class="input-group" type="text" name="video_name" />
+            <input class="form-control" type="text" name="video_name" />
             <span class="help-block"></span>
         </div>
+    </div>
                    <!-- ---------------------------- -->
-                   
+                  <div class='row' >
         <div id="addedIngredient" class="col-md-6 form-group <?php echo (!empty($ingredient_err)) ? 'has-error' : ''; ?>">
             <label> Ingredients </label>
+            <button id="addBtn" type="button" class="btn btn-sm add-recipe-button"  onClick="addIngredient()"> Add Ingredient</button>
         </div>
-        <button id="addBtn" type="button" class="btn api-button" style="margin-bottom: 12%;" onClick="addIngredient()"> +</button>
+        
 
         <br>
         <div id="addedStep" class="col-md-6 form-group <?php echo (!empty($step_err)) ? 'has-error' : ''; ?>">
             <label> Method </label>
+           <button id="addBtn" type="button" class="btn btn-sm add-recipe-button"  onClick="addStep()" > Add Step</button>
         </div>
-        <button id="addBtn" type="button" class="btn api-button" style="margin-bottom: 12%;" onClick="addStep()"> +</button>
-
+        
+                  </div>
         <!-- ---------------------------- -->
 
-        <div class="form-group <?php echo (!empty($rating_err)) ? 'has-error' : ''; ?>">
+        <div class=row >
+
+        <div class="form-group col-md-6 <?php echo (!empty($servings_err)) ? 'has-error' : ''; ?>">
+            <label>Servings</label>
+            <input type="text" name="servings" class="form-control" value="<?php echo $servings; ?>">
+            <span class="help-block"><?php echo $servings_err; ?></span>
+        </div>
+
+        <div class="form-group col-md-6 <?php echo (!empty($maxTime_err)) ? 'has-error' : ''; ?>">
+            <label>Max Time</label>
+            <input type="text" name="maxTime" class="form-control" value="<?php echo $time; ?>">
+            <span class="help-block"><?php echo $maxTime_err; ?></span>
+        </div>
+
+        </div>
+        <!-- ---------------------------- -->
+<div class='row' >
+
+        <div class="form-group col-md-4 <?php echo (!empty($difficultyID_err)) ? 'has-error' : ''; ?>">
+            <label>Difficulty</label>
+            <select id="difficulty" name="difficulty">
+                <option value="1">Easy </option>
+                <option value="2">Medium</option>
+                <option value="3">Hard</option>
+            </select>
+            <span class="help-block"><?php echo $difficultyID_err; ?></span>
+        </div>
+
+        <div class="form-group col-md-4 <?php echo (!empty($rating_err)) ? 'has-error' : ''; ?>">
             <label>Rating</label>
             <select id="rating" name="rating">
                 <option value="1">1</option>
@@ -243,26 +270,12 @@ if (!empty($_POST["ingredient_name"]) && !empty($_POST["ingredient_measure"]) &&
             <span class="help-block"><?php echo $rating_err; ?></span>
         </div>
 
-        <div class="form-group <?php echo (!empty($servings_err)) ? 'has-error' : ''; ?>">
-            <label>Servings</label>
-            <textarea name="servings" class="form-control"><?php echo $servings; ?></textarea>
-            <span class="help-block"><?php echo $servings_err; ?></span>
+        <div class="form-group col-md-4 ">
+            <label>Image</label>
+            <input class="input-group " type="file" name="image" accept="image/*" />
+
         </div>
 
-        <div class="form-group <?php echo (!empty($difficultyID_err)) ? 'has-error' : ''; ?>">
-            <label>Difficulty</label>
-            <select id="difficulty" name="difficulty">
-                <option value="1">Easy </option>
-                <option value="2">Medium</option>
-                <option value="3">Hard</option>
-            </select>
-            <span class="help-block"><?php echo $difficultyID_err; ?></span>
-        </div>
-
-        <div class="form-group <?php echo (!empty($maxTime_err)) ? 'has-error' : ''; ?>">
-            <label>Max Time</label>
-            <input type="text" name="maxTime" class="form-control" value="<?php echo $time; ?>">
-            <span class="help-block"><?php echo $maxTime_err; ?></span>
         </div>
 
 

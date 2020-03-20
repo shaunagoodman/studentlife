@@ -32,11 +32,10 @@ and open the template in the editor.
 
             <div class="row" >
 
-                <div class="col-lg-12" >
+                
 
-                    <h1 class="faq-heading" >Frequently Asked Questions</h1>
-                    <hr class="faq-line" >
-                </div>
+                    <h1 class="faq-heading" ><span class="underline">Frequently Asked Questions</span></h1>
+                
 
 
                 <div class="col-lg-12 accordion-section ">
@@ -46,7 +45,7 @@ and open the template in the editor.
                         <div class="card faq-card">
                             <div class="card-header" id="headingOne">
                                 <h5 class="mb-0">
-                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <button class="btn btn-link stretched-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                     <i class="fas fa-search"></i> How do I find a recipe? 
                                     </button>
                                 </h5>
@@ -65,7 +64,7 @@ and open the template in the editor.
                         <div class="card faq-card">
                             <div class="card-header" id="headingTwo">
                                 <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <button class="btn btn-link collapsed stretched-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                     <i class="fas fa-cog"></i> How do I create an account?
                                     </button>
                                 </h5>
@@ -83,7 +82,7 @@ and open the template in the editor.
                         <div class="card faq-card">
                             <div class="card-header" id="headingThree">
                                 <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <button class="btn btn-link collapsed stretched-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                     <i class="far fa-paper-plane"></i>  I have a question! How can I contact Recipeasy?
                                     </button>
                                 </h5>

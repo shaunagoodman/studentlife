@@ -69,8 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<main class='site-content' >
 	<div class='container'>
 
-		<h2 class="allRecipes-h1">Post New Blog</h2>
-		<hr align="left">
+		<h2 class="allRecipes-h1"><span class="underline">Post New Blog</span></h2>
 
 		<form class="login-form" enctype="multipart/form-data" action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
 

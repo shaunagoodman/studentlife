@@ -75,8 +75,8 @@ and open the template in the editor.
             <div class="row">
 
                 <div class="col-lg-12">
-                    <h1 class="home-title1"> Our Features</h1>
-                    <hr align="left">
+                    <h1 class="home-title1"> <span class="underline"> Our Features </span> </h1>
+                    <!-- <hr class='home-hr1' align="left"> -->
                     <br> <br>
 
                     <div class="row">
@@ -127,8 +127,8 @@ and open the template in the editor.
             <div class="row">
 
                 <div class="col-lg-12">
-                    <h1 class="home-title1"> Latest Recipes</h1>
-                    <hr align="left">
+                    <h1 class="home-title1"> <span class="underline"> Latest Recipes</span></h1>
+                    
                 </div>
                 <?php foreach ($recipes as $recipe) :
 

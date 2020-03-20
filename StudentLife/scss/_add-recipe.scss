@@ -1,0 +1,45 @@
+/* *********************** CREATE RECIPE CSS **********************    */
+
+
+.add-recipe-button:hover,
+.add-recipe-button:focus,
+.add-recipe-button:active,
+.add-recipe-button {
+    color: $darkOrange;                  /*writing*/
+    background-color: transparent;
+    border-color: $darkOrange;
+    border-width: 2px;
+    border-radius:50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.add-recipe-button:hover,
+.add-recipe-button:focus,
+.add-recipe-button:active,
+.add-recipe-button.active {
+    color: $white;                  /*writing*/
+    background-color:$darkOrange ;
+    border-color: $darkOrange;
+    border-width: 2px;
+    border-radius:50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+
+.add-recipe-button{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.create-recipe-form{
+    margin-left:12%;
+    margin-right: 12%;
+    padding-top: 2%;
+}
+
+.ingName, .ingMeasure, .ingUnit{
+    width: 100%;
+}
