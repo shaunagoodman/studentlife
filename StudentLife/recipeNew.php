@@ -2,8 +2,21 @@
 // Initialize the session
 session_start();
 require_once 'includes/database/connection.php';
-
 try {
+    //Difficuties
+    $query = "SELECT * from difficulties";
+    $statement = $conn->prepare($query);
+    $statement->execute();
+    $difficulties = $statement->fetchAll();
+    $statement->closeCursor();
+
+    //Cuisines
+    $query = "SELECT * from cuisine ORDER BY name";
+    $statement = $conn->prepare($query);
+    $statement->execute();
+    $cuisine = $statement->fetchAll();
+    $statement->closeCursor();
+
     if(isset($_POST['submit'])) {
         $searchString = $_POST['something'];
         $array = explode(" ",$searchString);
@@ -24,8 +37,37 @@ try {
         $statement2->closeCursor();
     }
     else {
-        $sql = "SELECT * FROM recipes";
-        $statement2 = $conn->prepare($sql);
+        $difficultyID = filter_input(INPUT_GET, "difficulty_id", FILTER_VALIDATE_INT); 
+        $cuisineID = filter_input(INPUT_GET, "cuisine_ID", FILTER_VALIDATE_INT); 
+   if (isset($_POST["postvar"]))
+   {
+       echo $_POST["postvar"];
+   }
+        if ($difficultyID != "") {
+            $query = "SELECT * from recipes WHERE difficultyID = '$difficultyID'";
+        }
+        else if ($cuisineID != "") {
+            $query = "SELECT * FROM recipes r INNER JOIN recipecuisine rc ON r.recipe_ID = rc.recipe_ID WHERE rc.cuisine_ID = '$cuisineID'";
+        } 
+        else if(isset($_POST['time'])) {
+            $query = "SELECT * FROM recipes WHERE `maxTime`<= '00:".$_POST['range'].":00' ";
+        }  
+        else if(isset($_POST['sortAsc'])) {
+            $query = "SELECT * FROM recipes ORDER BY name ASC";
+        }  
+        else if(isset($_POST['sortDesc'])) {
+            $query = "SELECT * FROM recipes ORDER BY name DESC ";
+        } 
+        else if(isset($_POST['recent'])) {
+            $query = "SELECT * FROM recipes ORDER BY maxTime ";
+        }   
+        else if(isset($_POST['nonUser'])) {
+            $query = "SELECT * FROM `recipes` r INNER JOIN user u ON u.user_ID = r.user_ID WHERE u.u_type = 1 ";
+        } 
+        else {
+            $query = "SELECT * from recipes";
+        }
+        $statement2 = $conn->prepare($query);
         $statement2->execute();
         $recipes = $statement2->fetchAll();
         $statement2->closeCursor();
@@ -42,13 +84,74 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <?php include_once 'includes/CDNs.php'; ?>
+    <?php include_once 'includes/CDNs.php';  ?>
+    <script src="javascript/recipesFilter.js"></script>
+    <script src="javascript/slider.js"></script>
     <link href="includes/stylesheet.css" rel="stylesheet" type="text/css" />
 </head>
-<body class='site' >
-    <?php include_once 'includes/nav-menu.php'; ?>
+<body onload = "slider()" class='site' >
+    <?php include_once 'includes/nav-menu.php';?>
     <main class='site-content' >
         <div class="container">
+            <!-- DIFFICULTIES -->
+        <div class='sub-menu' >
+        <?php
+        //get the results from the categories variable(usuing a loop)
+        echo "<div id='div-difficulty-list' >";
+        echo "<ul class='diff-list' id='ul-difficulty-list' >";
+        echo "<li class='li-diff-list' > <a href='recipeNew.php'>Show All </li>";
+        foreach ($difficulties as $difficulty) :
+            echo "<li class='li-diff-list'>";
+            echo "<a class='diff-menu-a' href='recipeNew.php?difficulty_id=" . $difficulty['difficultyID'] . "'>";
+            echo $difficulty['diffName'];
+            echo "</a>";
+            echo "</li>"; 
+        endforeach;
+        echo "</ul>";
+        echo "</div>";
+        ?>
+    </div>
+
+        <!-- CUISINE -->
+        <div class='sub-menu' >
+        <?php
+        //get the results from the categories variable(usuing a loop)
+        echo "<div id='div-difficulty-list' >";
+        echo "<ul class='diff-list' id='ul-difficulty-list' >";
+        foreach ($cuisine as $c) :
+            echo "<li class='li-diff-list'>";
+            echo "<a class='diff-menu-a' href='recipeNew.php?cuisine_ID=" . $c['cuisine_ID'] . "'>";
+            echo $c['name'];
+            echo "</a>";
+            echo "</li>"; 
+        endforeach;
+        echo "</ul>";
+        echo "</div>";
+        ?>
+        <form method = "POST">
+        <label>Max Time</label>
+        <div>
+        <input name = "range" type = "range" min = "1" max = "60" value = "10" id = "myRange"/>
+            <span id = "demo"> <span>
+            	
+        </div>
+        <input type = "submit" name = "time" value = "Filter by Time" />
+        <div>
+        <label> Sort Asc</label>
+        <input name = "sortAsc" type = "submit" value = "SortAsc"/>
+        </div>
+        <div>
+        <label> Sort Desc</label>
+        <input name = "sortDesc" type = "submit" value = "SortDesc"/>
+        </div>
+        <label> Most Recent </label>
+        <input name = "recent" type = "submit" value = "Recent"/>
+        </div>
+        <label> Non user Generated </label>
+        <input name = "nonUser" type = "submit" value = "nonUser"/>
+        </div>
+        </form>
+
         <h1 class="allRecipes-h1" >All Recipes</h1>
         <hr align="left">
         <?php
@@ -95,6 +198,11 @@ try {
 
         <?php endforeach;
         }
+        else {
+            echo "<script language = javascript>
+            noRecipe();
+              </script>";
+        }
         if(isset($_POST['submit'])) {
             $name = "";
             $string = $_POST['something'];
@@ -137,11 +245,6 @@ try {
                         </div>
                         <?php
                         }
-                // else {
-                //     echo "<script language = javascript>
-                //     APIError();
-                // </script>";
-                // }
             }
         }
         echo "</div>" ;

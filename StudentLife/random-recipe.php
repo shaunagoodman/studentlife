@@ -24,9 +24,9 @@ include_once 'includes/CDNs.php';
       <hr align="left">
       <div id="displayedRecipe" class="hide">
         <br>
-        <!-- <div class='col-lg-4 api-recipe'>
+        <div class='col-lg-4 api-recipe'>
             <div id="image"></div>
-          </div> -->
+          </div>
         <div class='row random-row'>
           <div class='col-lg-8 random-recipe-list'>
             <div class='col-lg-12 random-recipe title-div'>
@@ -63,14 +63,6 @@ include_once 'includes/CDNs.php';
 
             </div>
             </div>
-
-
-            
-
-            <!-- <div class='col-lg-12 random-recipe'>
-              <h4 class='randomResultHeading'> Ingredients </h4>
-              <ol id="ingredientList" style='padding-left: 4.5%;'></ol>
-            </div> -->
 
             <div class='col-lg-12 random-recipe'>
               <h4 class='randomResultHeading'> Method </h4>

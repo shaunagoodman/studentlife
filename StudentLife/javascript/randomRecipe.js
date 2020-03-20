@@ -32,6 +32,8 @@ function findRecipe() {
       if (request.status >= 200 && request.status < 400) {
         for (i = 0; i< data.recipes.length; i++) {
           let title = data.recipes[0].title;
+          // GET IMAGE
+          let image = data.recipes[0].image;
           let time = data.recipes[0].readyInMinutes;
           let servings = data.recipes[0].servings;
         
@@ -83,6 +85,12 @@ function findRecipe() {
           titleArea.innerHTML += title + "</br>";          
           timeArea.innerHTML +=  time + " minutes.";
           servingsArea.innerHTML += servings;
+          
+          let imageArea = document.getElementById("image");
+          var img = document.createElement("img");
+          img.src = image;
+          var src = document.getElementById("image");
+          src.appendChild(img);
 
          
           for(i = 0; i < ingredients.length; i++) {
