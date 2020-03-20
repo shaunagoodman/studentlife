@@ -42,8 +42,7 @@ $statement->closeCursor();
     <div class='container'>
 
         <?php foreach ($blog as $blogs) { ?>
-            <h2 class="allRecipes-h1"><?php echo $blogs['blogTitle']; ?></h2>
-            <hr align="left">
+            <h2 class="allRecipes-h1"><span class="underline"><?php echo $blogs['blogTitle']; ?></span></h2>
         <?php } ?>
 
 

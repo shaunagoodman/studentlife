@@ -23,8 +23,8 @@ include_once 'includes/CDNs.php';
 
   <div class="container">
     <br>
-    <center><h1>What's in your fridge?</h1></center>
-    <hr class="faq-line">
+    <h1><span class="underline">What's in your fridge?</span></h1>
+    
     <p>Can't decide what to make? Just enter below what food you have at home and we'll give you some delicious
       recipes that you can make with them!</p>
     <div class="col-md-6 recipe-api">

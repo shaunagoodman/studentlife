@@ -62,10 +62,10 @@ session_start();
 
 
 
-        <center>
-            <h1 class="contact-heading" > Contact Us </h1>
+
+            <h1 class="contact-heading" ><span class="underline"> Contact Us </span></h1>
             <p> Have a question or query? Contact us below and a member of our team will get back to you shortly!</p>
-        </center>
+
         <br>
         <br>
         <div class="row">

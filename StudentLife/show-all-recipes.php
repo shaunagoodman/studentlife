@@ -38,8 +38,7 @@ if (isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true) {
     <div class="container">
 
 
-        <h1 class="allRecipes-h1">All Your Recipes</h1>
-        <hr align="left">
+        <h1 class="allRecipes-h1"><span class="underline">All Your Recipes</span></h1>
 
         
 
