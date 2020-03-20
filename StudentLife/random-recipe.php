@@ -20,8 +20,8 @@ include_once 'includes/CDNs.php';
   <main class='site-content'>
 
     <div class="container">
-      <h1 class="allRecipes-h1">Recipe Generator</h1>
-      <hr align="left">
+      <h1 class="allRecipes-h1"><span class="underline">Recipe Generator</span></h1>
+     
 
       <button class="btn api-button" type="button" onclick="findRecipe()">Generate Recipe</button>
       <div id="displayedRecipe" class="hide">

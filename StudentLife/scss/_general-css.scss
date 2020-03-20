@@ -48,13 +48,15 @@ p{
     font-family: 'Montserrat', sans-serif;
 }
 
+.underline {
+    border-bottom: 3px solid $darkOrange;
+    display: inline-block;
+    line-height: 2;
+  }
 
-
-hr{
-    border: 1.5px solid $darkOrange;
-    border-radius:5px;
-    width: 20%;
-} 
+//   hr{
+//       border:solid  $mediumOrange;
+//   }
 
 body{
     background-color: $white;

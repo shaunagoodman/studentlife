@@ -46,8 +46,8 @@ and open the template in the editor.
     <div class="container">
 
 
-    <h1 class="allRecipes-h1" >Favourites</h1>
-    <hr align="left">
+    <h1 class="allRecipes-h1" ><span class="underline">Favourites</span></h1>
+    
     
 
         <?php
