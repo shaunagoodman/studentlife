@@ -24,11 +24,6 @@ $statement->closeCursor();
 
 
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
 
 <head>
@@ -50,23 +45,18 @@ and open the template in the editor.
         <div class="container jumbo-title">
             <h1 class="display-4 jumbo-text">Find a Recipe</h1>
             <h3 class='jumbo-text' >Pot Luck!</h3>
-
-         
-            <form class="form-inline" method="post">
+            <form class="form-inline" method="post" action="">
             <div class='row' >   
             <div class='col-lg-12' >
                 <input class="form-control mr-sm-2" type="search" name="something" placeholder="Search" aria-label="Search" value="<?= isset($_POST['something']) ? htmlspecialchars($_POST['something']) : '' ?>"><br>
                 </div>
                 
                 <div class='col-lg-12 jumbo-buttons' >
-                <button class='btn btn-sm btn-light'  type="submit" name="submit" formaction = "recipes-list.php" >Click Me!</button> 
-                <button class='btn btn-sm btn-light-invert' formaction = "random-recipe.php">Pot Luck!</button>
+                <button class='btn btn-sm btn-light'  formaction = "random-recipe.php" type="submit" name="submit" >Pot Luck?</button>
+                <button class='btn btn-sm btn-light-invert'formaction = "recipes-list.php" >Click Me!</button>
                 </div>
             </div>
-            </form>
-           
-
-            
+            </form>  
         </div>
     </div>
 
@@ -102,27 +92,6 @@ and open the template in the editor.
                 </div>
             </div>
         </div>
-
-
-        <!-- <div class="col-md-12  second-home-container background-gal ">
-        <div class='container '>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-            sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-        <p>Turpis tincidunt id aliquet risus feugiat in ante metus dictum. Habitant morbi tristique senectus et netus et. Enim neque
-            volutpat ac tincidunt vitae. Donec ultrices tincidunt arcu non sodales neque. Vitae nunc sed velit dignissim
-            sodales ut eu sem. Mauris vitae ultricies leo integer malesuada. Scelerisque eu ultrices vitae auctor eu augue ut
-            lectus arcu. Purus non enim praesent elementum facilisis leo vel. Scelerisque varius morbi enim nunc faucibus a.
-            Eu feugiat pretium nibh ipsum. </p>
-
-        </div>
-    </div> -->
-
-
         <div class='container third-home-container'>
 
             <div class="row">
@@ -132,10 +101,8 @@ and open the template in the editor.
                     
                 </div>
                 <?php foreach ($recipes as $recipe) :
-
                 ?>
                     <div class="col-lg-4 bottom-home ">
-
                         <div class="card home-card test-card">
                             <img src="images/recipes/<?php echo $recipe['image'];  ?>" class="card-img-top" alt='dish image' height='250' width='270'>
                             <div class="card-body">
@@ -144,29 +111,11 @@ and open the template in the editor.
                                 <a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>" class="btn btn-light">More Info</a>
                             </div>
                         </div>
-
                     </div>
-
                 <?php endforeach; ?>
-
             </div>
         </div>
-
-
-
-
     </main>
-
-
-
-
     <?php include_once 'includes/footer.php'; ?>
-
-
-
-
-
-
 </body>
-
 </html>
