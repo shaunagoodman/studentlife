@@ -52,14 +52,15 @@ and open the template in the editor.
             <p class='jumbo-text' >This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
 
          
-            <form class="form-inline" method="post" action="recipes-list.php">
+            <form class="form-inline" method="post">
             <div class='row' >   
             <div class='col-lg-12' >
                 <input class="form-control mr-sm-2" type="search" name="something" placeholder="Search" aria-label="Search" value="<?= isset($_POST['something']) ? htmlspecialchars($_POST['something']) : '' ?>"><br>
                 </div>
                 
                 <div class='col-lg-12 jumbo-buttons' >
-                <button class='btn btn-sm btn-light'  type="submit" name="submit" >Click Me!</button> <button class='btn btn-sm btn-light-invert' >Click Me!</button>
+                <button class='btn btn-sm btn-light'  type="submit" name="submit" formaction = "recipes-list.php" >Click Me!</button> 
+                <button class='btn btn-sm btn-light-invert' formaction = "random-recipe.php">Click Me!</button>
                 </div>
             </div>
             </form>

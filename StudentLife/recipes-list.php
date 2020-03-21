@@ -182,6 +182,9 @@ try {
                 $src = 'images/recipes/'.$recipe['image']; 
             }     
         }
+            $maxTime = $recipe['maxTime'];
+            $timestamp = strtotime($maxTime);
+            $time = date('i', $timestamp);
         ?>
         <div class="col-lg-4 bottom-home ">
             <div class="card home-card recipe-page-card">
@@ -189,7 +192,7 @@ try {
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $recipe['name'];  ?></h5>
                     <p class="card-text" class='recipe-difficulty'> Difficulty: <?php echo $difficulty; ?> </p>
-                    <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
+                    <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $time; ?> minutes
                     </p>
                     <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light stretched-link">View Recipe</button></a> </center>
                 </div>
