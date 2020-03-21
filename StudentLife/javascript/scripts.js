@@ -404,11 +404,33 @@ function addIngredient() {
    ingredientUnitLabel.appendChild(ingredientUnitLabelText);
    area.appendChild(ingredientUnitLabel);
  
-   var ingredientUnitInput = document.createElement("INPUT");
-   ingredientUnitInput.setAttribute("name", "ingredient_unit[]");
-   ingredientUnitInput.setAttribute("type", "text");
-   ingredientUnitInput.setAttribute("class", "form-control");
-   ingredientUnitInput.setAttribute("class", "ingUnit");
+   var x = document.createElement("SELECT");
+  x.setAttribute("id", "mySelect");
+  area.appendChild(x);
+
+  var a = document.createElement("option");
+  a.setAttribute("value", "g");
+  var t = document.createTextNode("g");
+  a.appendChild(t);
+  document.getElementById("mySelect").appendChild(a);
+  
+  var b = document.createElement("option");
+  b.setAttribute("value", "ml");
+  var t = document.createTextNode("ml");
+  b.appendChild(t);
+  document.getElementById("mySelect").appendChild(b);
+  
+    var c = document.createElement("option");
+  c.setAttribute("value", "kg");
+  var t = document.createTextNode("kg");
+  c.appendChild(t);
+  document.getElementById("mySelect").appendChild(c);
+  
+    var d = document.createElement("option");
+  d.setAttribute("value", "litres");
+  var t = document.createTextNode("litres");
+  d.appendChild(t);
+  document.getElementById("mySelect").appendChild(d);
    
    area.appendChild(ingredientUnitInput);
 }
