@@ -60,7 +60,7 @@ and open the template in the editor.
                 
                 <div class='col-lg-12 jumbo-buttons' >
                 <button class='btn btn-sm btn-light'  type="submit" name="submit" formaction = "recipes-list.php" >Click Me!</button> 
-                <button class='btn btn-sm btn-light-invert' formaction = "random-recipe.php">Click Me!</button>
+                <button class='btn btn-sm btn-light-invert' formaction = "random-recipe.php">Pot Luck!</button>
                 </div>
             </div>
             </form>
