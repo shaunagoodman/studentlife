@@ -9,7 +9,7 @@ function findRecipe() {
   let request = new XMLHttpRequest();
   const urlString1 = "https://api.spoonacular.com/recipes/complexSearch?maxReadyTime=";
   const urlString2 = "&apiKey=53bea2eb3c79445188bc4d3f00895d15&query=";
-  let ingredients =document.getElementById('ingredients').value;
+  let ingredients = document.getElementById('hidden').value;
   let maxTime =document.getElementById('time').value;
   let intolerances = getIntolerances();
   let dietRestriction = getDietRestrictions();
@@ -29,7 +29,6 @@ function findRecipe() {
   else {
       requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerances}&diet=${dietRestriction}`;
   }
-
   request.open("GET", requestString, true);
   request.onload = function() {
     let data = JSON.parse(this.response);
@@ -94,10 +93,9 @@ function viewRecipe () {
   let select = document.getElementById("selectIngredients");
   let id = select.value;
   setCookie("recipe_ID", id);
-let urlString1 = "https://api.spoonacular.com/recipes/"
+let urlString1 = "https://api.spoonacular.com/recipes/";
 let urlString2 = "/information?apiKey=53bea2eb3c79445188bc4d3f00895d15";
 let requestString = urlString1 + id + urlString2;
-console.log(requestString);
 request.open("GET", requestString, true);
 request.onload = function() {
   let data = JSON.parse(this.response);
@@ -230,6 +228,53 @@ function toggleIntolerances() {
   var checked = document.getElementById("selectIntolerance").checked;
   if (checked) {
     document.getElementById("intoleranceList").style.display = "block";
+    var txt = document.getElementById('intolerance');
+    var list = document.getElementById('list2');
+    var items = [];
+    
+    txt.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        let val = txt.value;
+        if (val !== '') {
+          if (items.indexOf(val) >= 0) {
+            alert('Tag name is a duplicate');
+          } else {
+            items.push(val);
+            render();
+            txt.value = '';
+            txt.focus();
+          }
+        } else {
+          alert('Please type a tag Name');
+        }
+      }
+    });
+    function remove(i) {
+      items = items.filter(item => items.indexOf(item) != i);
+      render();
+      
+    }
+    function render() {
+      list.innerHTML = '';
+      items.map((item, index) => {
+        list.innerHTML += `<li><span>${item}</span><a href="javascript: void 0" onclick="LIB.remove(${index})">X</a></li>`;
+      });
+      var hidden = document.getElementById("hidden");
+      hidden.style.display = "none";
+      var txt = items.toString();
+      hidden.value = txt;
+    }
+
+    window.LIB = {
+      remove:remove,
+      render: render
+    }
+    
+    
+    window.onload = function() {
+      render();
+      txt.focus();
+    }
   } else {
     document.getElementById("intoleranceList").style.display = "none";
   }
@@ -238,6 +283,53 @@ function toggleDietRestrictions() {
   var checked = document.getElementById("selectDietRestriction").checked;
   if (checked) {
     document.getElementById("dietRestrictionsList").style.display = "block";
+    var txt = document.getElementById('dietRestriction');
+    var list = document.getElementById('list3');
+    var items = [];
+    
+    txt.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        let val = txt.value;
+        if (val !== '') {
+          if (items.indexOf(val) >= 0) {
+            alert('Tag name is a duplicate');
+          } else {
+            items.push(val);
+            render();
+            txt.value = '';
+            txt.focus();
+          }
+        } else {
+          alert('Please type a tag Name');
+        }
+      }
+    });
+    function remove(i) {
+      items = items.filter(item => items.indexOf(item) != i);
+      render();
+      
+    }
+    function render() {
+      list.innerHTML = '';
+      items.map((item, index) => {
+        list.innerHTML += `<li><span>${item}</span><a href="javascript: void 0" onclick="LIB.remove(${index})">X</a></li>`;
+      });
+      var hidden = document.getElementById("hidden");
+      hidden.style.display = "none";
+      var txt = items.toString();
+      hidden.value = txt;
+    }
+
+    window.LIB = {
+      remove:remove,
+      render: render
+    }
+    
+    
+    window.onload = function() {
+      render();
+      txt.focus();
+    }
   } else {
     document.getElementById("dietRestrictionsList").style.display = "none";
   }
@@ -312,11 +404,33 @@ function addIngredient() {
    ingredientUnitLabel.appendChild(ingredientUnitLabelText);
    area.appendChild(ingredientUnitLabel);
  
-   var ingredientUnitInput = document.createElement("INPUT");
-   ingredientUnitInput.setAttribute("name", "ingredient_unit[]");
-   ingredientUnitInput.setAttribute("type", "text");
-   ingredientUnitInput.setAttribute("class", "form-control");
-   ingredientUnitInput.setAttribute("class", "ingUnit");
+   var x = document.createElement("SELECT");
+  x.setAttribute("id", "mySelect");
+  area.appendChild(x);
+
+  var a = document.createElement("option");
+  a.setAttribute("value", "g");
+  var t = document.createTextNode("g");
+  a.appendChild(t);
+  document.getElementById("mySelect").appendChild(a);
+  
+  var b = document.createElement("option");
+  b.setAttribute("value", "ml");
+  var t = document.createTextNode("ml");
+  b.appendChild(t);
+  document.getElementById("mySelect").appendChild(b);
+  
+    var c = document.createElement("option");
+  c.setAttribute("value", "kg");
+  var t = document.createTextNode("kg");
+  c.appendChild(t);
+  document.getElementById("mySelect").appendChild(c);
+  
+    var d = document.createElement("option");
+  d.setAttribute("value", "litres");
+  var t = document.createTextNode("litres");
+  d.appendChild(t);
+  document.getElementById("mySelect").appendChild(d);
    
    area.appendChild(ingredientUnitInput);
 }
@@ -345,7 +459,9 @@ function displayEquipment() {
 function setCookie(cname, cvalue) {
 
   document.cookie = cname + "=" + cvalue + ";" + "path=/";
+
 }
+
 function chippy() {
   var txt = document.getElementById('ingredients');
 var list = document.getElementById('list');

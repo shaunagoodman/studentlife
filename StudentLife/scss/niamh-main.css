@@ -979,6 +979,68 @@ ul.ingredients-list {
   color: #FB6107;
 }
 
+#ingredientsList, #intoleranceList, #dietRestrictionsList {
+  width: 500px;
+  background: #f0f0f0;
+  padding: 15px 15px 10px 15px;
+  border-radius: 15px;
+}
+
+#ingredientsList h1, #intoleranceList h1, #dietRestrictionsList h1 {
+  font-size: 18px;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+#ingredientsList ul, #intoleranceList ul, #dietRestrictionsList ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  display: inline-block;
+}
+
+#ingredientsList ul li, #intoleranceList ul li, #dietRestrictionsList ul li {
+  display: inline-block;
+  background: #555;
+  color: white;
+  padding: 3px 5px 3px 10px;
+  border-radius: 15px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+#ingredientsList ul li a, #intoleranceList ul li a, #dietRestrictionsList ul li a {
+  color: white;
+  text-decoration: none;
+  margin-left: 5px;
+  font-size: 10px;
+  background: #333;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#ingredientsList ul li a:hover, #intoleranceList ul li a:hover, #dietRestrictionsList ul li a:hover {
+  color: red;
+}
+
+#ingredientsList input, #intoleranceList input, #dietRestrictionsList input {
+  border: 0px;
+  background: none;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
 /* *********************** MY RECIPES PAGE & CREATE RECIPE PAGE CSS **********************    */
 a.add-my-recipe {
   color: #FB6107;

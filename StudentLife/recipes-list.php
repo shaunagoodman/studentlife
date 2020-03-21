@@ -86,22 +86,108 @@ try {
         <div class="container">
 
             <!-- DIFFICULTIES -->
-            <div class='sub-menu'>
-                <?php
-                //get the results from the categories variable(usuing a loop)
-                echo "<div id='div-difficulty-list' >";
-                echo "<ul class='diff-list' id='ul-difficulty-list' >";
-                echo "<li class='li-diff-list' > <a href='recipes-list.php'>Show All </li>";
-                foreach ($difficulties as $difficulty) :
-                    echo "<li class='li-diff-list'>";
-                    echo "<a class='diff-menu-a' href='recipes-list.php?difficulty_id=" . $difficulty['difficultyID'] . "'>";
-                    echo $difficulty['diffName'];
-                    echo "</a>";
-                    echo "</li>";
-                endforeach;
-                echo "</ul>";
-                echo "</div>";
-                ?>
+        <div class='sub-menu' >
+        <?php
+        //get the results from the categories variable(usuing a loop)
+        echo "<div id='div-difficulty-list' >";
+        echo "<ul class='diff-list' id='ul-difficulty-list' >";
+        echo "<li class='li-diff-list' > <a href='recipes-list.php'>Show All </li>";
+        foreach ($difficulties as $difficulty) :
+            echo "<li class='li-diff-list'>";
+            echo "<a class='diff-menu-a' href='recipes-list.php?difficulty_id=" . $difficulty['difficultyID'] . "'>";
+            echo $difficulty['diffName'];
+            echo "</a>";
+            echo "</li>"; 
+        endforeach;
+        echo "</ul>";
+        echo "</div>";
+        ?>
+    </div>
+
+        <!-- CUISINE -->
+        <div class='sub-menu' >
+        <?php
+        //get the results from the categories variable(usuing a loop)
+        echo "<div id='div-difficulty-list' >";
+        echo "<ul class='diff-list' id='ul-difficulty-list' >";
+        foreach ($cuisine as $c) :
+            echo "<li class='li-diff-list'>";
+            echo "<a class='diff-menu-a' href='recipes-list.php?cuisine_ID=" . $c['cuisine_ID'] . "'>";
+            echo $c['name'];
+            echo "</a>";
+            echo "</li>"; 
+        endforeach;
+        echo "</ul>";
+        echo "</div>";
+        ?>
+        <form method = "POST">
+        <label>Max Time</label>
+        <div>
+        <input name = "range" type = "range" min = "1" max = "60" value = "10" id = "myRange"/>
+            <span id = "demo"> <span>
+            	
+        </div>
+        <input type = "submit" name = "time" value = "Filter by Time" />
+        <div>
+        <label> Sort Asc</label>
+        <input name = "sortAsc" type = "submit" value = "SortAsc"/>
+        </div>
+        <div>
+        <label> Sort Desc</label>
+        <input name = "sortDesc" type = "submit" value = "SortDesc"/>
+        </div>
+        <label> Most Recent </label>
+        <input name = "recent" type = "submit" value = "Recent"/>
+        </div>
+        <label> Non user Generated </label>
+        <input name = "nonUser" type = "submit" value = "nonUser"/>
+        </div>
+        </form>
+
+
+    <h1 class="allRecipes-h1" ><span class="underline">All Recipes </span></h1>
+        <?php
+        echo "<div class='row' >";
+        if(!empty($recipes)) {
+        foreach ($recipes as $recipe) :  
+        if($recipe['difficultyID'] == 1) {
+            $difficulty = "Easy";
+        }
+        else if ($recipe['difficultyID'] == 2) {
+            $difficulty = "Medium";
+        }
+        else if ($recipe['difficultyID'] == 3) {
+            $difficulty = "Hard";
+        }
+        else {
+            $difficulty = "No difficulty selected.";
+        }
+        
+        if($recipe['isAPI'] == 1) {
+            $src = $recipe['image'];
+        }
+        else {
+            if(empty($recipe['image'])) {
+                $src = "images/recipes/placeholder.png";
+            }
+            else {
+                $src = 'images/recipes/'.$recipe['image']; 
+            }     
+        }
+            $maxTime = $recipe['maxTime'];
+            $timestamp = strtotime($maxTime);
+            $time = date('i', $timestamp);
+        ?>
+        <div class="col-lg-4 bottom-home ">
+            <div class="card home-card recipe-page-card">
+                <img src="<?php echo $src;?>" class="card-img-top" alt='dish image' height='315' width='328'>
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo $recipe['name'];  ?></h5>
+                    <p class="card-text" class='recipe-difficulty'> Difficulty: <?php echo $difficulty; ?> </p>
+                    <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $time; ?> minutes
+                    </p>
+                    <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light stretched-link">View Recipe</button></a> </center>
+                </div>
             </div>
 
             <!-- CUISINE -->
