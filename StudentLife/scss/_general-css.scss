@@ -45,7 +45,11 @@ h6{
 }
 
 p{
-    font-family: 'Montserrat', sans-serif;
+  @include mont-medium-font;
+}
+
+input.sortBy{
+  @include mont-medium-font;
 }
 
 .underline {

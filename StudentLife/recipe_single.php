@@ -19,7 +19,7 @@ $statement2->closeCursor();
 
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>A Recipe</title>
 
     <?php include_once 'includes/CDNs.php'; ?>
 
@@ -63,8 +63,8 @@ $statement2->closeCursor();
 
         ?>
 
-            <h2 class="heading allRecipes-h1"><?php echo $recipe['name'] ?> </h2>
-            <hr align="left">
+            <h2 class="heading allRecipes-h1"><span class="underline"><?php echo $recipe['name'] ?></span> </h2>
+            
 
             <div class=row>
                 <div class='col-md-5 single-recipe-topRow'>
