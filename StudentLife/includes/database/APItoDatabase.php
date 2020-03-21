@@ -8,7 +8,7 @@ include_once 'includes/database/connection.php';
         $title =  $response["title"];
         $servings =  $response["servings"];
         $image = $response["image"];
-        $maxTime = $response['cookingMinutes'];
+        $maxTime = $response['readyInMinutes'];
         if($maxTime < 60) { // less than an hour
             if ($maxTime < 10) {
                 $time =  "00:0" . $maxTime . ":00"; // time is less than 10 mins

@@ -56,3 +56,18 @@ function deactivated() {
        window.location = 'logout.php';
    });;
 }
+
+function APIError() {
+    swal({
+        title: "Oops!",
+        type: "fail",
+        text: "Spoonacular seems to be having problems returning more data. Please try again tomorrow."
+    });
+}
+function noRecipe() {
+    swal({
+        title: "Oops!",
+        type: "fail",
+        text: "There's no recipe which matches this cuisine. Why not try another?"
+    });
+}

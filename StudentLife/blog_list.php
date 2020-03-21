@@ -1,3 +1,7 @@
+<!--
+TEST COMMENT Tools | Templates
+and open the template in the editor.
+-->
 <?php
 session_start();
 require_once 'includes/database/connection.php';

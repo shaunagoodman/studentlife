@@ -97,6 +97,7 @@ function viewRecipe () {
 let urlString1 = "https://api.spoonacular.com/recipes/"
 let urlString2 = "/information?apiKey=53bea2eb3c79445188bc4d3f00895d15";
 let requestString = urlString1 + id + urlString2;
+console.log(requestString);
 request.open("GET", requestString, true);
 request.onload = function() {
   let data = JSON.parse(this.response);
@@ -114,6 +115,8 @@ request.onload = function() {
     // GET IMAGE
     let image = data.image;
 
+    //TIME 
+    let time = data.readyInMinutes;
     // GET SERVINGS
     let servingsInt = JSON.parse(data.servings);
 
@@ -165,11 +168,14 @@ request.onload = function() {
 
   /* Only change below for where the method is being displayed*/
   // Image
-  // let imageArea = document.getElementById("image");
-  // var img = document.createElement("img");
-  // img.src = image;
-  // var src = document.getElementById("image");
-  // src.appendChild(img);
+  let imageArea = document.getElementById("image");
+  var img = document.createElement("img");
+  img.src = image;
+  imageArea.appendChild(img);
+  //Time
+  let timeArea = document.getElementById("maxTime");
+  timeArea.innerHTML = time;
+  
   // Recipe Name
   let titleArea = document.getElementById("recipeName");
   titleArea.innerHTML += title;
@@ -340,23 +346,43 @@ function setCookie(cname, cvalue) {
 
   document.cookie = cname + "=" + cvalue + ";" + "path=/";
 }
+function chippy() {
+  var txt = document.getElementById('ingredients');
+var list = document.getElementById('list');
+var items = [];
 
+txt.addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    let val = txt.value;
+    if (val !== '') {
+      if (items.indexOf(val) >= 0) {
+        alert('Tag name is a duplicate');
+      } else {
+        items.push(val);
+        render();
+        txt.value = '';
+        txt.focus();
+      }
+    } else {
+      alert('Please type a tag Name');
+    }
+  }
+});
 
+function render() {
+  list.innerHTML = '';
+  items.map((item, index) => {
+    list.innerHTML += `<li><span>${item}</span><a href="javascript: remove(${index})">X</a></li>`;
+  });
+}
 
-// function toggleHideShowRecipes() {
-//   var x = document.getElementById("myRecipes");
-//   if (x.style.display === "none") {
-//     x.style.display = "block";
-//   } else {
-//     x.style.display = "none";
-//   }
-// }
+function remove(i) {
+  items = items.filter(item => items.indexOf(item) != i);
+  render();
+}
 
-// function toggleHideShowFave() {
-//   var x = document.getElementById("myFaves");
-//   if (x.style.display === "none") {
-//     x.style.display = "block";
-//   } else {
-//     x.style.display = "none";
-//   }
-// }
+window.onload = function() {
+  render();
+  txt.focus();
+}
+}
