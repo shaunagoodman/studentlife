@@ -1444,6 +1444,10 @@ textarea.blog-post {
   display: none;
 }
 
+.ingredientMethod {
+  margin-bottom: 5%;
+}
+
 @media only screen and (min-width: 800px) {
   .methodDiv {
     display: inline;
