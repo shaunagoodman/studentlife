@@ -49,7 +49,7 @@ and open the template in the editor.
     <div class="jumbotron jumbotron-fluid">
         <div class="container jumbo-title">
             <h1 class="display-4 jumbo-text">Find a Recipe</h1>
-            <p class='jumbo-text' >This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+            <h3 class='jumbo-text' >Pot Luck!</h3>
 
          
             <form class="form-inline" method="post" action="recipes-list.php">
@@ -59,7 +59,7 @@ and open the template in the editor.
                 </div>
                 
                 <div class='col-lg-12 jumbo-buttons' >
-                <button class='btn btn-sm btn-light'  type="submit" name="submit" >Click Me!</button> <button class='btn btn-sm btn-light-invert' >Click Me!</button>
+                <button class='btn btn-sm btn-light'  type="submit" name="submit" >Pot Luck?</button> <button class='btn btn-sm btn-light-invert' >Click Me!</button>
                 </div>
             </div>
             </form>

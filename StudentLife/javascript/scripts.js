@@ -386,3 +386,46 @@ window.onload = function() {
   txt.focus();
 }
 }
+
+
+
+function hideShow() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+
+
+$(document).ready(function() {
+  $(this).on("click", ".sortTitle", function() {
+    $(this).parent().find(".sortDiv").toggle();
+    $(this).find(".fa").toggleClass('active');
+  });
+});
+
+
+
+$(document).ready(function() {
+  $(this).on("click", ".cuisineTitle", function() {
+    $(this).parent().find(".cuisineDiv").toggle();
+    $(this).find(".fa2").toggleClass('active');
+  });
+});
+
+$(document).ready(function() {
+  $(this).on("click", ".ingredientsTitle", function() {
+    $(this).parent().find(".ingredientsDiv").toggle();
+    $(this).find(".fa2").toggleClass('active');
+  });
+});
+
+$(document).ready(function() {
+  $(this).on("click", ".methodTitle", function() {
+    $(this).parent().find(".methodDiv").toggle();
+    $(this).find(".fa3").toggleClass('active');
+  });
+});
