@@ -1,7 +1,6 @@
 <?php
 session_start();
 include_once 'includes/database/connection.php';
-include_once 'includes/CDNs.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,9 +21,6 @@ include_once 'includes/CDNs.php';
     <div class="container">
 
       <h1 class="allRecipes-h1"><span class="underline">Recipe Generator</span></h1>
-     
-
-      <button class="btn api-button" type="button" onclick="findRecipe()">Generate Recipe</button>
       <div id="displayedRecipe" class="hide">
         <br>
         <div class='col-lg-4 api-recipe'>
