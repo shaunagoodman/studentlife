@@ -77,7 +77,7 @@ foreach ($response['analyzedInstructions'] as $instruction) {
 
                 </div>
 
-                <div class='row'>
+                <div class='row ingredientMethod'>
 
                     <div class='col-lg-4 col-md-5 col-12 '>
 
@@ -138,6 +138,7 @@ foreach ($response['analyzedInstructions'] as $instruction) {
                         ?></div>
                         
                     </div>
+                    
                 </div>
               
             </div>
