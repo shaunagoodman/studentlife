@@ -38,7 +38,15 @@ h6 {
 }
 
 p {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+input.sortBy {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 400;
 }
 
 .underline {
@@ -137,7 +145,7 @@ body {
 /* ************Home page specific css*******************     */
 .jumbotron {
   color: white;
-  background-image: url("../images/background-profile.jpg");
+  background-image: url("../images/backgrounds/hero5.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -528,7 +536,7 @@ input[type=email] {
 textarea {
   background: transparent !important;
   border: none !important;
-  border-bottom: 1px solid #FB6107 !important;
+  border-bottom: 1px solid #727272 !important;
   border-radius: 0;
 }
 
@@ -680,7 +688,7 @@ label {
 }
 
 .li-diff-list {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   margin-right: 2%;
 }
 
@@ -715,8 +723,47 @@ li.li-diff-list > a:hover:before {
   transform: scaleX(1);
 }
 
+.slider-div {
+  margin-left: 6%;
+}
+
+.sortBy:hover {
+  color: #EF7823;
+  -webkit-transition: ease 0.3;
+  transition: ease 0.3;
+}
+
+.sortTitle {
+  cursor: pointer;
+}
+
+.sortSpan:hover {
+  color: #EF7823;
+  -webkit-transition: ease 0.5;
+  transition: ease 0.5;
+}
+
+.fa {
+  -webkit-transform: rotateZ(90deg);
+          transform: rotateZ(90deg);
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
+}
+
+.fa.active {
+  -webkit-transform: rotateZ(0deg);
+          transform: rotateZ(0deg);
+}
+
+.form-sort {
+  border-bottom: 1px solid;
+  border-bottom-color: #f29e4c;
+}
+
 #text {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .recipe-difficulty {
@@ -729,6 +776,79 @@ li.li-diff-list > a:hover:before {
 
 .recipe-page-card {
   margin-right: 3%;
+}
+
+.cuisineTitle {
+  cursor: pointer;
+}
+
+.cuisineSpan:hover {
+  color: #EF7823;
+  -webkit-transition: ease 0.5;
+  transition: ease 0.5;
+}
+
+.fa2 {
+  -webkit-transform: rotateZ(0deg);
+          transform: rotateZ(0deg);
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
+}
+
+.fa2.active {
+  -webkit-transform: rotateZ(90deg);
+          transform: rotateZ(90deg);
+}
+
+.cuisineDiv {
+  display: none;
+}
+
+.cuisine-list {
+  padding-left: 5.5%;
+}
+
+.cuisine-class {
+  text-decoration: none;
+}
+
+#div-cuisine-list {
+  text-align: right;
+  display: inline;
+}
+
+#ul-cuisine-list li {
+  display: inline;
+}
+
+.li-cuisine-list {
+  font-family: "Montserrat", sans-serif;
+  margin-right: 2%;
+}
+
+li.li-cuisine-list > a {
+  position: relative;
+  color: #000;
+  text-decoration: none;
+}
+
+li.li-cuisine-list > a:hover {
+  color: #EF7823;
+  -webkit-transition: ease 0.3;
+  transition: ease 0.3;
+}
+
+@media only screen and (max-width: 991px) {
+  .surround-filter-div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
 
 /* *************************** SINGLE RECIPE PAGE CSS *****************************     */
@@ -1375,5 +1495,78 @@ textarea.blog-post {
   margin-left: 25%;
   margin-right: 25%;
   padding-top: 2%;
+}
+
+/* *********************** API SINGLE RECIPE RELATED CSS **********************    */
+.ingredientsTitle {
+  display: none;
+}
+
+.methodTitle {
+  display: none;
+}
+
+.ingredientMethod {
+  margin-bottom: 5%;
+}
+
+@media only screen and (min-width: 800px) {
+  .methodDiv {
+    display: inline;
+  }
+  .ingredientsDiv {
+    display: inline;
+  }
+}
+
+@media only screen and (max-width: 801px) {
+  .ingredientsDeskTitle {
+    display: none;
+  }
+  .ingredientsTitle {
+    cursor: pointer;
+    display: block;
+  }
+  .ingredientsSpan:hover {
+    color: #EF7823;
+    -webkit-transition: ease 0.5;
+    transition: ease 0.5;
+  }
+  .fa2 {
+    -webkit-transform: rotateZ(90deg);
+            transform: rotateZ(90deg);
+    -webkit-transition: -webkit-transform 0.2s;
+    transition: -webkit-transform 0.2s;
+    transition: transform 0.2s;
+    transition: transform 0.2s, -webkit-transform 0.2s;
+  }
+  .fa2.active {
+    -webkit-transform: rotateZ(0deg);
+            transform: rotateZ(0deg);
+  }
+  .methodDeskTitle {
+    display: none;
+  }
+  .methodTitle {
+    cursor: pointer;
+    display: block;
+  }
+  .methodSpan:hover {
+    color: #EF7823;
+    -webkit-transition: ease 0.5;
+    transition: ease 0.5;
+  }
+  .fa3 {
+    -webkit-transform: rotateZ(90deg);
+            transform: rotateZ(90deg);
+    -webkit-transition: -webkit-transform 0.2s;
+    transition: -webkit-transform 0.2s;
+    transition: transform 0.2s;
+    transition: transform 0.2s, -webkit-transform 0.2s;
+  }
+  .fa3.active {
+    -webkit-transform: rotateZ(0deg);
+            transform: rotateZ(0deg);
+  }
 }
 /*# sourceMappingURL=niamh-main.css.map */

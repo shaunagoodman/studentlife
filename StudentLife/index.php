@@ -49,7 +49,7 @@ and open the template in the editor.
     <div class="jumbotron jumbotron-fluid">
         <div class="container jumbo-title">
             <h1 class="display-4 jumbo-text">Find a Recipe</h1>
-            <p class='jumbo-text' >This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+            <h3 class='jumbo-text' >Pot Luck!</h3>
 
          
             <form class="form-inline" method="post">

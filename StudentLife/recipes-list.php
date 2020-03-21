@@ -17,16 +17,15 @@ try {
     $cuisine = $statement->fetchAll();
     $statement->closeCursor();
 
-    if(isset($_POST['submit'])) {
+    if (isset($_POST['submit'])) {
         $searchString = $_POST['something'];
-        $array = explode(" ",$searchString);
+        $array = explode(" ", $searchString);
         $sql = "SELECT * FROM recipes WHERE name ";
         $count = 0;
-        forEach($array as $value) {
+        foreach ($array as $value) {
             if ($count == 0) {
                 $sql .= " LIKE '%" . $value . "%'";
-            }
-            else {
+            } else {
                 $sql .= " OR '%" . $value . "%'";
             }
             $count++;
@@ -35,36 +34,27 @@ try {
         $statement2->execute();
         $recipes = $statement2->fetchAll();
         $statement2->closeCursor();
-    }
-    else {
-        $difficultyID = filter_input(INPUT_GET, "difficulty_id", FILTER_VALIDATE_INT); 
-        $cuisineID = filter_input(INPUT_GET, "cuisine_ID", FILTER_VALIDATE_INT); 
-   if (isset($_POST["postvar"]))
-   {
-       echo $_POST["postvar"];
-   }
+    } else {
+        $difficultyID = filter_input(INPUT_GET, "difficulty_id", FILTER_VALIDATE_INT);
+        $cuisineID = filter_input(INPUT_GET, "cuisine_ID", FILTER_VALIDATE_INT);
+        if (isset($_POST["postvar"])) {
+            echo $_POST["postvar"];
+        }
         if ($difficultyID != "") {
             $query = "SELECT * from recipes WHERE difficultyID = '$difficultyID'";
-        }
-        else if ($cuisineID != "") {
+        } else if ($cuisineID != "") {
             $query = "SELECT * FROM recipes r INNER JOIN recipecuisine rc ON r.recipe_ID = rc.recipe_ID WHERE rc.cuisine_ID = '$cuisineID'";
-        } 
-        else if(isset($_POST['time'])) {
-            $query = "SELECT * FROM recipes WHERE `maxTime`<= '00:".$_POST['range'].":00' ";
-        }  
-        else if(isset($_POST['sortAsc'])) {
+        } else if (isset($_POST['time'])) {
+            $query = "SELECT * FROM recipes WHERE `maxTime`<= '00:" . $_POST['range'] . ":00' ";
+        } else if (isset($_POST['sortAsc'])) {
             $query = "SELECT * FROM recipes ORDER BY name ASC";
-        }  
-        else if(isset($_POST['sortDesc'])) {
+        } else if (isset($_POST['sortDesc'])) {
             $query = "SELECT * FROM recipes ORDER BY name DESC ";
-        } 
-        else if(isset($_POST['recent'])) {
+        } else if (isset($_POST['recent'])) {
             $query = "SELECT * FROM recipes ORDER BY maxTime ";
-        }   
-        else if(isset($_POST['nonUser'])) {
+        } else if (isset($_POST['nonUser'])) {
             $query = "SELECT * FROM `recipes` r INNER JOIN user u ON u.user_ID = r.user_ID WHERE u.u_type = 1 ";
-        } 
-        else {
+        } else {
             $query = "SELECT * from recipes";
         }
         $statement2 = $conn->prepare($query);
@@ -72,8 +62,7 @@ try {
         $recipes = $statement2->fetchAll();
         $statement2->closeCursor();
     }
-}
- catch (Exception $ex) {
+} catch (Exception $ex) {
     $errorMessage = $e->getMessage();
     echo $errorMessage;
     exit();
@@ -81,18 +70,21 @@ try {
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>All Recipes</title>
     <?php include_once 'includes/CDNs.php';  ?>
-    <script src="javascript/recipesFilter.js"></script>
-    <script src="javascript/slider.js"></script>
-    <link href="includes/stylesheet.css" rel="stylesheet" type="text/css" />
+
 </head>
-<body onload = "slider()" class='site' >
-    <?php include_once 'includes/nav-menu.php';?>
-    <main class='site-content' >
+
+
+<body onload="slider()" class='site'>
+    <?php include_once 'includes/nav-menu.php'; ?>
+    <main class='site-content'>
+
         <div class="container">
+
             <!-- DIFFICULTIES -->
         <div class='sub-menu' >
         <?php
@@ -197,63 +189,180 @@ try {
                     <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light stretched-link">View Recipe</button></a> </center>
                 </div>
             </div>
-        </div>
 
-        <?php endforeach;
-        }
-        else {
-            echo "<script language = javascript>
+            <!-- CUISINE -->
+
+
+
+            <div class='container'>
+
+                <h1 class="allRecipes-h1"><span class="underline">All Recipes </span></h1>
+
+
+                <div class='row'>
+
+                    <!-- ********************************SORT BY DIV************************************* -->
+                    <div class='col-lg-3'>
+
+                        <div class='row surround-filter-div'>
+                            <div class='col-sm-6 col-lg-12'>
+                                <div class="sortTitle">
+                                    <h4><i class="fa fa-chevron-right" aria-hidden="true"></i>
+                                        <span class='sortSpan'> Sort By </span></h4>
+
+                                </div>
+
+                                <div class="sortDiv ">
+                                    <div class='form-sort'>
+                                        <form method="POST">
+                                            <!-- <label>Max Time</label> -->
+                                            <input class="btn sortBy" type="submit" name="time" value="Filter by Minutes" />
+                                            <div class='slider-div'>
+                                                <input name="range" type="range" min="1" max="60" value="10" id="myRange" />
+                                                <span id="demo"> <span>
+                                            </div>
+
+                                            <br>
+
+                                            <input class='btn sortBy' name="sortAsc" type="submit" value="Sort By Ascending" />
+                                            <input class="btn sortBy" name="sortDesc" type="submit" value="Sort By Descending" />
+                                            <input class="btn sortBy" name="recent" type="submit" value="Sort By Most Recent" />
+                                            <input class="btn sortBy" name="nonUser" type="submit" value="Non User Made" />
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+                            <div class='col-sm-6 col-lg-12'>
+                                <div class="cuisineTitle">
+                                    <h4><i class=" fa2 fa fa-chevron-right" aria-hidden="true"></i>
+                                        <span class='cuisineSpan'> Cuisine Category </span></h4>
+                                </div>
+
+
+
+                                <div class='cuisine-div cuisineDiv'>
+
+                                    <label>Select a Category</label>
+
+                                    <?php
+                                    echo "<ul class='cuisine-list' id='ul-cuisine-list' >";
+                                    foreach ($cuisine as $c) :
+                                        echo "<li class='li-cuisine-list'>";
+                                        echo "<a class='cuisine-menu-a' href='recipes-list.php?cuisine_ID=" . $c['cuisine_ID'] . "'>";
+                                        echo $c['name'];
+                                        echo "</a>";
+                                        echo "</li></br>";
+                                    endforeach;
+                                    echo "</ul>";
+
+                                    ?>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- ********************************CARD DIV************************************* -->
+                    <div class='col-lg-9'>
+                        <?php
+                        echo "<div class='row' >";
+                        if (!empty($recipes)) {
+                            foreach ($recipes as $recipe) :
+                                if ($recipe['difficultyID'] == 1) {
+                                    $difficulty = "Easy";
+                                } else if ($recipe['difficultyID'] == 2) {
+                                    $difficulty = "Medium";
+                                } else if ($recipe['difficultyID'] == 3) {
+                                    $difficulty = "Hard";
+                                } else {
+                                    $difficulty = "No difficulty selected.";
+                                }
+
+                                if ($recipe['isAPI'] == 1) {
+                                    $src = $recipe['image'];
+                                } else {
+                                    if (empty($recipe['image'])) {
+                                        $src = "images/recipes/placeholder.png";
+                                    } else {
+                                        $src = 'images/recipes/' . $recipe['image'];
+                                    }
+                                }
+                        ?>
+                                <div class="col-lg-6 recipe-page-cards bottom-home ">
+                                    <div class="card home-card recipe-page-card">
+                                        <img src="<?php echo $src; ?>" class="card-img-top" alt='dish image' height='315' width='328'>
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?php echo $recipe['name'];  ?></h5>
+                                            <p class="card-text" class='recipe-difficulty'> Difficulty: <?php echo $difficulty; ?> </p>
+                                            <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
+                                            </p>
+                                            <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light stretched-link">View Recipe</button></a> </center>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <?php endforeach;
+                        } else {
+                            echo "<script language = javascript>
             noRecipe();
               </script>";
-        }
-        if(isset($_POST['submit'])) {
-            $name = "";
-            $string = $_POST['something'];
-            $arraySearch = explode(" ",$string);
-            $count = count($recipes);
-            $searchString = "";
-            if($count < 9) {
-                $array = [];
-                foreach($arraySearch as $arr) {
-                    $searchString = $arr . "&";
-                }
-                $remaining = (9 - $count);
-                $string1 = "https://api.spoonacular.com/recipes/search?query=";
-                $string2 = "number=";
-                $string3 = "&apiKey=53bea2eb3c79445188bc4d3f00895d15";
-                $url = $string1 . $searchString . $string2 . $remaining . $string3;
-                $response = json_decode(file_get_contents($url),true);
-                    foreach ($response['results'] as $data) {
-                        array_push($array, $data['id']);
-                    }
-                    foreach($array as $a) {
-                        $url = "https://api.spoonacular.com/recipes/".$a."/information?apiKey=53bea2eb3c79445188bc4d3f00895d15";
-                        $response = json_decode(file_get_contents($url),true); 
-                        $name =  $response["title"];
-                        $servings =  $response["servings"];
-                        $image = $response["image"];
-                        $maxTime = $response["readyInMinutes"];
-                        ?>   
-                        <div class="col-lg-4 bottom-home ">
-                        <div class="card home-card recipe-page-card">
-                        <img src="<?php echo $image;?>" class="card-img-top" alt='dish image' height='315' width='328'>
-                        <div class="card-body">
-                        <h5 class="card-title"><?php echo$name;  ?></h5>
-                        <p class="card-text" class='recipe-difficulty'> Difficulty: No difficulty.</p>
-                        <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $maxTime; ?> minutes
-                        </p>
-                        <center><a href="api_single.php?recipe_ID=<?php echo $a ?>"><button type="button" class="btn btn-light stretched-link">View Recipe</button></a> </center>
-                        </div>
-                        </div>
-                        </div>
-                        <?php
                         }
-            }
-        }
-        echo "</div>" ;
-        ?>
+                        if (isset($_POST['submit'])) {
+                            $name = "";
+                            $string = $_POST['something'];
+                            $arraySearch = explode(" ", $string);
+                            $count = count($recipes);
+                            $searchString = "";
+                            if ($count < 9) {
+                                $array = [];
+                                foreach ($arraySearch as $arr) {
+                                    $searchString = $arr . "&";
+                                }
+                                $remaining = (9 - $count);
+                                $string1 = "https://api.spoonacular.com/recipes/search?query=";
+                                $string2 = "number=";
+                                $string3 = "&apiKey=53bea2eb3c79445188bc4d3f00895d15";
+                                $url = $string1 . $searchString . $string2 . $remaining . $string3;
+                                $response = json_decode(file_get_contents($url), true);
+                                foreach ($response['results'] as $data) {
+                                    array_push($array, $data['id']);
+                                }
+                                foreach ($array as $a) {
+                                    $url = "https://api.spoonacular.com/recipes/" . $a . "/information?apiKey=53bea2eb3c79445188bc4d3f00895d15";
+                                    $response = json_decode(file_get_contents($url), true);
+                                    $name =  $response["title"];
+                                    $servings =  $response["servings"];
+                                    $image = $response["image"];
+                                    $maxTime = $response["readyInMinutes"];
+                                ?>
+                                    <div class="col-lg-6 bottom-home ">
+                                        <div class="card home-card recipe-page-card">
+                                            <img src="<?php echo $image; ?>" class="card-img-top" alt='dish image' height='315' width='328'>
+                                            <div class="card-body">
+                                                <h5 class="card-title"><?php echo $name;  ?></h5>
+                                                <p class="card-text" class='recipe-difficulty'> Difficulty: No difficulty.</p>
+                                                <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $maxTime; ?> minutes
+                                                </p>
+                                                <center><a href="api_single.php?recipe_ID=<?php echo $a ?>"><button type="button" class="btn btn-light stretched-link">View Recipe</button></a> </center>
+                                            </div>
+                                        </div>
+                                    </div>
+                        <?php
+                                }
+                            }
+                        }
+                        echo "</div>";
+                        ?>
+                    </div>
+                </div>
+            </div>
 
-    </div>
 
 
 
@@ -261,4 +370,5 @@ try {
     <?php include_once 'includes/footer.php'; ?>
 
 </body>
+
 </html>

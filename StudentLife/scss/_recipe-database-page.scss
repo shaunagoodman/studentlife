@@ -1,90 +1,175 @@
 /* *********************** RECIPE LIST PAGE FROM DATABASE CSS  **********************    */
 
-.sub-menu{
-    padding-top: 2.5%;
-    border-bottom: 1px solid $mediumOrange;
+.sub-menu {
+  padding-top: 2.5%;
+  border-bottom: 1px solid $mediumOrange;
 }
 
-// .diff-menu-a{
-//     font-size: 200%;
-// }
-
-.allRecipes-h1{
-    padding-top: 3%;
+.allRecipes-h1 {
+  padding-top: 3%;
 }
 
-.diff-class{
-    text-decoration: none;
-    
+.diff-class {
+  text-decoration: none;
 }
 
 #div-difficulty-list {
-   text-align: right;
-    display:inline;      
+  text-align: right;
+  display: inline;
 }
-#ul-difficulty-list li{
-    display: inline;
-}
-
-
-
-.li-diff-list{
-    font-family: 'Montserrat', sans-serif;
-    margin-right: 2%;
+#ul-difficulty-list li {
+  display: inline;
 }
 
+.li-diff-list {
+  font-family: "Montserrat", sans-serif;
+  margin-right: 2%;
+}
 
 li.li-diff-list > a {
-    position: relative;
-    color: #000;
-    text-decoration: none;
+  position: relative;
+  color: #000;
+  text-decoration: none;
 }
 
 li.li-diff-list > a:hover {
-    color: #000;
+  color: #000;
 }
 
 li.li-diff-list > a:before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: $darkOrange;
-    visibility: hidden;
-    -webkit-transform: scaleX(0);
-    transform: scaleX(0);
-    -webkit-transition: all 0.3s ease-in-out 0s;
-    transition: all 0.3s ease-in-out 0s;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: $darkOrange;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
 }
-
 
 li.li-diff-list > a:hover:before {
-    visibility: visible;
-    -webkit-transform: scaleX(1);
-    transform: scaleX(1);
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+.slider-div {
+  margin-left: 6%;
+}
+
+.sortBy:hover {
+  color: $mediumOrange;
+  transition: ease 0.3;
+}
+
+.sortTitle {
+  cursor: pointer;
+}
+
+.sortSpan:hover {
+  color: $mediumOrange;
+  transition: ease 0.5;
+}
+
+.fa {
+  transform: rotateZ(90deg);
+  transition: transform 0.2s;
+}
+
+.fa.active {
+  transform: rotateZ(0deg);
+}
+
+.form-sort {
+  border-bottom: 1px solid;
+  border-bottom-color: $lightOrange;
+}
+
+#text {
+  font-family: "Montserrat", sans-serif;
+}
+
+.recipe-difficulty {
+  margin-bottom: 0.1%;
+}
+
+.all-recipes-section {
+  padding-bottom: 3.5%;
+}
+
+.recipe-page-card {
+  margin-right: 3%;
+}
+
+//cuisine list
+
+.cuisineTitle {
+    cursor: pointer;
+  }
+  
+  .cuisineSpan:hover {
+    color: $mediumOrange;
+    transition: ease 0.5;
+  }
+
+.fa2 {
+  transform: rotateZ(0deg);
+  transition: transform 0.2s;
+}
+
+.fa2.active {
+  transform: rotateZ(90deg);
+}
+
+.cuisineDiv {
+  display: none;
+}
+
+.cuisine-list {
+  padding-left: 5.5%;
+}
+
+.cuisine-class {
+  text-decoration: none;
+}
+
+#div-cuisine-list {
+  text-align: right;
+  display: inline;
+}
+#ul-cuisine-list li {
+  display: inline;
+}
+
+.li-cuisine-list {
+  font-family: "Montserrat", sans-serif;
+  margin-right: 2%;
+}
+
+li.li-cuisine-list > a {
+  position: relative;
+  color: #000;
+  text-decoration: none;
+}
+
+li.li-cuisine-list > a:hover {
+  color: $mediumOrange;
+  transition: ease 0.3;
 }
 
 
 
 
+//991
+@media only screen and (max-width: 991px) {
+  .surround-filter-div{
+    display: flex;
+    justify-content: center;
+  }
 
-
-
-#text{
-    font-family: 'Montserrat', sans-serif;
-}
-
-
-.recipe-difficulty{
-    margin-bottom:0.1%;
-}
-
-.all-recipes-section{
-    padding-bottom: 3.5%;
-}
-
-.recipe-page-card{
-    margin-right: 3%;
+  
 }
