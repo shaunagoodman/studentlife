@@ -40,7 +40,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($u_email_err) && empty($u_password_err)){
         // Prepare a select statement
-        $query = "SELECT user_ID, u_type, fname, lname, u_email, u_password FROM user WHERE u_email = :u_email";
+        $query = "SELECT user_ID, u_type, fname, lname, u_email, u_password FROM user WHERE u_email = :u_email AND isActive != 0";
         
         if($stmt = $conn->prepare($query)){
             // Bind variables to the prepared statement as parameters
@@ -121,8 +121,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 
-<body>
+<body class='site' >
     <?php include_once 'includes/nav-menu.php'; ?>
+
+    <main class='site-content' >
 
     <div class="container">
 
@@ -145,14 +147,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="form-group col-md-12">
                 <input type="submit" class="btn btn-light" value="Login">
             </div>
-            <p>Don't have an account? Register <a href="sign-up.php" class="here-link">Sign up now</a>.</p>
+            <p>Don't have an account? <a href="sign-up.php" class="here-link">Sign up now</a>.</p>
         </form>
 
 
 
 
     </div>
-
+    </main>
     <?php include_once 'includes/footer.php';?>
  
 

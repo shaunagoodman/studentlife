@@ -27,7 +27,9 @@ session_start();
         
         $sql = ("INSERT INTO contact(contact_name, email, phone_no, message) VALUES ('$name', '$email', '$phone', '$message')");
         if (mysqli_query($conn, $sql)) {
-            header("refresh:2;thank_you.php");
+            echo "<script language = javascript>
+                  thankYou();
+              </script>";
         }
         else {
             echo "Failed";
@@ -36,11 +38,6 @@ session_start();
 ?>
 
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
 
 <head>
@@ -57,17 +54,18 @@ and open the template in the editor.
 
 </head>
 
-<body>
+<body class='site' >
     <?php include_once 'includes/nav-menu.php'; ?>
 
+    <main class='site-content' >
     <div class="container">
 
 
 
-        <center>
-            <h1 class="contact-heading" > Contact Us </h1>
+
+            <h1 class="contact-heading" ><span class="underline"> Contact Us </span></h1>
             <p> Have a question or query? Contact us below and a member of our team will get back to you shortly!</p>
-        </center>
+
         <br>
         <br>
         <div class="row">
@@ -121,7 +119,7 @@ and open the template in the editor.
         </div>
     </div>
 
-
+    </main>
 
     <?php include_once 'includes/footer.php'; ?>
 

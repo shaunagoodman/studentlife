@@ -38,14 +38,16 @@ and open the template in the editor.
     <link href="includes/stylesheet.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body>
+<body class='site' >
     <?php include_once 'includes/nav-menu.php'; ?>
+
+    <main class='site-content' >
 
     <div class="container">
 
 
-    <h1 class="allRecipes-h1" >Favourites</h1>
-    <hr align="left">
+    <h1 class="allRecipes-h1" ><span class="underline">Favourites</span></h1>
+    
     
 
         <?php
@@ -66,7 +68,7 @@ and open the template in the editor.
                 $difficulty = "No difficulty selected.";
             }
             if(empty($recipe['image'])) {
-                $recipe['image'] = "placeholder.png";
+                $recipe['image'] = "images/recipes/placeholder.png";
             }
             if($recipe['isAPI'] == 1) {
                 $src = $recipe['image'];
@@ -99,4 +101,8 @@ and open the template in the editor.
         
 
     </div> 
+    </main>
     <?php include_once 'includes/footer.php';?>
+
+</body>
+</html>

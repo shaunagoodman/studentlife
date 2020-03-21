@@ -8,8 +8,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 }
 // Include config file
 require_once "includes/database/connection.php";
-
-// Define variables and initialize with empty values
 $recipeName = $image = $video_name = $rating = $servings = $maxTime = $difficultyID = $time =  "";
 $name_err = $rating_err = $ingredient_err = $servings_err = $maxTime_err = $difficultyID_err = "";
 $ingredient_ID = $recipe_ID = $step_ID = "";
@@ -29,27 +27,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $recipeName = $input_name;
 
-    
-
     // Validate  Video
-    $video_name = trim($_POST["video_name"]);
-
+    $video = trim($_POST["video_name"]);
+    $video_name =  substr($video,-11);
+    echo $video_name;
 
     // Validate image
     $image = trim($_FILES["image"]["name"]);
     $imgFile = $_FILES["image"]["name"];
     $tmp_dir = $_FILES["image"]["tmp_name"];
     $imgSize = $_FILES["image"]["size"];
-
     $upload_dir = "images/recipes/"; // upload directory
-
     $imgExt = strtolower(pathinfo($imgFile, PATHINFO_EXTENSION)); // get image extension
 
     // valid image extensions
     $valid_extensions = array("jpeg", "jpg", "png", "gif"); // valid extensions
 
     // rename uploading image
-     $image = rand(1000, 1000000) . "." . $imgExt;
+    if(empty($image)) {
+        $image = "placeholder.png";
+    }
+    else {
+        $image = rand(1000, 1000000) . "." . $imgExt;
+    }
 
     // allow valid image file formats
     if (in_array($imgExt, $valid_extensions)) {
@@ -62,8 +62,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $error_message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
     }
-
-
 
 
     // Validate rating
@@ -110,117 +108,72 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
-
     if (isset($_POST["difficulty"])) {
         $difficultyID = $_POST["difficulty"];  // Storing Selected Value In Variable
     }
 
+    $names = [];
+    $measures = [];
+    $units = [];
 
+if (!empty($_POST["ingredient_name"]) && !empty($_POST["ingredient_measure"]) && !empty($_POST["ingredient_unit"])) {
 
-
-    /******************** Add to ingredients table ************************/
-    if (!empty($_POST["ingredient_name"]) && !empty($_POST["ingredient_measure"]) && !empty($_POST["ingredient_unit"])) {
-        $names = [];
-        $measures = [];
-        $units = [];
-
-
-        foreach ($_POST["ingredient_name"] as $key => $name) {
-            array_push($names, $name);
-        }
-        foreach ($_POST["ingredient_measure"] as $key => $measure) {
-            array_push($measures, $measure);
-        }
-        foreach ($_POST["ingredient_unit"] as $key => $unit) {
-            array_push($units, $unit);
-        }
-
-        $count = count($names);
-        for ($x = 0; $x < $count; $x++) {
-            $sql = "INSERT INTO ingredients (ingredient_ID, name, amount, unit) VALUES (null,'$names[$x]','$measures[$x]','$units[$x]')";
-            $statement = $conn->prepare($sql);
-            $statement->execute();
-            $recipes = $statement->fetchAll();
-            $ingredient_ID = $conn->lastInsertId();
-        }
+    foreach ($_POST["ingredient_name"] as $key => $name) {
+        array_push($names, $name);
     }
-
+    foreach ($_POST["ingredient_measure"] as $key => $measure) {
+        array_push($measures, $measure);
+    }
+    foreach ($_POST["ingredient_unit"] as $key => $unit) {
+        array_push($units, $unit);
+    }
+}
 
     /******************** Add to recipes table ************************/
     if (empty($name_err) && empty($rating_err) && empty($servings_err) && empty($maxTime_err)) {
-        $query = "INSERT INTO recipes (user_ID, name, image, video_name, rating, servings, maxTime, difficultyID) VALUES 
-        (:user_ID, :recipeName, :image, :video_name, :rating, :servings, :maxTime, :difficultyID)";
         $user_ID = $_SESSION["user_ID"];
-        //echo "INSERT INTO recipes (user_ID, name, image, video_name, rating, servings, maxTime, difficultyID) VALUES ($user_ID, $recipeName, $image, $video_name, $rating, $servings, $maxTime, $difficultyID)";
-        if ($stmt = $conn->prepare($query)) {
-            // Bind variables to the prepared statement as parameters
-            $stmt->bindParam(":user_ID", $_SESSION["user_ID"]);
-            $stmt->bindParam(":recipeName", $recipeName);
-            $stmt->bindParam(":image", $image);
-            $stmt->bindParam(":video_name", $video_name);
-            $stmt->bindParam(":rating", $rating);
-            $stmt->bindParam(":servings", $servings);
-            $stmt->bindParam(":maxTime", $maxTime);
-            $stmt->bindParam(":difficultyID", $difficultyID);  
-
-            if ($stmt->execute()) {
-                $recipe_ID = $conn->lastInsertId();
-
-                /******************** Add to recipeIngredient table ************************/
-                $query3 = "INSERT INTO recipeingredient (recipe_ID, ingredient_ID) VALUES ('$recipe_ID','$ingredient_ID')";
-                $statement = $conn->prepare($query3);
-                $statement->execute();
-                $recipeIngredient = $statement->fetchAll();
-                $statement->closeCursor();
-
-
-
-                // /******************** Add to steps table ************************/
-                if (!empty($_POST["steps"])) {
-                    $input = "";
-                    $count = 1;
-                    foreach ($_POST["steps"] as $key => $step) {
-                        $input .= $count . ". " . $step . " ";
-                        $count++;
-                    }
-                    $sql = "INSERT INTO steps(steps_ID, description) VALUES (null,'$input')";
-
-                    $statement = $conn->prepare($sql);
-                    if ($statement->execute()) {
-                        $step_ID = $conn->lastInsertId();
-                    } else {
-                        echo "Something went wrong. Please try again later.";
-                    }
-                    $recipes = $statement->fetchAll();
-                } else {
-                    echo "Enter steps";
-                }
-
-                /******************** Add to recipesteps table ************************/
-                $query4 = "INSERT INTO recipesteps(recipe_ID, steps_ID) VALUES ('$recipe_ID', '$step_ID')";
-                $statement = $conn->prepare($query4);
-                $statement->execute();
-                $recipeStep = $statement->fetchAll();
-                $statement->closeCursor();
-            } else {
-                echo "Something went wrong. Please try again later.";
-            }
-        }
-        unset($stmt);
-        echo "<script language = javascript>
-                  swal({  title: 'Success!',
-                   text: 'You have successfully created a recipe.',  
-                  type: 'success',    
-                  showCancelButton: false,   
-                  closeOnConfirm: false,   
-                  confirmButtonText: 'Aceptar', 
-                  showLoaderOnConfirm: true, }).then(function() {
-                      window.location = 'show-all-recipes.php';
-                  });;
-              </script>";
-    } else {
-        echo "Could not do task";
+        $query = "INSERT INTO recipes (user_ID, name, image, video_name, rating, servings, maxTime, difficultyID) VALUES 
+        ('$user_ID', '$recipeName', '$image', '$video_name', '$rating', '$servings', '$time', '$difficultyID')";
+        $statement1 = $conn->prepare($query);
+        $statement1->execute();
+        $recipe_ID = $conn->lastInsertId();
     }
+         /******************** Add to ingredients table ************************/
+            $count = count($names);
+            for ($x = 0; $x < $count; $x++) {
+             $sql = "INSERT INTO ingredients (ingredient_ID, name, amount, unit) VALUES (null,'$names[$x]','$measures[$x]','$units[$x]')";
+             $statement2 = $conn->prepare($sql);
+             if($statement2->execute()) {
+                 $ingredient_ID = $conn->lastInsertId();
+                 /******************** Add to recipeIngredient table ************************/
+                 $query3 = "INSERT INTO recipeingredient (recipe_ID, ingredient_ID) VALUES ('$recipe_ID','$ingredient_ID')";
+                 $statement3 = $conn->prepare($query3);
+                 $statement3->execute();
+             }
+         }
+         // /******************** Add to steps table ************************/
+        if (!empty($_POST["steps"])) {
+            $input = "";
+            $count = 1;
+            foreach ($_POST["steps"] as $key => $step) {
+                $input .= $count . ". " . $step . " ";
+                $count++;
+            }
+            $sql2 = "INSERT INTO steps(steps_ID, description) VALUES (null,'$input')";
+            $statement4 = $conn->prepare($sql2);
+        if ($statement4->execute()) {
+            $step_ID = $conn->lastInsertId();
+            /******************** Add to recipesteps table ************************/
+            $query4 = "INSERT INTO recipesteps(recipe_ID, steps_ID) VALUES ('$recipe_ID', '$step_ID')";
+            $statement5 = $conn->prepare($query4);
+            $statement5->execute();
+            $statement5->closeCursor();
+            unset($stmt);
+        } else {
+            echo "Something went wrong. Please try again later.";
+        }
+
+        }
 }
 ?>
 
@@ -234,51 +187,78 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php include_once 'includes/CDNs.php'; ?>
 </head>
 
-<body>
+<body class='site' >
     <?php include_once 'includes/nav-menu.php';
     ?>
-
+<main class='site-content' >
 
     <div class='container' >
-    <h2 class='allRecipes-h1'>Create Recipe</h2>
-    <hr align="left">
+    <h2 class='allRecipes-h1'><span class="underline">Create Recipe</span></h2>
     <p>Please fill this form and submit recipe to the database.</p>
 
-    <form class="login-form create-recipe-form" enctype="multipart/form-data" action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
+    <form class=" create-recipe-form" enctype="multipart/form-data" action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
 
-        <div class="form-group <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
+    <div class='row' > 
+        <div class="form-group col-md-6 <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
             <label>Name</label>
             <input type="text" name="recipeName" class="form-control">
             <span class="help-block"><?php echo $name_err; ?></span>
         </div>
 
-        <div class="form-group">
-            <label>Image</label>
-            <input class="input-group " type="file" name="image" accept="image/*" />
-
-        </div>
-
-        <div class="form-group">
+       
+    
+        <div class="form-group col-md-6">
             <label>Video Name</label>
-            <input class="input-group" type="text" name="video_name" />
+            <input class="form-control" type="text" name="video_name" />
             <span class="help-block"></span>
         </div>
+    </div>
                    <!-- ---------------------------- -->
-                   
+                  <div class='row' >
         <div id="addedIngredient" class="col-md-6 form-group <?php echo (!empty($ingredient_err)) ? 'has-error' : ''; ?>">
             <label> Ingredients </label>
+            <button id="addBtn" type="button" class="btn btn-sm add-recipe-button"  onClick="addIngredient()"> Add Ingredient</button>
         </div>
-        <button id="addBtn" type="button" class="btn api-button" style="margin-bottom: 12%;" onClick="addIngredient()"> +</button>
+        
 
         <br>
         <div id="addedStep" class="col-md-6 form-group <?php echo (!empty($step_err)) ? 'has-error' : ''; ?>">
             <label> Method </label>
+           <button id="addBtn" type="button" class="btn btn-sm add-recipe-button"  onClick="addStep()" > Add Step</button>
         </div>
-        <button id="addBtn" type="button" class="btn api-button" style="margin-bottom: 12%;" onClick="addStep()"> +</button>
-
+        
+                  </div>
         <!-- ---------------------------- -->
 
-        <div class="form-group <?php echo (!empty($rating_err)) ? 'has-error' : ''; ?>">
+        <div class=row >
+
+        <div class="form-group col-md-6 <?php echo (!empty($servings_err)) ? 'has-error' : ''; ?>">
+            <label>Servings</label>
+            <input type="text" name="servings" class="form-control" value="<?php echo $servings; ?>">
+            <span class="help-block"><?php echo $servings_err; ?></span>
+        </div>
+
+        <div class="form-group col-md-6 <?php echo (!empty($maxTime_err)) ? 'has-error' : ''; ?>">
+            <label>Max Time</label>
+            <input type="text" name="maxTime" class="form-control" value="<?php echo $time; ?>">
+            <span class="help-block"><?php echo $maxTime_err; ?></span>
+        </div>
+
+        </div>
+        <!-- ---------------------------- -->
+<div class='row' >
+
+        <div class="form-group col-md-4 <?php echo (!empty($difficultyID_err)) ? 'has-error' : ''; ?>">
+            <label>Difficulty</label>
+            <select id="difficulty" name="difficulty">
+                <option value="1">Easy </option>
+                <option value="2">Medium</option>
+                <option value="3">Hard</option>
+            </select>
+            <span class="help-block"><?php echo $difficultyID_err; ?></span>
+        </div>
+
+        <div class="form-group col-md-4 <?php echo (!empty($rating_err)) ? 'has-error' : ''; ?>">
             <label>Rating</label>
             <select id="rating" name="rating">
                 <option value="1">1</option>
@@ -290,26 +270,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <span class="help-block"><?php echo $rating_err; ?></span>
         </div>
 
-        <div class="form-group <?php echo (!empty($servings_err)) ? 'has-error' : ''; ?>">
-            <label>Servings</label>
-            <textarea name="servings" class="form-control"><?php echo $servings; ?></textarea>
-            <span class="help-block"><?php echo $servings_err; ?></span>
+        <div class="form-group col-md-4 ">
+            <label>Image</label>
+            <input class="input-group " type="file" name="image" accept="image/*" />
+
         </div>
 
-        <div class="form-group <?php echo (!empty($difficultyID_err)) ? 'has-error' : ''; ?>">
-            <label>Difficulty</label>
-            <select id="difficulty" name="difficulty">
-                <option value="1">Easy </option>
-                <option value="2">Medium</option>
-                <option value="3">Hard</option>
-            </select>
-            <span class="help-block"><?php echo $difficultyID_err; ?></span>
-        </div>
-
-        <div class="form-group <?php echo (!empty($maxTime_err)) ? 'has-error' : ''; ?>">
-            <label>Max Time</label>
-            <input type="text" name="maxTime" class="form-control" value="<?php echo $time; ?>">
-            <span class="help-block"><?php echo $maxTime_err; ?></span>
         </div>
 
 
@@ -319,6 +285,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 
     </div>
+</main>
     <?php include_once 'includes/footer.php'; ?>
 </body>
 

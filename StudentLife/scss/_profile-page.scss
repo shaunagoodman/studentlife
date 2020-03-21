@@ -32,6 +32,15 @@
 }
 
 
+a.tab-link{
+color: black!important;
+}
+
+a.tab-link:hover{
+    color: $darkOrange!important;
+    transition: 0.3s!important;
+}
+
 a.recipes{
     color:#212529;
     text-decoration: none;
@@ -89,16 +98,8 @@ a.recipes{
     margin-top:10%;
 }
 
-.my-favourites{
-    padding-top:3%;
-    padding-left:25%;
-}
 
 
-.recipes{
-    padding-top:5%;
-    padding-left:33%;
-}
 
 .div-button{
     padding-top:5%;
@@ -112,8 +113,41 @@ a.recipes:hover {
     transition: 0.2s;
   }
 
+  .carousel-control-next,
+  .carousel-control-prev{
+      margin-top: 10rem;
+  }
 
 
+  .carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+  outline: black;
+//   background-size: 100%, 100%;
+  border-radius: 50%;
+//   border: 1px solid black;
+  background-image: none;
+}
+
+.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 55px;
+  color: black;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 55px;
+  color: black;
+}
+
+// .prof-car-h1 {
+//     text-decoration: underline;
+//     text-decoration-color: $darkOrange;
+
+// }
 
 
 @media only screen and (min-width: 992px) {

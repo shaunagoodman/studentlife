@@ -80,7 +80,7 @@ unset($stmt);
     if(empty($fname_err) && empty($lname_err) && empty($u_email_err) && empty($u_password_err) && empty($confirm_u_password_err)){
         
         // Prepare an insert statement
-        $query = "INSERT INTO user (fname, lname, u_email, u_password) VALUES (:fname, :lname, :u_email, :u_password)";
+        $query = "INSERT INTO user (fname, lname, u_email, u_password,isActive) VALUES (:fname, :lname, :u_email, :u_password, 1)";
          
         if($stmt = $conn->prepare($query)){
             // Bind variables to the prepared statement as parameters
@@ -130,9 +130,9 @@ and open the template in the editor.
 
         <link href="includes/stylesheet.css" rel="stylesheet" type="text/css"/>
     </head>
-<body>
+<body class='site sign-up-body' >
 <?php include_once 'includes/nav-menu.php'; ?> 
-
+<main class='site-content' >
 <div class="container" >
 
 
@@ -141,16 +141,16 @@ and open the template in the editor.
 
 
 
-<form class="login-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+<form class="register-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             
 <fieldset>
         <div class="form-row">
-            <div class="form-group col-md-12 <?php echo (!empty($fname_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group col-md-6 <?php echo (!empty($fname_err)) ? 'has-error' : ''; ?>">
                 <label>First Name</label>
                 <input type="text" name="fname" class="form-control" value="<?php echo $fname; ?>">
                 <span class="help-block"><?php echo $fname_err; ?></span>
             </div>
-            <div class="form-group col-md-12 <?php echo (!empty($lname_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group col-md-6 <?php echo (!empty($lname_err)) ? 'has-error' : ''; ?>">
                 <label>Last Name</label>
                 <input type="text" name="lname" class="form-control" value="<?php echo $lname; ?>">
                 <span class="help-block"><?php echo $lname_err; ?></span>
@@ -160,12 +160,12 @@ and open the template in the editor.
                 <input type="text" name="u_email" class="form-control" value="<?php echo $u_email; ?>">
                 <span class="help-block"><?php echo $u_email_err; ?></span>
             </div>
-            <div class="form-group col-md-12 <?php echo (!empty($u_password_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group col-md-6 <?php echo (!empty($u_password_err)) ? 'has-error' : ''; ?>">
                 <label>Password</label>
                 <input type="password" name="u_password" class="form-control" value="<?php echo $u_password; ?>">
                 <span class="help-block"><?php echo $u_password_err; ?></span>
             </div>
-            <div class="form-group col-md-12 <?php echo (!empty($confirm_u_password_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group col-md-6 <?php echo (!empty($confirm_u_password_err)) ? 'has-error' : ''; ?>">
                 <label>Confirm password</label>
                 <input type="password" name="confirm_u_password" class="form-control" value="<?php echo $confirm_u_password; ?>">
                 <span class="help-block"><?php echo $confirm_u_password_err; ?></span>
@@ -176,7 +176,7 @@ and open the template in the editor.
                 <input type="reset" class="btn btn-light btn-sm" value="Reset">
             </div>
             <br><br>
-            <p>Already have an account? Login <a href="login.php" class="here-link">Login Here</a>.</p>
+            <p>Already have an account? <a href="login.php" class="here-link">Login Here</a>.</p>
             </div>
     </fieldset>
         </form>
@@ -186,7 +186,7 @@ and open the template in the editor.
 
 
 </div>
-
+</main>
 <?php
 include_once 'includes/footer.php';
 

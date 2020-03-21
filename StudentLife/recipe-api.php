@@ -15,32 +15,80 @@ include_once 'includes/CDNs.php';
   <meta charset="UTF-8">
   <title>Recipe API</title>
   <script src="javascript/scripts.js"></script>
+  <style>
+    ul{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+
+    li{
+      display: inline-block;
+      background: #555;
+      color: white;
+      padding: 3px 5px 3px 10px;
+      border-radius: 15px;
+      margin-right: 5px;
+      margin-bottom: 5px;
+
+      a{
+        color: white;
+        text-decoration: none;
+        margin-left: 5px;
+        font-size: 10px;
+        background: #333;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        display: inline-flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+
+        &:hover{
+          color: red;
+        }
+      }
+    }
+  }
+
+  input{
+    border: 0px;
+    background: none;
+    margin-bottom: 5px;
+    display: inline-block;
+  }
+  </style>
+
 </head>
-<body>
+<body onload = "chippy()"class='site' >
   <?php include_once 'includes/nav-menu.php'; ?>
+
+  <main class='site-content' >
+
   <div class="container">
     <br>
-    <center><h1>What's in your fridge?</h1></center>
-    <hr class="faq-line">
+    <h1><span class="underline">What's in your fridge?</span></h1>
+    
     <p>Can't decide what to make? Just enter below what food you have at home and we'll give you some delicious
       recipes that you can make with them!</p>
     <div class="col-md-6 recipe-api">
       <!--Search Area-->
       <!--Search Ingredients-->
       <div id="ingredientInput">
-        <input class="form-control api-form-control" name='ingredients' id='ingredients' placeholder="eggs, milk, butter" /> <br>
-        <p> <input class='checkbox-api' type="checkbox" id="addTime" onClick="toggleTime()" />Select if you wish to add a time limit (If you do not set a limit it will defualt to 10 mins).</p>
+      <ul id="list"></ul>
+        <input class="form-control api-form-control" name='ingredients' id='ingredients' type="text" placeholder="eggs, milk, butter">
+        <p> <input class='checkbox-api' type="checkbox" id="addTime" onClick="toggleTime()" />Add Time Limit (If you do not set a limit it will defualt to 10 mins).</p>
         
         <!--TIME -->
         <div id="addedTime">
-          <p> Enter how many minutes long you want to spend cooking </p>
           <input class="form-control api-form-control" name='time' id='time' />
         </div>
         <br>
          <!--INTOLERANCE -->
         <div class='row'>
           <div class='col-lg-6'>
-            <p class='sub-head-api'> <input class='checkbox-api' type="checkbox" id="selectIntolerance" onClick="toggleIntolerances()" />Select if you have an Intolerance</p>
+            <p class='sub-head-api'> <input class='checkbox-api' type="checkbox" id="selectIntolerance" onClick="toggleIntolerances()" />Have an Intolerance?</p>
             <hr align="left" class="api-line">
             <div id="intoleranceList">
               <p><strong>Select any of the following intolerances:</strong> </p>
@@ -63,7 +111,7 @@ include_once 'includes/CDNs.php';
 
           <div class='col-lg-6'>
 
-            <p class='sub-head-api'> <input class='checkbox-api' type="checkbox" id="selectDietRestriction" onClick="toggleDietRestrictions()" />Select if you have a Diet Restriction</p>
+            <p class='sub-head-api'> <input class='checkbox-api' type="checkbox" id="selectDietRestriction" onClick="toggleDietRestrictions()" />Have a Diet Restriction?</p>
             <hr align="left" class="api-line">
             <div id="dietRestrictionsList">
               <p><strong>Select any of the following Diet Restrictions:</strong></p>
@@ -105,9 +153,9 @@ include_once 'includes/CDNs.php';
       <div id="displayedRecipe" class="hide row">
         <!-- <div class='row'> -->
 
-          <!-- <div class='col-lg-4 api-recipe'>
+          <div class='col-lg-4 api-recipe'>
             <div id="image"></div>
-          </div> -->
+          </div>
 
           <div class='col-lg-4 api-recipe'>
             <h5 class='resultHeading'> Title </h5> 
@@ -117,6 +165,11 @@ include_once 'includes/CDNs.php';
           <div class='col-lg-4 api-recipe'>
             <h5 class='resultHeading'> Serves </h5>
             <div id="servings"></div>
+          </div>
+
+          <div class='col-lg-4 api-recipe'>
+            <h5 class='resultHeading'> Time </h5>
+            <div id="maxTime"></div>
           </div>
 
           <div class='col-lg-4 api-recipe'>
@@ -159,15 +212,7 @@ include_once 'includes/CDNs.php';
       }
         else {
           echo "<script language = javascript>
-                  swal({  title: 'Not Logged In!',
-                   text: 'You must be logged in to favourite a recipe.',  
-                  type: 'success',    
-                  showCancelButton: false,   
-                  closeOnConfirm: false,   
-                  confirmButtonText: 'Aceptar', 
-                  showLoaderOnConfirm: true, }).then(function() {
-                      window.location = 'login.php';
-                  });;
+                  favouritePopUp();
               </script>";
             }
         }
@@ -178,6 +223,8 @@ include_once 'includes/CDNs.php';
     </div>
     <!--End recipe container-->
   </div>
+
+  </main>
   <?php
   include_once 'includes/footer.php';
   ?>

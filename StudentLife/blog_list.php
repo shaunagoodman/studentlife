@@ -1,12 +1,16 @@
+<!--
+TEST COMMENT Tools | Templates
+and open the template in the editor.
+-->
 <?php
 session_start();
 require_once 'includes/database/connection.php';
 
-	$query = "SELECT * FROM blog";
-	 $statement = $conn->prepare($query);
-	 $statement->execute();
-	 $blog = $statement->fetchAll();
-	 $statement->closeCursor();
+$query = "SELECT * FROM blog";
+$statement = $conn->prepare($query);
+$statement->execute();
+$blog = $statement->fetchAll();
+$statement->closeCursor();
 
 
 ?>
@@ -19,36 +23,54 @@ and open the template in the editor.
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>Blogs</title>
-    <?php include_once 'includes/CDNs.php'; ?>
-    <link href="includes/stylesheet.css" rel="stylesheet" type="text/css" />
+	<meta charset="UTF-8">
+	<title>Blogs</title>
+	<?php include_once 'includes/CDNs.php'; ?>
+	<link href="includes/stylesheet.css" rel="stylesheet" type="text/css" />
 
 
 </head>
 
-<body>
-<?php include_once 'includes/nav-menu.php'; ?>
+<body class='site' >
+	<?php include_once 'includes/nav-menu.php'; ?>
+	<main class='site-content' >
+	<div class="container">
 
-    <div class="container">
+		<!-- <div class='sub-menu'>
+			<div style='text-align: right'>
+				<ul class='diff-list' id='ul-difficulty-list'>
+					<li class='li-diff-list'> <a href='add_blog.php'>Add New Post </a></li>
+				</ul>
+			</div>
+		</div> -->
 
-<h1>Blog</h1>
 
-<p>
 
-<a href="add_blog.php"><button type="button" class="btn btn-light">New Blog Post</button></a>
 
-</p>
-<p>
-<?php foreach ($blog as $blogs) { ?>
-	<h5 class="blog-title"><?php echo $blogs['blogTitle'];?></h5>
-	<center><a href="blog_single.php?blogId=<?php echo $blogs['blogId'] ?>"><button type="button" class="btn btn-light">View Post</button></a> </center>
-<?php } ?>
-</p>
+		<h1 class="allRecipes-h1"><span class="underline">Blogs</span></h1>
 
-</div>
 
-<?php include_once 'includes/footer.php'; ?>
+		<!-- <p><a href="add_blog.php"><button type="button" class="btn btn-light">New Blog Post</button></a></p> -->
 
+		<div class='row'>
+			<?php foreach ($blog as $blogs) { ?>
+				<div class="col-lg-4 bottom-home ">
+					<div class="hvr-shadow card home-card test-card">
+						<div class="card-body">
+							<h5 class="card-title"><?php echo $blogs['blogTitle']; ?></h5>
+							<p class="card-text">To read more click</p>
+							<a href="blog_single.php?blogId=<?php echo $blogs['blogId'] ?>"><button type="button" class="btn btn-light btn-sm">View Post</button></a>
+						</div>
+					</div>
+				</div>
+				<br>
+			<?php } ?>
+			<br> <br>
+		</div>
+	</div>
+
+	<?php include_once 'includes/footer.php'; ?>
+	</main>
 </body>
+
 </html>

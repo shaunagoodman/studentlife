@@ -1,0 +1,91 @@
+
+/* *********************** RANDOM RECIPE CSS  **********************    */
+.random-row{
+    justify-content: center!important;
+}
+
+.title-div{
+    text-align: center;
+}
+
+.ingredients-div{
+    margin-left: 15%;
+}
+
+.random-recipe-list{
+    background-color: white;
+    box-shadow: -1px 17px 16px -5px rgba(122,122,122,0.52);
+    border-radius: 15px;
+    margin-bottom: 7%;
+}
+
+.random-recipe{
+    align-items: center;
+}
+
+// .randomResultHeading{
+//     color: $darkOrange;
+// }
+
+
+.title-random-line{
+    width: 20%;
+    border: 1px solid $darkOrange;
+    margin-top: 0%;
+}
+.ingredient-random-line{
+    width: 65%;
+    border: 1px solid $darkOrange;
+    margin-top: 0%;
+    margin-left: 0%;
+    margin-bottom: 1%;
+    
+}
+
+.serves-random-line{
+    width: 75%;
+    border: 1px solid $darkOrange;
+    margin-top: 0%;
+    margin-left: 0%;
+    margin-bottom: 1%;
+}
+
+.time-random-line{
+    width: 70%;
+    border: 1px solid $darkOrange;
+    margin-top: 0%;
+    margin-left: 0%;
+    margin-bottom: 1%;
+}
+
+.equipment-random-line{
+    width: 110%;
+    border: 1px solid $darkOrange;
+    margin-top: 0%;
+    margin-left: 0%;
+    margin-bottom: 1%;
+}
+
+.cuisine-random-line{
+    width: 80%;
+    border: 1px solid $darkOrange;
+    margin-top: 0%;
+    margin-left: 0%;
+    margin-bottom: 1%;
+}
+
+.method-random-line{
+    width: 20%;
+    border: 1px solid $darkOrange;
+    margin-top: 0%;
+    margin-left: 0%;
+    margin-bottom: 1%;
+}
+
+.randomResultHeading{
+    margin-top: 8%;
+}
+
+.random-button{
+    margin-bottom: 6%;
+}

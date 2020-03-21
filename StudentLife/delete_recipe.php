@@ -17,7 +17,7 @@ if(isset($_POST["recipe_ID"]) && !empty($_POST["recipe_ID"])){
         // Attempt to execute the prepared statement
         if($stmt->execute()){
             // Records deleted successfully. Redirect to landing page
-            header("location: show-all-recipes.php");
+            header("location: view-recipes-admin.php");
             exit();
         } else{
             echo "Oops! Something went wrong. Please try again later.";
@@ -42,36 +42,33 @@ if(isset($_POST["recipe_ID"]) && !empty($_POST["recipe_ID"])){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>View Record</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style type="text/css">
-        .wrapper{
-            width: 500px;
-            margin: 0 auto;
-        }
-    </style>
+    <title>Delete Recipe</title>
+    <?php include_once 'includes/CDNs.php'; ?> 
+
 </head>
-<body>
-    <div class="wrapper">
-        <div class="container-fluid">
+<body class='site' >
+<?php include_once 'includes/nav-menu.php'; ?>
+<main class='site-content' >
+        <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="page-header">
+                    
                         <h1>Delete Record</h1>
-                    </div>
+                  
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                        <div class="alert alert-danger fade in">
+                        <div >
                             <input type="hidden" name="recipe_ID" value="<?php echo trim($_GET["recipe_ID"]); ?>"/>
                             <p>Are you sure you want to delete this record?</p><br>
                             <p>
                                 <input type="submit" value="Yes" class="btn btn-danger">
-                                <a href="show-all-recipes.php" class="btn btn-default">No</a>
+                                <a href="view-recipes-admin.php" class="btn btn-default">No</a>
                             </p>
                         </div>
                     </form>
                 </div>
             </div>        
         </div>
-    </div>
+</main>
+<?php include_once 'includes/footer.php';?>
 </body>
 </html>

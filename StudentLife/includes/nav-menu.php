@@ -9,10 +9,7 @@ and open the template in the editor.
 <head>
     <meta charset="UTF-8">
     <title></title>
-
-
-
-
+    <script src="javascript/example.js"></script>
     <?php include_once 'CDNs.php'; ?>
 
     <link href="niamh.css" rel="stylesheet" type="text/css" />
@@ -26,13 +23,10 @@ and open the template in the editor.
 
 
     <nav class="navbar navbar-expand-lg navbar-light ">
-
         <a class="navbar-brand" href="index.php"><img src="images/recipeasy-icons-logos/recipeasy-logo-2.png" class="d-inline-block align-top" alt="" /> </a>
-
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <img class="burger-icon" src="images/recipeasy-icons-logos/burger-menu.png" alt="" />
         </button>
-
         <div id="navbarNavDropdown" class="navbar-collapse collapse">
             <ul class="navbar-nav mr-auto">
                 <!--   ignore this space-->
@@ -44,7 +38,7 @@ and open the template in the editor.
                 </li>
                 <li class=" nav-hover nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                   Recipes </a>
+                        Recipes </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
 
                         <a class="dropdown-item" href="recipes-list.php">All Recipes</a>
@@ -54,9 +48,7 @@ and open the template in the editor.
                     </div>
                 </li>
 
-                <li class="nav-hover nav-item">
-                    <a class="nav-link" href="blog_single.php">Blog</a>
-                </li>
+
 
 
                 <li class=" nav-hover nav-item dropdown">
@@ -78,9 +70,10 @@ and open the template in the editor.
                         <?php
                         if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
-                            echo '<a class="dropdown-item" href="profile.php">View Profile</a>';
+                            echo '<a class="dropdown-item" href="admin.php">View Profile</a>';
                             echo '<a class="dropdown-item" href="logout.php">Logout</a>';
-                        } else {
+                        } 
+                        else {
                             echo '<a class="dropdown-item" href="login.php">Login</a>';
                             echo '<a class="dropdown-item" href="sign-up.php">Register</a>';
                         }
@@ -88,11 +81,13 @@ and open the template in the editor.
                     </div>
                 </li>
             </ul>
+
             <form class="form-inline my-2 my-lg-0" method="post" action="recipes-list.php">
-                <input class="form-control mr-sm-2" type="search" name = "something"placeholder="Search" aria-label="Search" value="<?= isset($_POST['something']) ? htmlspecialchars($_POST['something']) : '' ?>">
-                <button class="btn my-2 my-sm-0" type="submit" name = "submit"> <img src="images/recipeasy-icons-logos/white-search.png" class="d-inline-block align-top" alt="" /></button>
-            </form> 
+                <input class="form-control mr-sm-2" type="search" name="something" placeholder="Search" aria-label="Search" value="<?= isset($_POST['something']) ? htmlspecialchars($_POST['something']) : '' ?>">
+                <button class="btn my-2 my-sm-0" type="submit" name="submit"> <img src="images/recipeasy-icons-logos/white-search.png" class="d-inline-block align-top" alt="" /></button>
+            </form>
         </div>
     </nav>
 </body>
+
 </html>

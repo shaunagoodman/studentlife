@@ -31,14 +31,14 @@ if (isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true) {
     <?php include_once 'includes/CDNs.php'; ?>
 </head>
 
-<body>
+<body class='site' >
     <?php include_once 'includes/nav-menu.php'; ?>
 
+    <main class='site-content' >
     <div class="container">
 
 
-        <h1 class="allRecipes-h1">All Your Recipes</h1>
-        <hr align="left">
+        <h1 class="allRecipes-h1"><span class="underline">All Your Recipes</span></h1>
 
         
 
@@ -58,6 +58,9 @@ if (isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true) {
                 $difficulty = "Hard";
             } else {
                 $difficulty = "No difficulty selected.";
+            }
+            if(empty($recipe['image'])) {
+                $recipe['image'] = "images/recipes/placeholder.png";
             }
             if($recipe['isAPI'] == 1) {
                 $src = $recipe['image'];
@@ -83,6 +86,8 @@ if (isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true) {
         <?php endforeach;
         echo "</div>" ?>
     </div>
+
+    </main>
 
     <?php include_once 'includes/footer.php'; ?>
 
