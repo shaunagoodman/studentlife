@@ -70,7 +70,7 @@ if (isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true) {
             }
         ?>
 
-            <div class="col-lg-4 bottom-home ">
+            <div class="col-lg-4 col-md-6 bottom-home ">
                 <div class="card home-card recipe-page-card">
                     <img src="<?php echo $src;?>" class="card-img-top" alt='dish image' height='315' width='328'>
                     <div class="card-body">

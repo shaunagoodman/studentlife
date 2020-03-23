@@ -1,12 +1,7 @@
 <?php
 session_start();
 include_once 'includes/database/connection.php'; ?>
-
 <?php
-// Initialize the session
-
-
-
 $recipe_ID = filter_input(INPUT_GET, "recipe_ID");
 if ($recipe_ID == NULL) {
     header("location:recipes-list.php");
@@ -19,19 +14,12 @@ $statement2->execute();
 $recipes = $statement2->fetchAll();
 $statement2->closeCursor();
 ?>
-
-
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
 
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>A Recipe</title>
 
     <?php include_once 'includes/CDNs.php'; ?>
 
@@ -68,12 +56,15 @@ and open the template in the editor.
             $statement3->execute();
             $steps = $statement3->fetchAll();
             $statement3->closeCursor();
+
+            $maxTime = $recipe['maxTime'];
+           $timestamp = strtotime($maxTime);
+           $time = date('i', $timestamp);
+
         ?>
 
-
-
-            <h2 class="heading allRecipes-h1"><?php echo $recipe['name'] ?> </h2>
-            <hr align="left">
+            <h2 class="heading allRecipes-h1"><span class="underline"><?php echo $recipe['name'] ?></span> </h2>
+            
 
             <div class=row>
                 <div class='col-md-5 single-recipe-topRow'>
@@ -83,7 +74,7 @@ and open the template in the editor.
                 <div class='col-md-7 single-recipe-topRow'>
                     <p><img src='images/recipeasy-icons-logos/gauge.png' style='margin-right:1.5%' alt='clock icon' height='35' width='35'><strong>Difficulty: </strong><?php echo $difficulty ?>
                         <img src='images/recipeasy-icons-logos/knife-fork.png' style='margin-right:1.5%' alt='clock icon' height='35' width='35'><strong>Servings:</strong> <?php echo $recipe['servings'] ?>
-                        <img src='images/recipeasy-icons-logos/clock.png' style='margin-right:1.5%' alt='clock icon' height='30' width='30'><strong>Cooking Time: </strong><?php echo $recipe['maxTime'] ?> minutes</p>
+                        <img src='images/recipeasy-icons-logos/clock.png' style='margin-right:1.5%' alt='clock icon' height='30' width='30'><strong>Cooking Time: </strong><?php echo $time ?> minutes</p>
 
                     <h5> <strong>Ingredients: </strong></h5>
                     <hr align="left" class="single-recipe-line-ingredients">

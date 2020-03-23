@@ -130,24 +130,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 
-    <center> <img class="login-logo" src="images/recipeasy-icons-logos/Capture.png" width="18%" alt="..."> </center>
+    <center> <img src="images/recipeasy-icons-logos/new-logo-black.png" class="d-inline-block align-top" alt="recipeasy-logo" style='width:45%' /> </center>
 
 
     <form class="login-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group col-md-12 <?php echo (!empty($u_email_err)) ? 'has-error' : ''; ?>">
+    <fieldset>
+        <div class='form-row' >
+        <div class="form-group col-lg-12  <?php echo (!empty($u_email_err)) ? 'has-error' : ''; ?>">
                 <label>Email</label>
                 <input type="text" name="u_email" class="form-control" value="<?php echo $u_email; ?>">
                 <span class="help-block"><?php echo $u_email_err; ?></span>
             </div>    
-            <div class="form-group col-md-12 <?php echo (!empty($u_password_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group col-lg-12 <?php echo (!empty($u_password_err)) ? 'has-error' : ''; ?>">
                 <label>Password</label>
                 <input type="password" name="u_password" class="form-control">
                 <span class="help-block"><?php echo $u_password_err; ?></span>
             </div>
-            <div class="form-group col-md-12">
+            <div class="form-group col-lg-12">
                 <input type="submit" class="btn btn-light" value="Login">
             </div>
             <p>Don't have an account? <a href="sign-up.php" class="here-link">Sign up now</a>.</p>
+            </div>
+        </fieldset>
+            
         </form>
 
 

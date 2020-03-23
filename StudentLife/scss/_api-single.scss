@@ -1,0 +1,82 @@
+/* *********************** API SINGLE RECIPE RELATED CSS **********************    */
+
+// .first-div-single{
+    
+// }
+.ingredientsTitle {
+    display: none;
+  }
+
+  .methodTitle {
+    display: none;
+  }
+
+  .ingredientMethod{
+      margin-bottom:5% ;
+  }
+
+  @media only screen and (min-width: 800px) {
+    .methodDiv{
+        display: inline;
+    }
+
+    .ingredientsDiv{
+        display: inline;
+    }
+  }
+
+
+@media only screen and (max-width: 801px) {
+   
+   
+    .ingredientsDeskTitle {
+        display: none;
+      }
+   
+    .ingredientsTitle {
+        cursor: pointer;
+        display: block;
+      }
+      
+      .ingredientsSpan:hover {
+        color: $mediumOrange;
+        transition: ease 0.5;
+      }
+    
+    .fa2 {
+      transform: rotateZ(90deg);
+      transition: transform 0.2s;
+    }
+    
+    .fa2.active {
+      transform: rotateZ(0deg);
+    }
+
+
+
+
+    .methodDeskTitle {
+        display: none;
+      }
+   
+    .methodTitle {
+        cursor: pointer;
+        display: block;
+      }
+      
+      .methodSpan:hover {
+        color: $mediumOrange;
+        transition: ease 0.5;
+      }
+    
+    .fa3 {
+      transform: rotateZ(90deg);
+      transition: transform 0.2s;
+    }
+    
+    .fa3.active {
+      transform: rotateZ(0deg);
+    }
+  
+    
+  }

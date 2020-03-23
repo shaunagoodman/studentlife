@@ -45,7 +45,11 @@ h6{
 }
 
 p{
-    font-family: 'Montserrat', sans-serif;
+  @include mont-medium-font;
+}
+
+input.sortBy{
+  @include mont-medium-font;
 }
 
 .underline {
@@ -54,12 +58,17 @@ p{
     line-height: 2;
   }
 
-//   hr{
-//       border:solid  $mediumOrange;
-//   }
-
 body{
     background-color: $white;
+}
+
+
+//keep page content below mobile nav
+@media (max-width: 991px) {
+
+ main{
+    margin-top:7%;
+}
 }
 
 /* ********************* BUTTON CSS ************************     */

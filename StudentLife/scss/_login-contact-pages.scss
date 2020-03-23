@@ -1,9 +1,19 @@
 /* *********************** LOGIN FROM & CONTACT FORM CSS **********************    */
 
 .login-form{
+    margin-left:25%;
+    margin-right: 25%;
+    padding-top: 2%;
+}
+
+@media (min-width: 991px) {
+
+  .login-form{
     margin-left:35%;
     margin-right: 35%;
     padding-top: 2%;
+}
+
 }
 
 
@@ -35,7 +45,7 @@ input[type=email] {
 textarea {
     background: transparent!important;
     border: none!important;
-    border-bottom: 1px solid $darkOrange!important;
+    border-bottom: 1px solid $grey!important;
     border-radius: 0;
 }
 

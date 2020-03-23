@@ -36,6 +36,9 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="javascript/swal-alert.js" type="text/javascript"></script>
 <script src="javascript/hero-jumbotron.js" type="text/javascript"></script>
+<script src="javascript/recipesFilter.js"></script>
+    <script src="javascript/slider.js"></script>
+<script src="javascript/scripts.js"></script>
         
     </body>
 </html>

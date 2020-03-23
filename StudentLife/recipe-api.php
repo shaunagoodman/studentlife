@@ -15,53 +15,10 @@ include_once 'includes/CDNs.php';
   <meta charset="UTF-8">
   <title>Recipe API</title>
   <script src="javascript/scripts.js"></script>
-  <style>
-    ul{
-    list-style: none;
-    margin: 0px;
-    padding: 0px;
-    display: inline-block;
-
-    li{
-      display: inline-block;
-      background: #555;
-      color: white;
-      padding: 3px 5px 3px 10px;
-      border-radius: 15px;
-      margin-right: 5px;
-      margin-bottom: 5px;
-
-      a{
-        color: white;
-        text-decoration: none;
-        margin-left: 5px;
-        font-size: 10px;
-        background: #333;
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        display: inline-flex;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-
-        &:hover{
-          color: red;
-        }
-      }
-    }
-  }
-
-  input{
-    border: 0px;
-    background: none;
-    margin-bottom: 5px;
-    display: inline-block;
-  }
-  </style>
+  <script src="javascript/api.js"></script>
 
 </head>
-<body onload = "chippy()"class='site' >
+<body ng-app="BlankApp" ng-controller="ChipCtrl as ctrl" ng-cloak onload = "chippy()" class='site' >
   <?php include_once 'includes/nav-menu.php'; ?>
 
   <main class='site-content' >
@@ -75,9 +32,12 @@ include_once 'includes/CDNs.php';
     <div class="col-md-6 recipe-api">
       <!--Search Area-->
       <!--Search Ingredients-->
-      <div id="ingredientInput">
-      <ul id="list"></ul>
-        <input class="form-control api-form-control" name='ingredients' id='ingredients' type="text" placeholder="eggs, milk, butter">
+      <div id = "ingredientsList">
+        <ul id="list1"></ul>
+        <input type="text" id="ingredients" placeholder="egg, milk, butter...">
+        <div id = "hidden"> </div>
+      </div>
+        <!-- <input data-role="tagsinput" class="form-control api-form-control" name='ingredients' id='ingredients' type="text" placeholder="eggs, milk, butter"> -->
         <p> <input class='checkbox-api' type="checkbox" id="addTime" onClick="toggleTime()" />Add Time Limit (If you do not set a limit it will defualt to 10 mins).</p>
         
         <!--TIME -->
@@ -91,21 +51,10 @@ include_once 'includes/CDNs.php';
             <p class='sub-head-api'> <input class='checkbox-api' type="checkbox" id="selectIntolerance" onClick="toggleIntolerances()" />Have an Intolerance?</p>
             <hr align="left" class="api-line">
             <div id="intoleranceList">
-              <p><strong>Select any of the following intolerances:</strong> </p>
-              <p><input class='checkbox-api' type="checkbox" name="intolerance" value="dairy">Dairy<br>
-                <input class='checkbox-api' type="checkbox" name="intolerance" value="egg">Egg<br>
-                <input class='checkbox-api' type="checkbox" name="intolerance" value="gluten">Gluten<br>
-                <input class='checkbox-api' type="checkbox" name="intolerance" value="grain">Grain<br>
-                <input class='checkbox-api' type="checkbox" name="intolerance" value="peanut">Peanut<br>
-                <input class='checkbox-api' type="checkbox" name="intolerance" value="seafood">Seafood<br>
-                <input class='checkbox-api' type="checkbox" name="intolerance" value="sesame">Sesame<br>
-                <input class='checkbox-api' type="checkbox" name="intolerance" value="shellfish">Shellfish<br>
-                <input class='checkbox-api' type="checkbox" name="intolerance" value="soy">Soy<br>
-                <input class='checkbox-api' type="checkbox" name="intolerance" value="sulfite">Sulfite<br>
-                <input class='checkbox-api' type="checkbox" name="intolerance" value="tree nut">Tree Nut<br>
-                <input class='checkbox-api' type="checkbox" name="intolerance" value="wheat">Wheat</p>
-            </div>
+                <ul id="list2"></ul>
+                <input type="text" id="intolerance" placeholder="Enter Intolerance...">
           </div>
+        </div>
 
           <!-- ----------DIET RESTRICTION---------->
 
@@ -114,18 +63,10 @@ include_once 'includes/CDNs.php';
             <p class='sub-head-api'> <input class='checkbox-api' type="checkbox" id="selectDietRestriction" onClick="toggleDietRestrictions()" />Have a Diet Restriction?</p>
             <hr align="left" class="api-line">
             <div id="dietRestrictionsList">
-              <p><strong>Select any of the following Diet Restrictions:</strong></p>
-              <p> <input class='checkbox-api' type="checkbox" name="dietRestriction" value="gluten free">Gluten Free<br>
-                <input class='checkbox-api' type="checkbox" name="dietRestriction" value="ketogenic">Ketogenic<br>
-                <input class='checkbox-api' type="checkbox" name="dietRestriction" value="paleo">Paleo<br>
-                <input class='checkbox-api' type="checkbox" name="dietRestriction" value="pescetarian">Pescetarian<br>
-                <input class='checkbox-api' type="checkbox" name="dietRestriction" value="primal">Primal<br>
-                <input class='checkbox-api' type="checkbox" name="dietRestriction" value="vegan">Vegan<br>
-                <input class='checkbox-api' type="checkbox" name="dietRestriction" value="vegetarian">Vegetarian<br>
-                <input class='checkbox-api' type="checkbox" name="dietRestriction" value="whole30">Whole30</p>
+              <ul id="list3"></ul>
+              <input type="text" id="dietRestriction" placeholder="egg, milk, butter...">
             </div>
           </div>
-        </div>
 
         <!-- -------------------------------------------- -->
 
