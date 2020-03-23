@@ -209,7 +209,7 @@ try {
                                 }
                         ?>
                                 <div class="col-lg-6 recipe-page-cards bottom-home ">
-                                    <div class="card home-card recipe-page-card">
+                                    <div class="card home-card recipe-page-card hvr-shadow">
                                         <img src="<?php echo $src; ?>" class="card-img-top" alt='dish image' height='315' width='328'>
                                         <div class="card-body">
                                             <h5 class="card-title"><?php echo $recipe['name'];  ?></h5>
@@ -255,7 +255,7 @@ try {
                                     $image = $response["image"];
                                     $maxTime = $response["readyInMinutes"];
                                 ?>
-                                    <div class="col-lg-6 bottom-home ">
+                                    <div class="col-lg-6 hvr-shadow bottom-home ">
                                         <div class="card home-card recipe-page-card">
                                             <img src="<?php echo $image; ?>" class="card-img-top" alt='dish image' height='315' width='328'>
                                             <div class="card-body">

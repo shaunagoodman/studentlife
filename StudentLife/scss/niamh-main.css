@@ -59,6 +59,12 @@ body {
   background-color: #ffffff;
 }
 
+@media (max-width: 991px) {
+  main {
+    margin-top: 7%;
+  }
+}
+
 /* ********************* BUTTON CSS ************************     */
 .btn.btn-light:hover,
 .btn.btn-light:focus,
@@ -283,6 +289,16 @@ a.dropdown-item {
   font-family: 'Montserrat', sans-serif;
 }
 
+.mobileNav {
+  display: none;
+}
+
+.desktopNav {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
 /* *********************** HOVER ANIMATION CSS FOR NAV **********************    */
 @media (min-width: 980px) {
   li.nav-hover > a {
@@ -342,6 +358,157 @@ a.dropdown-item {
     visibility: hidden;
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
+  }
+}
+
+/*  ********************** MOBILE!!!! CSS FOR NAV **********************    */
+@media (max-width: 991px) {
+  .desktopNav {
+    display: none;
+  }
+  .mobileNav {
+    display: block;
+  }
+  .header {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    background-color: #EF7823;
+    position: fixed;
+    height: 60px !important;
+    overflow: hidden;
+    z-index: 10;
+  }
+  #sidebarMenu {
+    height: 100%;
+    position: fixed;
+    left: 0;
+    width: 250px;
+    z-index: 10;
+    margin-top: 60px;
+    -webkit-transform: translateX(-250px);
+            transform: translateX(-250px);
+    -webkit-transition: -webkit-transform 250ms ease-in-out;
+    transition: -webkit-transform 250ms ease-in-out;
+    transition: transform 250ms ease-in-out;
+    transition: transform 250ms ease-in-out, -webkit-transform 250ms ease-in-out;
+    background: -webkit-gradient(linear, left top, left bottom, from(#EF7823), color-stop(180%, #F7F13B));
+    background: linear-gradient(180deg, #EF7823 0%, #F7F13B 180%);
+  }
+  .sidebarMenuInner {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .sidebarMenuInner li {
+    list-style: none;
+    color: #fff;
+    padding: 20px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .sidebarMenuInner li span {
+    display: block;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .sidebarMenuInner li a {
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  input[type="checkbox"]:checked ~ #sidebarMenu {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  input[type=checkbox] {
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    display: none;
+  }
+  .sidebarIconToggle {
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    cursor: pointer;
+    position: fixed;
+    z-index: 99;
+    height: 100%;
+    width: 100%;
+    top: 22px;
+    left: 15px;
+    height: 22px;
+    width: 22px;
+  }
+  .spinner {
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background-color: #fff;
+  }
+  .horizontal {
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    position: relative;
+    float: left;
+    margin-top: 3px;
+  }
+  .diagonal.part-1 {
+    position: relative;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    float: left;
+  }
+  .diagonal.part-2 {
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    position: relative;
+    float: left;
+    margin-top: 3px;
+  }
+  input[type=checkbox]:checked ~ .sidebarIconToggle > .horizontal {
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    opacity: 0;
+  }
+  input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    -webkit-transform: rotate(135deg);
+            transform: rotate(135deg);
+    margin-top: 8px;
+  }
+  input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    -webkit-transform: rotate(-135deg);
+            transform: rotate(-135deg);
+    margin-top: -9px;
   }
 }
 
@@ -503,9 +670,17 @@ a.recipes:hover {
 
 /* *********************** LOGIN FROM & CONTACT FORM CSS **********************    */
 .login-form {
-  margin-left: 35%;
-  margin-right: 35%;
+  margin-left: 25%;
+  margin-right: 25%;
   padding-top: 2%;
+}
+
+@media (min-width: 991px) {
+  .login-form {
+    margin-left: 35%;
+    margin-right: 35%;
+    padding-top: 2%;
+  }
 }
 
 .login-logo {
@@ -1345,12 +1520,71 @@ textarea.blog-post {
           box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
 }
 
-.table1, tr, td {
+.table1,
+tr,
+td {
   border: 1px solid !important;
   border-color: #f29e4c !important;
   -webkit-box-pack: center !important;
       -ms-flex-pack: center !important;
           justify-content: center !important;
+}
+
+@media (min-width: 1125px) {
+  a.tab-link {
+    font-size: 125%;
+  }
+}
+
+@media (max-width: 1126px) {
+  a.tab-link {
+    font-size: 110%;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-weight: 400;
+  }
+}
+
+.addBlogTitle, .addRecipesTitle, .showRecipesTitle, .showUsersTitle .myRecipesTitle, .myFavesTitle {
+  cursor: pointer;
+}
+
+.addBlogSpan:hover, .addRecipesSpan:hover, .showRecipesSpan:hover, .showUsersSpan:hover, .myRecipesSpan:hover, .myFavesSpan:hover {
+  color: #EF7823;
+  -webkit-transition: ease 0.5;
+  transition: ease 0.5;
+}
+
+.fa4, .fa5, .fa6 {
+  -webkit-transform: rotateZ(0deg);
+          transform: rotateZ(0deg);
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
+}
+
+.fa7, .fa8, .fa9 {
+  -webkit-transform: rotateZ(0deg);
+          transform: rotateZ(0deg);
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
+}
+
+.fa4.active, .fa5.active, .fa6.active {
+  -webkit-transform: rotateZ(90deg);
+          transform: rotateZ(90deg);
+}
+
+.fa7.active, .fa8.active, .fa9.active {
+  -webkit-transform: rotateZ(90deg);
+          transform: rotateZ(90deg);
+}
+
+.addBlogDiv, .addRecipesDiv, .showRecipesDiv, .showUsersDiv, .myRecipesDiv, .myFavesDiv {
+  display: none;
 }
 
 /* Rating Star Widgets Style */

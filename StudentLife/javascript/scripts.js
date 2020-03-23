@@ -389,16 +389,8 @@ window.onload = function() {
 
 
 
-function hideShow() {
-  var x = document.getElementById("myDIV");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
-
-
+// TOGGLE HIDE/SHOW
+//SHOW ALL RECIPE PAGE
 
 $(document).ready(function() {
   $(this).on("click", ".sortTitle", function() {
@@ -416,6 +408,10 @@ $(document).ready(function() {
   });
 });
 
+
+//SINGLE API RECIPE PAGE
+
+
 $(document).ready(function() {
   $(this).on("click", ".ingredientsTitle", function() {
     $(this).parent().find(".ingredientsDiv").toggle();
@@ -427,5 +423,51 @@ $(document).ready(function() {
   $(this).on("click", ".methodTitle", function() {
     $(this).parent().find(".methodDiv").toggle();
     $(this).find(".fa3").toggleClass('active');
+  });
+});
+
+//ADMIN PAGE
+
+
+$(document).ready(function() {
+  $(this).on("click", ".addBlogTitle", function() {
+    $(this).parent().find(".addBlogDiv").toggle();
+    $(this).find(".fa4").toggleClass('active');
+  });
+});
+
+$(document).ready(function() {
+  $(this).on("click", ".addRecipesTitle", function() {
+    $(this).parent().find(".addRecipesDiv").toggle();
+    $(this).find(".fa5").toggleClass('active');
+  });
+});
+
+$(document).ready(function() {
+  $(this).on("click", ".showRecipesTitle", function() {
+    $(this).parent().find(".showRecipesDiv").toggle();
+    $(this).find(".fa6").toggleClass('active');
+  });
+});
+
+$(document).ready(function() {
+  $(this).on("click", ".showUsersTitle", function() {
+    $(this).parent().find(".showUsersDiv").toggle();
+    $(this).find(".fa7").toggleClass('active');
+  });
+});
+
+
+$(document).ready(function() {
+  $(this).on("click", ".myRecipesTitle", function() {
+    $(this).parent().find(".myRecipesDiv").toggle();
+    $(this).find(".fa8").toggleClass('active');
+  });
+});
+
+$(document).ready(function() {
+  $(this).on("click", ".myFavesTitle", function() {
+    $(this).parent().find(".myFavesDiv").toggle();
+    $(this).find(".fa9").toggleClass('active');
   });
 });
