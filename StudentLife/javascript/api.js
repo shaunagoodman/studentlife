@@ -34,6 +34,17 @@ function chippy() {
       hidden.style.display = "none";
       var txt = items.toString();
       hidden.value = txt;
+
+      var hidden2 = document.getElementById("hidden2");
+      hidden2.style.display = "none";
+      var lis = document.getElementById("tagging_ul").getElementsByTagName("li");
+      var txt = lis.toString();
+      console.log(txt);
+
+      var hidden3 = document.getElementById("hidden3");
+      hidden3.style.display = "none";
+      var txt = items.toString();
+      hidden3.value = txt;
     }
 
     window.LIB = {
@@ -46,4 +57,16 @@ function chippy() {
       render();
       txt.focus();
     }
+
+    var tagsource1 = [
+      'Dairy', 'Egg', 'Gluten', 'Grain', 'Peanut', 'Seafood', 'Sesame', 'Shellfish', 'Soy', 'Sulfite', 'Tree Nut', 'Wheat'
+      ]
+  $('#intolerances').tagging(tagsource1);
+
+  var tagsource2 = [
+    'Gluten', 'Ketogenic', 'Paleo', 'Pescetarian', 'Primal', 'Vegan', 'Vegetarian', 'Whole30'
+    ]
+$('#dietRestrictions').tagging(tagsource2);
 }
+
+

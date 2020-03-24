@@ -16,7 +16,9 @@ include_once 'includes/CDNs.php';
   <title>Recipe API</title>
   <script src="javascript/scripts.js"></script>
   <script src="javascript/api.js"></script>
-
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/typeahead.bundle.min.js"></script>
+	<script src="javascript/typeahead.tagging.js"></script>
 </head>
 <body ng-app="BlankApp" ng-controller="ChipCtrl as ctrl" ng-cloak onload = "chippy()" class='site' >
   <?php include_once 'includes/nav-menu.php'; ?>
@@ -30,12 +32,10 @@ include_once 'includes/CDNs.php';
     <p>Can't decide what to make? Just enter below what food you have at home and we'll give you some delicious
       recipes that you can make with them!</p>
     <div class="col-md-6 recipe-api">
-      <!--Search Area-->
-      <!--Search Ingredients-->
       <div id = "ingredientsList">
         <ul id="list1"></ul>
         <input type="text" id="ingredients" placeholder="egg, milk, butter...">
-        <div id = "hidden"> </div>
+        <div id = "hidden1"> </div>
       </div>
         <!-- <input data-role="tagsinput" class="form-control api-form-control" name='ingredients' id='ingredients' type="text" placeholder="eggs, milk, butter"> -->
         <p> <input class='checkbox-api' type="checkbox" id="addTime" onClick="toggleTime()" />Add Time Limit (If you do not set a limit it will defualt to 10 mins).</p>
@@ -52,7 +52,8 @@ include_once 'includes/CDNs.php';
             <hr align="left" class="api-line">
             <div id="intoleranceList">
                 <ul id="list2"></ul>
-                <input type="text" id="intolerance" placeholder="Enter Intolerance...">
+                <input id="intolerances" class="tags-input" value="">
+                <div id = "hidden2"> </div>
           </div>
         </div>
 
@@ -64,7 +65,9 @@ include_once 'includes/CDNs.php';
             <hr align="left" class="api-line">
             <div id="dietRestrictionsList">
               <ul id="list3"></ul>
-              <input type="text" id="dietRestriction" placeholder="egg, milk, butter...">
+              <input id="dietRestrictions" class="tags-input" value="">
+              <div id = "hidden3"> </div>
+
             </div>
           </div>
 
