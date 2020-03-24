@@ -11,24 +11,25 @@ function findRecipe() {
   const urlString2 = "&apiKey=53bea2eb3c79445188bc4d3f00895d15&query=";
   let ingredients = document.getElementById('hidden1').value;
   let maxTime =document.getElementById('time').value;
-  let intolerances = getIntolerances();
+  let intolerances= document.getElementById('hidden2').value;
+  console.log(intolerances);
   let dietRestriction = getDietRestrictions();
   if(maxTime === "") {
     maxTime = 30;
   }
-  let requestString;
-  if(intolerances.length == 0 && dietRestriction == 0) {
-      requestString = `${urlString1}${maxTime}${urlString2}${ingredients}`;
-  }
-  else if(intolerances.length == 0 && dietRestriction != 0) {
-      requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&diet=${dietRestriction}`;
-  }
-  else if(intolerances.length != 0 && dietRestriction == 0) {
-      requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerances}`;
-  }
-  else {
-      requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerances}&diet=${dietRestriction}`;
-  }
+  let requestString = `${urlString1}${maxTime}${urlString2}${ingredients}`;
+  // if(intolerances.length == 0 && dietRestriction == 0) {
+  //     requestString = `${urlString1}${maxTime}${urlString2}${ingredients}`;
+  // }
+  // else if(intolerances.length == 0 && dietRestriction != 0) {
+  //     requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&diet=${dietRestriction}`;
+  // }
+  // else if(intolerances.length != 0 && dietRestriction == 0) {
+  //     requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerances}`;
+  // }
+  // else {
+  //     requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerances}&diet=${dietRestriction}`;
+  // }
   console.log(requestString);
   request.open("GET", requestString, true);
   request.onload = function() {
@@ -251,14 +252,15 @@ function toggleTime() {
 }
 
 function getIntolerances(){
-  var intolerances=document.getElementsByName('intolerance');
-  var selectedItems="";
-  for(var i=0; i<intolerances.length; i++){
-    if(intolerances[i].type=='checkbox' && intolerances[i].checked==true)
-      selectedItems+=intolerances[i].value+",";
-  }
-  let newSelectedItems = selectedItems.substring(0, selectedItems.length - 1);
-  return newSelectedItems;
+  var intolerances= document.getElementById('hidden2').value;
+  return intolerances;
+  // var selectedItems="";
+  // for(var i=0; i<intolerances.length; i++){
+  //   if(intolerances[i].type=='checkbox' && intolerances[i].checked==true)
+  //     selectedItems+=intolerances[i].value+",";
+  // }
+  // let newSelectedItems = selectedItems.substring(0, selectedItems.length - 1);
+  // return newSelectedItems;
 }	
 
 function getDietRestrictions(){
