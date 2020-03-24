@@ -136,7 +136,7 @@ and open the template in the editor.
 <div class="container" >
 
 
-<center> <img class="login-logo" src="images/recipeasy-icons-logos/Capture.png" width="18%" alt="..."> </center>
+<center> <img src="images/recipeasy-icons-logos/new-logo-black.png" class="d-inline-block align-top" alt="recipeasy-logo" style='width:45%' /> </center>
 
 
 

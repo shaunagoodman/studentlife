@@ -441,8 +441,95 @@ window.onload = function() {
 }
 }
 
+
 function displayTime() {
   let time = document.getElementById("maxTime").value;
   let area = document.getElementById("timeArea");
   area.innerHTML = time + " minutes";
 }
+
+
+// TOGGLE HIDE/SHOW
+//SHOW ALL RECIPE PAGE
+
+$(document).ready(function() {
+  $(this).on("click", ".sortTitle", function() {
+    $(this).parent().find(".sortDiv").toggle();
+    $(this).find(".fa").toggleClass('active');
+  });
+});
+
+
+
+$(document).ready(function() {
+  $(this).on("click", ".cuisineTitle", function() {
+    $(this).parent().find(".cuisineDiv").toggle();
+    $(this).find(".fa2").toggleClass('active');
+  });
+});
+
+
+//SINGLE API RECIPE PAGE
+
+
+$(document).ready(function() {
+  $(this).on("click", ".ingredientsTitle", function() {
+    $(this).parent().find(".ingredientsDiv").toggle();
+    $(this).find(".fa2").toggleClass('active');
+  });
+});
+
+$(document).ready(function() {
+  $(this).on("click", ".methodTitle", function() {
+    $(this).parent().find(".methodDiv").toggle();
+    $(this).find(".fa3").toggleClass('active');
+  });
+});
+
+
+//ADMIN PAGE
+
+
+$(document).ready(function() {
+  $(this).on("click", ".addBlogTitle", function() {
+    $(this).parent().find(".addBlogDiv").toggle();
+    $(this).find(".fa4").toggleClass('active');
+  });
+});
+
+$(document).ready(function() {
+  $(this).on("click", ".addRecipesTitle", function() {
+    $(this).parent().find(".addRecipesDiv").toggle();
+    $(this).find(".fa5").toggleClass('active');
+  });
+});
+
+$(document).ready(function() {
+  $(this).on("click", ".showRecipesTitle", function() {
+    $(this).parent().find(".showRecipesDiv").toggle();
+    $(this).find(".fa6").toggleClass('active');
+  });
+});
+
+$(document).ready(function() {
+  $(this).on("click", ".showUsersTitle", function() {
+    $(this).parent().find(".showUsersDiv").toggle();
+    $(this).find(".fa7").toggleClass('active');
+  });
+});
+
+
+$(document).ready(function() {
+  $(this).on("click", ".myRecipesTitle", function() {
+    $(this).parent().find(".myRecipesDiv").toggle();
+    $(this).find(".fa8").toggleClass('active');
+  });
+});
+
+$(document).ready(function() {
+  $(this).on("click", ".myFavesTitle", function() {
+    $(this).parent().find(".myFavesDiv").toggle();
+    $(this).find(".fa9").toggleClass('active');
+  });
+});
+

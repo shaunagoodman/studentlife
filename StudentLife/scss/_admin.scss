@@ -1,6 +1,55 @@
-.table1, tr, td
-{
-    border: 1px solid!important;
-    border-color: $lightOrange!important;
-    justify-content: center!important;
+.table1,
+tr,
+td {
+  border: 1px solid !important;
+  border-color: $lightOrange !important;
+  justify-content: center !important;
 }
+
+@media (min-width: 1125px) {
+  a.tab-link {
+    font-size: 125%;
+  }
+}
+
+@media (max-width: 1126px) {
+  a.tab-link {
+    font-size: 110%;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-weight: 400;
+  }
+}
+
+
+.addBlogTitle, .addRecipesTitle, .showRecipesTitle, .showUsersTitle .myRecipesTitle, .myFavesTitle {
+    cursor: pointer;
+  }
+  
+  .addBlogSpan:hover, .addRecipesSpan:hover, .showRecipesSpan:hover, .showUsersSpan:hover, .myRecipesSpan:hover, .myFavesSpan:hover {
+    color: $mediumOrange;
+    transition: ease 0.5;
+  }
+
+.fa4, .fa5, .fa6 {
+  transform: rotateZ(0deg);
+  transition: transform 0.2s;
+}
+
+.fa7, .fa8, .fa9 {
+  transform: rotateZ(0deg);
+  transition: transform 0.2s;
+}
+
+.fa4.active, .fa5.active, .fa6.active  {
+  transform: rotateZ(90deg);
+}
+
+ .fa7.active, .fa8.active, .fa9.active  {
+    transform: rotateZ(90deg);
+  }
+
+.addBlogDiv, .addRecipesDiv, .showRecipesDiv, .showUsersDiv, .myRecipesDiv, .myFavesDiv {
+  display: none;
+}
+
