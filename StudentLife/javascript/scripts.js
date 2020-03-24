@@ -9,7 +9,7 @@ function findRecipe() {
   let request = new XMLHttpRequest();
   const urlString1 = "https://api.spoonacular.com/recipes/complexSearch?maxReadyTime=";
   const urlString2 = "&apiKey=53bea2eb3c79445188bc4d3f00895d15&query=";
-  let ingredients = document.getElementById('hidden').value;
+  let ingredients = document.getElementById('hidden1').value;
   let maxTime =document.getElementById('time').value;
   let intolerances = getIntolerances();
   let dietRestriction = getDietRestrictions();
@@ -29,6 +29,7 @@ function findRecipe() {
   else {
       requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerances}&diet=${dietRestriction}`;
   }
+  console.log(requestString);
   request.open("GET", requestString, true);
   request.onload = function() {
     let data = JSON.parse(this.response);
@@ -228,53 +229,6 @@ function toggleIntolerances() {
   var checked = document.getElementById("selectIntolerance").checked;
   if (checked) {
     document.getElementById("intoleranceList").style.display = "block";
-    var txt = document.getElementById('intolerance');
-    var list = document.getElementById('list2');
-    var items = [];
-    
-    txt.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        let val = txt.value;
-        if (val !== '') {
-          if (items.indexOf(val) >= 0) {
-            alert('Tag name is a duplicate');
-          } else {
-            items.push(val);
-            render();
-            txt.value = '';
-            txt.focus();
-          }
-        } else {
-          alert('Please type a tag Name');
-        }
-      }
-    });
-    function remove(i) {
-      items = items.filter(item => items.indexOf(item) != i);
-      render();
-      
-    }
-    function render() {
-      list.innerHTML = '';
-      items.map((item, index) => {
-        list.innerHTML += `<li><span>${item}</span><a href="javascript: void 0" onclick="LIB.remove(${index})">X</a></li>`;
-      });
-      var hidden = document.getElementById("hidden");
-      hidden.style.display = "none";
-      var txt = items.toString();
-      hidden.value = txt;
-    }
-
-    window.LIB = {
-      remove:remove,
-      render: render
-    }
-    
-    
-    window.onload = function() {
-      render();
-      txt.focus();
-    }
   } else {
     document.getElementById("intoleranceList").style.display = "none";
   }
@@ -283,53 +237,6 @@ function toggleDietRestrictions() {
   var checked = document.getElementById("selectDietRestriction").checked;
   if (checked) {
     document.getElementById("dietRestrictionsList").style.display = "block";
-    var txt = document.getElementById('dietRestriction');
-    var list = document.getElementById('list3');
-    var items = [];
-    
-    txt.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        let val = txt.value;
-        if (val !== '') {
-          if (items.indexOf(val) >= 0) {
-            alert('Tag name is a duplicate');
-          } else {
-            items.push(val);
-            render();
-            txt.value = '';
-            txt.focus();
-          }
-        } else {
-          alert('Please type a tag Name');
-        }
-      }
-    });
-    function remove(i) {
-      items = items.filter(item => items.indexOf(item) != i);
-      render();
-      
-    }
-    function render() {
-      list.innerHTML = '';
-      items.map((item, index) => {
-        list.innerHTML += `<li><span>${item}</span><a href="javascript: void 0" onclick="LIB.remove(${index})">X</a></li>`;
-      });
-      var hidden = document.getElementById("hidden");
-      hidden.style.display = "none";
-      var txt = items.toString();
-      hidden.value = txt;
-    }
-
-    window.LIB = {
-      remove:remove,
-      render: render
-    }
-    
-    
-    window.onload = function() {
-      render();
-      txt.focus();
-    }
   } else {
     document.getElementById("dietRestrictionsList").style.display = "none";
   }
@@ -364,75 +271,25 @@ function getDietRestrictions(){
   let newSelectedItems = selectedItems.substring(0, selectedItems.length - 1);
   return newSelectedItems;
 }	
-let countIngredient = 1;
-function addIngredient() {
-  var area = document.getElementById("addedIngredient");
-  var num = document.createElement("p");
-  numText = document.createTextNode(countIngredient + ". ");
-  num.appendChild(numText);
-  area.appendChild(num);
-  //Ingredient Name
-  var ingredientNameLabel = document.createElement("p");
-  ingredientNameLabelText = document.createTextNode("Name");
-  ingredientNameLabel.appendChild(ingredientNameLabelText);
-  area.appendChild(ingredientNameLabel);
-  countIngredient++;
-
-  var ingredientNameInput = document.createElement("INPUT");
-  ingredientNameInput.setAttribute("name", "ingredient_name[]");
-  ingredientNameInput.setAttribute("type", "text");
-  ingredientNameInput.setAttribute("class", "form-control");
-  ingredientNameInput.setAttribute("class", "ingName");
-  area.appendChild(ingredientNameInput);
-
-  //Ingredient Measure
-  var ingredientMeasureLabel = document.createElement("p");
-  ingredientMeasureLabelText = document.createTextNode("Measure");
-  ingredientMeasureLabel.appendChild(ingredientMeasureLabelText);
-  area.appendChild(ingredientMeasureLabel);
-
-  var ingredientMeasureInput = document.createElement("INPUT");
-  ingredientMeasureInput.setAttribute("name", "ingredient_measure[]");
-  ingredientMeasureInput.setAttribute("type", "text");
-  ingredientMeasureInput.setAttribute("class", "form-control");
-  ingredientMeasureInput.setAttribute("class", "ingMeasure");
-  area.appendChild(ingredientMeasureInput);
-
-   //Ingredient Unit
-   var ingredientUnitLabel = document.createElement("p");
-   ingredientUnitLabelText = document.createTextNode("Unit");
-   ingredientUnitLabel.appendChild(ingredientUnitLabelText);
-   area.appendChild(ingredientUnitLabel);
- 
-   var x = document.createElement("SELECT");
-  x.setAttribute("id", "mySelect");
-  area.appendChild(x);
-
-  var a = document.createElement("option");
-  a.setAttribute("value", "g");
-  var t = document.createTextNode("g");
-  a.appendChild(t);
-  document.getElementById("mySelect").appendChild(a);
-  
-  var b = document.createElement("option");
-  b.setAttribute("value", "ml");
-  var t = document.createTextNode("ml");
-  b.appendChild(t);
-  document.getElementById("mySelect").appendChild(b);
-  
-    var c = document.createElement("option");
-  c.setAttribute("value", "kg");
-  var t = document.createTextNode("kg");
-  c.appendChild(t);
-  document.getElementById("mySelect").appendChild(c);
-  
-    var d = document.createElement("option");
-  d.setAttribute("value", "litres");
-  var t = document.createTextNode("litres");
-  d.appendChild(t);
-  document.getElementById("mySelect").appendChild(d);
-   
-   area.appendChild(ingredientUnitInput);
+function displayIng() {
+  let metric = document.getElementById('metric');
+  let imperial = document.getElementById('imperial');
+  let metricIng = document.getElementById('metricIng');
+  let imperialIng = document.getElementById('imperialIng');
+  let area = document.getElementById("ingArea");
+  if (metric.checked === true) {
+    metricIng.classList.remove("unitHide");
+    imperialIng.classList.add("unitHide");
+  }
+  else if(imperial.checked === true) {
+    imperialIng.classList.remove("unitHide");
+    metricIng.classList.add("unitHide");
+  }
+}
+function addMetricIngredient() {
+  let metricArea = document.getElementById("metricIng");
+  var clone = metricArea.cloneNode(true);
+  document.getElementById("addedIngredient").appendChild(clone);
 }
 let countStep = 1;
 function addStep() {
@@ -503,6 +360,12 @@ window.onload = function() {
 }
 }
 
+
+function displayTime() {
+  let time = document.getElementById("maxTime").value;
+  let area = document.getElementById("timeArea");
+  area.innerHTML = time + " minutes";
+}
 
 
 // TOGGLE HIDE/SHOW

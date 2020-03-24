@@ -30,7 +30,7 @@ function chippy() {
       items.map((item, index) => {
         list.innerHTML += `<li><span>${item}</span><a href="javascript: void 0" onclick="LIB.remove(${index})">X</a></li>`;
       });
-      var hidden = document.getElementById("hidden");
+      var hidden = document.getElementById("hidden1");
       hidden.style.display = "none";
       var txt = items.toString();
       hidden.value = txt;

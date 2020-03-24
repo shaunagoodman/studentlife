@@ -7,8 +7,6 @@ session_start();
 
 // Include config file
 require_once "includes/database/connection.php";
-
-
 $query = "SELECT * FROM recipes r INNER JOIN user u ON u.user_ID = r.user_ID WHERE u.u_type = 1 ORDER BY date_created limit 4";
 $statement = $conn->prepare($query);
 $statement->execute();
