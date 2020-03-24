@@ -37,14 +37,13 @@ function chippy() {
 
       var hidden2 = document.getElementById("hidden2");
       hidden2.style.display = "none";
-      var lis = document.getElementById("tagging_ul").getElementsByTagName("li");
-      var txt = lis.toString();
-      console.log(txt);
+      var txt = items.toString();
+      hidden2.value = txt;
 
-      var hidden3 = document.getElementById("hidden3");
+      var hidden3 = document.getElementById("hidden1");
       hidden3.style.display = "none";
       var txt = items.toString();
-      hidden3.value = txt;
+      hidden.value = txt;
     }
 
     window.LIB = {
