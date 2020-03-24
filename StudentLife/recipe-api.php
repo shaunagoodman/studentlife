@@ -51,7 +51,6 @@ include_once 'includes/CDNs.php';
             <p class='sub-head-api'> <input class='checkbox-api' type="checkbox" id="selectIntolerance" onClick="toggleIntolerances()" />Have an Intolerance?</p>
             <hr align="left" class="api-line">
             <div id="intoleranceList">
-                <ul id="list2"></ul>
                 <input id="intolerances" class="tags-input" value="">
                 <div id = "hidden2"> </div>
           </div>
@@ -64,7 +63,6 @@ include_once 'includes/CDNs.php';
             <p class='sub-head-api'> <input class='checkbox-api' type="checkbox" id="selectDietRestriction" onClick="toggleDietRestrictions()" />Have a Diet Restriction?</p>
             <hr align="left" class="api-line">
             <div id="dietRestrictionsList">
-              <ul id="list3"></ul>
               <input id="dietRestrictions" class="tags-input" value="">
               <div id = "hidden3"> </div>
 
