@@ -69,6 +69,10 @@ include_once 'includes/database/addRecipe.php';
     top:2px;
     left:2px;
 }
+
+.unitHide {
+    display: none;
+}
 </style>
     <?php include_once 'includes/CDNs.php'; ?>
 </head>
@@ -100,7 +104,47 @@ include_once 'includes/database/addRecipe.php';
         <div class='row' >
             <div id="addedIngredient" class="col-md-6 form-group <?php echo (!empty($ingredient_err)) ? 'has-error' : ''; ?>">
                 <label> Ingredients </label>
-                <button id="addBtn" type="button" class="btn btn-sm add-recipe-button"  onClick="addIngredient()"> Add Ingredient</button>
+                <label> Metric </label>
+                <input type="radio" onclick = "displayIng()" value = "Metric"  name = "ingredients" id = "metric" />
+                <label> Imperial </label>
+                <input type="radio" onclick = "displayIng()" value = "Metric" name = "ingredients" id = "imperial" />
+                <div id = "ingArea">
+                    <div id = "metricIng" class = "unitHide">
+                        <p> Name </p>
+                        <input class="form-control" type="text" name="ingName" />
+                        <p> Measure </p>
+                        <input class="form-control" type="text" name="ingMeasure" />
+                        <p> Unit </p>
+                        <select name="units" id="units">
+                            <option value="grams">Gram(s)</option>
+                            <option value="kg">Kg</option>
+                            <option value="ml">Ml</option>
+                            <option value="litre(s)">Litre(s)</option>
+                            <option value="pinch">Pinch</option>
+                            <option value="whole">Whole</option>
+                            <option value="teaspoon(s)">Teaspoon(s)</option>
+                            <option value="tablespoon(s)">Tablespoon(s)</option>
+                        </select>
+                        <input id = "ingbtn" type = "button" class="btn btn-sm add-recipe-button" value = "Add Ingredient" onclick = "addMetricIngredient()" />
+                    </div>
+                    <div id = "imperialIng" class = "unitHide">
+                        <p> Name </p>
+                        <input class="form-control" type="text" name="ingName" />
+                        <p> Measure </p>
+                        <input class="form-control" type="text" name="ingMeasure" />
+                        <p> Unit </p>
+                        <select name="units" id="units">
+                            <option value="ounce">Ounce(s)</option>
+                            <option value="pound">Pound(s)</option>
+                            <option value="cup">Cup(s)</option>
+                            <option value="pinch">Pinch</option>
+                            <option value="whole">Whole</option>
+                            <option value="teaspoon(s)">Teaspoon(s)</option>
+                            <option value="tablespoon(s)">Tablespoon(s)</option>
+                        </select>
+                        <input type = "submit" class="btn btn-sm add-recipe-button" value = "Add Ingredient" onclick = "addImperialIngredient()" />
+                    </div>
+                </div>
             </div>
             <br>
             <div id="addedStep" class="col-md-6 form-group <?php echo (!empty($step_err)) ? 'has-error' : ''; ?>">
@@ -119,7 +163,7 @@ include_once 'includes/database/addRecipe.php';
             <div class="form-group col-md-6 <?php echo (!empty($maxTime_err)) ? 'has-error' : ''; ?>">
                 <label>Max Time</label>
                 <input onchange="displayTime()"type = "range" min = "1" max = "60" value = "10" id = "maxTime" name = "maxTime"/>
-                <span id = "timeArea"> </span>
+                <span id = "timeArea"> <?= isset($_POST['maxTime']) ? $_POST['maxTime'] : '' ?>"</span>
             </div>
 
         </div>

@@ -271,106 +271,25 @@ function getDietRestrictions(){
   let newSelectedItems = selectedItems.substring(0, selectedItems.length - 1);
   return newSelectedItems;
 }	
-let countIngredient = 1;
-function addIngredient() {
-  var area = document.getElementById("addedIngredient");
-  var num = document.createElement("p");
-  numText = document.createTextNode(countIngredient + ". ");
-  num.appendChild(numText);
-  area.appendChild(num);
-
-  //Ingredient Name
-  var ingredientNameLabel = document.createElement("p");
-  ingredientNameLabelText = document.createTextNode("Name");
-  ingredientNameLabel.appendChild(ingredientNameLabelText);
-  area.appendChild(ingredientNameLabel);
-  countIngredient++;
-
-  var ingredientNameInput = document.createElement("INPUT");
-  ingredientNameInput.setAttribute("name", "ingredient_name[]");
-  ingredientNameInput.setAttribute("type", "text");
-  ingredientNameInput.setAttribute("class", "form-control");
-  ingredientNameInput.setAttribute("class", "ingName");
-  area.appendChild(ingredientNameInput);
-
-  //Ingredient Measure
-  var ingredientMeasureLabel = document.createElement("p");
-  ingredientMeasureLabelText = document.createTextNode("Measure");
-  ingredientMeasureLabel.appendChild(ingredientMeasureLabelText);
-  area.appendChild(ingredientMeasureLabel);
-
-  var ingredientMeasureInput = document.createElement("INPUT");
-  ingredientMeasureInput.setAttribute("name", "ingredient_measure[]");
-  ingredientMeasureInput.setAttribute("type", "text");
-  ingredientMeasureInput.setAttribute("class", "form-control");
-  ingredientMeasureInput.setAttribute("class", "ingMeasure");
-  area.appendChild(ingredientMeasureInput);
-
-   //Ingredient Unit
-   var ingredientUnitLabel = document.createElement("p");
-   ingredientUnitLabelText = document.createTextNode("Unit");
-   ingredientUnitLabel.appendChild(ingredientUnitLabelText);
-   area.appendChild(ingredientUnitLabel);
- 
-   var select = document.createElement("SELECT");
-  select.setAttribute("name", "ingredient_unit[]");
-  area.appendChild(select);
-
-  var option = document.createElement("option");
-  option.setAttribute("value", "grams");
-  var value = document.createTextNode("g");
-  option.appendChild(value);
-  select.appendChild(option);
-
-  var option = document.createElement("option");
-  option.setAttribute("value", "milimeters");
-  var value = document.createTextNode("ml");
-  option.appendChild(value);
-  select.appendChild(option);
-
-  var option = document.createElement("option");
-  option.setAttribute("value", "kilograms");
-  var value = document.createTextNode("kg");
-  option.appendChild(value);
-  select.appendChild(option);
-  var option = document.createElement("option");
-  option.setAttribute("value", "litres");
-  var value = document.createTextNode("litre(s)");
-  option.appendChild(value);
-  select.appendChild(option);
-
-  var option = document.createElement("option");
-  option.setAttribute("value", "slice");
-  var value = document.createTextNode("slice");
-  option.appendChild(value);
-  select.appendChild(option);
-  
-  var option = document.createElement("option");
-  option.setAttribute("value", "whole");
-  var value = document.createTextNode("whole");
-  option.appendChild(value);
-  select.appendChild(option);
-
-  var option = document.createElement("option");
-  option.setAttribute("value", "pinch");
-  var value = document.createTextNode("pinch");
-  option.appendChild(value);
-  select.appendChild(option);
-
-//   var b = document.createElement("option");
-//   b.setAttribute("value", "ml");
-//   var t = document.createTextNode("ml");
-//  select.appendChild(t);
-  
-//     var c = document.createElement("option");
-//   c.setAttribute("value", "kg");
-//   var t = document.createTextNode("kg");
-//   select.appendChild(t);
-  
-//     var d = document.createElement("option");
-//   d.setAttribute("value", "litres");
-//   var t = document.createTextNode("litres");
-//   select.appendChild(t);
+function displayIng() {
+  let metric = document.getElementById('metric');
+  let imperial = document.getElementById('imperial');
+  let metricIng = document.getElementById('metricIng');
+  let imperialIng = document.getElementById('imperialIng');
+  let area = document.getElementById("ingArea");
+  if (metric.checked === true) {
+    metricIng.classList.remove("unitHide");
+    imperialIng.classList.add("unitHide");
+  }
+  else if(imperial.checked === true) {
+    imperialIng.classList.remove("unitHide");
+    metricIng.classList.add("unitHide");
+  }
+}
+function addMetricIngredient() {
+  let metricArea = document.getElementById("metricIng");
+  var clone = metricArea.cloneNode(true);
+  document.getElementById("addedIngredient").appendChild(clone);
 }
 let countStep = 1;
 function addStep() {
