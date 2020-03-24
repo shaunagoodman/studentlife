@@ -9,7 +9,7 @@ session_start();
 require_once "includes/database/connection.php";
 
 
-$query = "SELECT * FROM recipes WHERE user_ID = '117' ORDER BY date_created";
+$query = "SELECT * FROM `recipes` r INNER JOIN user u ON u.user_ID = r.user_ID WHERE u.u_type = 1 ORDER BY date_created";
 $statement = $conn->prepare($query);
 $statement->execute();
 $recipes = $statement->fetchAll();

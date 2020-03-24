@@ -16,4 +16,5 @@ function slider () {
       $('.star').click(function(){
                  alert($(this).prevAll().length+1);
       });
+
 }

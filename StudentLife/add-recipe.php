@@ -65,10 +65,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     // Validate rating
-    if (isset($_POST["rating"])) {
-        $rating = $_POST["rating"];  // Storing Selected Value In Variable
+    if (isset($_POST["submit"])) {
+        $rating = $_POST['rating'];  // Storing Selected Value In Variable
     }
 
+    // Time
+    if (isset($_POST["submit"])) {
+        $maxTime = $_POST['maxTime'];  // Storing Selected Value In Variable
+        if($maxTime < 60) { // less than an hour
+            if ($maxTime < 10) {
+                $time =  "00:0" . $maxTime . ":00"; // time is less than 10 mins
+            }
+            else {
+                $time =  "00:" . $maxTime . ":00"; // between 10 - 59 mins
+            }
+        }
+        else {
+            $hr = floor(($maxTime / 60));
+            $mins = $maxTime - ($hr * 60);
+            if($hr > 10) {
+                if($mins >= 10) {
+                    $time =  $hr . ":".$mins.":00";
+                }
+                else {
+                    $time =  $hr . ":0".$mins.":00";
+                }
+            }
+            else {
+                if($mins >= 10) {
+                    $time =  "0".$hr. ":".$mins.":00";
+                }
+                else {
+                    $time = "0".$hr. ":0".$mins.":00";
+                }
+            }
+        }
+    }
 
     // Validate servings
     $input_servings = trim($_POST["servings"]);
@@ -78,40 +110,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $servings = $input_servings;
     }
 
-    // Validate Max Time
-    $input_maxTime = trim($_POST["maxTime"]);
-    if (empty($input_maxTime)) {
-        $maxTime_err = "Please enter a a Maximum prep time.";
-    } else {
-        $maxTime = $input_maxTime;
-        if ($maxTime < 60) { // less than an hour
-            if ($maxTime < 10) {
-                $time =  "00:0" . $maxTime . ":00"; // time is less than 10 mins
-            } else {
-                $time =  "00:" . $maxTime . ":00"; // between 10 - 59 mins
-            }
-        } else {
-            $hr = floor(($maxTime / 60));
-            $mins = $maxTime - ($hr * 60);
-            if ($hr > 10) {
-                if ($mins >= 10) {
-                    $time =  $hr . ":" . $mins . ":00";
-                } else {
-                    $time =  $hr . ":0" . $mins . ":00";
-                }
-            } else {
-                if ($mins >= 10) {
-                    $time =  "0" . $hr . ":" . $mins . ":00";
-                } else {
-                    $time = "0" . $hr . ":0" . $mins . ":00";
-                }
-            }
-        }
-    }
+    // Difficulty
     if (isset($_POST["difficulty"])) {
         $difficultyID = $_POST["difficulty"];  // Storing Selected Value In Variable
     }
 
+    // Add ingredient
     $names = [];
     $measures = [];
     $units = [];
@@ -124,7 +128,7 @@ if (!empty($_POST["ingredient_name"]) && !empty($_POST["ingredient_measure"]) &&
     foreach ($_POST["ingredient_measure"] as $key => $measure) {
         array_push($measures, $measure);
     }
-    foreach ($_POST["ingredient_unit"] as $key => $unit) {
+    foreach ($_POST['ingredient_unit'] as $unit) {
         array_push($units, $unit);
     }
 }
@@ -138,43 +142,46 @@ if (!empty($_POST["ingredient_name"]) && !empty($_POST["ingredient_measure"]) &&
         $statement1->execute();
         $recipe_ID = $conn->lastInsertId();
     }
-         /******************** Add to ingredients table ************************/
-            $count = count($names);
-            for ($x = 0; $x < $count; $x++) {
-             $sql = "INSERT INTO ingredients (ingredient_ID, name, amount, unit) VALUES (null,'$names[$x]','$measures[$x]','$units[$x]')";
-             $statement2 = $conn->prepare($sql);
-             if($statement2->execute()) {
-                 $ingredient_ID = $conn->lastInsertId();
-                 /******************** Add to recipeIngredient table ************************/
-                 $query3 = "INSERT INTO recipeingredient (recipe_ID, ingredient_ID) VALUES ('$recipe_ID','$ingredient_ID')";
-                 $statement3 = $conn->prepare($query3);
-                 $statement3->execute();
-             }
-         }
-         // /******************** Add to steps table ************************/
-        if (!empty($_POST["steps"])) {
-            $input = "";
-            $count = 1;
-            foreach ($_POST["steps"] as $key => $step) {
-                $input .= $count . ". " . $step . " ";
-                $count++;
-            }
-            $sql2 = "INSERT INTO steps(steps_ID, description) VALUES (null,'$input')";
-            $statement4 = $conn->prepare($sql2);
-        if ($statement4->execute()) {
-            $step_ID = $conn->lastInsertId();
-            /******************** Add to recipesteps table ************************/
-            $query4 = "INSERT INTO recipesteps(recipe_ID, steps_ID) VALUES ('$recipe_ID', '$step_ID')";
-            $statement5 = $conn->prepare($query4);
-            $statement5->execute();
-            $statement5->closeCursor();
-            unset($stmt);
-        } else {
-            echo "Something went wrong. Please try again later.";
-        }
+        //  /******************** Add to ingredients table ************************/
+        // $count = count($names);
+    
+        // for ($x = 0; $x < $count; $x++) {
+        //     $sql = "INSERT INTO ingredients (ingredient_ID, name, amount, unit) VALUES (null,'$names[$x]','$measures[$x]','$units[$x]')";
+        //     $statement2 = $conn->prepare($sql);
+        //     if($statement2->execute()) {
+        //         $ingredient_ID = $conn->lastInsertId();
+        //         /******************** Add to recipeIngredient table ************************/
+        //         $query3 = "INSERT INTO recipeingredient (recipe_ID, ingredient_ID) VALUES ('$recipe_ID','$ingredient_ID')";
+        //         $statement3 = $conn->prepare($query3);
+        //         $statement3->execute();
+        //     }   
+        // }
+        //  // /******************** Add to steps table ************************/
+        // if (!empty($_POST["steps"])) {
+        //     $input = "";
+        //     $count = 1;
+        //     foreach ($_POST["steps"] as $key => $step) {
+        //         $input .= $count . ". " . $step . " ";
+        //         $count++;
+        //     }
+        // }
+        //     $sql2 = "INSERT INTO steps(steps_ID, description) VALUES (null,'$input')";
+        //     $statement4 = $conn->prepare($sql2);
+        //     if ($statement4->execute()) {
+        //         $step_ID = $conn->lastInsertId();
+        //         /******************** Add to recipesteps table ************************/
+        //         $query4 = "INSERT INTO recipesteps(recipe_ID, steps_ID) VALUES ('$recipe_ID', '$step_ID')";
+        //         $statement5 = $conn->prepare($query4);
+        //         $statement5->execute();
+        //         $statement5->closeCursor();
+        //         unset($stmt);
+        //     }
+        } 
+        // else {
+        //     echo "Something went wrong. Please try again later.";
+        // }
 
-        }
-}
+        
 ?>
 
 <!DOCTYPE html>
@@ -186,11 +193,59 @@ if (!empty($_POST["ingredient_name"]) && !empty($_POST["ingredient_measure"]) &&
     <script src="javascript/scripts.js"></script>
     <script src="javascript/slider.js"></script>
     <script src="javascript/rating.js"></script>
+<style>
+    .rating {
+    float:left;
+}
+.rating:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+    clip:rect(0,0,0,0);
+}
 
+.rating:not(:checked) > label {
+    float:right;
+    width:1em;
+    padding:0 .1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:200%;
+    line-height:1.2;
+    color:#ddd;
+}
+
+.rating:not(:checked) > label:before {
+    content: '★ ';
+}
+
+.rating > input:checked ~ label {
+    color: #f70;
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: gold;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #ea0;
+}
+
+.rating > label:active {
+    position:relative;
+    top:2px;
+    left:2px;
+}
+</style>
     <?php include_once 'includes/CDNs.php'; ?>
 </head>
 
-<body onload = "slider()" class='site' >
+<body class='site' >
     <?php include_once 'includes/nav-menu.php';
     ?>
 <main class='site-content' >
@@ -201,100 +256,79 @@ if (!empty($_POST["ingredient_name"]) && !empty($_POST["ingredient_measure"]) &&
 
     <form class=" create-recipe-form" enctype="multipart/form-data" action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
 
-    <div class='row' > 
-        <div class="form-group col-md-6 <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
-            <label>Name</label>
-            <input type="text" name="recipeName" class="form-control">
-            <span class="help-block"><?php echo $name_err; ?></span>
-        </div>
+        <div class='row' > 
+            <div class="form-group col-md-6 <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
+                <label>Name</label>
+                <input type="text" name="recipeName" class="form-control">
+                <span class="help-block"><?php echo $name_err; ?></span>
+            </div>
 
-       
-    
-        <div class="form-group col-md-6">
-            <label>Video Name</label>
-            <input class="form-control" type="text" name="video_name" />
-            <span class="help-block"></span>
+            <div class="form-group col-md-6">
+                <label>Video Name</label>
+                <input class="form-control" type="text" name="video_name" />
+                <span class="help-block"></span>
+            </div>
         </div>
-    </div>
-                   <!-- ---------------------------- -->
-                  <div class='row' >
-        <div id="addedIngredient" class="col-md-6 form-group <?php echo (!empty($ingredient_err)) ? 'has-error' : ''; ?>">
-            <label> Ingredients </label>
-            <button id="addBtn" type="button" class="btn btn-sm add-recipe-button"  onClick="addIngredient()"> Add Ingredient</button>
+        <div class='row' >
+            <div id="addedIngredient" class="col-md-6 form-group <?php echo (!empty($ingredient_err)) ? 'has-error' : ''; ?>">
+                <label> Ingredients </label>
+                <button id="addBtn" type="button" class="btn btn-sm add-recipe-button"  onClick="addIngredient()"> Add Ingredient</button>
+            </div>
+            <br>
+            <div id="addedStep" class="col-md-6 form-group <?php echo (!empty($step_err)) ? 'has-error' : ''; ?>">
+                <label> Method </label>
+            <button id="addBtn" type="button" class="btn btn-sm add-recipe-button"  onClick="addStep()" > Add Step</button>
+            </div>
+            
         </div>
-        
-
-        <br>
-        <div id="addedStep" class="col-md-6 form-group <?php echo (!empty($step_err)) ? 'has-error' : ''; ?>">
-            <label> Method </label>
-           <button id="addBtn" type="button" class="btn btn-sm add-recipe-button"  onClick="addStep()" > Add Step</button>
-        </div>
-        
-                  </div>
-        <!-- ---------------------------- -->
-
         <div class=row >
+            <div class="form-group col-md-6 <?php echo (!empty($servings_err)) ? 'has-error' : ''; ?>">
+                <label>Servings</label>
+                <input type="text" name="servings" class="form-control" value="<?php echo $servings; ?>">
+                <span class="help-block"><?php echo $servings_err; ?></span>
+            </div>
 
-        <div class="form-group col-md-6 <?php echo (!empty($servings_err)) ? 'has-error' : ''; ?>">
-            <label>Servings</label>
-            <input type="text" name="servings" class="form-control" value="<?php echo $servings; ?>">
-            <span class="help-block"><?php echo $servings_err; ?></span>
-        </div>
-
-        <div class="form-group col-md-6 <?php echo (!empty($maxTime_err)) ? 'has-error' : ''; ?>">
-            <label>Max Time</label>
-            <input type = "range" min = "1" max = "60" value = "10" id = "myRange"/>
-            <span id = "demo"> </span>
-        </div>
-
-        </div>
-        <!-- ---------------------------- -->
-<div class='row' >
-
-        <div class="form-group col-md-4 <?php echo (!empty($difficultyID_err)) ? 'has-error' : ''; ?>">
-            <label>Difficulty</label>
-            <select id="difficulty" name="difficulty">
-                <option value="1">Easy </option>
-                <option value="2">Medium</option>
-                <option value="3">Hard</option>
-            </select>
-            <span class="help-block"><?php echo $difficultyID_err; ?></span>
-        </div>
-
-        <div class="form-group col-md-4 <?php echo (!empty($rating_err)) ? 'has-error' : ''; ?>">
-            <label>Rating</label>
-            <!-- <div class='rating-stars text-center'>
-                <ul id='stars'>
-                    <li class='star' title='Poor' data-value='1'>
-                        <i class='fa fa-star fa-fw'></i>
-                    </li>
-                    <li class='star' title='Fair' data-value='2'>
-                        <i class='fa fa-star fa-fw'></i>
-                    </li>
-                    <li class='star' title='Good' data-value='3'>
-                        <i class='fa fa-star fa-fw'></i>
-                    </li>
-                    <li class='star' title='Excellent' data-value='4'>
-                        <i class='fa fa-star fa-fw'></i>
-                    </li>
-                    <li class='star' title='WOW!!!' data-value='5'>
-                        <i class='fa fa-star fa-fw'></i>
-                    </li>
-                </ul>
-            </div> -->
-        </div>
-
-        <div class="form-group col-md-4 ">
-            <label>Image</label>
-            <input class="input-group " type="file" name="image" accept="image/*" />
+            <div class="form-group col-md-6 <?php echo (!empty($maxTime_err)) ? 'has-error' : ''; ?>">
+                <label>Max Time</label>
+                <input onchange="displayTime()"type = "range" min = "1" max = "60" value = "10" id = "maxTime" name = "maxTime"/>
+                <span id = "timeArea"> </span>
+            </div>
 
         </div>
+        <div class='row' >
+            <div class="form-group col-md-4 <?php echo (!empty($difficultyID_err)) ? 'has-error' : ''; ?>">
+                <label>Difficulty</label>
+                <select id="difficulty" name="difficulty">
+                    <option value="1">Easy </option>
+                    <option value="2">Medium</option>
+                    <option value="3">Hard</option>
+                </select>
+                <span class="help-block"><?php echo $difficultyID_err; ?></span>
+            </div>
+
+            <div class="form-group col-md-4 <?php echo (!empty($rating_err)) ? 'has-error' : ''; ?>">
+                <label>Rating</label>
+                <fieldset class="rating">
+                    <input type="radio" id="star5" name="rating" value="5" /><label for="star5" >5 stars</label>
+                    <input type="radio" id="star4" name="rating" value="4" /><label for="star4"> 4 stars</label>
+                    <input type="radio" id="star3" name="rating" value="3" /><label for="star3" >3 stars</label>
+                    <input type="radio" id="star2" name="rating" value="2" /><label for="star2" >2 stars</label>
+                    <input type="radio" id="star1" name="rating" value="1" /><label for="star1" >1 star</label>
+                </fieldset>
+  
+            </div>
+
+            <div class="form-group col-md-4 ">
+                <label>Image</label>
+                <input class="input-group " type="file" name="image" accept="image/*" />
+
+            </div>
 
         </div>
 
 
         <input type="hidden" name="recipe_ID" value="<?php echo $id; ?>" />
-        <input type="submit" class="btn btn-light" value="Submit">
+        <input type='submit' class="btn btn-light"  name = 'submit' value="Submit the form"/>
         <a href="show-all-recipes.php" class="btn btn-light">Cancel</a>
     </form>
 
