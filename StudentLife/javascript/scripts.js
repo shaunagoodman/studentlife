@@ -17,19 +17,19 @@ function findRecipe() {
   if(maxTime === "") {
     maxTime = 30;
   }
-  let requestString;
-  if(intolerances.length == 0 && dietRestriction == 0) {
-      requestString = `${urlString1}${maxTime}${urlString2}${ingredients}`;
-  }
-  else if(intolerances.length == 0 && dietRestriction != 0) {
-      requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&diet=${dietRestriction}`;
-  }
-  else if(intolerances.length != 0 && dietRestriction == 0) {
-      requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerances}`;
-  }
-  else {
-      requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerances}&diet=${dietRestriction}`;
-  }
+  let requestString = `${urlString1}${maxTime}${urlString2}${ingredients}`;
+  // if(intolerances.length == 0 && dietRestriction == 0) {
+  //     requestString = `${urlString1}${maxTime}${urlString2}${ingredients}`;
+  // }
+  // else if(intolerances.length == 0 && dietRestriction != 0) {
+  //     requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&diet=${dietRestriction}`;
+  // }
+  // else if(intolerances.length != 0 && dietRestriction == 0) {
+  //     requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerances}`;
+  // }
+  // else {
+  //     requestString = `${urlString1}${maxTime}${urlString2}${ingredients}&intolerances=${intolerances}&diet=${dietRestriction}`;
+  // }
   console.log(requestString);
   request.open("GET", requestString, true);
   request.onload = function() {

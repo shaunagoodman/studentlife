@@ -70,7 +70,7 @@ include_once 'includes/CDNs.php';
 
             </div>
           </div>
-
+</div>
         <!-- -------------------------------------------- -->
 
         <button class="btn api-button" type="button" onclick="findRecipe()">Submit</button> <br>
