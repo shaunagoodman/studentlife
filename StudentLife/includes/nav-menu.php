@@ -22,8 +22,8 @@ and open the template in the editor.
 <body>
 
 
-    <nav class="navbar navbar-expand-lg navbar-light ">
-        <a class="navbar-brand" href="index.php"><img src="images/recipeasy-icons-logos/recipeasy-logo-2.png" class="d-inline-block align-top" alt="" /> </a>
+    <nav class="navbar navbar-expand-lg navbar-light desktopNav">
+        <a class="navbar-brand" href="index.php"><img src="images/recipeasy-icons-logos/new-logo-white.png" class="d-inline-block align-top" alt="recipeasy-logo" style='width:100%' /> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <img class="burger-icon" src="images/recipeasy-icons-logos/burger-menu.png" alt="" />
         </button>
@@ -72,8 +72,7 @@ and open the template in the editor.
 
                             echo '<a class="dropdown-item" href="admin.php">View Profile</a>';
                             echo '<a class="dropdown-item" href="logout.php">Logout</a>';
-                        } 
-                        else {
+                        } else {
                             echo '<a class="dropdown-item" href="login.php">Login</a>';
                             echo '<a class="dropdown-item" href="sign-up.php">Register</a>';
                         }
@@ -88,6 +87,71 @@ and open the template in the editor.
             </form>
         </div>
     </nav>
+
+
+
+
+<!-- MOBILE NAV MENU -->
+
+    <nav class='mobileNav'>
+        <div class="header"></div>
+        <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
+        <label for="openSidebarMenu" class="sidebarIconToggle">
+            <div class="spinner diagonal part-1"></div>
+            <div class="spinner horizontal"></div>
+            <div class="spinner diagonal part-2"></div>
+        </label>
+        <div id="sidebarMenu">
+            <ul class="sidebarMenuInner">
+                <li><a href="index.php">Home</a></li>
+                <li> <a href="recipes-list.php">All Recipes</a></li>
+                <li> <a href="recipe-api.php">Whats in my fridge?</a></li>
+                <li> <a href="random-recipe.php">Random Recipe Generator</a></li>
+
+                <li>
+                    <?php
+                    if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+
+                        echo '<a  href="admin.php">View Profile</a>';
+                    } else {
+                        echo ' <a href="login.php">Login</a>';
+                    }
+                    ?>
+                </li>
+
+                <li>
+                    <?php
+                    if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+
+                        echo '<a  href="logout.php">Logout</a>';
+                    } else {
+                        echo ' <a href="sign-up.php">Register</a>';
+                    }
+                    ?>
+                </li>
+
+                <li>
+                <form class="form-inline my-2 my-lg-0" method="post" action="recipes-list.php">
+                <input class="form-control mr-sm-2" type="search" name="something" placeholder="Search" aria-label="Search" value="<?= isset($_POST['something']) ? htmlspecialchars($_POST['something']) : '' ?>">
+                <button class="btn my-2 my-sm-0" type="submit" name="submit"> </button>
+            </form>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 
 </html>

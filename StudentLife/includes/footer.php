@@ -50,7 +50,7 @@ and open the template in the editor.
                 
                 <a href="https://ie.linkedin.com/" class="linkedin"> <span style="font-size: 30px; color: white;"><i class="fab fa-linkedin"></i></span></a>
                 <br>
-                <img src="images/recipeasy-icons-logos/recipeasy-logo-2.png" class="d-inline-block align-top" alt="" />
+                <img src="images/recipeasy-icons-logos/new-logo-white.png" class="d-inline-block align-top" alt="recipeasy-logo" style='width:80%' />
                 <p class="footer-links" >© 2019 Recipeasy | All Rights Reserved </p>
                 </center>
             </div>
@@ -105,7 +105,7 @@ and open the template in the editor.
 
             <div  class="col-md-12  footer-content small-footer-section">
                
-                
+                <center>
                 <ul class="small-footer-section-links footer-ul" >
                 <li>
                     <a class="footer-links" href="FAQ.php" >FAQ's</a>
@@ -113,8 +113,11 @@ and open the template in the editor.
                 <li>
                     <a class="footer-links" href="contact-us.php" >Contact Us</a>
                 </li>
+                <li>
+                    <a class="footer-links" href="blog_single.php" >Blog</a>
+                </li>
                 </ul>
-               
+               </center>
             </div>
                 
                 
@@ -125,7 +128,7 @@ and open the template in the editor.
                          
                          <p class="footer-links footer-contact-details-tiny" >  <img src="images/icons-logos/phone-white.png" width="5%" alt=""/>  Number: +353 863505611  </p> <p class="footer-links footer-contact-details-tiny"> <img src="images/icons-logos/letter-white.png" width="5%" alt=""/> Email: studentlife@info.com </p>
                          
-                         <img src="images/recipeasy-icons-logos/recipeasy-logo-2.png" class="d-inline-block align-top" alt="" />
+                         <img src="images/recipeasy-icons-logos/new-logo-white.png" class="d-inline-block align-top" alt="recipeasy-logo" style='width:50%' />
                     
                  <p class="footer-links" >© 2019 Recipeasy | All Rights Reserved </p>
                  </center>

@@ -58,12 +58,17 @@ input.sortBy{
     line-height: 2;
   }
 
-//   hr{
-//       border:solid  $mediumOrange;
-//   }
-
 body{
     background-color: $white;
+}
+
+
+//keep page content below mobile nav
+@media (max-width: 991px) {
+
+ main{
+    margin-top:7%;
+}
 }
 
 /* ********************* BUTTON CSS ************************     */

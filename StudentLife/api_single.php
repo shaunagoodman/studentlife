@@ -59,15 +59,16 @@ foreach ($response['analyzedInstructions'] as $instruction) {
                     <p>
                         <img src='images/recipeasy-icons-logos/knife-fork.png' style='margin-right:1.5%' alt='clock icon' height='35' width='35'><strong>Servings:</strong> <?php echo $servings ?>
                         <br><br> <img src='images/recipeasy-icons-logos/clock.png' style='margin-right:1.5%' alt='clock icon' height='30' width='30'><strong>Cooking Time: </strong><?php echo $maxTime ?> minutes
-                        <br><br><img src='images/recipeasy-icons-logos/clock.png' style='margin-right:1.5%' alt='clock icon' height='30' width='30'><strong>Cuisine </strong><?php
-                                                                                                                                                                                if ($cuisines != null) {
-                                                                                                                                                                                    foreach ($cuisines as $cuisine) {
-                                                                                                                                                                                        echo $cuisine;
-                                                                                                                                                                                    }
-                                                                                                                                                                                } else {
-                                                                                                                                                                                    echo "No cuisine available.";
-                                                                                                                                                                                }
-                                                                                                                                                                                ?>
+                        <br><br><img src='images/recipeasy-icons-logos/clock.png' style='margin-right:1.5%' alt='clock icon' height='30' width='30'><strong>Cuisine </strong>
+                        <?php
+                        if ($cuisines != null) {
+                            foreach ($cuisines as $cuisine) {
+                                echo $cuisine;
+                            }
+                        } else {
+                            echo "No cuisine available.";
+                        }
+                        ?>
                     </p>
 
 
@@ -107,14 +108,14 @@ foreach ($response['analyzedInstructions'] as $instruction) {
                             }
                             ?>
                         </div>
-<br><br>
+                        <br><br>
                     </div>
-                    
+
 
                     <div class='col-lg-8 col-md-7 col-12'>
 
-                     <!-- DESKTOP -->
-                     <div class='methodDeskTitle'>
+                        <!-- DESKTOP -->
+                        <div class='methodDeskTitle'>
                             <h5> <strong>Method: </strong></h5>
                         </div>
                         <!-- MOBILE -->
@@ -125,22 +126,22 @@ foreach ($response['analyzedInstructions'] as $instruction) {
                         </div>
 
 
-                        <div class='methodDiv' ><?php
-                        if ($method != null) {
-                            $count = 1;
-                            foreach ($method as $step) {
-                                echo $count . ". " . $step . "</br>";
-                                $count++;
-                            }
-                        } else {
-                            echo "No method available.";
-                        }
-                        ?></div>
-                        
+                        <div class='methodDiv'><?php
+                                                if ($method != null) {
+                                                    $count = 1;
+                                                    foreach ($method as $step) {
+                                                        echo $count . ". " . $step . "</br>";
+                                                        $count++;
+                                                    }
+                                                } else {
+                                                    echo "No method available.";
+                                                }
+                                                ?></div>
+
                     </div>
-                    
+
                 </div>
-              
+
             </div>
 
         </div>
