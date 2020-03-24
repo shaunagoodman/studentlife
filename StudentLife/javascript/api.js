@@ -34,18 +34,7 @@ function chippy() {
       hidden.style.display = "none";
       var txt = items.toString();
       hidden.value = txt;
-
-      var hidden2 = document.getElementById("hidden2");
-      hidden2.style.display = "none";
-      var txt = items.toString();
-      hidden2.value = txt;
-
-      var hidden3 = document.getElementById("hidden1");
-      hidden3.style.display = "none";
-      var txt = items.toString();
-      hidden.value = txt;
     }
-
     window.LIB = {
       remove:remove,
       render: render
@@ -67,5 +56,3 @@ function chippy() {
     ]
 $('#dietRestrictions').tagging(tagsource2);
 }
-
-
