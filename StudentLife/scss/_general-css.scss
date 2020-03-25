@@ -31,6 +31,10 @@ input.sortBy{
   @include mont-medium-font;
 }
 
+
+main{
+    margin-top:6.5%;
+}
 .underline {
     border-bottom: 3px solid $darkOrange;
     display: inline-block;
