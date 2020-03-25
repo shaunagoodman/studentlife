@@ -5,3 +5,28 @@ $lightOrange: #f29e4c;
 $yellow: #F7F13B;
 $white: #ffffff;
 $grey: #727272;
+
+
+
+@mixin mont-light-font( $family: 'Montserrat' , $weight: 300 , $style: normal ) {
+    font-family: $family ,  sans-serif;
+    font-style: $style;
+    font-weight: $weight;
+  }
+
+@mixin mont-medium-font( $family: 'Montserrat' , $weight: 400 , $style: normal ) {
+    font-family: $family ,  sans-serif;
+    font-style: $style;
+    font-weight: $weight;
+  }
+
+  @mixin heading-font( $family: 'Ubuntu' ,  $style: normal ) {
+    font-family: $family ,  sans-serif;
+    font-style: $style;
+  }
+
+  @mixin heading-weighted-font( $family: 'Ubuntu' , $weight: 400 , $style: normal ) {
+    font-family: $family ,  sans-serif;
+    font-style: $style;
+    font-weight: $weight;
+  }

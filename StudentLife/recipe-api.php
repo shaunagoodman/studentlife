@@ -31,15 +31,18 @@ include_once 'includes/CDNs.php';
     
     <p>Can't decide what to make? Just enter below what food you have at home and we'll give you some delicious
       recipes that you can make with them!</p>
-    <div class="col-md-6 recipe-api">
-      <div id = "ingredientsList">
+    <div class="col-md-12 recipe-api">
+      <div class='api-div1' >
+        <div id = "ingredientsList">
         <ul id="list1"></ul>
         <input type="text" id="ingredients" placeholder="egg, milk, butter...">
         <div id = "hidden1"> </div>
       </div>
+      
         <!-- <input data-role="tagsinput" class="form-control api-form-control" name='ingredients' id='ingredients' type="text" placeholder="eggs, milk, butter"> -->
         <p> <input class='checkbox-api' type="checkbox" id="addTime" onClick="toggleTime()" />Add Time Limit (If you do not set a limit it will defualt to 10 mins).</p>
         
+      
         <!--TIME -->
         <div id="addedTime">
           <input class="form-control api-form-control" name='time' id='time' />
@@ -47,7 +50,7 @@ include_once 'includes/CDNs.php';
         <br>
          <!--INTOLERANCE -->
         <div class='row'>
-          <div class='col-lg-6'>
+          <div class='col-lg-12'>
             <p class='sub-head-api'> <input class='checkbox-api' type="checkbox" id="selectIntolerance" onClick="toggleIntolerances()" />Have an Intolerance?</p>
             <hr align="left" class="api-line">
             <div id="intoleranceList">
@@ -59,7 +62,7 @@ include_once 'includes/CDNs.php';
 
           <!-- ----------DIET RESTRICTION---------->
 
-          <div class='col-lg-6'>
+          <div class='col-lg-12'>
 
             <p class='sub-head-api'> <input class='checkbox-api' type="checkbox" id="selectDietRestriction" onClick="toggleDietRestrictions()" />Have a Diet Restriction?</p>
             <hr align="left" class="api-line">
@@ -83,6 +86,7 @@ include_once 'includes/CDNs.php';
           <button class="btn api-button" onClick="viewRecipe()"> View Recipe</button>
         </div>
         <br>
+        </div>
       </div>
       <?php
       $title = $servings = "";
