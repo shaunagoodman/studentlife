@@ -37,9 +37,11 @@ $statement->closeCursor();
 
 <body class='site'>
 
-    <?php include_once 'includes/nav-menu.php'; ?>
+<?php include_once 'includes/mobile-nav.php'; ?>
+    
 
     <div class="jumbotron jumbotron-fluid">
+        <?php include_once 'includes/index-nav.php'; ?>
         <div class="container jumbo-title">
             <h1 class="display-4 jumbo-text">Find a Recipe</h1>
             <h3 class='jumbo-text' >Pot Luck!</h3>
@@ -54,12 +56,14 @@ $statement->closeCursor();
                 <button class='btn btn-sm btn-light-invert'formaction = "recipes-list.php" >Click Me!</button>
                 </div>
             </div>
+            <div id="startchange"></div>
             </form>  
         </div>
     </div>
+    
 
     <main class='site-content'>
-        <div class="container first-home-container">
+        <div class="container first-home-container " >
 
             <div class="row">
 

@@ -49,6 +49,10 @@ input.sortBy {
   font-weight: 400;
 }
 
+main {
+  margin-top: 6.5%;
+}
+
 .underline {
   border-bottom: 3px solid #FB6107;
   display: inline-block;
@@ -246,13 +250,21 @@ a.carousel-recipe:hover {
 }
 
 /*  ********************** CSS FOR NAV **********************    */
-nav {
-  background-color: #EF7823 !important;
+@media (min-width: 991px) {
+  nav {
+    position: fixed !important;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+  }
 }
 
-.nav-link {
+a.nav-link {
   color: white !important;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 130%;
 }
 
 .nav-link:hover {
@@ -286,7 +298,7 @@ button.navbar-toggler {
 }
 
 a.dropdown-item {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .mobileNav {
@@ -427,7 +439,7 @@ a.dropdown-item {
     -webkit-transform: translateX(0);
             transform: translateX(0);
   }
-  input[type=checkbox] {
+  input[type="checkbox"] {
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
     -webkit-box-sizing: border-box;
@@ -485,14 +497,14 @@ a.dropdown-item {
     float: left;
     margin-top: 3px;
   }
-  input[type=checkbox]:checked ~ .sidebarIconToggle > .horizontal {
+  input[type="checkbox"]:checked ~ .sidebarIconToggle > .horizontal {
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     opacity: 0;
   }
-  input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
+  input[type="checkbox"]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
     -webkit-box-sizing: border-box;
@@ -501,7 +513,7 @@ a.dropdown-item {
             transform: rotate(135deg);
     margin-top: 8px;
   }
-  input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
+  input[type="checkbox"]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
     -webkit-box-sizing: border-box;
