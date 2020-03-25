@@ -1070,10 +1070,16 @@ li.li-cuisine-list > a:hover {
   display: none;
 }
 
-@media (min-width: 768px) {
-  .recipe-api {
-    margin-left: 25%;
-  }
+.recipe-api {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 #selectedRecipe {
@@ -1142,6 +1148,12 @@ input.checkbox-api {
   margin-right: 1%;
 }
 
+@media (max-width: 991px) {
+  input.checkbox-api {
+    display: inline;
+  }
+}
+
 ul.ingredients-list {
   list-style-type: circle;
 }
@@ -1176,7 +1188,10 @@ ul.ingredients-list {
 
 #ingredientsList ul li, #intoleranceList ul li, #dietRestrictionsList ul li {
   display: inline-block;
-  background: #555;
+  background: #EF7823;
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 300;
   color: white;
   padding: 3px 5px 3px 10px;
   border-radius: 15px;
@@ -1185,11 +1200,11 @@ ul.ingredients-list {
 }
 
 #ingredientsList ul li a, #intoleranceList ul li a, #dietRestrictionsList ul li a {
-  color: white;
+  color: black;
   text-decoration: none;
   margin-left: 5px;
   font-size: 10px;
-  background: #333;
+  background: #ffffff;
   width: 15px;
   height: 15px;
   border-radius: 50%;
@@ -1203,10 +1218,16 @@ ul.ingredients-list {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-transition: -webkit-transform .3s;
+  transition: -webkit-transform .3s;
+  transition: transform .3s;
+  transition: transform .3s, -webkit-transform .3s;
 }
 
 #ingredientsList ul li a:hover, #intoleranceList ul li a:hover, #dietRestrictionsList ul li a:hover {
   color: red;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 #ingredientsList input, #intoleranceList input, #dietRestrictionsList input {
@@ -1559,6 +1580,82 @@ textarea.blog-post {
 
 .random-button {
   margin-bottom: 6%;
+}
+
+#image {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}
+
+.equipment {
+  margin-left: 10%;
+  display: block;
+}
+
+button.myLink {
+  border-radius: 25px;
+  padding: 5%;
+  background-image: url("../images/recipeasy-icons-logos/heart.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+button.myLink:hover {
+  cursor: pointer;
+  background-image: url("../images/recipeasy-icons-logos/heart-clicked2.png");
+  -webkit-transition: ease 0.2;
+  transition: ease 0.2;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+button.myLink.active {
+  background-image: url("../images/recipeasy-icons-logos/heart-clicked.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.faveForm {
+  display: inline;
+}
+
+#myImage {
+  position: absolute;
+  top: 85%;
+  left: 75%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+@media (max-width: 991px) {
+  #myImage {
+    top: 65%;
+    left: 85%;
+  }
+}
+
+@media (max-width: 767px) {
+  #myImage {
+    top: 85%;
+    left: 85%;
+  }
+  .random-recipe-div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
 }
 
 /* **************************HOVER ANIMATION ********************* */

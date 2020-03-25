@@ -8,11 +8,21 @@
     display: none;
 }
 
-@media(min-width: 768px){
-    .recipe-api{
-        margin-left: 25%;
-    }
+// @media(min-width: 768px){
+//     .recipe-api{
+//         margin-left: 25%;
+//     }
+// }
+
+.recipe-api{
+    display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+// .api-div1{
+//     align-self: flex-;
+// }
 
 
 #selectedRecipe{
@@ -81,6 +91,13 @@ input.checkbox-api{
     margin-right: 1%;
 }
 
+@media (max-width: 991px) {
+    input.checkbox-api{
+        display:inline;
+    }
+}
+
+
 ul.ingredients-list{
     list-style-type:circle;
 }
@@ -92,7 +109,7 @@ ul.ingredients-list{
 .resultHeading{
     color: $darkOrange;
 }
-#ingredientsList, #intolerances,  #dietRestrictionss{
+#ingredientsList, #intoleranceList,  #dietRestrictionsList{
     width: 500px;
     background: #f0f0f0;
     padding: 15px 15px 10px 15px;
@@ -112,7 +129,8 @@ ul.ingredients-list{
   
       li{
         display: inline-block;
-        background: #555;
+        background: $mediumOrange;
+        @include mont-light-font;
         color: white;
         padding: 3px 5px 3px 10px;
         border-radius: 15px;
@@ -120,11 +138,11 @@ ul.ingredients-list{
         margin-bottom: 5px;
   
         a{
-          color: white;
+          color: black;
           text-decoration: none;
           margin-left: 5px;
           font-size: 10px;
-          background: #333;
+          background: $white;
           width: 15px;
           height: 15px;
           border-radius: 50%;
@@ -132,9 +150,11 @@ ul.ingredients-list{
           text-align: center;
           align-items: center;
           justify-content: center;
+          transition: transform .3s;
   
           &:hover{
             color: red;
+            transform: scale(1.2);
           }
         }
       }

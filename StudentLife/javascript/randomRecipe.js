@@ -69,6 +69,7 @@ function findRecipe() {
           if (stepArr[i].equipment[j] != null) {
             if(!utensils.includes(stepArr[i].equipment[j].name)) {
             utensils.push(stepArr[i].equipment[j].name);
+            equipment.setAttribute("class", "equipment")
             }
           }
           else utensils.push("No equipment listed");
@@ -79,7 +80,7 @@ function findRecipe() {
       utensils.push("No equipment listed");
       steps.push("No steps listed");
     }
-         
+    
          
           //DISPLAY
           titleArea.innerHTML += title + "</br>";          
@@ -89,6 +90,7 @@ function findRecipe() {
           let imageArea = document.getElementById("image");
           var img = document.createElement("img");
           img.src = image;
+          img.setAttribute("class", "single-recipe-pic")
           var src = document.getElementById("image");
           src.appendChild(img);
 
@@ -125,3 +127,4 @@ function findRecipe() {
   }
   request.send();
 }
+
