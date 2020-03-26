@@ -45,7 +45,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $query = "DELETE FROM comments WHERE recipe_ID = $recipe_ID";
         $statement3 = $conn->prepare($query);
         $statement3->execute();
-        $steps = $statement3->fetchAll();
+        $comments = $statement3->fetchAll();
+        $statement3->closeCursor();
+
+        $query = "DELETE FROM recipecuisine WHERE recipe_ID = $recipe_ID";
+        $statement3 = $conn->prepare($query);
+        $statement3->execute();
+        $recipecuisine = $statement3->fetchAll();
+        $statement3->closeCursor();
+
+        $query = "DELETE FROM favourites WHERE recipe_ID = $recipe_ID";
+        $statement3 = $conn->prepare($query);
+        $statement3->execute();
+        $favourites = $statement3->fetchAll();
         $statement3->closeCursor();
 
         $query2 = "DELETE FROM recipes WHERE recipe_ID = $recipe_ID";

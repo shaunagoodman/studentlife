@@ -278,7 +278,21 @@ function displayIng() {
   let imperial = document.getElementById('imperial');
   let metricIng = document.getElementById('metricIng');
   let imperialIng = document.getElementById('imperialIng');
-  let area = document.getElementById("ingArea");
+  if (metric.checked === true) {
+    metricIng.classList.remove("unitHide");
+    imperialIng.classList.add("unitHide");
+  }
+  else if(imperial.checked === true) {
+    imperialIng.classList.remove("unitHide");
+    metricIng.classList.add("unitHide");
+  }
+}
+function displayMobileIng() {
+  let metric = document.getElementById('mob-metric');
+  let imperial = document.getElementById('mob-imperial');
+  let metricIng = document.getElementById('mob-metricIng');
+  let imperialIng = document.getElementById('mob-imperialIng');
+  let area = document.getElementById("mob-ingArea");
   if (metric.checked === true) {
     metricIng.classList.remove("unitHide");
     imperialIng.classList.add("unitHide");
