@@ -5,11 +5,8 @@ $title_err = $content_err = "";
 
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	if (isset($_POST['submit'])) {
-		//echo "Hello";
-		//Validate Blog Title	
+	if (isset($_POST['submitBlog'])) {
 		$input_title = $_POST["blogTitle"];
-
 		if (empty($input_title)) {
 			$title_err = "Please Enter Title For Your Blog.";
 		} else {
