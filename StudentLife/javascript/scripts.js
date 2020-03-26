@@ -10,7 +10,8 @@ function findRecipe() {
   const urlString1 = "https://api.spoonacular.com/recipes/complexSearch?maxReadyTime=";
   const urlString2 = "&apiKey=53bea2eb3c79445188bc4d3f00895d15&query=";
   let ingredients = document.getElementById('hidden1').value;
-  let maxTime =document.getElementById('time').value;
+  let maxTime =document.getElementById('maxTime').value;
+  console.log(maxTime);
   let intolerances= getIntolerances();
   let dietRestriction = getDietRestrictions();
   if(maxTime === "") {
@@ -290,6 +291,12 @@ function displayIng() {
 function addMetricIngredient() {
   let metricArea = document.getElementById("metricIng");
   var clone = metricArea.cloneNode(true);
+  document.getElementById("addedIngredient").appendChild(clone);
+}
+
+function addImperialIngredient() {
+  let imperialArea = document.getElementById("imperialIng");
+  var clone = imperialArea.cloneNode(true);
   document.getElementById("addedIngredient").appendChild(clone);
 }
 let countStep = 1;
