@@ -44,7 +44,7 @@ $statement->closeCursor();
         <?php include_once 'includes/index-nav.php'; ?>
         <div class="container jumbo-title">
             <h1 class="display-4 jumbo-text">Find a Recipe</h1>
-            <h3 class='jumbo-text' >Pot Luck!</h3>
+            <h4 class='jumbo-text' >Or try our Pot Luck!</h4>
             <form class="form-inline" method="post" action="">
             <div class='row' >   
             <div class='col-lg-12' >
@@ -52,8 +52,9 @@ $statement->closeCursor();
                 </div>
                 
                 <div class='col-lg-12 jumbo-buttons' >
-                <button class='btn btn-sm btn-light'  formaction = "random-recipe.php" type="submit" name="submit" >Pot Luck?</button>
-                <button class='btn btn-sm btn-light-invert'formaction = "recipes-list.php" >Click Me!</button>
+                <button class='btn btn-sm btn-light'formaction = "recipes-list.php" >Find</button>
+                <button class='btn btn-sm btn-light-invert'  formaction = "random-recipe.php" type="submit" name="submit" >Pot Luck?</button>
+                
                 </div>
             </div>
             <div id="startchange"></div>

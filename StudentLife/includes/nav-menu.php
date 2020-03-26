@@ -59,7 +59,17 @@ $('button').click(function(){
                 <li class="nav-hover nav-item">
                     <a class="nav-link" href="index.php">Home</a>
                 </li>
-                <li class=" nav-hover nav-item dropdown">
+
+                <li class="nav-hover nav-item">
+                    <a class="nav-link" href="recipes-list.php">Recipes</a>
+                </li>
+
+                <li class="nav-hover nav-item">
+                    <a class="nav-link" href="recipe-api.php">Whats in my fridge?</a>
+                </li>
+
+                
+                <!-- <li class=" nav-hover nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Recipes </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
@@ -69,7 +79,7 @@ $('button').click(function(){
                         <a class="dropdown-item" href="random-recipe.php">Random Recipe Generator</a>
 
                     </div>
-                </li>
+                </li> -->
 
 
 

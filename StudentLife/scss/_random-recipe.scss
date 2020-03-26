@@ -159,3 +159,68 @@ button.myLink.active {
         align-items: center;
     }
   }
+
+
+  .ingredientsTitleRand {
+    display: none;
+  }
+
+  .methodTitleRand {
+    display: none;
+  }
+
+
+
+  @media only screen and (max-width: 801px) {
+   
+    .ingredientsDeskTitle {
+      display: none;
+    }
+
+    .ingredientsTitleRand {
+        cursor: pointer;
+        display: block;
+      }
+      
+      // .ingredientsRandSpan:hover {
+      //   color: $mediumOrange;
+      //   transition: ease 0.5;
+      // }
+    
+    .faR {
+      transform: rotateZ(90deg);
+      transition: transform 0.2s;
+    }
+    
+    .faR.active {
+      transform: rotateZ(0deg);
+    }
+
+
+
+
+    .methodDeskTitle {
+        display: none;
+      }
+   
+    .methodTitleRand {
+        cursor: pointer;
+        display: block;
+      }
+      
+      // .methodRandSpan:hover {
+      //   color: $mediumOrange;
+      //   transition: ease 0.5;
+      // }
+    
+    .faR2 {
+      transform: rotateZ(90deg);
+      transition: transform 0.2s;
+    }
+    
+    .faR2.active {
+      transform: rotateZ(0deg);
+    }
+  
+    
+  }
