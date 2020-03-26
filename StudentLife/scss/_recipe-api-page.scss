@@ -110,7 +110,7 @@ ul.ingredients-list{
     color: $darkOrange;
 }
 #ingredientsList, #intoleranceList,  #dietRestrictionsList{
-    width: 500px;
+    // width: 50%;
     background: #f0f0f0;
     padding: 15px 15px 10px 15px;
     border-radius: 15px;
@@ -157,6 +157,30 @@ ul.ingredients-list{
             transform: scale(1.2);
           }
         }
+        span.tag_delete{
+            color: black;
+          text-decoration: none;
+          margin-left: 5px;
+          font-size: 10px;
+          background: $white;
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          display: inline-flex;
+          text-align: center;
+          align-items: center;
+          justify-content: center;
+          transition: transform .3s;
+  
+          &:hover{
+            color: red;
+            transform: scale(1.2);
+          }
+        }
+
+
+
+
       }
     }
   
@@ -166,4 +190,21 @@ ul.ingredients-list{
       margin-bottom: 5px;
       display: inline-block;
     }
+  }
+
+
+
+  //intolerances/dietary chips
+  .tt-dataset-tagging{
+      color: black;
+      background-color: white;
+      padding: 5%;
+  }
+
+  .tt-dropdown-menu{
+      background-color: pink;
+  }
+
+  li.tagging_new{
+      background-color: #f0f0f0!important;
   }
