@@ -128,3 +128,16 @@ function findRecipe() {
   request.send();
 }
 
+$(document).ready(function() {
+  $(this).on("click", ".ingredientsTitleRand", function() {
+    $(this).parent().find(".ingredientsDivRand").toggle();
+    $(this).find(".faR").toggleClass('active');
+  });
+});
+
+$(document).ready(function() {
+  $(this).on("click", ".methodTitleRand", function() {
+    $(this).parent().find(".methodDivRand").toggle();
+    $(this).find(".faR3").toggleClass('active');
+  });
+});
