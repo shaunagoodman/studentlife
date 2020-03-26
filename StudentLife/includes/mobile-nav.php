@@ -31,18 +31,17 @@ and open the template in the editor.
         </label>
         <div id="sidebarMenu">
             <ul class="sidebarMenuInner">
-                <li><a href="index.php">Home</a></li>
-                <li> <a href="recipes-list.php">All Recipes</a></li>
-                <li> <a href="recipe-api.php">Whats in my fridge?</a></li>
-                <li> <a href="random-recipe.php">Random Recipe Generator</a></li>
+                <li> <img width="10%" src="images/recipeasy-icons-logos/home.png"> <a href="index.php">Home</a></li>
+                <li> <img width="10%" src="images/recipeasy-icons-logos/recipes.png"> <a href="recipes-list.php">All Recipes</a></li>
+                <li> <img width="10%" src="images/recipeasy-icons-logos/question.png"> <a href="recipe-api.php">Whats in my fridge?</a></li>
 
                 <li>
                     <?php
                     if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
-                        echo '<a  href="admin.php">View Profile</a>';
+                        echo ' <img width="10%" src="images/recipeasy-icons-logos/profile.png"> <a  href="admin.php">View Profile</a>';
                     } else {
-                        echo ' <a href="login.php">Login</a>';
+                        echo ' <img width="10%" src="images/recipeasy-icons-logos/login.png"> <a href="login.php">Login</a>';
                     }
                     ?>
                 </li>
@@ -51,9 +50,9 @@ and open the template in the editor.
                     <?php
                     if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
-                        echo '<a  href="logout.php">Logout</a>';
+                        echo ' <img width="10%" src="images/recipeasy-icons-logos/logout.png"> <a  href="logout.php">Logout</a>';
                     } else {
-                        echo ' <a href="sign-up.php">Register</a>';
+                        echo ' <img width="10%" src="images/recipeasy-icons-logos/profile.png"> <a href="sign-up.php">Register</a>';
                     }
                     ?>
                 </li>
