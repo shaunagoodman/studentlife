@@ -247,11 +247,11 @@ and open the template in the editor.
                 <div id = "ingArea">
                     <div id = "metricIng" class = "unitHide">
                         <p> Name </p>
-                        <input class="form-control" type="text" name="ingName" />
+                        <input class="form-control" type="text" name="metric_ingredient_name[]" />
                         <p> Measure </p>
-                        <input class="form-control" type="text" name="ingMeasure" />
+                        <input class="form-control" type="text" name="metric_ingredient_measure[]" />
                         <p> Unit </p>
-                        <select name="units" id="units">
+                        <select name="metric_ingredient_unit[]" id="units">
                             <option value="grams">Gram(s)</option>
                             <option value="kg">Kg</option>
                             <option value="ml">Ml</option>
@@ -265,11 +265,11 @@ and open the template in the editor.
                     </div>
                     <div id = "imperialIng" class = "unitHide">
                         <p> Name </p>
-                        <input class="form-control" type="text" name="ingName" />
+                        <input class="form-control" type="text" name="imperial_ingredient_name[]" />
                         <p> Measure </p>
-                        <input class="form-control" type="text" name="ingMeasure" />
+                        <input class="form-control" type="text" name="imperial_ingredient_measure[]" />
                         <p> Unit </p>
-                        <select name="units" id="units">
+                        <select name="imperial_ingredient_unit[]" id="units">
                             <option value="ounce">Ounce(s)</option>
                             <option value="pound">Pound(s)</option>
                             <option value="cup">Cup(s)</option>
@@ -539,7 +539,7 @@ and open the template in the editor.
 
                         try {
                             $userID = $_SESSION['user_ID'];
-                            $sql = "SELECT * FROM recipes WHERE isFavourite = 1 AND favourited_by = $userID";
+                            $sql = "SELECT * FROM favourites WHERE user_ID = $userID";
                             $statement = $conn->prepare($sql);
                             $statement->execute();
                             $recipes = $statement->fetchAll();
