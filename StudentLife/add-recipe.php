@@ -96,24 +96,82 @@ include_once 'includes/database/addRecipe.php';
             </div>
 
             <div class="form-group col-md-6">
-                <label>Video Name</label>
+                <label>Video URL</label>
                 <input class="form-control" type="text" name="video_name" />
                 <span class="help-block"></span>
             </div>
         </div>
+        
+        <div class=row >
+            <div class="form-group col-lg-3 col-md-6 <?php echo (!empty($servings_err)) ? 'has-error' : ''; ?>">
+                <label>Servings</label>
+                <input type="text" name="servings" class="form-control" value="<?php echo $servings; ?>">
+                <span class="help-block"><?php echo $servings_err; ?></span>
+            </div>
+
+            <div class="form-group col-lg-3 col-md-6 <?php echo (!empty($maxTime_err)) ? 'has-error' : ''; ?>">
+                <label>Max Time</label> <br>
+                <input onchange="displayTime()"type = "range" min = "1" max = "60" value = "10" id = "maxTime" name = "maxTime"/>
+                <p><span id = "timeArea"> <?= isset($_POST['maxTime']) ? $_POST['maxTime'] : '10 minutes' ?>10 minutes</span></p>
+            </div>
+
+            <div class="form-group col-lg-2 col-md-6 <?php echo (!empty($difficultyID_err)) ? 'has-error' : ''; ?>">
+                <label>Difficulty</label><br>
+                <select id="difficulty" name="difficulty">
+                    <option value="1">Easy </option>
+                    <option value="2">Medium</option>
+                    <option value="3">Hard</option>
+                </select>
+                <span class="help-block"><?php echo $difficultyID_err; ?></span>
+            </div>
+
+            <div class="form-group col-lg-3 col-md-6 <?php echo (!empty($rating_err)) ? 'has-error' : ''; ?>">
+                <label>Rating</label><br>
+                <fieldset class="rating">
+                    <input type="radio" id="star5" name="rating" value="5" /><label for="star5" >5 stars</label>
+                    <input type="radio" id="star4" name="rating" value="4" /><label for="star4"> 4 stars</label>
+                    <input type="radio" id="star3" name="rating" value="3" /><label for="star3" >3 stars</label>
+                    <input type="radio" id="star2" name="rating" value="2" /><label for="star2" >2 stars</label>
+                    <input type="radio" id="star1" name="rating" value="1" /><label for="star1" >1 star</label>
+                </fieldset>
+  
+            </div>
+
+        </div>
+        <div class='row' >
+        
+
+           
+
+            <div class="form-group col-md-4 ">
+                <label>Image</label>
+                <input class="input-group " type="file" name="image" accept="image/*" />
+
+            </div>
+
+        </div>
+
         <div class='row' >
             <div id="addedIngredient" class="col-md-6 form-group <?php echo (!empty($ingredient_err)) ? 'has-error' : ''; ?>">
-                <label> Ingredients </label>
-                <label> Metric </label>
+                <label> Add Ingredients </label><br>
+                <label style="color:black;" > Metric </label>
                 <input type="radio" onclick = "displayIng()" value = "Metric"  name = "ingredients" id = "metric" />
-                <label> Imperial </label>
+                <label style="color:black;"> Imperial </label>
                 <input type="radio" onclick = "displayIng()" value = "Metric" name = "ingredients" id = "imperial" />
                 <div id = "ingArea">
                     <div id = "metricIng" class = "unitHide">
-                        <p> Name </p>
+                        <div class="row" >
+                      <div class="col-md-4">
+                          <p> Name </p>
                         <input class="form-control" type="text" name="metric_ingredient_name[]" />
+                    </div>  
+
+                    <div class="col-md-4">
                         <p> Measure </p>
                         <input class="form-control" type="text" name="metric_ingredient_measure[]" />
+                    </div>
+
+                        <div class="col-md-4">
                         <p> Unit </p>
                         <select name="metric_ingredient_unit[]" id="units">
                             <option value="grams">Gram(s)</option>
@@ -125,13 +183,23 @@ include_once 'includes/database/addRecipe.php';
                             <option value="teaspoon(s)">Teaspoon(s)</option>
                             <option value="tablespoon(s)">Tablespoon(s)</option>
                         </select>
-                        <input id = "ingbtn" type = "button" class="btn btn-sm add-recipe-button" value = "Add Ingredient" onclick = "addMetricIngredient()" />
+                        </div>
+                        </div>
+                        <!-- <input id = "ingbtn" type = "button" class="btn btn-sm add-recipe-button" value = "Add Ingredient" onclick = "addMetricIngredient()" /> -->
+                        <button id = "ingbtn"  class="addBut btn " type="button" value = "Add Ingredient" onclick = "addMetricIngredient()"> </button>
                     </div>
                     <div id = "imperialIng" class = "unitHide">
+                    <div class="row" >
+                      <div class="col-md-4">
                         <p> Name </p>
                         <input class="form-control" type="text" name="imperial_ingredient_name[]" />
+                      </div>
+
+                      <div class="col-md-4">
                         <p> Measure </p>
                         <input class="form-control" type="text" name="imperial_ingredient_measure[]" />
+                      </div>
+                      <div class="col-md-4">
                         <p> Unit </p>
                         <select name="imperial_ingredient_unit[]" id="units">
                             <option value="ounce">Ounce(s)</option>
@@ -142,60 +210,19 @@ include_once 'includes/database/addRecipe.php';
                             <option value="teaspoon(s)">Teaspoon(s)</option>
                             <option value="tablespoon(s)">Tablespoon(s)</option>
                         </select>
-                        <input type = "submit" class="btn btn-sm add-recipe-button" value = "Add Ingredient" onclick = "addImperialIngredient()" />
+                      </div>
+                    </div>
+                        <!-- <input type = "submit" class="btn btn-sm add-recipe-button" value = "Add Ingredient" onclick = "addImperialIngredient()" /> -->
+                        <button   class="addBut btn " type="submit" value = "Add Ingredient" onclick = "addImperialIngredient()"> </button>
                     </div>
                 </div>
             </div>
             <br>
             <div id="addedStep" class="col-md-6 form-group <?php echo (!empty($step_err)) ? 'has-error' : ''; ?>">
                 <label> Method </label>
-            <button id="addBtn" type="button" class="btn btn-sm add-recipe-button"  onClick="addStep()" > Add Step</button>
+            <button id="addBtn" type="button" class="btn addBut"  onClick="addStep()" alt="Add Step" > </button>
             </div>
             
-        </div>
-        <div class=row >
-            <div class="form-group col-md-6 <?php echo (!empty($servings_err)) ? 'has-error' : ''; ?>">
-                <label>Servings</label>
-                <input type="text" name="servings" class="form-control" value="<?php echo $servings; ?>">
-                <span class="help-block"><?php echo $servings_err; ?></span>
-            </div>
-
-            <div class="form-group col-md-6 <?php echo (!empty($maxTime_err)) ? 'has-error' : ''; ?>">
-                <label>Max Time</label>
-                <input onchange="displayTime()"type = "range" min = "1" max = "60" value = "10" id = "maxTime" name = "maxTime"/>
-                <span id = "timeArea"> <?= isset($_POST['maxTime']) ? $_POST['maxTime'] : '10 minutes' ?>10 minutes</span>
-            </div>
-
-        </div>
-        <div class='row' >
-            <div class="form-group col-md-4 <?php echo (!empty($difficultyID_err)) ? 'has-error' : ''; ?>">
-                <label>Difficulty</label>
-                <select id="difficulty" name="difficulty">
-                    <option value="1">Easy </option>
-                    <option value="2">Medium</option>
-                    <option value="3">Hard</option>
-                </select>
-                <span class="help-block"><?php echo $difficultyID_err; ?></span>
-            </div>
-
-            <div class="form-group col-md-4 <?php echo (!empty($rating_err)) ? 'has-error' : ''; ?>">
-                <label>Rating</label>
-                <fieldset class="rating">
-                    <input type="radio" id="star5" name="rating" value="5" /><label for="star5" >5 stars</label>
-                    <input type="radio" id="star4" name="rating" value="4" /><label for="star4"> 4 stars</label>
-                    <input type="radio" id="star3" name="rating" value="3" /><label for="star3" >3 stars</label>
-                    <input type="radio" id="star2" name="rating" value="2" /><label for="star2" >2 stars</label>
-                    <input type="radio" id="star1" name="rating" value="1" /><label for="star1" >1 star</label>
-                </fieldset>
-  
-            </div>
-
-            <div class="form-group col-md-4 ">
-                <label>Image</label>
-                <input class="input-group " type="file" name="image" accept="image/*" />
-
-            </div>
-
         </div>
 
 

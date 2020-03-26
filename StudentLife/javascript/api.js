@@ -50,7 +50,7 @@ function chippy() {
       'Dairy', 'Egg', 'Gluten', 'Grain', 'Peanut', 'Seafood', 'Sesame', 'Shellfish', 'Soy', 'Sulfite', 'Tree Nut', 'Wheat'
       ]
   $('#intolerances').tagging(tagsource1);
-
+  
   var tagsource2 = [
     'Gluten', 'Ketogenic', 'Paleo', 'Pescetarian', 'Primal', 'Vegan', 'Vegetarian', 'Whole30'
     ]

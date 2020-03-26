@@ -36,7 +36,7 @@ include_once 'includes/database/connection.php';
             <div id="image"></div>
             <form class="faveForm" action="" method="POST">
               <!-- <input class="btn api-button random-button" type="submit" name="btnFav" value="Favourite" /> -->
-              <button id="myImage" class="myLink btn" type="submit" name="btnFav" atl="favourite me!"> </button>
+              <button id="myImage" class="myLink btn" type="submit" name="btnFav" alt="favourite me!"> </button>
             </form>
 
           </div>
