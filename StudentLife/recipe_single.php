@@ -1,39 +1,45 @@
 <?php
 session_start();
-include_once 'includes/database/connection.php'; ?>
-<?php
+include_once 'includes/database/connection.php';
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
+    $name = $_SESSION['fname'];
+}
+
 $recipe_ID = filter_input(INPUT_GET, "recipe_ID");
 if ($recipe_ID == NULL) {
     header("location:recipes-list.php");
 }
 // Get recipes
 $query = 'SELECT * FROM recipes WHERE recipe_ID=:recipe_ID';
-$statement2 = $conn->prepare($query);
-$statement2->bindValue(":recipe_ID", $recipe_ID);
+$statement = $conn->prepare($query);
+$statement->bindValue(":recipe_ID", $recipe_ID);
+$statement->execute();
+$recipes = $statement->fetchAll();
+$statement->closeCursor();
+
+$sql2 = "SELECT * from comments c INNER JOIN recipes r ON r.recipe_ID = c.recipe_ID WHERE r.recipe_ID = $recipe_ID";
+$statement2 = $conn->prepare($sql2);
 $statement2->execute();
-$recipes = $statement2->fetchAll();
+$comments = $statement2->fetchAll();
 $statement2->closeCursor();
 ?>
+
+
+
+
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
-    <title>A Recipe</title>
-
+    <title>Recipe</title>
     <?php include_once 'includes/CDNs.php'; ?>
-
-
 </head>
 
-<body class='site' >
+<body class='site'>
     <?php include_once 'includes/nav-menu.php'; ?>
-
-
-    <main class='site-content' >
+    <main class='site-content'>
     <div class='container'>
-
-
+    
         <?php foreach ($recipes as $recipe) :
             if ($recipe['difficultyID'] == 1) {
                 $difficulty = "Easy";
@@ -50,21 +56,18 @@ $statement2->closeCursor();
             else {
                 $src = 'images/recipes/'.$recipe['image'];
             }
+
             $querysteps = 'SELECT * FROM recipesteps WHERE recipe_ID=:recipe_ID';
             $statement3 = $conn->prepare($querysteps);
             $statement3->bindValue(':recipe_ID', $recipe["recipe_ID"]);
             $statement3->execute();
             $steps = $statement3->fetchAll();
             $statement3->closeCursor();
-
             $maxTime = $recipe['maxTime'];
-           $timestamp = strtotime($maxTime);
-           $time = date('i', $timestamp);
-
+            $timestamp = strtotime($maxTime);
+            $time = date('i', $timestamp);
         ?>
-
             <h2 class="heading allRecipes-h1"><span class="underline"><?php echo $recipe['name'] ?></span> </h2>
-            
 
             <div class=row>
                 <div class='col-md-5 single-recipe-topRow'>
@@ -74,7 +77,7 @@ $statement2->closeCursor();
                 <div class='col-md-7 single-recipe-topRow'>
                     <p><img src='images/recipeasy-icons-logos/gauge.png' style='margin-right:1.5%' alt='clock icon' height='35' width='35'><strong>Difficulty: </strong><?php echo $difficulty ?>
                         <img src='images/recipeasy-icons-logos/knife-fork.png' style='margin-right:1.5%' alt='clock icon' height='35' width='35'><strong>Servings:</strong> <?php echo $recipe['servings'] ?>
-                        <img src='images/recipeasy-icons-logos/clock.png' style='margin-right:1.5%' alt='clock icon' height='30' width='30'><strong>Cooking Time: </strong><?php echo $time ?> minutes</p>
+                        <img src='images/recipeasy-icons-logos/clock.png' style='margin-right:1.5%' alt='clock icon' height='30' width='30'><strong>Cooking Time: </strong><?php echo $time?>  minutes</p>
 
                     <h5> <strong>Ingredients: </strong></h5>
                     <hr align="left" class="single-recipe-line-ingredients">
@@ -117,73 +120,76 @@ $statement2->closeCursor();
                             <h5><strong>Method: </strong></h5>
                             <hr align="left" class="single-recipe-line">
                             <p><?php echo $description['description'] ?></p>
-                            <?php endforeach; ?><?php endforeach; ?>
+                        <?php endforeach; ?>
+                    <?php endforeach; ?>
                 </div>
 
-                <div class='col-lg-5'>
-                    <h3>Comments</h3>
-
-                    <div class='fake-comment'>
-                        <h5>Really Cool!</h5>
-                        <p>
-                            Minim sit qui ut dolore reprehenderit velit ipsum.
-                            Aute in nulla commodo velit. Voluptate duis minim nisi est enim.
-                            Laborum non ipsum laboris ea veniam ut exercitation ea voluptate
-                            adipisicing sint ut. Nisi duis reprehenderit irure labore non id cillum.
-                        </p>
-                    </div>
-                    <br>
-                    <div class='fake-comment'>
-                        <h5> Could Use salt</h5>
-                        <p>
-                            Voluptate duis minim nisi est enim.
-                            Laborum non ipsum laboris ea veniam ut exercitation ea voluptate
-                        </p>
-                    </div>
-
-                    <form>
-                        <div class="form-group">
-                            <label>Comment Here</label>
-                            <textarea class="form-control fake-textBox" name="message" rows="3" placeholder=""></textarea>
-                        </div>
-                        <button class='btn btn-light btn-sm' >Send</button>
-                    </form>
-<br>
-                </div>
+<!---INCORRECT VERSION --->
+                    <?php
+                        if(isset($_POST['btnSubmit'])) {
+                            $name = $_POST['name'];
+                            $comment = $_POST['comment'];
+                            $date = date('Y-m-d H:i:s');
+                            $sql = "INSERT INTO comments(comment_ID, comment, senderName, date, recipe_ID) VALUES (null,'$comment','$name','$date',$recipe_ID)";
+                            $statement = $conn->prepare($sql);
+                            $statement->execute();
+                            $addedComments = $statement->fetchAll();
+                            $statement->closeCursor();
+                        }
+                    ?>
+            
                                 
-
-                <div class='col-lg-7'>
-                    <h3>Video Tutorial</h3>
-                    <center>
-                        <iframe width="600" height="338" src="https://www.youtube.com/embed/<?php echo $recipe["video_name"] ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-                        </video>
-
-                    </center>
+<!--CORRECT VERSION --->
+            <div class='col-lg-5'>
+                    <h3>Comments</h3>
+                    <div class='fake-comment'>
+                    <?php
+                    if(!empty($comments)) {
+                        foreach ($comments as $comment):
+                            $date = $comment ['date'];
+                            $newDate = date("d.m.Y H:i:s", strtotime($date));
+                    ?>
+                        <p> Author: <?php echo  $comment['senderName'];?></p> 
+                        <p> Comment: <?php echo $comment ['comment'];?> </p>
+                        <p> Date Posted: <?php echo $newDate?> </p>
+                    <?php
+                    endforeach;
+                } else {?>
+                <div class='fake-comment'>
+                        <p>
+                            No comments
+                        </p>
+                    </div>
+                <?php } ?>
                 </div>
+                    <br>
 
+                    <form method = "post">
+                        <div class="form-group">
+                            <label>Comment Here</label><br>
+                            <h2> Name</h2>
+                            <input class="form-control fake-textBox" type="text" name="name" id="name" placeholder="Enter your Name" />
+                            <h2> Comment </h2>
+                            <textarea class="form-control fake-textBox" id = "comment" name="comment" rows="3" placeholder=""></textarea>
+                        </div>
+                        <input class='btn btn-light btn-sm' type="submit" name="btnSubmit" value="Post Comment" />
+                    </form>
+                    <br>
+                </div>
+                </div>
+            <div class='col-lg-7'>
+                <h3>Video Tutorial</h3>
+                <center>
+                    <iframe width="600" height="338" src="https://www.youtube.com/embed/<?php echo $recipe["video_name"] ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                    </video>
+
+                </center>
             </div>
-
-
-
-
-
-
-
-
-    </div>
-
-    </main>
-    </div>
+        </div>
     </div>
 
 <?php endforeach; ?>
-
-
-
-
-
-
 <?php include_once 'includes/footer.php'; ?>
 
 
