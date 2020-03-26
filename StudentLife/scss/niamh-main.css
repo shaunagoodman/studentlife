@@ -92,7 +92,7 @@ body {
 .btn.btn-light.active {
   color: #FB6107;
   /*writing*/
-  background-color: transparent;
+  background-color: #ffffff;
   border-color: #FB6107;
   border-width: 2px;
   border-radius: 50px;
@@ -106,7 +106,7 @@ body {
 .btn.btn-light-invert {
   color: #FB6107;
   /*writing*/
-  background-color: transparent;
+  background-color: #ffffff;
   border-color: #FB6107;
   border-width: 2px;
   border-radius: 50px;
