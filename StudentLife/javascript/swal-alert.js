@@ -81,13 +81,13 @@ function recipeDeleted() {
        window.location = 'admin.php';
    });;
 }
-recipe noConnection() {
-    swal({  title: 'Recipe Added!',  
-   type: 'success',    
-   showCancelButton: false,   
-   closeOnConfirm: false,   
-   confirmButtonText: 'Aceptar', 
-   showLoaderOnConfirm: true, }).then(function() {
-       window.location = 'show-all-recipes.php';
-   });;
-}
+// recipe noConnection() {
+//     swal({  title: 'Recipe Added!',  
+//    type: 'success',    
+//    showCancelButton: false,   
+//    closeOnConfirm: false,   
+//    confirmButtonText: 'Aceptar', 
+//    showLoaderOnConfirm: true, }).then(function() {
+//        window.location = 'show-all-recipes.php';
+//    });;
+// }
