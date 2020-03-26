@@ -14,7 +14,7 @@ include_once 'includes/CDNs.php';
 
 <head>
   <meta charset="UTF-8">
-  <title>Recipe API</title>
+  <title>What's In My Fridge?</title>
   <script src="javascript/scripts.js"></script>
   <script src="javascript/api.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -55,7 +55,7 @@ include_once 'includes/CDNs.php';
           <div class='row'>
             <div class='col-lg-12'>
               <p class='sub-head-api'> <input class='checkbox-api' type="checkbox" id="selectIntolerance" onClick="toggleIntolerances()" />Have an Intolerance?</p>
-              <hr align="left" class="api-line">
+              <!-- <hr align="left" class="api-line"> -->
               <div id="intoleranceList">
                 <input id="intolerances" class="tags-input" value="">
                 <div id="hidden2"> </div>
@@ -67,7 +67,7 @@ include_once 'includes/CDNs.php';
             <div class='col-lg-12'>
 
               <p class='sub-head-api'> <input class='checkbox-api' type="checkbox" id="selectDietRestriction" onClick="toggleDietRestrictions()" />Have a Diet Restriction?</p>
-              <hr align="left" class="api-line">
+              <!-- <hr align="left" class="api-line"> -->
               <div id="dietRestrictionsList">
                 <input id="dietRestrictions" class="tags-input" value="">
                 <div id="hidden3"> </div>

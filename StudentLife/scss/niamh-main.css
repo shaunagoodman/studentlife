@@ -1179,7 +1179,6 @@ ul.ingredients-list {
 }
 
 #ingredientsList, #intoleranceList, #dietRestrictionsList {
-  width: 500px;
   background: #f0f0f0;
   padding: 15px 15px 10px 15px;
   border-radius: 15px;
@@ -1242,11 +1241,56 @@ ul.ingredients-list {
           transform: scale(1.2);
 }
 
+#ingredientsList ul li span.tag_delete, #intoleranceList ul li span.tag_delete, #dietRestrictionsList ul li span.tag_delete {
+  color: black;
+  text-decoration: none;
+  margin-left: 5px;
+  font-size: 10px;
+  background: #ffffff;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: -webkit-transform .3s;
+  transition: -webkit-transform .3s;
+  transition: transform .3s;
+  transition: transform .3s, -webkit-transform .3s;
+}
+
+#ingredientsList ul li span.tag_delete:hover, #intoleranceList ul li span.tag_delete:hover, #dietRestrictionsList ul li span.tag_delete:hover {
+  color: red;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
 #ingredientsList input, #intoleranceList input, #dietRestrictionsList input {
   border: 0px;
   background: none;
   margin-bottom: 5px;
   display: inline-block;
+}
+
+.tt-dataset-tagging {
+  color: black;
+  background-color: white;
+  padding: 5%;
+}
+
+.tt-dropdown-menu {
+  background-color: pink;
+}
+
+li.tagging_new {
+  background-color: #f0f0f0 !important;
 }
 
 /* *********************** MY RECIPES PAGE & CREATE RECIPE PAGE CSS **********************    */
@@ -1881,6 +1925,38 @@ td {
 
 .ingName, .ingMeasure, .ingUnit {
   width: 100%;
+}
+
+@media (max-width: 1125px) {
+  .rating:not(:checked) > label {
+    font-size: 150% !important;
+  }
+}
+
+button.addBut {
+  border-radius: 25px;
+  padding: 5%;
+  background-image: url("../images/recipeasy-icons-logos/add.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+button.addBut:hover {
+  cursor: pointer;
+  background-image: url("../images/recipeasy-icons-logos/add-clicked.png");
+  -webkit-transition: ease 0.2;
+  transition: ease 0.2;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+button.addBut.active {
+  background-image: url("../images/recipeasy-icons-logos/add-clicked.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .register-form {
