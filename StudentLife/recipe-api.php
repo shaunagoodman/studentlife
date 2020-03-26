@@ -47,7 +47,8 @@ include_once 'includes/CDNs.php';
 
           <!--TIME -->
           <div id="addedTime">
-            <input class="form-control api-form-control" name='time' id='time' />
+          <input onchange="displayTime()"type = "range" min = "1" max = "60" value = "10" id = "maxTime" name = "maxTime"/>
+          <span id = "timeArea"> <?= isset($_POST['maxTime']) ? $_POST['maxTime'] : '' ?>"</span>
           </div>
           <br>
           <!--INTOLERANCE -->

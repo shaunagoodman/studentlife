@@ -1,38 +1,62 @@
 <?php
+session_start();
 // Process delete operation after confirmation
 if(isset($_POST["recipe_ID"]) && !empty($_POST["recipe_ID"])){
-    // Include config file
+    $recipe_ID = $_POST["recipe_ID"];
+}
+include_once 'includes/CDNs.php';
+if($_SERVER["REQUEST_METHOD"] == "POST"){
     require_once "includes/database/connection.php";
-    
-    // Prepare a delete statement
-    $query = "DELETE FROM recipes WHERE recipe_ID = :recipe_ID";
-    
-    if($stmt = $conn->prepare($query)){
-        // Bind variables to the prepared statement as parameters
-        $stmt->bindParam(":recipe_ID", $param_id);
-        
-        // Set parameters
-        $param_id = trim($_POST["recipe_ID"]);
-        
-        // Attempt to execute the prepared statement
-        if($stmt->execute()){
-            // Records deleted successfully. Redirect to landing page
-            header("location: view-recipes-admin.php");
-            exit();
-        } else{
-            echo "Oops! Something went wrong. Please try again later.";
+    if(isset($_POST["submit"])){
+        $query = "SELECT * FROM recipesteps WHERE recipe_ID = $recipe_ID";
+        $statement = $conn->prepare($query);
+        $statement->execute();
+        $recipesteps = $statement->fetchAll();
+        $statement->closeCursor();
+        foreach($recipesteps as $recstep) {
+            $step_ID = $recstep['steps_ID'];
+            $query2 = "DELETE FROM recipesteps WHERE recipe_ID = $recipe_ID";
+            $statement2 = $conn->prepare($query2);
+            if($statement2->execute()) {
+                $query3 = "DELETE FROM steps WHERE steps_ID = $step_ID";
+                $statement3 = $conn->prepare($query3);
+                $statement3->execute();
+                $steps = $statement3->fetchAll();
+                $statement3->closeCursor();
+            }
         }
+        $query = "SELECT * FROM recipeingredient WHERE recipe_ID = $recipe_ID";
+        $statement = $conn->prepare($query);
+        $statement->execute();
+        $recipeingredients = $statement->fetchAll();
+        $statement->closeCursor();
+        foreach($recipeingredients as $recingredient) {
+            $ingredient_ID = $recingredient['ingredient_ID'];
+            $query2 = "DELETE FROM recipeingredient WHERE recipe_ID = $recipe_ID";
+            $statement2 = $conn->prepare($query2);
+            if($statement2->execute()) {
+                $query3 = "DELETE FROM ingredients WHERE ingredient_ID = $ingredient_ID";
+                $statement3 = $conn->prepare($query3);
+                $statement3->execute();
+                $steps = $statement3->fetchAll();
+                $statement3->closeCursor();
+            }
+        }
+        $query = "DELETE FROM recipes WHERE recipe_ID = $recipe_ID";
+        $statement = $conn->prepare($query);
+        if($statement->execute()) {
+            echo "<script language = javascript>
+                    recipeDeleted();
+                    </script>";
+        }
+        else {
+            echo "OOOPS";
+        }
+        $recipesteps = $statement->fetchAll();
+        $statement->closeCursor();
     }
-     
-    // Close statement
-    unset($stmt);
-    
-    // Close connection
-    unset($conn);
 } else{
-    // Check existence of id parameter
     if(empty(trim($_GET["recipe_ID"]))){
-        // URL doesn't contain id parameter. Redirect to error page
         header("location: error.php");
         exit();
     }
@@ -43,7 +67,6 @@ if(isset($_POST["recipe_ID"]) && !empty($_POST["recipe_ID"])){
 <head>
     <meta charset="UTF-8">
     <title>Delete Recipe</title>
-    <?php include_once 'includes/CDNs.php'; ?> 
 
 </head>
 <body class='site' >
@@ -55,12 +78,12 @@ if(isset($_POST["recipe_ID"]) && !empty($_POST["recipe_ID"])){
                     
                         <h1>Delete Record</h1>
                   
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                    <form action=" " method="post">
                         <div >
                             <input type="hidden" name="recipe_ID" value="<?php echo trim($_GET["recipe_ID"]); ?>"/>
                             <p>Are you sure you want to delete this record?</p><br>
                             <p>
-                                <input type="submit" value="Yes" class="btn btn-danger">
+                                <input type='submit' class="btn btn-light"  name = 'submit' value="Yes"/>
                                 <a href="view-recipes-admin.php" class="btn btn-default">No</a>
                             </p>
                         </div>
