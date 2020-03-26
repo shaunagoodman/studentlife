@@ -151,26 +151,6 @@ and open the template in the editor.
             <br>
         </div>
 
-
-
-
-        <!-- <div class="container div-button desktop-profile">
-
-            <div class='sub-menu'>
-                <div style='text-align: right'>
-                    <ul class='diff-list' id='ul-difficulty-list'>
-                        <li class='li-diff-list'> <a href='add_blog.php'>Add New Post </a></li>
-                        <li class='li-diff-list'><a href='view-recipes-admin.php'>View All Recipes </a></li>
-                        <li class='li-diff-list'><a href='view-all-users.php'>View All Users </a></li>
-                        <li class='li-diff-list'><a href='show-all-recipes.php'>View All Your Recipes </a></li>
-                        <li class='li-diff-list'><a href='favourites.php'>View Favourites </a></li>
-                        <li class='li-diff-list'><a href='add-recipe.php'>Create a Recipes </a></li>
-                    </ul>
-                </div>
-            </div>
-        </div> -->
-
-
         <div class="container-fluid desktop-profile">
             <div class="row">
                 <div class="col-sm-12">

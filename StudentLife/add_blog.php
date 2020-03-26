@@ -40,7 +40,7 @@ include_once 'includes/database/addBlog.php';
 			</div>
 
 			<input type="hidden" name="blogId" value="<?php echo $id; ?>" />
-			<input type="submit" class="btn btn-light btn-sm" name="submit" value="Submit">
+			<input type="submit" class="btn btn-light btn-sm" name="submitBlog" value="Submit">
 			<a href=".php" class="btn btn-light-invert btn-sm">Cancel</a>
 		</form>
 		<br> <br>

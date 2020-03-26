@@ -1,10 +1,10 @@
 <?php
 session_start();
+include_once 'includes/CDNs.php';
 // Process delete operation after confirmation
 if(isset($_POST["recipe_ID"]) && !empty($_POST["recipe_ID"])){
     $recipe_ID = $_POST["recipe_ID"];
 }
-include_once 'includes/CDNs.php';
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     require_once "includes/database/connection.php";
     if(isset($_POST["submit"])){
@@ -42,8 +42,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $statement3->closeCursor();
             }
         }
-        $query = "DELETE FROM recipes WHERE recipe_ID = $recipe_ID";
-        $statement = $conn->prepare($query);
+        $query = "DELETE FROM comments WHERE recipe_ID = $recipe_ID";
+        $statement3 = $conn->prepare($query);
+        $statement3->execute();
+        $steps = $statement3->fetchAll();
+        $statement3->closeCursor();
+
+        $query2 = "DELETE FROM recipes WHERE recipe_ID = $recipe_ID";
+        $statement = $conn->prepare($query2);
         if($statement->execute()) {
             echo "<script language = javascript>
                     recipeDeleted();

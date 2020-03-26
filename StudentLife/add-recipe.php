@@ -77,7 +77,7 @@ include_once 'includes/database/addRecipe.php';
     <?php include_once 'includes/CDNs.php'; ?>
 </head>
 
-<body class='site' >
+<body onload = "displayTime()" class='site' >
     <?php include_once 'includes/nav-menu.php';
     ?>
 <main class='site-content' >
@@ -111,11 +111,11 @@ include_once 'includes/database/addRecipe.php';
                 <div id = "ingArea">
                     <div id = "metricIng" class = "unitHide">
                         <p> Name </p>
-                        <input class="form-control" type="text" name="ingName" />
+                        <input class="form-control" type="text" name="metric_ingredient_name[]" />
                         <p> Measure </p>
-                        <input class="form-control" type="text" name="ingMeasure" />
+                        <input class="form-control" type="text" name="metric_ingredient_measure[]" />
                         <p> Unit </p>
-                        <select name="units" id="units">
+                        <select name="metric_ingredient_unit[]" id="units">
                             <option value="grams">Gram(s)</option>
                             <option value="kg">Kg</option>
                             <option value="ml">Ml</option>
@@ -129,11 +129,11 @@ include_once 'includes/database/addRecipe.php';
                     </div>
                     <div id = "imperialIng" class = "unitHide">
                         <p> Name </p>
-                        <input class="form-control" type="text" name="ingName" />
+                        <input class="form-control" type="text" name="imperial_ingredient_name[]" />
                         <p> Measure </p>
-                        <input class="form-control" type="text" name="ingMeasure" />
+                        <input class="form-control" type="text" name="imperial_ingredient_measure[]" />
                         <p> Unit </p>
-                        <select name="units" id="units">
+                        <select name="imperial_ingredient_unit[]" id="units">
                             <option value="ounce">Ounce(s)</option>
                             <option value="pound">Pound(s)</option>
                             <option value="cup">Cup(s)</option>
@@ -163,7 +163,7 @@ include_once 'includes/database/addRecipe.php';
             <div class="form-group col-md-6 <?php echo (!empty($maxTime_err)) ? 'has-error' : ''; ?>">
                 <label>Max Time</label>
                 <input onchange="displayTime()"type = "range" min = "1" max = "60" value = "10" id = "maxTime" name = "maxTime"/>
-                <span id = "timeArea"> <?= isset($_POST['maxTime']) ? $_POST['maxTime'] : '' ?>"</span>
+                <span id = "timeArea"> <?= isset($_POST['maxTime']) ? $_POST['maxTime'] : '10 minutes' ?>10 minutes</span>
             </div>
 
         </div>
@@ -200,7 +200,7 @@ include_once 'includes/database/addRecipe.php';
 
 
         <input type="hidden" name="recipe_ID" value="<?php echo $id; ?>" />
-        <input type='submit' class="btn btn-light"  name = 'submit' value="Submit the form"/>
+        <input type='submit' class="btn btn-light"  name = 'submitRecipe' value="Submit the form"/>
         <a href="show-all-recipes.php" class="btn btn-light">Cancel</a>
     </form>
 
