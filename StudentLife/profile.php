@@ -67,14 +67,9 @@ and open the template in the editor.
 
                     </div>
 
-
                     <div class="col-lg-6 user-col ">
-
                         <div class="user-info profile-user-info">
-
                             <h2 class="user-name"><span class="underline"><?php echo $_SESSION["fname"] . " " . $_SESSION["lname"]; ?></span></h2>
-
-
                             <h5 class="h5-profile">Email:</h5>
 
                             <p><?php echo htmlspecialchars($_SESSION["u_email"]); ?></p>
@@ -108,19 +103,47 @@ and open the template in the editor.
         ?>
 
 
+<div class="profile-body mobile-profile">
+
+            <div class="container mobile-profile">
+
+                <div class="row">
+
+                    <div class="col-md-12 ">
+
+                        <div class="user-info profile-user-info">
+
+                            <h2 class="user-name"><?php echo $_SESSION["fname"] . " " . $_SESSION["lname"]; ?></h2>
+                            <hr>
+                            <center class="mobile-profile-info">
+
+                                <h5 class="h5-profile">Email:</h5>
+                                <p><?php echo htmlspecialchars($_SESSION["u_email"]); ?></p>
+
+                                <a href="edit_details.php" class="btn btn-light btn-sm">Edit Profile</a>
+
+                                <a href="reset_password.php" class="btn btn-light btn-sm">Reset Password</a>
+
+                            </center>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
 
 
 
 
-        <div class="container-fluid desktop-profile" <?php if (empty($recipes)) echo ' style="display:none;"'; ?>>
+        <div class="container-fluid " <?php if (empty($recipes)) echo ' style="display:none;"'; ?>>
         <br>
             <div class="container">
                 <h1><span class="underline">Your Recipes and Favourites</span></h1>
             </div>
             <br>
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12 desktop-profile">
                     <div id="inam" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
 
@@ -216,7 +239,7 @@ and open the template in the editor.
 
         <!-- **********************TABBED RECIPES AND FAVOURITES******************************** -->
 
-        <div class="container div-button desktop-profile">
+        <div class="container div-button ">
 
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
@@ -259,7 +282,7 @@ and open the template in the editor.
                             }
                         ?>
 
-                            <div class="col-lg-4 bottom-home ">
+                            <div class="col-lg-4 col-md-6 bottom-home ">
                                 <div class="card home-card recipe-page-card">
                                     <img src="<?php echo $src; ?>" class="card-img-top" alt='dish image' height='315' width='328'>
                                     <div class="card-body">
@@ -369,73 +392,11 @@ and open the template in the editor.
 
 
 
-
-
-
-        <!-- <div class="container div-button desktop-profile">
-
-            <div class="row">
-
-                <div class="col-lg-6 ">
-                    
-                        <h3>View All Your Favourites<a href="favourites.php" class="recipes"> Here</a> </h3>
-                    
-                </div>
-
-
-                <div class="col-lg-6">
-                    
-                        <h3>View All Your Own Recipes<a href="show-all-recipes.php" class="recipes"> Here</a></h3>
-                    
-                </div>
-
-            </div>
-        </div> -->
-
-
-        <!-- <div class="container div-button desktop-profile">
-
-            <div class="row">
-
-                <div class="col-lg-6 ">
-                    <div class="user-info profile-buttons favourites-button">
-                        <h2><a href="favourites.php" class="recipes my-favourites">Favourites</a></h2>
-                    </div>
-                </div>
-
-
-                <div class="col-lg-6">
-                    <div class="user-info profile-buttons recipe-button">
-                        <h2><a href="show-all-recipes.php" class="recipes">Recipes</a></h2>
-                    </div>
-                </div>
-
-            </div>
-        </div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
 
 
         <!--        -------------------    MOBILE VERSION ------------------------ -->
-        <div class="profile-body mobile-profile">
+        <!-- <div class="profile-body mobile-profile">
 
             <div class="container mobile-profile">
 
@@ -462,9 +423,9 @@ and open the template in the editor.
 
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <div class="container mobile-profile">
+        <!-- <div class="container mobile-profile">
 
             <div class="row">
 
@@ -487,7 +448,7 @@ and open the template in the editor.
             </div>
 
 
-        </div>
+        </div> -->
 
 
 

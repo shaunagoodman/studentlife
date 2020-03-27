@@ -199,8 +199,10 @@ if(isset($_POST['btnFav'])) {
                         </form>
                         <br>
                     </div>
-                </div>
-                <div class='col-lg-7'>
+                
+
+
+                <div class='col-lg-7'<?php if (empty($recipe["video_name"])) echo ' style="display:none;"'; ?>>
                     <h3>Video Tutorial</h3>
                     <center>
                         <iframe width="600" height="338" src="https://www.youtube.com/embed/<?php echo $recipe["video_name"] ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -208,7 +210,7 @@ if(isset($_POST['btnFav'])) {
                         </video>
 
                     </center>
-                </div>
+                </div></div>
         </div>
         </div>
 
