@@ -16,7 +16,7 @@ require_once 'includes/database/connection.php';
 
 try {
     $userID = $_SESSION['user_ID'];
-    $query = "SELECT * FROM recipes WHERE user_ID = $userID";
+    $query = "SELECT * FROM recipes WHERE user_ID = $userID ORDER BY date-created";
     $statement2 = $conn->prepare($query);
     $statement2->bindValue(":userID", $userID);
     $statement2->execute();
@@ -566,7 +566,7 @@ and open the template in the editor.
 
                         try {
                             $userID = $_SESSION['user_ID'];
-                            $sql = "SELECT * FROM favourites WHERE user_ID = $userID";
+                            $sql = "SELECT * FROM `recipes` r INNER JOIN favourites f ON f.recipe_ID = r.recipe_ID WHERE f.user_ID = $userID";
                             $statement = $conn->prepare($sql);
                             $statement->execute();
                             $recipes = $statement->fetchAll();

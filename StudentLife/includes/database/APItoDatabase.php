@@ -1,8 +1,8 @@
 <?php  
 include_once 'includes/database/connection.php';
-        if($_SERVER["REQUEST_METHOD"] == "POST"){
-            if (isset($_SESSION["loggedin"])) {
-                $user = $_SESSION['user_ID'];
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if (isset($_SESSION["loggedin"])) {
+        $user = $_SESSION['user_ID'];
         $url = "https://api.spoonacular.com/recipes/".$recipe_ID."/information?apiKey=53bea2eb3c79445188bc4d3f00895d15";
         $response = json_decode(file_get_contents($url),true);
         $title =  $response["title"];
@@ -45,6 +45,7 @@ include_once 'includes/database/connection.php';
         foreach ($response['cuisines'] as $cuisine){
           echo $cuisine ."</br>";
         }
+
         foreach($response['extendedIngredients'] as $ingredient) {
           // check if ingredient is in array
           if (!in_array($ingredient['name'], $ingredients))
@@ -61,26 +62,17 @@ include_once 'includes/database/connection.php';
           }
         }
 
-//  **************** ADD TO RECIPES TABLE ****************
-                $addToRecipe = "INSERT INTO recipes(recipe_ID, user_ID, name, image, video_name, rating, servings, maxTime, difficultyID, date_created, isFavourite, favourited_by, isAPI) VALUES (null,'$user','$title','$image',null,null,'$servings','$time',null,null,1,'$user',1)";
+        //  **************** CHECK IF EXISTS ****************
+        $query = "SELECT * FROM recipes WHERE recipe_ID = $recipe_ID";
+        $statement = $conn->prepare($query);
+        $statement->execute();
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        if(!$row) {
+                //  **************** ADD TO RECIPES TABLE ****************
+                $addToRecipe = "INSERT INTO recipes(recipe_ID, user_ID, name, image, video_name, rating, servings, maxTime, difficultyID, date_created, isAPI) VALUES ($recipe_ID,'$user','$title','$image',null,null,'$servings','$time',null,null,1)";
                 $statement = $conn->prepare($addToRecipe);
-                if(!$statement->execute()) {
-                    echo "Could not access recipes table";
-                }
-                else {
-                    echo "<script language = javascript>
-                  swal({  title: 'Recipe Added!',
-                   text: 'You have successfully created a recipe. Click OK to view this recipe.',  
-                  type: 'success',    
-                  showCancelButton: false,   
-                  closeOnConfirm: false,   
-                  confirmButtonText: 'Aceptar', 
-                  showLoaderOnConfirm: true, }).then(function() {
-                      window.location = 'favourites.php';
-                  });;
-              </script>";
-                }
-                $recipeIngredient = $statement->fetchAll();
+                $recipe = $statement->fetchAll();
+                $statement->execute();
                 $statement->closeCursor();
                 $recipe_ID = $conn->lastInsertId();
 //  **************** ADD TO INGREDIENTS TABLE ****************
@@ -91,18 +83,16 @@ include_once 'includes/database/connection.php';
                     $ingredientMeasure = $unit[$x];
                     $addToIngredients = "INSERT INTO ingredients (ingredient_ID, name, amount, unit) VALUES (null,'$ingredientName','$ingredientAmount','$ingredientAmount')";
                     $statement = $conn->prepare($addToIngredients);
-                    if(!$statement->execute()) {
-                    echo "Could not access ingredients table";
-                    }
-                    $recipeIngredient = $statement->fetchAll();
+                    $statement->execute();
+                    $ingredient = $statement->fetchAll();
                     $statement->closeCursor();
                     $ingredient_ID = $conn->lastInsertId();
-//   **************** ADD TO RECIPEINGREDIENTS TABLE ****************
-                $addToRecipeIngredients = "INSERT INTO recipeingredient (recipe_ID, ingredient_ID) VALUES ('$recipe_ID','$ingredient_ID')";
-                $statement = $conn->prepare($addToRecipeIngredients);
-                $statement->execute();
-                $recipeIngredient = $statement->fetchAll();
-                $statement->closeCursor();
+                    //   **************** ADD TO RECIPEINGREDIENTS TABLE ****************
+                    $addToRecipeIngredients = "INSERT INTO recipeingredient (recipe_ID, ingredient_ID) VALUES ('$recipe_ID','$ingredient_ID')";
+                    $statement = $conn->prepare($addToRecipeIngredients);
+                    $statement->execute();
+                    $recipeIngredient = $statement->fetchAll();
+                    $statement->closeCursor();
                 }
 //   **************** ADD TO STEPS TABLE ****************
                 $methodLength = sizeof($method);
@@ -114,19 +104,56 @@ include_once 'includes/database/connection.php';
                 }
                     $addToSteps = "INSERT INTO steps(steps_ID, description) VALUES (null,'$input')";
                     $statement = $conn->prepare($addToSteps);
-                    if(!$statement->execute()) {
-                    echo "Could not access steps table";
-                    }
-                    $recipeIngredient = $statement->fetchAll();
+                    $statement->execute();
+                    $steps = $statement->fetchAll();
                     $statement->closeCursor();
                     $step_ID = $conn->lastInsertId();
 //   **************** ADD TO RECIPESTEPS TABLE ****************
                 $addToRecipeSteps = "INSERT INTO recipesteps(recipe_ID, steps_ID) VALUES ('$recipe_ID', '$step_ID')";
                 $statement = $conn->prepare($addToRecipeSteps);
                 $statement->execute();
-                $recipeIngredient = $statement->fetchAll();
+                $recipeStep = $statement->fetchAll();
                 $statement->closeCursor();
-}
+            }// end check for recipe
+            $statement->closeCursor();
 
+        //   **************** CHECK IF EXISTS IN FAVOURITES ****************
+        $query = "SELECT * FROM favourites WHERE recipe_ID = $recipe_ID";
+        $statement = $conn->prepare($query);
+        $statement->execute();
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        if(!$row) {
+            //   **************** ADD TO FAVOURITES TABLE ****************
+            $query = "INSERT INTO favourites(recipe_ID, user_ID) VALUES ($recipe_ID, $user)";
+            $statement2 = $conn->prepare($query);
+            if($statement2->execute()) {
+                echo "<script language = javascript>
+                        swal({  title: 'Added to favourites!',  
+                        type: 'success',    
+                        showCancelButton: false,   
+                        closeOnConfirm: false,   
+                        confirmButtonText: 'Aceptar', 
+                        showLoaderOnConfirm: true, }).then(function() {
+                            window.location = 'favourites.php';
+                        });;
+                    </script>";
+            }
+            $addToFavs = $statement2->fetchAll();
+            $statement2->closeCursor();
+        } // end check favs
+        else {
+            echo "<script language = javascript>
+            swal({  title: 'You have already favourited this!',  
+            type: 'success',    
+            showCancelButton: false,   
+            closeOnConfirm: false,   
+            confirmButtonText: 'Aceptar', 
+            showLoaderOnConfirm: true, }).then(function() {
+                window.location = 'recipe-api.php';
+            });;
+        </script>";
+        }
+        $statement->closeCursor();
+    }
 }
-        ?>
+?>
