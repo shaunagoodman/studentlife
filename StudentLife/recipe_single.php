@@ -23,7 +23,7 @@ $statement2->execute();
 $comments = $statement2->fetchAll();
 $statement2->closeCursor();
 
-if(isset($_POST['btnFav'])) {
+if (isset($_POST['btnFav'])) {
     include_once 'includes/database/addToFavs.php';
 }
 ?>
@@ -70,20 +70,24 @@ if(isset($_POST['btnFav'])) {
                 <h2 class="heading allRecipes-h1"><span class="underline"><?php echo $recipe['name'] ?></span> </h2>
 
                 <div class=row>
-                    <div class='col-md-5 single-recipe-topRow'>
+                    <div class='col-md-7 single-recipe-topRow'>
                         <img class='single-recipe-pic' src='<?php echo $src;  ?>' alt='dish image'>
                         <form class="faveForm" action="" method="POST">
                             <button id="myFave" class="myLink btn" type="submit" name="btnFav" alt="favourite me!"> </button>
                         </form>
                     </div>
 
-                    <div class='col-md-7 single-recipe-topRow'>
-                        <p><img src='images/recipeasy-icons-logos/gauge.png' style='margin-right:1.5%' alt='clock icon' height='35' width='35'><strong>Difficulty: </strong><?php echo $difficulty ?>
-                            <img src='images/recipeasy-icons-logos/knife-fork.png' style='margin-right:1.5%' alt='clock icon' height='35' width='35'><strong>Servings:</strong> <?php echo $recipe['servings'] ?>
-                            <img src='images/recipeasy-icons-logos/clock.png' style='margin-right:1.5%' alt='clock icon' height='30' width='30'><strong>Cooking Time: </strong><?php echo $time ?> minutes</p>
+                    <div class='col-md-5 single-recipe-topRow '>
+<br><br>
+                        <h4> <img src='images/recipeasy-icons-logos/gauge.png' style='margin-right:1.5%' alt='clock icon' height='35' width='35'><strong>Difficulty: </strong><?php echo $difficulty ?> </h4>
+                        <h4> <br> <img src='images/recipeasy-icons-logos/knife-fork.png' style='margin-right:1.5%' alt='clock icon' height='35' width='35'><strong>Servings:</strong> <?php echo $recipe['servings'] ?> </h4>
+                        <h4> <br> <img src='images/recipeasy-icons-logos/clock.png' style='margin-right:1.5%' alt='clock icon' height='30' width='30'><strong>Cooking Time: </strong><?php echo $time ?> minutes </h4>
 
+                    </div>
+
+                    <div class="col-lg-4 col-md-5 col-12 single-ingredients">
                         <h5> <strong>Ingredients: </strong></h5>
-                        <hr align="left" class="single-recipe-line-ingredients">
+
                         <?php foreach ($recipes as $recipe) :
                             $queryrecipeings = 'SELECT * FROM recipeingredient WHERE recipe_ID=:recipe_ID';
                             $statement4 = $conn->prepare($queryrecipeings);
@@ -119,106 +123,106 @@ if(isset($_POST['btnFav'])) {
                             $statement5->closeCursor();
                         ?>
 
-                            <?php foreach ($descriptions as $description) : ?>
-                                <h5><strong>Method: </strong></h5>
-                                <hr align="left" class="single-recipe-line">
-                                <p><?php echo $description['description'] ?></p>
-                            <?php endforeach; ?>
-                        <?php endforeach; ?>
                     </div>
+                    <div class="col-lg-8 col-md-7 col-12">
+
+                        <?php foreach ($descriptions as $description) : ?>
+                            <h5><strong>Method: </strong></h5>
+                            <p><?php echo $description['description'] ?></p>
+                        <?php endforeach; ?>
+                    <?php endforeach; ?>
+                    </div>
+                </div>
+<br><br>
 
 
-                    <?php
-                        if(isset($_POST['btnSubmit'])) {
-                            if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] != true) {
-                                echo "<script language = javascript>
+                <?php
+                if (isset($_POST['btnSubmit'])) {
+                    if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] != true) {
+                        echo "<script language = javascript>
                                 commentFail();
                                         </script>";
-                            }
-                            else {
-                                $comment = $_POST['comment'];
-                                $date = date('Y-m-d H:i:s');
-                                $sql = "INSERT INTO comments(comment_ID, comment, senderName, date, recipe_ID) VALUES (null,'$comment','$name','$date',$recipe_ID)";
-                                $statement = $conn->prepare($sql);
-                                if($statement->execute()) {
-                                    echo "<script language = javascript>
+                    } else {
+                        $comment = $_POST['comment'];
+                        $date = date('Y-m-d H:i:s');
+                        $sql = "INSERT INTO comments(comment_ID, comment, senderName, date, recipe_ID) VALUES (null,'$comment','$name','$date',$recipe_ID)";
+                        $statement = $conn->prepare($sql);
+                        if ($statement->execute()) {
+                            echo "<script language = javascript>
                                             commentAdded();
                                         </script>";
-                                }
-                                $addedComments = $statement->fetchAll();
-                                $statement->closeCursor();
-                            }
                         }
-                    ?>
-            
-                                
-<!--CORRECT VERSION --->
-            <div class='col-lg-5'>
-                    <h3>Comments</h3>
-                    <div class='fake-comment'>
-                    <?php
-                    if(!empty($comments)) {
-                        foreach ($comments as $comment):
-                            $date = $comment ['date'];
-                            $newDate = date("d.m.Y H:i:s", strtotime($date));
-                    ?>
-                        <p> Posted By: <?php echo $comment['senderName'];?></p> 
-                        <p> Comment: <?php echo $comment ['comment'];?> </p>
-                        <p> Date Posted: <?php echo $newDate?> </p>
-                    <?php
-                    endforeach;
-                } else {?>
-                <div class='fake-comment'>
-                        <p>
-                            No comments
-                        </p>
-                    </div>
-                <?php } ?>
-                </div>
-                    <br>
+                        $addedComments = $statement->fetchAll();
+                        $statement->closeCursor();
+                    }
+                }
+                ?>
 
-                    <form method = "post">
-                        <div class="form-group">
-                            <label>Comment Here</label><br>
 
-                            <h2> Comment </h2>
-                            <textarea class="form-control fake-textBox" id = "comment" name="comment" rows="3" placeholder=""></textarea>
-
+                <!--CORRECT VERSION --->
+                <div class="row">
+                    <div class='col-lg-5 comment-div' <?php if (empty($recipe["video_name"])) echo ' style="margin-left: 30%"'; ?>>
+                        <h3>Comments</h3>
+                        <div >
+                            <?php
+                            if (!empty($comments)) {
+                                foreach ($comments as $comment) :
+                                    $date = $comment['date'];
+                                    $newDate = date("d.m.Y H:i:s", strtotime($date));
+                            ?>
+                                    <h5 style="color: #EF7823;" > <?php echo $comment['senderName']; ?></h5>
+                                    <p style="font-size: 85%; color: #727272; margin-top: -2%;">  <?php echo $newDate ?> </p>
+                                    <p class="comment" > <?php echo $comment['comment']; ?> </p>
+                                    <hr>
+                                    
+                                <?php
+                                endforeach;
+                            } else { ?>
+                            <?php } ?>
                         </div>
                         <br>
 
                         <form method="post">
                             <div class="form-group">
-                                <label>Comment Here</label><br>
-                                <h2> Name</h2>
-                                <input class="form-control fake-textBox" type="text" name="name" id="name" placeholder="Enter your Name" />
-                                <h2> Comment </h2>
-                                <textarea class="form-control fake-textBox" id="comment" name="comment" rows="3" placeholder=""></textarea>
+                                <!-- <label>Comment Here</label><br>
+
+                                    <h2> Comment </h2>
+                                    <textarea class="form-control fake-textBox" id="comment" name="comment" rows="3" placeholder=""></textarea> -->
+
                             </div>
-                            <input class='btn btn-light btn-sm' type="submit" name="btnSubmit" value="Post Comment" />
-                        </form>
-                        <br>
+                            <br>
+
+                            <form method="post">
+                                <div class="form-group">
+                                    <label>Comment Here</label><br>
+                                    <textarea class="form-control fake-textBox" id="comment" name="comment" rows="3" placeholder=""></textarea>
+                                </div>
+                                <input class='btn btn-light btn-sm' type="submit" name="btnSubmit" value="Post Comment" />
+                            </form>
+                            <br>
+
                     </div>
-                
 
 
-                <div class='col-lg-7'<?php if (empty($recipe["video_name"])) echo ' style="display:none;"'; ?>>
-                    <h3>Video Tutorial</h3>
-                    <center>
+                    <div class='col-lg-7 video-container' <?php if (empty($recipe["video_name"])) echo ' style="display:none;"'; ?>>
+                        <h3>Video Tutorial</h3>
+
                         <iframe width="600" height="338" src="https://www.youtube.com/embed/<?php echo $recipe["video_name"] ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
                         </video>
 
-                    </center>
-                </div></div>
+
+                    </div>
+                </div>
+
         </div>
-        </div>
+    </main>
 
-    <?php endforeach; ?>
-    <?php include_once 'includes/footer.php'; ?>
+<?php endforeach; ?>
+<?php include_once 'includes/footer.php'; ?>
 
 
-    </div>
+</div>
 
 
 

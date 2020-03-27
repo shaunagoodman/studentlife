@@ -62,8 +62,6 @@ include_once 'includes/database/connection.php';
               </p>
             </div>
 
-
-
           </div>
 
           

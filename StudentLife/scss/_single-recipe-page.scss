@@ -22,15 +22,39 @@
 
 .single-recipe-topRow{
     margin-bottom: 5%;
+    display: flex;
+    flex-direction: column;
+}
+@media (max-width: 990px) {
+    .comment-div{
+        margin-left: 0%!important;
+    }
 }
 
 
-.fake-comment{
-    border: 1px solid $mediumOrange;
-    background-color: white;
-    border-radius: 5px;
+
+.video-container {
+    overflow: hidden;
+    position: relative;
+    width:100%;
+    margin-bottom: 5%;
 }
 
-.fake-textBox{
-    background-color: white!important;
+.video-container::after {
+    padding-top: 56.25%;
+    display: block;
+    content: '';
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+}
+
+
+.comment{
+    margin-top: 3%;
 }
