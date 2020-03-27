@@ -267,6 +267,24 @@ a.nav-link {
   font-size: 130%;
 }
 
+@media (max-width: 1069px) {
+  a.nav-link {
+    font-size: 125%;
+  }
+}
+
+@media (max-width: 1056px) {
+  a.nav-link {
+    font-size: 115%;
+  }
+}
+
+@media (max-width: 1004px) {
+  a.nav-link {
+    font-size: 110%;
+  }
+}
+
 .nav-link:hover {
   color: #ffffff !important;
   -webkit-transition: 0.3s;
@@ -531,6 +549,12 @@ a.dropdown-item {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+@media (max-width: 991px) {
+  .profile-body {
+    margin-top: -2%;
+  }
 }
 
 .profile-title1 {

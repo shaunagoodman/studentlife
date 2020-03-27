@@ -9,6 +9,15 @@
     background-size: cover;
 }
 
+@media (max-width: 991px) {
+    .profile-body{
+        margin-top: -2%;
+    }
+  }
+
+
+
+
 .profile-title1{
     color: #fffd77;
 }
