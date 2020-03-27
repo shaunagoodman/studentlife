@@ -6,7 +6,7 @@ require_once 'includes/database/connection.php';
 if (isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true) {
     try {
         $userID = $_SESSION['user_ID'];
-        $sql = "SELECT * FROM recipes WHERE isFavourite = 1 AND favourited_by = $userID";
+        $sql = "SELECT * FROM `recipes` r INNER JOIN favourites f ON f.recipe_ID = r.recipe_ID WHERE f.user_ID = $userID";
         $statement = $conn->prepare($sql);
         $statement->execute();
         $recipes = $statement->fetchAll();
@@ -24,11 +24,6 @@ else {
 ?>
 
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
 
 <head>
