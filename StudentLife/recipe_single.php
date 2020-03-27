@@ -128,43 +128,63 @@ $statement2->closeCursor();
                         <?php endforeach; ?>
                     </div>
 
-                    <!---INCORRECT VERSION --->
+
                     <?php
-                    if (isset($_POST['btnSubmit'])) {
-                        $name = $_POST['name'];
-                        $comment = $_POST['comment'];
-                        $date = date('Y-m-d H:i:s');
-                        $sql = "INSERT INTO comments(comment_ID, comment, senderName, date, recipe_ID) VALUES (null,'$comment','$name','$date',$recipe_ID)";
-                        $statement = $conn->prepare($sql);
-                        $statement->execute();
-                        $addedComments = $statement->fetchAll();
-                        $statement->closeCursor();
-                    }
+                        if(isset($_POST['btnSubmit'])) {
+                            if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] != true) {
+                                echo "<script language = javascript>
+                                commentFail();
+                                        </script>";
+                            }
+                            else {
+                                $comment = $_POST['comment'];
+                                $date = date('Y-m-d H:i:s');
+                                $sql = "INSERT INTO comments(comment_ID, comment, senderName, date, recipe_ID) VALUES (null,'$comment','$name','$date',$recipe_ID)";
+                                $statement = $conn->prepare($sql);
+                                if($statement->execute()) {
+                                    echo "<script language = javascript>
+                                            commentAdded();
+                                        </script>";
+                                }
+                                $addedComments = $statement->fetchAll();
+                                $statement->closeCursor();
+                            }
+                        }
                     ?>
+            
+                                
+<!--CORRECT VERSION --->
+            <div class='col-lg-5'>
+                    <h3>Comments</h3>
+                    <div class='fake-comment'>
+                    <?php
+                    if(!empty($comments)) {
+                        foreach ($comments as $comment):
+                            $date = $comment ['date'];
+                            $newDate = date("d.m.Y H:i:s", strtotime($date));
+                    ?>
+                        <p> Posted By: <?php echo $comment['senderName'];?></p> 
+                        <p> Comment: <?php echo $comment ['comment'];?> </p>
+                        <p> Date Posted: <?php echo $newDate?> </p>
+                    <?php
+                    endforeach;
+                } else {?>
+                <div class='fake-comment'>
+                        <p>
+                            No comments
+                        </p>
+                    </div>
+                <?php } ?>
+                </div>
+                    <br>
 
+                    <form method = "post">
+                        <div class="form-group">
+                            <label>Comment Here</label><br>
 
-                    <!--CORRECT VERSION --->
-                    <div class='col-lg-5'>
-                        <h3>Comments</h3>
-                        <div class='fake-comment'>
-                            <?php
-                            if (!empty($comments)) {
-                                foreach ($comments as $comment) :
-                                    $date = $comment['date'];
-                                    $newDate = date("d.m.Y H:i:s", strtotime($date));
-                            ?>
-                                    <p> Author: <?php echo  $comment['senderName']; ?></p>
-                                    <p> Comment: <?php echo $comment['comment']; ?> </p>
-                                    <p> Date Posted: <?php echo $newDate ?> </p>
-                                <?php
-                                endforeach;
-                            } else { ?>
-                                <div class='fake-comment'>
-                                    <p>
-                                        No comments
-                                    </p>
-                                </div>
-                            <?php } ?>
+                            <h2> Comment </h2>
+                            <textarea class="form-control fake-textBox" id = "comment" name="comment" rows="3" placeholder=""></textarea>
+
                         </div>
                         <br>
 
