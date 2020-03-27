@@ -6,7 +6,7 @@ include_once 'includes/database/connection.php';
 if (isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true) {
     try {
         $userID = $_SESSION['user_ID'];
-        $sql = "SELECT * FROM recipes WHERE isFavourite = 1 AND favourited_by = $userID";
+        $sql = "SELECT * FROM recipes WHERE isAPI = 0";
         $statement = $conn->prepare($sql);
         $statement->execute();
         $recipes = $statement->fetchAll();
@@ -290,7 +290,7 @@ and open the template in the editor.
 
                         try {
                             $userID = $_SESSION['user_ID'];
-                            $sql = "SELECT * FROM recipes WHERE isFavourite = 1 AND favourited_by = $userID";
+                            $sql = "SELECT * FROM `recipes` r INNER JOIN favourites f ON f.recipe_ID = r.recipe_ID WHERE f.user_ID = $userID";
                             $statement = $conn->prepare($sql);
                             $statement->execute();
                             $recipes = $statement->fetchAll();
@@ -347,7 +347,7 @@ and open the template in the editor.
 
                         <?php endforeach;
                         } else {
-                            echo "<p>You have not added any recipes yet.</p>";
+                            echo "<h5>You have not added any recipes yet.</h5>";
                         }
 
                         echo "</div>" ?>
