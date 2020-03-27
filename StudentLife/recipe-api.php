@@ -144,6 +144,7 @@ include_once 'includes/CDNs.php';
 
 
         <form action="" method="POST">
+        <!-- <button id="myImage" class="myLink btn" type="submit" name="btnFav" alt="favourite me!"> </button> -->
           <input class="btn api-button" type="submit" name="btnFav" value="Favourite" />
         </form>
         <!-- </div> -->
