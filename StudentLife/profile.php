@@ -33,6 +33,9 @@ try {
     echo $errorMessage;
     exit();
 }
+if(isset($_POST['removeFav'])) {
+    include_once 'includes/database/removeFromFavs.php';
+}
 
 ?>
 
@@ -87,8 +90,7 @@ and open the template in the editor.
         <?php
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $userID = $_SESSION['user_ID'];
-            $submitbutton = $_POST['submitbutton'];
-            if ($submitbutton) {
+            if (isset($_POST['submitbutton'])) {
                 $query = "UPDATE user SET isActive = 0 WHERE user_ID = $userID";
                 $statement = $conn->prepare($query);
                 if ($statement->execute()) {
@@ -291,6 +293,9 @@ and open the template in the editor.
                                         <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
                                         </p>
                                         <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light">View Recipe</button></a> </center>
+                                        <form action="delete-recipe.php" method="post" id="delete_recipe_form">
+                                            <a href="delete_recipe.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>" class="add-my-recipe">Delete</a>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -364,6 +369,10 @@ and open the template in the editor.
                                             <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
                                             </p>
                                             <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light">View Recipe</button></a> </center>
+                                            <form action = "" method = "post">
+                                            <button type = "submit" name = "removeFav" class = "btn btn-light"> Remove </button>
+                                            </form>
+                                            
                                         </div>
                                     </div>
                                 </div>
