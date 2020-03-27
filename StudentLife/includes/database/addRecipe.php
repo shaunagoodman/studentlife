@@ -3,7 +3,7 @@ $recipeName = $image = $video_name = $rating = $servings = $maxTime = $difficult
 $name_err = $rating_err = $ingredient_err = $servings_err = $maxTime_err = $difficultyID_err = "";
 $ingredient_ID = $recipe_ID = $step_ID = "";
 
-
+include_once 'includes/CDNs.php'; 
 
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
