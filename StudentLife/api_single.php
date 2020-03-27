@@ -54,6 +54,10 @@ foreach ($response['analyzedInstructions'] as $instruction) {
             <div class=row>
                 <div class='col-md-7 single-recipe-topRow'>
                     <img class='single-recipe-pic' src='<?php echo $image;  ?>' alt='dish image'>
+                    <form class="faveForm" action="" method="POST">
+                        <!-- <input class="btn api-button random-button" type="submit" name="btnFav" value="Favourite" /> -->
+                        <button id="myFave" class="myLink btn" type="submit" name="btnFav" alt="favourite me!"> </button>
+                    </form>
                 </div>
                 <div class='col-md-5 single-recipe-topRow'>
                     <p>
