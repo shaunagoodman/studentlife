@@ -126,3 +126,38 @@ body{
   .card-body {
     box-shadow: -1px 17px 16px -5px rgba(122,122,122,0.52);
   }
+
+
+  #myFave {
+    position: absolute;
+    top: 80%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  }
+  @media (max-width: 1125px) {
+    #myFave {
+      top: 60%;
+      left: 85%;
+    }
+  }
+  
+  @media (max-width: 991px) {
+    #myFave {
+      top: 45%;
+      left: 85%;
+    }
+  }
+  
+  @media (max-width: 767px) {
+      #myFave {
+        top: 85%;
+        left: 85%;
+      }
+  
+      .random-recipe-div{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+      }
+    }
