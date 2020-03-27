@@ -6,6 +6,9 @@ $recipe_ID = filter_input(INPUT_GET, "recipe_ID");
 if ($recipe_ID == NULL) {
     header("location:recipes-list.php");
 }
+if(isset($_POST['btnFav'])) {
+    include_once 'includes/database/addToFavs.php';
+}
 $url = "https://api.spoonacular.com/recipes/" . $recipe_ID . "/information?apiKey=53bea2eb3c79445188bc4d3f00895d15";
 $response = json_decode(file_get_contents($url), true);
 $title =  $response["title"];

@@ -82,12 +82,27 @@ function recipeDeleted() {
    });;
 }
 // recipe noConnection() {
-//     swal({  title: 'Recipe Added!',  
-//    type: 'success',    
-//    showCancelButton: false,   
-//    closeOnConfirm: false,   
-//    confirmButtonText: 'Aceptar', 
-//    showLoaderOnConfirm: true, }).then(function() {
-//        window.location = 'show-all-recipes.php';
-//    });;
+//     
 // }
+
+function commentFail() {
+    swal({  title: 'Cannot post comment!',  
+    text: 'You must be logged in to leave a comment.',
+       type: 'fail',    
+       showCancelButton: false,   
+       closeOnConfirm: false,   
+       confirmButtonText: 'Aceptar', 
+       showLoaderOnConfirm: true, }).then(function() {
+           window.location = 'login.php';
+       });;
+}
+function commentAdded() {
+    swal({  title: 'Comment Posted',
+       type: 'sucess',    
+       showCancelButton: false,   
+       closeOnConfirm: false,   
+       confirmButtonText: 'Aceptar', 
+       showLoaderOnConfirm: true, }).then(function() {
+        window.location.reload(); ;
+       });;
+}
