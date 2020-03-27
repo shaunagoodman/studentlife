@@ -1,10 +1,11 @@
 <?php
-session_start();
+start_session();
 include_once 'includes/CDNs.php';
 // Process delete operation after confirmation
-if(isset($_POST["recipe_ID"]) && !empty($_POST["recipe_ID"])){
+if(isset($_POST["recipe_ID"])){
     $recipe_ID = $_POST["recipe_ID"];
 }
+$u_type = $_SESSION["u_type"];
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     require_once "includes/database/connection.php";
     if(isset($_POST["submit"])){
@@ -67,9 +68,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     recipeDeleted();
                     </script>";
         }
-        else {
-            echo "OOOPS";
-        }
         $recipesteps = $statement->fetchAll();
         $statement->closeCursor();
     }
@@ -102,7 +100,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <p>Are you sure you want to delete this record?</p><br>
                             <p>
                                 <input type='submit' class="btn btn-light"  name = 'submit' value="Yes"/>
-                                <a href="view-recipes-admin.php" class="btn btn-default">No</a>
+                                <a href=" <?php $u_type = 1 ? echo 'admin.php' : 'profile.php'?> class="btn btn-default">No</a>
                             </p>
                         </div>
                     </form>
