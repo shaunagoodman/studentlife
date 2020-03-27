@@ -22,11 +22,11 @@ $statement2 = $conn->prepare($sql2);
 $statement2->execute();
 $comments = $statement2->fetchAll();
 $statement2->closeCursor();
+
+if(isset($_POST['btnFav'])) {
+    include_once 'includes/database/addToFavs.php';
+}
 ?>
-
-
-
-
 <!DOCTYPE html>
 <html>
 
@@ -73,7 +73,6 @@ $statement2->closeCursor();
                     <div class='col-md-5 single-recipe-topRow'>
                         <img class='single-recipe-pic' src='<?php echo $src;  ?>' alt='dish image'>
                         <form class="faveForm" action="" method="POST">
-                            <!-- <input class="btn api-button random-button" type="submit" name="btnFav" value="Favourite" /> -->
                             <button id="myFave" class="myLink btn" type="submit" name="btnFav" alt="favourite me!"> </button>
                         </form>
                     </div>
