@@ -1175,6 +1175,10 @@ li.li-cuisine-list > a:hover {
   display: none;
 }
 
+#ingredientsList {
+  margin-bottom: 5%;
+}
+
 .recipe-api {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1241,6 +1245,7 @@ li.li-cuisine-list > a:hover {
 
 p.sub-head-api {
   margin-bottom: 0%;
+  margin-top: 1%;
 }
 
 #ingredientList, #equipment, #recipeName, #cuisine, #methodList {
@@ -1272,7 +1277,6 @@ ul.ingredients-list {
 }
 
 #ingredientsList, #intoleranceList, #dietRestrictionsList {
-  background: #f0f0f0;
   padding: 15px 15px 10px 15px;
   border-radius: 15px;
 }
@@ -1383,7 +1387,28 @@ ul.ingredients-list {
 }
 
 li.tagging_new {
-  background-color: #f0f0f0 !important;
+  background-color: transparent !important;
+  width: 100%;
+}
+
+.twitter-typeahead {
+  border-bottom: 1px solid #727272;
+  border-radius: 0em !important;
+}
+
+#ingredientsList input {
+  border-bottom: 1px solid #727272;
+  border-radius: 0em !important;
+  width: 100%;
+}
+
+@media (max-width: 575px) {
+  .ingredientMethod {
+    margin-left: 5%;
+  }
+  .iconList {
+    margin-left: 3%;
+  }
 }
 
 /* *********************** MY RECIPES PAGE & CREATE RECIPE PAGE CSS **********************    */
