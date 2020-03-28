@@ -6,12 +6,12 @@ include_once 'includes/database/connection.php';
 if (isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true) {
     try {
         $userID = $_SESSION['user_ID'];
-    $query = "SELECT * FROM recipes WHERE user_ID = $userID AND isAPI = 0 ORDER BY 'date-created'";
-    $statement2 = $conn->prepare($query);
-    $statement2->bindValue(":userID", $userID);
-    $statement2->execute();
-    $recipes = $statement2->fetchAll();
-    $statement2->closeCursor();   
+        $query = "SELECT * FROM recipes WHERE user_ID = $userID AND isAPI = 0 ORDER BY 'date-created'";
+        $statement2 = $conn->prepare($query);
+        $statement2->bindValue(":userID", $userID);
+        $statement2->execute();
+        $recipes = $statement2->fetchAll();
+        $statement2->closeCursor();
     } catch (Exception $ex) {
         $errorMessage = $e->getMessage();
         echo $errorMessage;
@@ -21,7 +21,7 @@ if (isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true) {
     header("location: login.php");
     exit;
 }
-if(isset($_POST['removeFav'])) {
+if (isset($_POST['removeFav'])) {
     include_once 'includes/database/removeFromFavs.php';
 }
 
@@ -60,15 +60,25 @@ and open the template in the editor.
 
                     <div class="col-lg-6 user-col ">
                         <div class="user-info profile-user-info">
+
                             <h2 class="user-name"><span class="underline"><?php echo $_SESSION["fname"] . " " . $_SESSION["lname"]; ?></span></h2>
+
+
                             <h5 class="h5-profile">Email:</h5>
 
                             <p><?php echo htmlspecialchars($_SESSION["u_email"]); ?></p>
-                            <form method="post">
-                                <a href="edit_details.php" class="btn btn-light btn-sm">Edit Profile</a>
-                                <a href="reset_password.php" class="btn btn-light btn-sm">Reset Password</a>
-                                <input type="submit" class="btn btn-light btn-sm" name="submitbutton" value="Deactivate Account" />
-                            </form>
+                            <br>
+                            <h5 class="h5-profile">Options:</h5>
+
+                            <a href="edit_details.php" class="btn sortBy ">
+                                <p style="margin-bottom: 0;">Edit Profile</p>
+                            </a>
+
+                            <a href="reset_password.php" class="btn sortBy ">
+                                <p style="margin-bottom: 0;">Reset Password</p>
+                            </a>
+                            <input type="submit" class="btn sortBy " name="submitbutton" value="Deactivate Account" />
+
                         </div>
                     </div>
                 </div>
@@ -93,7 +103,7 @@ and open the template in the editor.
         ?>
 
 
-<div class="profile-body mobile-profile">
+        <div class="profile-body mobile-profile">
 
             <div class="container mobile-profile">
 
@@ -103,16 +113,24 @@ and open the template in the editor.
 
                         <div class="user-info profile-user-info">
 
-                            <h2 class="user-name"><?php echo $_SESSION["fname"] . " " . $_SESSION["lname"]; ?></h2>
-                            <hr>
+                            <h2 class="user-name"><span class="underline"><?php echo $_SESSION["fname"] . " " . $_SESSION["lname"]; ?></span></h2>
+
                             <center class="mobile-profile-info">
 
                                 <h5 class="h5-profile">Email:</h5>
                                 <p><?php echo htmlspecialchars($_SESSION["u_email"]); ?></p>
 
-                                <a href="edit_details.php" class="btn btn-light btn-sm">Edit Profile</a>
+                                <br>
+                                <h5 class="h5-profile">Options:</h5>
 
-                                <a href="reset_password.php" class="btn btn-light btn-sm">Reset Password</a>
+                                <a href="edit_details.php" class="btn sortBy ">
+                                    <p style="margin-bottom: 0;">Edit Profile</p>
+                                </a>
+
+                                <a href="reset_password.php" class="btn sortBy ">
+                                    <p style="margin-bottom: 0;">Reset Password</p>
+                                </a>
+                                <input type="submit" class="btn sortBy " name="submitbutton" value="Deactivate Account" />
 
                             </center>
                         </div>
@@ -127,7 +145,7 @@ and open the template in the editor.
 
 
         <div class="container-fluid " <?php if (empty($recipes)) echo ' style="display:none;"'; ?>>
-        <br>
+            <br>
             <div class="container">
                 <h1><span class="underline">Your Recipes and Favourites</span></h1>
             </div>
@@ -173,7 +191,7 @@ and open the template in the editor.
 
                                     $recipe['image'] = "images/recipes/placeholder.png";
                                 }
-            
+
                             ?>
 
                                 <!-- DISPLAY SECTION ONE -->
@@ -242,7 +260,7 @@ and open the template in the editor.
 
                         <br>
 
-                        <h5>Can't get enough of creating new recipes? Why not create more of your own unique recipes <a class='add-my-recipe' href = "add-recipe.php"> here </a>?</h5>
+                        <h5>Can't get enough of creating new recipes? Why not create more of your own unique recipes <a class='add-my-recipe' href="add-recipe.php"> here </a>?</h5>
                         <br>
                         <?php
                         echo "<div class='row' >";
@@ -271,7 +289,9 @@ and open the template in the editor.
                                         </p>
                                         <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light">View Recipe</button></a> </center>
                                         <form action="delete-recipe.php" method="post" id="delete_recipe_form">
-                                            <a href="delete_recipe.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>" class="sortBy add-my-recipe"><p>Delete</p></a>
+                                            <a href="delete_recipe.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>" class="sortBy add-my-recipe">
+                                                <p>Delete</p>
+                                            </a>
                                         </form>
                                     </div>
                                 </div>
@@ -346,10 +366,12 @@ and open the template in the editor.
                                             <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $favourite['maxTime']; ?>
                                             </p>
                                             <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light">View Recipe</button></a> </center>
-                                            <form action = "" method = "post">
-                                            <button type = "submit" name = "removeFav" class = "btn sortBy"> <p>Delete</p> </button>
+                                            <form action="" method="post">
+                                                <button type="submit" name="removeFav" class="btn sortBy">
+                                                    <p>Delete</p>
+                                                </button>
                                             </form>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
