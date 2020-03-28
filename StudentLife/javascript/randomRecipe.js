@@ -31,9 +31,9 @@ function findRecipe() {
     let data = JSON.parse(this.response);
       if (request.status >= 200 && request.status < 400) {
         for (i = 0; i< data.recipes.length; i++) {
-          let $id = data.recipes[0].id;
-          setCookie("recipe_ID", id);
           let title = data.recipes[0].title;
+          let id = data.recipes[0].id;
+          setCookie("recipe_ID", id);
           // GET IMAGE
           let image = data.recipes[0].image;
           let time = data.recipes[0].readyInMinutes;
@@ -130,11 +130,6 @@ function findRecipe() {
   request.send();
 }
 
-function setCookie(cname, cvalue) {
-
-  document.cookie = cname + "=" + cvalue + ";" + "path=/";
-
-}
 $(document).ready(function() {
   $(this).on("click", ".ingredientsTitleRand", function() {
     $(this).parent().find(".ingredientsDivRand").toggle();
@@ -148,3 +143,8 @@ $(document).ready(function() {
     $(this).find(".faR3").toggleClass('active');
   });
 });
+function setCookie(cname, cvalue) {
+
+  document.cookie = cname + "=" + cvalue + ";" + "path=/";
+
+}
