@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2020 at 03:55 PM
+-- Generation Time: Mar 28, 2020 at 01:51 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.26
 
@@ -57,6 +57,18 @@ CREATE TABLE `comments` (
   `date` timestamp NOT NULL DEFAULT current_timestamp(),
   `recipe_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`comment_ID`, `comment`, `senderName`, `date`, `recipe_ID`) VALUES
+(17, 'Hi\r\n', 'Shauna', '2020-03-27 16:46:20', 12243232),
+(18, 'Hi', '', '2020-03-27 16:49:38', 12243232),
+(19, 'Ohh cheesy!', 'Steven', '2020-03-27 17:01:37', 12243232),
+(20, 'Oh cheesy oh so nice', 'Steven', '2020-03-27 17:02:05', 12243232),
+(21, 'Comment\r\n', 'Steven', '2020-03-28 13:38:04', 12243234),
+(22, 'Anoother Comment', 'Steven', '2020-03-28 13:38:47', 12243234);
 
 -- --------------------------------------------------------
 
@@ -257,7 +269,13 @@ INSERT INTO `ingredients` (`ingredient_ID`, `name`, `amount`, `unit`) VALUES
 (366, 'fresh mint', 1, '1'),
 (367, 'lime juice', 79, '78.86'),
 (368, 'sugar', 2, '2'),
-(369, 'thai fish sauce', 2, '2');
+(369, 'thai fish sauce', 2, '2'),
+(376, 'garlic clove', 1, '1'),
+(377, 'honey', 59, '59.14'),
+(378, 'lime juice', 118, '118.2'),
+(379, 'olive oil', 79, '78.86'),
+(380, 'pepper', 0, '0.25'),
+(381, 'salt', 1, '0.5');
 
 -- --------------------------------------------------------
 
@@ -405,7 +423,12 @@ INSERT INTO `steps` (`steps_ID`, `description`) VALUES
 (92, '1. Whisk ingredients together and pour over cooked and rinsed noodles. '),
 (93, '1. Whisk ingredients together and pour over cooked and rinsed noodles. '),
 (94, '1. Whisk ingredients together and pour over cooked and rinsed noodles. '),
-(95, '1. Whisk ingredients together and pour over cooked and rinsed noodles. ');
+(95, '1. Whisk ingredients together and pour over cooked and rinsed noodles. '),
+(97, ''),
+(98, '1. Whisk together first 5 ingredients. Gradually whisk in 1/3 cup olive oil until blended. '),
+(99, ''),
+(100, ''),
+(101, '');
 
 -- --------------------------------------------------------
 
@@ -543,7 +566,7 @@ ALTER TABLE `blog`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `comment_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `contact`
@@ -561,19 +584,19 @@ ALTER TABLE `cuisine`
 -- AUTO_INCREMENT for table `ingredients`
 --
 ALTER TABLE `ingredients`
-  MODIFY `ingredient_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=376;
+  MODIFY `ingredient_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=386;
 
 --
 -- AUTO_INCREMENT for table `recipes`
 --
 ALTER TABLE `recipes`
-  MODIFY `recipe_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12243242;
+  MODIFY `recipe_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12243243;
 
 --
 -- AUTO_INCREMENT for table `steps`
 --
 ALTER TABLE `steps`
-  MODIFY `steps_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `steps_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT for table `user`

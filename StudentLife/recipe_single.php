@@ -78,7 +78,7 @@ if (isset($_POST['btnFav'])) {
                     </div>
 
                     <div class='col-md-5 single-recipe-topRow '>
-<br><br>
+                        <br><br>
                         <h4> <img src='images/recipeasy-icons-logos/gauge.png' style='margin-right:1.5%' alt='clock icon' height='35' width='35'><strong>Difficulty: </strong><?php echo $difficulty ?> </h4>
                         <h4> <br> <img src='images/recipeasy-icons-logos/knife-fork.png' style='margin-right:1.5%' alt='clock icon' height='35' width='35'><strong>Servings:</strong> <?php echo $recipe['servings'] ?> </h4>
                         <h4> <br> <img src='images/recipeasy-icons-logos/clock.png' style='margin-right:1.5%' alt='clock icon' height='30' width='30'><strong>Cooking Time: </strong><?php echo $time ?> minutes </h4>
@@ -86,54 +86,91 @@ if (isset($_POST['btnFav'])) {
                     </div>
 
                     <div class="col-lg-4 col-md-5 col-12 single-ingredients">
-                        <h5> <strong>Ingredients: </strong></h5>
 
-                        <?php foreach ($recipes as $recipe) :
-                            $queryrecipeings = 'SELECT * FROM recipeingredient WHERE recipe_ID=:recipe_ID';
-                            $statement4 = $conn->prepare($queryrecipeings);
-                            $statement4->bindValue(':recipe_ID', $recipe["recipe_ID"]);
-                            $statement4->execute();
-                            $recipeings = $statement4->fetchAll();
-                            $statement4->closeCursor();
-                        ?>
 
-                            <?php foreach ($recipeings as $recipeing) :
-                                $querydesc = 'SELECT * FROM ingredients WHERE ingredient_ID=:ingredient_ID';
-                                $statement6 = $conn->prepare($querydesc);
-                                $statement6->bindValue(':ingredient_ID', $recipeing["ingredient_ID"]);
-                                $statement6->execute();
-                                $ingredients = $statement6->fetchAll();
-                                $statement6->closeCursor();
+                        <!-- DESKTOP -->
+                        <div class='ingredientsDeskTitle'>
+                            <h5> <strong>Ingredients: </strong></h5>
+                        </div>
+                        <!-- MOBILE -->
+                        <div class='ingredientsTitle'>
+                            <h5> <i class="fa2 fa fa-chevron-right" aria-hidden="true"></i>
+                                <span class='ingredientsSpan'><strong>Ingredients: </strong> </span>
+                            </h5>
+                        </div>
+
+
+
+                        <!-- <h5> <strong>Ingredients: </strong></h5> -->
+
+                        <div class='ingredientsDiv'>
+                            <?php foreach ($recipes as $recipe) :
+                                $queryrecipeings = 'SELECT * FROM recipeingredient WHERE recipe_ID=:recipe_ID';
+                                $statement4 = $conn->prepare($queryrecipeings);
+                                $statement4->bindValue(':recipe_ID', $recipe["recipe_ID"]);
+                                $statement4->execute();
+                                $recipeings = $statement4->fetchAll();
+                                $statement4->closeCursor();
                             ?>
 
-                                <?php foreach ($ingredients as $ingredient) : ?>
-                                    <p><?php echo $ingredient['name'] ?> <?php echo $ingredient['amount'] ?> <?php echo $ingredient['unit'] ?></p><?php endforeach; ?>
+                                <?php foreach ($recipeings as $recipeing) :
+                                    $querydesc = 'SELECT * FROM ingredients WHERE ingredient_ID=:ingredient_ID';
+                                    $statement6 = $conn->prepare($querydesc);
+                                    $statement6->bindValue(':ingredient_ID', $recipeing["ingredient_ID"]);
+                                    $statement6->execute();
+                                    $ingredients = $statement6->fetchAll();
+                                    $statement6->closeCursor();
+                                ?>
 
-                            <?php endforeach; ?>
+                                    <?php foreach ($ingredients as $ingredient) : ?>
+                                        <p><?php echo $ingredient['name'] ?> <?php echo $ingredient['amount'] ?> <?php echo $ingredient['unit'] ?></p><?php endforeach; ?>
+                      
+                    <?php endforeach; ?>
 
-                        <?php endforeach; ?>
+                <?php endforeach; ?>
 
-                        <?php foreach ($steps as $step) :
+  </div>
 
-                            $querydesc = 'SELECT * FROM steps WHERE steps_ID=:steps_ID';
-                            $statement5 = $conn->prepare($querydesc);
-                            $statement5->bindValue(':steps_ID', $step["steps_ID"]);
-                            $statement5->execute();
-                            $descriptions = $statement5->fetchAll();
-                            $statement5->closeCursor();
-                        ?>
+                <?php foreach ($steps as $step) :
+
+                    $querydesc = 'SELECT * FROM steps WHERE steps_ID=:steps_ID';
+                    $statement5 = $conn->prepare($querydesc);
+                    $statement5->bindValue(':steps_ID', $step["steps_ID"]);
+                    $statement5->execute();
+                    $descriptions = $statement5->fetchAll();
+                    $statement5->closeCursor();
+                ?>
 
                     </div>
                     <div class="col-lg-8 col-md-7 col-12">
 
                         <?php foreach ($descriptions as $description) : ?>
-                            <h5><strong>Method: </strong></h5>
-                            <p><?php echo $description['description'] ?></p>
+
+
+
+                            <!-- <h5><strong>Method: </strong></h5> -->
+                            <!-- DESKTOP -->
+                            <div class='methodDeskTitle'>
+                                <h5> <strong>Method: </strong></h5>
+                            </div>
+                            <!-- MOBILE -->
+                            <div class='methodTitle'>
+                                <h5><i class="fa3 fa fa-chevron-right" aria-hidden="true"></i>
+                                    <span class='methodSpan'><strong>Method: </strong> </span>
+                                </h5>
+                            </div>
+
+                            <div class="methodDiv">
+
+
+
+                                <p><?php echo $description['description'] ?></p>
+                            </div>
                         <?php endforeach; ?>
                     <?php endforeach; ?>
                     </div>
                 </div>
-<br><br>
+                <br><br>
 
 
                 <?php
@@ -170,18 +207,18 @@ if (isset($_POST['btnFav'])) {
                 <div class="row">
                     <div class='col-lg-5 comment-div' <?php if (empty($recipe["video_name"])) echo ' style="margin-left: 30%"'; ?>>
                         <h3>Comments</h3>
-                        <div >
+                        <div>
                             <?php
                             if (!empty($comments)) {
                                 foreach ($comments as $comment) :
                                     $date = $comment['date'];
                                     $newDate = date("d.m.Y H:i:s", strtotime($date));
                             ?>
-                                    <h5 style="color: #EF7823;" > <?php echo $comment['senderName']; ?></h5>
-                                    <p style="font-size: 85%; color: #727272; margin-top: -2%;">  <?php echo $newDate ?> </p>
-                                    <p class="comment" > <?php echo $comment['comment']; ?> </p>
+                                    <h5 style="color: #EF7823;"> <?php echo $comment['senderName']; ?></h5>
+                                    <p style="font-size: 85%; color: #727272; margin-top: -2%;"> <?php echo $newDate ?> </p>
+                                    <p class="comment"> <?php echo $comment['comment']; ?> </p>
                                     <hr>
-                                    
+
                                 <?php
                                 endforeach;
                             } else { ?>
