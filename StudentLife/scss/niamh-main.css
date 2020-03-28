@@ -691,11 +691,6 @@ a.recipes:hover {
   transition: 0.2s;
 }
 
-.carousel-control-next,
-.carousel-control-prev {
-  margin-top: 53rem;
-}
-
 @media (max-width: 991px) {
   .carousel-control-next,
   .carousel-control-prev {
