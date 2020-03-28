@@ -143,8 +143,8 @@ and open the template in the editor.
 
 
 
-
-        <div class="container-fluid " <?php if (empty($count > 3)) echo ' style="display:none;"'; ?>>
+        
+        <div class="container-fluid carousel-recipes" <?php if (empty($recipes)) echo ' style="display:none;"'; ?>>
             <br>
             <div class="container">
                 <h1><span class="underline">Your Recipes and Favourites</span></h1>
@@ -198,13 +198,9 @@ and open the template in the editor.
 
                                 <div class="col-sm-12 col-lg-4">
                                     <div class="card home-card recipe-page-card">
-                                        <img src="images/recipes/<?php echo $recipe['image']; ?>" class="card-img-top" alt='dish image' height='315' width='328'>
+                                        <a class="stretched-link" href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"> <img src="images/recipes/<?php echo $recipe['image']; ?>" class="card-img-top" alt='dish image' height='315' width='328'></a>
                                         <div class="card-body">
                                             <h5 class="card-title"><?php echo $recipe['name']; ?></h5>
-                                            <p class="card-text" class='recipe-difficulty'> Difficulty: <?php echo $difficulty; ?> </p>
-                                            <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
-                                            </p>
-                                            <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light">View Recipe</button></a> </center>
                                         </div>
                                     </div>
                                 </div>
@@ -224,16 +220,19 @@ and open the template in the editor.
                             echo "</div>";
                             echo "</div>";
                             echo "</div>";
+
+                     
                             ?>
 
                         </div>
-                        <a href="#inam" class="carousel-control-prev" data-slide="prev" <?php if (empty($count > 3)) echo ' style="display:none;"'; ?>>
+                        <a href="#inam" class="carousel-control-prev" data-slide="prev" <?php if (empty($count > 4)) echo ' style="display:none;"'; ?>>
                             <span class="carousel-control-prev-icon"></span>
                         </a>
 
-                        <a href="#inam" class="carousel-control-next" data-slide="next" <?php if (empty($count > 3)) echo ' style="display:none;"'; ?>>
+                        <a href="#inam" class="carousel-control-next" data-slide="next" <?php if (empty($count > 4)) echo ' style="display:none;"'; ?>>
                             <span class="carousel-control-next-icon"></span>
                         </a>
+                        </div>
                     </div>
                 </div>
             </div>
