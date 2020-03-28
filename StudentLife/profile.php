@@ -144,7 +144,7 @@ and open the template in the editor.
 
 
 
-        <div class="container-fluid " <?php if (empty($recipes)) echo ' style="display:none;"'; ?>>
+        <div class="container-fluid " <?php if (empty($count > 3)) echo ' style="display:none;"'; ?>>
             <br>
             <div class="container">
                 <h1><span class="underline">Your Recipes and Favourites</span></h1>

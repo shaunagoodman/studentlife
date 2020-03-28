@@ -130,12 +130,12 @@ try {
                                     <div class='form-sort'>
                                         <form method="POST">
                                             <!-- <label>Max Time</label> -->
-                                            <input class="btn sortBy" type="submit" name="time" value="Filter by Minutes" />
+                                            
                                             <div class='slider-div'>
                                                 <input name="range" type="range" min="1" max="60" value="10" id="myRange" />
                                                 <span id="demo"> <span>
                                             </div>
-
+                                            <input class="btn sortBy" type="submit" name="time" value="Filter by Minutes" />
                                             <br>
 
                                             <input class='btn sortBy' name="sortAsc" type="submit" value="Sort By Ascending" />
