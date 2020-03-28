@@ -170,6 +170,7 @@ request.onload = function() {
   let imageArea = document.getElementById("image");
   var img = document.createElement("img");
   img.src = image;
+  img.setAttribute("class", "single-recipe-pic")
   imageArea.appendChild(img);
   //Time
   let timeArea = document.getElementById("maxTime");
