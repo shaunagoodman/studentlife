@@ -6,10 +6,12 @@ include_once 'includes/database/connection.php';
 if (isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true) {
     try {
         $userID = $_SESSION['user_ID'];
-        $sql = "SELECT * FROM recipes WHERE isAPI = 0";
-        $statement = $conn->prepare($sql);
-        $statement->execute();
-        $recipes = $statement->fetchAll();
+    $query = "SELECT * FROM recipes WHERE user_ID = $userID AND isAPI = 0 ORDER BY 'date-created'";
+    $statement2 = $conn->prepare($query);
+    $statement2->bindValue(":userID", $userID);
+    $statement2->execute();
+    $recipes = $statement2->fetchAll();
+    $statement2->closeCursor();   
     } catch (Exception $ex) {
         $errorMessage = $e->getMessage();
         echo $errorMessage;
@@ -18,20 +20,6 @@ if (isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true) {
 } else {
     header("location: login.php");
     exit;
-}
-
-try {
-    $userID = $_SESSION['user_ID'];
-    $query = "SELECT * FROM recipes WHERE user_ID = $userID AND isAPI = 0 ORDER BY date-created";
-    $statement2 = $conn->prepare($query);
-    $statement2->bindValue(":userID", $userID);
-    $statement2->execute();
-    $recipes = $statement2->fetchAll();
-    $statement2->closeCursor();
-} catch (Exception $ex) {
-    $errorMessage = $e->getMessage();
-    echo $errorMessage;
-    exit();
 }
 if(isset($_POST['removeFav'])) {
     include_once 'includes/database/removeFromFavs.php';
@@ -185,20 +173,14 @@ and open the template in the editor.
 
                                     $recipe['image'] = "images/recipes/placeholder.png";
                                 }
-                                if ($recipe['isAPI'] == 1) {
-
-                                    $src = $recipe['image'];
-                                } else {
-
-                                    $src = 'images/recipes/' . $recipe['image'];
-                                }
+            
                             ?>
 
                                 <!-- DISPLAY SECTION ONE -->
 
                                 <div class="col-sm-12 col-lg-4">
                                     <div class="card home-card recipe-page-card">
-                                        <img src="<?php echo $src; ?>" class="card-img-top" alt='dish image' height='315' width='328'>
+                                        <img src="images/recipes/<?php echo $recipe['image']; ?>" class="card-img-top" alt='dish image' height='315' width='328'>
                                         <div class="card-body">
                                             <h5 class="card-title"><?php echo $recipe['name']; ?></h5>
                                             <p class="card-text" class='recipe-difficulty'> Difficulty: <?php echo $difficulty; ?> </p>
@@ -275,18 +257,13 @@ and open the template in the editor.
                                 $difficulty = "No difficulty selected.";
                             }
                             if (empty($recipe['image'])) {
-                                $recipe['image'] = "images/recipes/placeholder.png";
-                            }
-                            if ($recipe['isAPI'] == 1) {
-                                $src = $recipe['image'];
-                            } else {
-                                $src = 'images/recipes/' . $recipe['image'];
+                                $recipe['image'] = "placeholder.png";
                             }
                         ?>
 
                             <div class="col-lg-4 col-md-6 bottom-home ">
                                 <div class="card home-card recipe-page-card">
-                                    <img src="<?php echo $src; ?>" class="card-img-top" alt='dish image' height='315' width='328'>
+                                    <img src="images/recipes/<?php echo $recipe['image']; ?>" class="card-img-top" alt='dish image' height='315' width='328'>
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $recipe['name'];  ?></h5>
                                         <p class="card-text" class='recipe-difficulty'> Difficulty: <?php echo $difficulty; ?> </p>
@@ -318,10 +295,10 @@ and open the template in the editor.
 
                         try {
                             $userID = $_SESSION['user_ID'];
-                            $sql = "SELECT * FROM `recipes` r INNER JOIN favourites f ON f.recipe_ID = r.recipe_ID WHERE f.user_ID = $userID";
+                            $sql = "SELECT * FROM recipes r INNER JOIN favourites f ON f.recipe_ID = r.recipe_ID WHERE f.user_ID = $userID";
                             $statement = $conn->prepare($sql);
                             $statement->execute();
-                            $recipes = $statement->fetchAll();
+                            $favourites = $statement->fetchAll();
                         } catch (Exception $ex) {
                             $errorMessage = $e->getMessage();
                             echo $errorMessage;
@@ -339,24 +316,24 @@ and open the template in the editor.
                         <?php
                         echo "<div class='row' >";
                         //get the results from the $products variable(using a loop)
-                        if ($recipes != null) {
-                            foreach ($recipes as $recipe) :
-                                if ($recipe['difficultyID'] == 1) {
+                        if ($favourites != null) {
+                            foreach ($favourites as $favourite) :
+                                if ($favourite['difficultyID'] == 1) {
                                     $difficulty = "Easy";
-                                } else if ($recipe['difficultyID'] == 2) {
+                                } else if ($favourite['difficultyID'] == 2) {
                                     $difficulty = "Medium";
-                                } else if ($recipe['difficultyID'] == 3) {
+                                } else if ($favourite['difficultyID'] == 3) {
                                     $difficulty = "Hard";
                                 } else {
                                     $difficulty = "No difficulty selected.";
                                 }
-                                if (empty($recipe['image'])) {
-                                    $recipe['image'] = "images/recipes/placeholder.png";
+                                if (empty($favourite['image'])) {
+                                    $favourite['image'] = "images/recipes/placeholder.png";
                                 }
-                                if ($recipe['isAPI'] == 1) {
-                                    $src = $recipe['image'];
+                                if ($favourite['isAPI'] == 1) {
+                                    $src = $favourite['image'];
                                 } else {
-                                    $src = 'images/recipes/' . $recipe['image'];
+                                    $src = 'images/recipes/' . $favourite['image'];
                                 }
                         ?>
 
@@ -364,9 +341,9 @@ and open the template in the editor.
                                     <div class="card home-card recipe-page-card">
                                         <img src="<?php echo $src; ?>" class="card-img-top" alt='dish image' height='315' width='328'>
                                         <div class="card-body">
-                                            <h5 class="card-title"><?php echo $recipe['name'];  ?></h5>
+                                            <h5 class="card-title"><?php echo $favourite['name'];  ?></h5>
                                             <p class="card-text" class='recipe-difficulty'> Difficulty: <?php echo $difficulty; ?> </p>
-                                            <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
+                                            <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $favourite['maxTime']; ?>
                                             </p>
                                             <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light">View Recipe</button></a> </center>
                                             <form action = "" method = "post">
@@ -379,7 +356,7 @@ and open the template in the editor.
 
                         <?php endforeach;
                         } else {
-                            echo "<h5>You have not added any recipes yet.</h5>";
+                            echo "<h5>You have not fvourited any recipes yet.</h5>";
                         }
 
                         echo "</div>" ?>
@@ -402,63 +379,6 @@ and open the template in the editor.
 
 
         </div>
-
-
-        <!--        -------------------    MOBILE VERSION ------------------------ -->
-        <!-- <div class="profile-body mobile-profile">
-
-            <div class="container mobile-profile">
-
-                <div class="row">
-
-                    <div class="col-md-12 ">
-
-                        <div class="user-info profile-user-info">
-
-                            <h2 class="user-name"><?php echo $_SESSION["fname"] . " " . $_SESSION["lname"]; ?></h2>
-                            <hr>
-                            <center class="mobile-profile-info">
-
-                                <h5 class="h5-profile">Email:</h5>
-                                <p><?php echo htmlspecialchars($_SESSION["u_email"]); ?></p>
-
-                                <a href="edit_details.php" class="btn btn-light btn-sm">Edit Profile</a>
-
-                                <a href="reset_password.php" class="btn btn-light btn-sm">Reset Password</a>
-
-                            </center>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div> -->
-
-        <!-- <div class="container mobile-profile">
-
-            <div class="row">
-
-                <div class="col-md-12">
-
-                    <div class="user-info profile-buttons favourites-button">
-                        <h2><a href="favourites.php" class="recipes my-favourites">Favourites</a></h2>
-                    </div>
-
-
-                    <br>
-
-                    <div class="user-info profile-buttons recipe-button">
-                        <h2><a href="show-all-recipes.php" class="recipes">Recipes</a></h2>
-                    </div>
-
-                </div>
-
-
-            </div>
-
-
-        </div> -->
-
 
 
 
