@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2020 at 01:51 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.2.26
+-- Generation Time: Mar 28, 2020 at 02:45 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -39,10 +39,12 @@ CREATE TABLE `blog` (
 --
 
 INSERT INTO `blog` (`blogId`, `blogTitle`, `blogContent`) VALUES
-(1, 'Title', 'Example blog'),
+(1, 'Dangerous Foods for Pets\r\n', 'Most people will give their pets left over food or human food as a treat but depending on what\'s in that food could really do some serious harm to your little friend. <br><br>\r\nHere is a list of foods that should never be given to your cat or dog:\r\n<br>\r\nAlcoholic beverages <br>\r\nAvocados <br>\r\nCherry pits <br>\r\nCandy (particularly chocolate—which is toxic to dogs, cats, and ferrets—and any candy containing the toxic sweetener Xylitol) <br>\r\nCoffee <br>\r\nGarlic <br>\r\nGrapes <br>\r\nGum (can cause blockages and sugar free gums may contain the toxic sweetener Xylitol) <br>\r\nMacadamia nuts <br> \r\nMoldy foods <br>\r\nMushroom plants <br>\r\nMustard seeds <br>\r\nOnions and onion powder <br>\r\nPeach pits <br>\r\nPotato leaves and stems (green parts) <br>\r\nRaisins <br>\r\nRhubarb leaves <br>\r\nSalt <br>\r\nTea <br>\r\nTomato leaves and stems <br>\r\nWalnuts <br>\r\nYeast dough <br>\r\n<br>\r\nSo now you know! Be careful with what you give your pets in future. \r\n'),
 (2, '3 Tasty Celebrity Recipes You’ll be Surprised by!\r\n', '\r\nHere are 3 celebrity recipes you’ll want to make straight away after reading this!\r\n\r\nOprah Winfrey’s Deviled Eggs\r\n\r\nINGREDIENTS\r\n\r\n12 large eggs\r\n3 tablespoons mayonnaise\r\n2 tablespoons mustard\r\n1 tablespoon minced sweet pickle\r\n1 dash Worcestershire sauce\r\nsalt & fresh ground pepper\r\n1 dash lemon juice\r\n1 dash horseradish sauce\r\n1 -2 dash Tabasco sauce\r\n2 tablespoons chopped parsley\r\n2 tablespoons paprika (garnish) \r\n\r\nMETHOD\r\nHard boil eggs.\r\nCut each in half lengthwise.\r\nRemove yolks and place in bowl with all other ingredients; mix well.\r\nSpoon into egg whites and sprinkle with parsley & paprika.\r\nCover and refrigerate at least one hour or more.\r\nServe chilled.\r\n\r\nPerfect for your next house gathering or office party!\r\n\r\nDolly Parton’s Coleslaw\r\n\r\nINGREDIENTS\r\n\r\n1 medium head cabbage, minced\r\n1 medium onion, finely minced\r\n1 carrot, minced (or grated)\r\n1⁄2 bell pepper, finely minced\r\n1⁄4 cup sweet pickle juice\r\n1⁄4 cup white vinegar\r\n1 tablespoon dill pickles, minced or 1 tablespoon pickle relish\r\n1 cup mayonnaise\r\n2 tablespoons sugar\r\n1⁄4 teaspoon black pepper\r\n1 teaspoon salt\r\n\r\nMETHOD\r\nMix all ingredients in large bowl. \r\nChill till ready to serve. Serves 10-12.\r\n\r\nPerfect to serve with your favourite burger or on a sandwich!\r\n\r\n\r\nBeyonce’s Guacamole\r\n\r\nINGREDIENTS\r\n\r\n2 ripe avocados (make sure they are a bit soft to the touch)\r\n1 small onion\r\n1 clove garlic (you can use a small amount of crushed garlic)\r\n1 small tomato\r\n1 1/2 Tablespoons lime juice\r\nSalt and pepper to taste\r\n Corn chip scoops\r\n\r\nMETHOD\r\n\r\nPeel avocados and remove the pit\r\nSmash with a spoon in a large bowl\r\nAdd onion, garlic and tomato, lime juice, salt and pepper\r\nMix it well\r\nCover with plastic wrap and place in the refrigerator for about 20 minutes.\r\nFill corn chips scoops with guacamole and enjoy.\r\n\r\nBeyonce’s recipe for guacamole is sure to go down a treat at your next party night!\r\n\r\nWe hope you have fun trying these celebrity recipes! \r\n'),
 (3, 'All You Need to Know About Ireland’s NO.1 Takeaway!', 'Every year, popular takeaway ordering app Just Eat hold a national takeaway awards. They have award categories for everything you can think of. From best takeaway Chinese to best takeaway Salad. \r\nBut the one every takeaway wants to bring home is the “Best Takeaway Ireland” award. And this year it was Saba To Go in Rathmines that took the trophy!\r\n\r\nSaba To Go is the sister takeaway restaurant to Saba. Both serving delicious authentic Thai food throughout Dublin. They boast a menu that they say is healthier than your average takeaway with a wide variety of Vegetarian, Gluten and Dairy Free options available.\r\n\r\nYou can order through Saba To Go’s website at sabatogo.com or from the Just Eat app! Maybe you’ll give them a try? After all they’re the countries No. 1!\r\n'),
-(4, 'Burger sold for $10,000!\r\n', 'A burger in Dubai has made headlines after being sold for $10,000. \r\nThe burger was created by Sheikh Mohammed bin Abdullah Al Thani and was auctioned off to raise money for a Breast Cancer charity in Dubai at the Eat Pink event at the Dubai Mall. \r\nWe hope that was one tasty burger! But even if not, the money still went to a great cause. Congratulations and well done to all!\r\n');
+(4, 'Burger sold for $10,000!\r\n', 'A burger in Dubai has made headlines after being sold for $10,000. \r\nThe burger was created by Sheikh Mohammed bin Abdullah Al Thani and was auctioned off to raise money for a Breast Cancer charity in Dubai at the Eat Pink event at the Dubai Mall. \r\nWe hope that was one tasty burger! But even if not, the money still went to a great cause. Congratulations and well done to all!\r\n'),
+(5, 'How To Make Healthier Choices When Cooking\r\n', '1. Use more egg whites to yolk ratio <br>\r\nWhen cooking scrambled egg or your favourite omelette, try using 1 full egg and then removing the yoke from the rest of the eggs. You’ll still have the same great taste but without the extra fat and cholesterol. \r\n<br><br>\r\n2. Replace your morning spread <br>\r\nDo you spread butter and jam on your toast in the morning? Why not try smashed avocado for a tasty and healthier alternative, that will keep you fuller for longer so you won’t have to snack before lunchtime!\r\n<br><br>\r\n3. Switch up your bread <br>\r\nAre you sick and tired of the same old slice pan everyday? Try swapping it for brown or wholewheat bread, you can still add your favourite toppings and fillings and it keep you healthier in the long run. \r\n<br><br>\r\n4. Change your chocolate choice <br>\r\nDo you have a sweet tooth and need your chocolate fix? Try swapping milk chocolate for dark chocolate. Dark chocolate is a good source of antioxidants which are essential for clearing the body of toxins. You should feel much better after switching!\r\n<br><br>\r\n5. Swap a cupcake for a croissant <br>\r\nDitch the unnecessary calories! On average a croissant has 250 less calories than your average cupcake or muffin, and that’s without icing. \r\n<br><br>\r\nWhich of these changes will you make? \r\n'),
+(6, '10 Fruit and Veg Facts\r\n', '1. Green, yellow, and red bell peppers are not actually the same vegetable.<br>\r\n2. A typical ear of corn has an even number of rows.<br>\r\n3. Ripe cranberries will bounce like rubber balls.<br>\r\n4. Bananas are technically berries.<br>\r\n5. Strawberries are technically not.<br>\r\n6. Carrots were originally purple.<br>\r\n7. Grapes will explode if you microwave them.<br>\r\n8. Potatoes were the first vegetable to be grown in space.<br>\r\n9. A kiwi contains twice as much vitamin c than an orange. <br>\r\n10. The skin of a cucumber can help erase ink. <br>\r\n');
 
 -- --------------------------------------------------------
 
@@ -54,7 +56,7 @@ CREATE TABLE `comments` (
   `comment_ID` int(11) NOT NULL,
   `comment` text NOT NULL,
   `senderName` varchar(50) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `recipe_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -356,7 +358,7 @@ CREATE TABLE `recipes` (
   `servings` int(11) NOT NULL,
   `maxTime` time NOT NULL,
   `difficultyID` int(11) DEFAULT NULL,
-  `date_created` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  `date_created` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
   `isAPI` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -560,7 +562,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `blog`
 --
 ALTER TABLE `blog`
-  MODIFY `blogId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `blogId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `comments`
