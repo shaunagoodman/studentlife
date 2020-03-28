@@ -8,11 +8,27 @@
     display: none;
 }
 
-@media(min-width: 768px){
-    .recipe-api{
-        margin-left: 25%;
-    }
+
+#ingredientsList{
+    margin-bottom: 5%;
 }
+
+
+// @media(min-width: 768px){
+//     .recipe-api{
+//         margin-left: 25%;
+//     }
+// }
+
+.recipe-api{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// .api-div1{
+//     align-self: flex-;
+// }
 
 
 #selectedRecipe{
@@ -70,6 +86,7 @@
     
     p.sub-head-api{
         margin-bottom: 0%;
+        margin-top: 1%;
     }
     
 
@@ -80,6 +97,13 @@
 input.checkbox-api{
     margin-right: 1%;
 }
+
+@media (max-width: 991px) {
+    input.checkbox-api{
+        display:inline;
+    }
+}
+
 
 ul.ingredients-list{
     list-style-type:circle;
@@ -92,9 +116,9 @@ ul.ingredients-list{
 .resultHeading{
     color: $darkOrange;
 }
-#ingredientsList, #intoleranceList, #dietRestrictionsList{
-    width: 500px;
-    background: #f0f0f0;
+#ingredientsList, #intoleranceList,  #dietRestrictionsList{
+    // width: 50%;
+    // background: #f0f0f0;
     padding: 15px 15px 10px 15px;
     border-radius: 15px;
   
@@ -112,7 +136,8 @@ ul.ingredients-list{
   
       li{
         display: inline-block;
-        background: #555;
+        background: $mediumOrange;
+        @include mont-light-font;
         color: white;
         padding: 3px 5px 3px 10px;
         border-radius: 15px;
@@ -120,11 +145,11 @@ ul.ingredients-list{
         margin-bottom: 5px;
   
         a{
-          color: white;
+          color: black;
           text-decoration: none;
           margin-left: 5px;
           font-size: 10px;
-          background: #333;
+          background: $white;
           width: 15px;
           height: 15px;
           border-radius: 50%;
@@ -132,11 +157,37 @@ ul.ingredients-list{
           text-align: center;
           align-items: center;
           justify-content: center;
+          transition: transform .3s;
   
           &:hover{
             color: red;
+            transform: scale(1.2);
           }
         }
+        span.tag_delete{
+            color: black;
+          text-decoration: none;
+          margin-left: 5px;
+          font-size: 10px;
+          background: $white;
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          display: inline-flex;
+          text-align: center;
+          align-items: center;
+          justify-content: center;
+          transition: transform .3s;
+  
+          &:hover{
+            color: red;
+            transform: scale(1.2);
+          }
+        }
+
+
+
+
       }
     }
   
@@ -147,3 +198,44 @@ ul.ingredients-list{
       display: inline-block;
     }
   }
+
+
+
+  //intolerances/dietary chips
+  .tt-dataset-tagging{
+      color: black;
+      background-color: white;
+      padding: 5%;
+  }
+
+  .tt-dropdown-menu{
+      background-color: pink;
+  }
+
+  li.tagging_new{
+      background-color: transparent!important;
+      width: 100%;
+
+  }
+  
+
+.twitter-typeahead{
+    border-bottom: 1px solid $grey;
+    border-radius: 0em!important;
+}
+
+#ingredientsList input {
+    // background-color: #f0f0f0!important;
+    border-bottom: 1px solid $grey;
+    border-radius: 0em!important;
+    width: 100%;
+}
+
+@media(max-width: 575px){
+    .ingredientMethod{
+        margin-left: 5%;
+    }
+    .iconList{
+        margin-left: 3%;
+    }
+}

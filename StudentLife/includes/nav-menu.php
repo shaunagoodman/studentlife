@@ -15,14 +15,37 @@ and open the template in the editor.
     <link href="niamh.css" rel="stylesheet" type="text/css" />
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
+    <script src="javascript/nav.js"></script>
 
 
 </head>
 
 <body>
 
+<style>
 
-    <nav class="navbar navbar-expand-lg navbar-light desktopNav">
+
+nav {
+  background-color: #EF7823 !important;
+  /* padding-bottom: 10% */
+}
+
+/* .form-inline{
+    width: 100px;
+} */
+</style>
+
+
+<!-- <script>
+
+$('button').click(function(){
+    $('input').animate({width: 'toggle'});
+});
+
+</script> -->
+
+
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-light desktopNav">
         <a class="navbar-brand" href="index.php"><img src="images/recipeasy-icons-logos/new-logo-white.png" class="d-inline-block align-top" alt="recipeasy-logo" style='width:100%' /> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <img class="burger-icon" src="images/recipeasy-icons-logos/burger-menu.png" alt="" />
@@ -36,7 +59,17 @@ and open the template in the editor.
                 <li class="nav-hover nav-item">
                     <a class="nav-link" href="index.php">Home</a>
                 </li>
-                <li class=" nav-hover nav-item dropdown">
+
+                <li class="nav-hover nav-item">
+                    <a class="nav-link" href="recipes-list.php">Recipes</a>
+                </li>
+
+                <li class="nav-hover nav-item">
+                    <a class="nav-link" href="recipe-api.php">Whats in my fridge?</a>
+                </li>
+
+                
+                <!-- <li class=" nav-hover nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Recipes </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
@@ -46,7 +79,7 @@ and open the template in the editor.
                         <a class="dropdown-item" href="random-recipe.php">Random Recipe Generator</a>
 
                     </div>
-                </li>
+                </li> -->
 
 
 
@@ -85,6 +118,8 @@ and open the template in the editor.
                 <input class="form-control mr-sm-2" type="search" name="something" placeholder="Search" aria-label="Search" value="<?= isset($_POST['something']) ? htmlspecialchars($_POST['something']) : '' ?>">
                 <button class="btn my-2 my-sm-0" type="submit" name="submit"> <img src="images/recipeasy-icons-logos/white-search.png" class="d-inline-block align-top" alt="" /></button>
             </form>
+            <!-- <button class="btn my-2 my-sm-0" > <img src="images/recipeasy-icons-logos/white-search.png" class="d-inline-block align-top" alt="" /></button>
+             -->
         </div>
     </nav>
 
@@ -93,7 +128,7 @@ and open the template in the editor.
 
 <!-- MOBILE NAV MENU -->
 
-    <nav class='mobileNav'>
+<nav class='mobileNav'>
         <div class="header"></div>
         <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
         <label for="openSidebarMenu" class="sidebarIconToggle">
@@ -103,18 +138,17 @@ and open the template in the editor.
         </label>
         <div id="sidebarMenu">
             <ul class="sidebarMenuInner">
-                <li><a href="index.php">Home</a></li>
-                <li> <a href="recipes-list.php">All Recipes</a></li>
-                <li> <a href="recipe-api.php">Whats in my fridge?</a></li>
-                <li> <a href="random-recipe.php">Random Recipe Generator</a></li>
+                <li> <img width="10%" src="images/recipeasy-icons-logos/home.png"> <a href="index.php">Home</a></li>
+                <li> <img width="10%" src="images/recipeasy-icons-logos/recipes.png"> <a href="recipes-list.php">All Recipes</a></li>
+                <li> <img width="10%" src="images/recipeasy-icons-logos/question.png"> <a href="recipe-api.php">Whats in my fridge?</a></li>
 
                 <li>
                     <?php
                     if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
-                        echo '<a  href="admin.php">View Profile</a>';
+                        echo ' <img width="10%" src="images/recipeasy-icons-logos/profile.png"> <a  href="admin.php">View Profile</a>';
                     } else {
-                        echo ' <a href="login.php">Login</a>';
+                        echo ' <img width="10%" src="images/recipeasy-icons-logos/login.png"> <a href="login.php">Login</a>';
                     }
                     ?>
                 </li>
@@ -123,9 +157,9 @@ and open the template in the editor.
                     <?php
                     if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
-                        echo '<a  href="logout.php">Logout</a>';
+                        echo ' <img width="10%" src="images/recipeasy-icons-logos/logout.png"> <a  href="logout.php">Logout</a>';
                     } else {
-                        echo ' <a href="sign-up.php">Register</a>';
+                        echo ' <img width="10%" src="images/recipeasy-icons-logos/profile.png"> <a href="sign-up.php">Register</a>';
                     }
                     ?>
                 </li>

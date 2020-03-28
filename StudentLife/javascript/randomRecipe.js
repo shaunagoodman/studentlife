@@ -32,6 +32,8 @@ function findRecipe() {
       if (request.status >= 200 && request.status < 400) {
         for (i = 0; i< data.recipes.length; i++) {
           let title = data.recipes[0].title;
+          let id = data.recipes[0].id;
+          setCookie("recipe_ID", id);
           // GET IMAGE
           let image = data.recipes[0].image;
           let time = data.recipes[0].readyInMinutes;
@@ -69,6 +71,7 @@ function findRecipe() {
           if (stepArr[i].equipment[j] != null) {
             if(!utensils.includes(stepArr[i].equipment[j].name)) {
             utensils.push(stepArr[i].equipment[j].name);
+            equipment.setAttribute("class", "equipment")
             }
           }
           else utensils.push("No equipment listed");
@@ -79,7 +82,7 @@ function findRecipe() {
       utensils.push("No equipment listed");
       steps.push("No steps listed");
     }
-         
+    
          
           //DISPLAY
           titleArea.innerHTML += title + "</br>";          
@@ -89,6 +92,7 @@ function findRecipe() {
           let imageArea = document.getElementById("image");
           var img = document.createElement("img");
           img.src = image;
+          img.setAttribute("class", "single-recipe-pic")
           var src = document.getElementById("image");
           src.appendChild(img);
 
@@ -124,4 +128,23 @@ function findRecipe() {
                   }
   }
   request.send();
+}
+
+$(document).ready(function() {
+  $(this).on("click", ".ingredientsTitleRand", function() {
+    $(this).parent().find(".ingredientsDivRand").toggle();
+    $(this).find(".faR").toggleClass('active');
+  });
+});
+
+$(document).ready(function() {
+  $(this).on("click", ".methodTitleRand", function() {
+    $(this).parent().find(".methodDivRand").toggle();
+    $(this).find(".faR3").toggleClass('active');
+  });
+});
+function setCookie(cname, cvalue) {
+
+  document.cookie = cname + "=" + cvalue + ";" + "path=/";
+
 }

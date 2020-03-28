@@ -43,3 +43,39 @@
 .ingName, .ingMeasure, .ingUnit{
     width: 100%;
 }
+
+
+
+
+@media(max-width: 1125px){
+    .rating:not(:checked) > label {
+        font-size:150%!important;
+    }
+    }
+
+    
+
+    button.addBut {
+        border-radius: 25px;
+        padding: 5%;
+        background-image: url("../images/recipeasy-icons-logos/add.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      
+      button.addBut:hover {
+        cursor: pointer;
+        background-image: url("../images/recipeasy-icons-logos/add-clicked.png");
+        transition: ease 0.2;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      
+      button.addBut.active {
+        background-image: url("../images/recipeasy-icons-logos/add-clicked.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }

@@ -71,3 +71,28 @@ function noRecipe() {
         text: "There's no recipe which matches this cuisine. Why not try another?"
     });
 }
+function recipeDeleted() {
+    swal({  title: 'Recipe Deleted!',  
+   type: 'success',    
+   showCancelButton: false,   
+   closeOnConfirm: false,   
+   confirmButtonText: 'Aceptar', 
+   showLoaderOnConfirm: true, }).then(function() {
+       window.location = 'admin.php';
+   });;
+}
+// recipe noConnection() {
+//     
+// }
+
+function commentFail() {
+    swal({  title: 'Cannot post comment!',  
+    text: 'You must be logged in to leave a comment.',
+       type: 'fail',    
+       showCancelButton: false,   
+       closeOnConfirm: false,   
+       confirmButtonText: 'Aceptar', 
+       showLoaderOnConfirm: true, }).then(function() {
+           window.location = 'login.php';
+       });;
+}

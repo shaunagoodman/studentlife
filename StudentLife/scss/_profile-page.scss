@@ -2,12 +2,21 @@
 
 
 .profile-body{
-    background-image: url("../images/backgrounds/background-blur.jpg");
+    background-image: url("../images/backgrounds/profile-background3.jpg");
     height: 100%; 
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+@media (max-width: 991px) {
+    .profile-body{
+        margin-top: -2%;
+    }
+  }
+
+
+
 
 .profile-title1{
     color: #fffd77;

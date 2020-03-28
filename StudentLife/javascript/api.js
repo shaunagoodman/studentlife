@@ -30,12 +30,11 @@ function chippy() {
       items.map((item, index) => {
         list.innerHTML += `<li><span>${item}</span><a href="javascript: void 0" onclick="LIB.remove(${index})">X</a></li>`;
       });
-      var hidden = document.getElementById("hidden");
+      var hidden = document.getElementById("hidden1");
       hidden.style.display = "none";
       var txt = items.toString();
       hidden.value = txt;
     }
-
     window.LIB = {
       remove:remove,
       render: render
@@ -46,4 +45,14 @@ function chippy() {
       render();
       txt.focus();
     }
+
+    var tagsource1 = [
+      'Dairy', 'Egg', 'Gluten', 'Grain', 'Peanut', 'Seafood', 'Sesame', 'Shellfish', 'Soy', 'Sulfite', 'Tree Nut', 'Wheat'
+      ]
+  $('#intolerances').tagging(tagsource1);
+  
+  var tagsource2 = [
+    'Gluten', 'Ketogenic', 'Paleo', 'Pescetarian', 'Primal', 'Vegan', 'Vegetarian', 'Whole30'
+    ]
+$('#dietRestrictions').tagging(tagsource2);
 }
