@@ -8,6 +8,12 @@
     display: none;
 }
 
+
+#ingredientsList{
+    margin-bottom: 5%;
+}
+
+
 // @media(min-width: 768px){
 //     .recipe-api{
 //         margin-left: 25%;
@@ -80,6 +86,7 @@
     
     p.sub-head-api{
         margin-bottom: 0%;
+        margin-top: 1%;
     }
     
 
@@ -111,7 +118,7 @@ ul.ingredients-list{
 }
 #ingredientsList, #intoleranceList,  #dietRestrictionsList{
     // width: 50%;
-    background: #f0f0f0;
+    // background: #f0f0f0;
     padding: 15px 15px 10px 15px;
     border-radius: 15px;
   
@@ -206,7 +213,29 @@ ul.ingredients-list{
   }
 
   li.tagging_new{
-      background-color: #f0f0f0!important;
+      background-color: transparent!important;
+      width: 100%;
+
   }
+  
 
+.twitter-typeahead{
+    border-bottom: 1px solid $grey;
+    border-radius: 0em!important;
+}
 
+#ingredientsList input {
+    // background-color: #f0f0f0!important;
+    border-bottom: 1px solid $grey;
+    border-radius: 0em!important;
+    width: 100%;
+}
+
+@media(max-width: 575px){
+    .ingredientMethod{
+        margin-left: 5%;
+    }
+    .iconList{
+        margin-left: 3%;
+    }
+}
