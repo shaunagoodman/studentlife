@@ -639,7 +639,7 @@ a.recipes {
 }
 
 .user-name {
-  margin-left: 30%;
+  text-align: center;
 }
 
 .h5-profile {
@@ -1967,6 +1967,31 @@ td {
 
 .addBlogDiv, .addRecipesDiv, .showRecipesDiv, .showUsersDiv, .myRecipesDiv, .myFavesDiv {
   display: none;
+}
+
+@media (max-width: 957px) {
+  .admin-container {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+}
+
+@media (min-width: 992px) {
+  #accordion {
+    display: none;
+  }
+}
+
+@media (max-width: 991px) {
+  #accordion {
+    display: block;
+  }
+}
+
+button.btn-link:hover {
+  color: #EF7823 !important;
+  -webkit-transition: ease 0.3;
+  transition: ease 0.3;
 }
 
 /* Rating Star Widgets Style */
