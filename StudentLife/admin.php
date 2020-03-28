@@ -142,7 +142,7 @@ and open the template in the editor.
                             <a href="edit_details.php" class="btn btn-light btn-sm">Edit Profile</a>
 
                             <a href="reset_password.php" class="btn btn-light btn-sm">Reset Password</a>
-
+                            <input type="submit" class="btn btn-light btn-sm" name="submitbutton" value="Deactivate Account" />
 
                         </div>
                     </div>
@@ -150,6 +150,23 @@ and open the template in the editor.
             </div>
             <br>
         </div>
+
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $userID = $_SESSION['user_ID'];
+            if (isset($_POST['submitbutton'])) {
+                $query = "UPDATE user SET isActive = 0 WHERE user_ID = $userID";
+                $statement = $conn->prepare($query);
+                if ($statement->execute()) {
+                    echo "<script language = javascript>
+               deactivated();
+              </script>";
+                }
+                $recipeIngredient = $statement->fetchAll();
+                $statement->closeCursor();
+            }
+        }
+        ?>
 
         <div class="container-fluid desktop-profile">
             <div class="row">
