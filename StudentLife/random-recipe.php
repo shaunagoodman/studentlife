@@ -62,6 +62,8 @@ include_once 'includes/database/connection.php';
               </p>
             </div>
 
+
+
           </div>
 
           
@@ -115,21 +117,21 @@ include_once 'includes/database/connection.php';
       </div>
     </div>
     <?php
-          $cookie_name = "recipe_ID";
-          if (isset($_COOKIE[$cookie_name])) {
-            $recipe_ID = $_COOKIE[$cookie_name];
-          }
-          if (isset($_POST['btnFav'])) {
-            if (isset($_SESSION["loggedin"])) {
-              $user = $_SESSION['user_ID'];
-              include_once 'includes/database/APItoDatabase.php';
-            } else {
-              echo "<script language = javascript>
+    $cookie_name = "recipe_ID";
+    if (isset($_COOKIE[$cookie_name])) {
+      $recipe_ID = $_COOKIE[$cookie_name];
+    }
+    if (isset($_POST['btnFav'])) {
+      if (isset($_SESSION["loggedin"])) {
+        $user = $_SESSION['user_ID'];
+        include_once 'includes/database/APItoDatabase.php';
+      } else {
+        echo "<script language = javascript>
                   favouritePopUp();
               </script>";
-            }
-          }
-          ?>
+      }
+    }
+    ?>
 
   </main>
 
