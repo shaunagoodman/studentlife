@@ -96,13 +96,3 @@ function commentFail() {
            window.location = 'login.php';
        });;
 }
-function commentAdded() {
-    swal({  title: 'Comment Posted',
-       type: 'sucess',    
-       showCancelButton: false,   
-       closeOnConfirm: false,   
-       confirmButtonText: 'Aceptar', 
-       showLoaderOnConfirm: true, }).then(function() {
-        window.location.reload(); ;
-       });;
-}

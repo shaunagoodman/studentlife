@@ -149,8 +149,15 @@ if (isset($_POST['btnFav'])) {
                         $statement = $conn->prepare($sql);
                         if ($statement->execute()) {
                             echo "<script language = javascript>
-                                            commentAdded();
-                                        </script>";
+                            swal({  title: 'Comment Posted',
+                                type: 'sucess',    
+                                showCancelButton: false,   
+                                closeOnConfirm: false,   
+                                confirmButtonText: 'Aceptar', 
+                                showLoaderOnConfirm: true, }).then(function() {
+                                    window.location = 'recipe_single.php?recipe_ID=' + $recipe_ID;
+                                });
+                               </script>";
                         }
                         $addedComments = $statement->fetchAll();
                         $statement->closeCursor();
