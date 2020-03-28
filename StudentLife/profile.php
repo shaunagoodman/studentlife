@@ -22,7 +22,7 @@ if (isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true) {
 
 try {
     $userID = $_SESSION['user_ID'];
-    $query = "SELECT * FROM recipes WHERE user_ID = $userID";
+    $query = "SELECT * FROM recipes WHERE user_ID = $userID AND isAPI = 0 ORDER BY date-created";
     $statement2 = $conn->prepare($query);
     $statement2->bindValue(":userID", $userID);
     $statement2->execute();
