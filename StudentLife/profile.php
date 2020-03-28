@@ -271,7 +271,7 @@ and open the template in the editor.
                                         </p>
                                         <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light">View Recipe</button></a> </center>
                                         <form action="delete-recipe.php" method="post" id="delete_recipe_form">
-                                            <a href="delete_recipe.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>" class="add-my-recipe">Delete</a>
+                                            <a href="delete_recipe.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>" class="sortBy add-my-recipe"><p>Delete</p></a>
                                         </form>
                                     </div>
                                 </div>
@@ -337,7 +337,7 @@ and open the template in the editor.
                                 }
                         ?>
 
-                                <div class="col-lg-4 bottom-home ">
+                                <div class="col-lg-4 col-md-6 bottom-home ">
                                     <div class="card home-card recipe-page-card">
                                         <img src="<?php echo $src; ?>" class="card-img-top" alt='dish image' height='315' width='328'>
                                         <div class="card-body">
@@ -347,7 +347,7 @@ and open the template in the editor.
                                             </p>
                                             <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light">View Recipe</button></a> </center>
                                             <form action = "" method = "post">
-                                            <button type = "submit" name = "removeFav" class = "btn btn-light"> Remove </button>
+                                            <button type = "submit" name = "removeFav" class = "btn sortBy"> <p>Delete</p> </button>
                                             </form>
                                             
                                         </div>
