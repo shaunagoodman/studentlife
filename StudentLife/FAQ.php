@@ -95,7 +95,15 @@ and open the template in the editor.
                             </div>
                         </div>
                         <br>
-                        
+                   
+                        <div class="card faq-card">
+                            <div class="card-header" id="headingFour">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link stretched-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                    <i class="fas fa-utensils"></i> What is Potluck?
+                                    </button>
+                                </h5>
+                            </div>
                     
                         
                         
