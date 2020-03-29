@@ -43,7 +43,7 @@ include_once 'includes/CDNs.php';
           </div>
 
           <!-- <input data-role="tagsinput" class="form-control api-form-control" name='ingredients' id='ingredients' type="text" placeholder="eggs, milk, butter"> -->
-          <p> <input class='checkbox-api' type="checkbox" id="addTime" onClick="toggleTime()" />Add Time Limit (If you do not set a limit it will defualt to 10 mins).</p>
+          <p> <input class='checkbox-api' type="checkbox" id="addTime" onClick="toggleTime()" />Add Time Limit (If you do not set a limit it will default to 10 mins).</p>
 
 
           <!--TIME -->
