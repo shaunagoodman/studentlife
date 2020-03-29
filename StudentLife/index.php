@@ -45,15 +45,18 @@ $statement->closeCursor();
         <div class="container jumbo-title">
             <h1 class="display-4 jumbo-text">Find a Recipe</h1>
             <h4 class='jumbo-text' >Or try our Pot Luck!</h4>
-            <form class="form-inline" method="post" action="">
+            <form class="form-inline" method="post">
             <div class='row' >   
             <div class='col-lg-12' >
-                <input class="form-control mr-sm-2" type="search" name="something" placeholder="Search" aria-label="Search" value="<?= isset($_POST['something']) ? htmlspecialchars($_POST['something']) : '' ?>"><br>
-                </div>
+
+                <input class="form-control mr-sm-2" type="search" name="something" placeholder="Search" aria-label="Search" value="<?= isset($_POST['something']) ? htmlspecialchars($_POST['something']) : '' ?>">
+                <button formaction = "recipes-list.php" style="visibility: hidden;" type="submit" name="submit"></button>
+
+            </div>
                 
                 <div class='col-lg-12 jumbo-buttons' >
                 <button class='btn btn-sm btn-light'formaction = "recipes-list.php" >Find</button>
-                <button class='btn btn-sm btn-light-invert'  formaction = "random-recipe.php" type="submit" name="submit" >Pot Luck?</button>
+                <button formaction = "random-recipe.php" class='btn btn-sm btn-light-invert' type="submit" name="submit" >Pot Luck?</button>
                 
                 </div>
             </div>
