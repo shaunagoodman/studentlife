@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <?php
 // Initialize the session
 session_start();
@@ -95,9 +96,91 @@ and open the template in the editor.
                             </div>
                         </div>
                         <br>
+
+                        <div class="card faq-card">
+                            <div class="card-header" id="headingFour">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link stretched-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                    <i class="fas fa-utensils"></i> What is Potluck?
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                                <div class="card-body">
+                                    <p class="faq-p" > Potluck is a feature of the website you can use when you're not sure what to cook! 
+                                    <br> It will generate a random recipe from our extensive database, and the possibilities are endless! <br>
+                                    If you see one you like, you can then add it to your favourites using the heart shaped button underneath the recipe!</p>
+                                </div>
+                            </div>
+                        </div>
                         
+                        <br>
+                        
+                        <div class="card faq-card">
+                            <div class="card-header" id="headingFive">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link stretched-link" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                                    <i class="fas fa-pen-square"></i> How can I create my own recipe?
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                                <div class="card-body">
+                                    <p class="faq-p" > First you have to log in. If you don't have an account you can register under the login tab.<br>
+                                    Once you're logged in, you can create a recipe by following the link on your profile page. <br>
+                                    When you can to the add recipe page, enter in all of the details of your recipe, including name, ingredients, steps, servings, max time and image!
+                                    <br> Once you're done click the submit button. You will then find your recipe on your profile page and on the all recipes page. 
+                
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <br>
+                        
+                                    <div class="card faq-card">
+                            <div class="card-header" id="headingSix">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link stretched-link" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                                    <i class="fas fa-heart"></i> How do I add a recipe to my favourites?
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+                                <div class="card-body">
+                                    <p class="faq-p" > First you have to log in. Then under your recipe of choice you should see an orange heart shaped button. Click it and you will be told with an alert that it has been added to your favourites. <br>
+                                    You will then be brought to your favourites page where you can see all your favourite recipes!
+                
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <br>
                     
                         
+                        <div class="card faq-card">
+                            <div class="card-header" id="headingSeven">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link stretched-link" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+                                    <i class="fas fa-photo-video"></i> How do I add photos and videos to my created recipe?
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
+                                <div class="card-body">
+                                    <p class="faq-p" > When creating your recipe you can upload a photo from your computer. Click the "choose file" button, then click the image you want to upload and click open. <br> This will upload the photo. Make sure the image is in JPG, JPEG or PNG format. <br>
+                                    <br>To add a video, you must upload your video to YouTube first. Once your video is uploaded, copy and paste the URL into the "video URL" box on the add recipe page. Make sure it is the URL and not the embbed code. <br> <br>It will look something like this: https://www.youtube.com/watch?v=Sj8CCd3nuUQ& <br><br>
+                                    Then once you have pasted it, and have entered all your other details for the recipe, click submit and you will see both the photo and video on the recipe page! 
+                
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <br>
+                    
                         
                         
                     </div>
