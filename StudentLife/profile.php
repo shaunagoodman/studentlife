@@ -183,14 +183,14 @@ if (isset($_POST['removeFav'])) {
 
                                     $difficulty = "No difficulty selected.";
                                 }
-                                if (empty($recipe['image'])) {
 
-                                    $recipe['image'] = "images/recipes/placeholder.png";
-                                }
-                                if($recipe['isAPI'] = 1) {
+                                if($recipe['isAPI'] == 1) {
                                     $src = $recipe['image'];
                                 }
                                 else {
+                                    if (empty($recipe['image'])) {
+                                       $src = "images/recipes/placeholder.png";
+                                    }
                                     $src = "images/recipes/".$recipe['image'];
                                 }
 
@@ -199,8 +199,8 @@ if (isset($_POST['removeFav'])) {
                                 <!-- DISPLAY SECTION ONE -->
 
                                 <div class="col-sm-12 col-lg-4">
-                                    <div class="card home-card recipe-page-card hvr-shadow">
-                                    <a class="stretched-link" href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"> <img src="images/recipes/<?php echo $recipe['image']; ?>" class="card-img-top" alt='dish image' height='315' width='328'></a>
+                                    <div class="card home-card recipe-page-card">
+                                    <a class="stretched-link" href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>">    <img src="<?php echo $src ?>" class="card-img-top" alt='dish image' height='315' width='328'></a>
                                         <div class="card-body">
                                             <h5 class="card-title"><?php echo $recipe['name']; ?></h5>
                                         </div>
@@ -225,11 +225,11 @@ if (isset($_POST['removeFav'])) {
                             ?>
 
                         </div>
-                        <a href="#inam" class="carousel-control-prev" data-slide="prev" <?php if (empty($count > 4)) echo ' style="display:none;"'; ?>>
+                        <a href="#inam" class="carousel-control-prev" data-slide="prev" <?php if ($count < 3) echo ' style="display:none;"'; ?>>
                             <span class="carousel-control-prev-icon"></span>
                         </a>
 
-                        <a href="#inam" class="carousel-control-next" data-slide="next" <?php if (empty($count > 4)) echo ' style="display:none;"'; ?>>
+                        <a href="#inam" class="carousel-control-next" data-slide="next" <?php if ($count < 3) echo ' style="display:none;"'; ?>>
                             <span class="carousel-control-next-icon"></span>
                         </a>
                     </div>
