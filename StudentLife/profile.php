@@ -24,28 +24,17 @@ if (isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true) {
 if (isset($_POST['removeFav'])) {
     include_once 'includes/database/removeFromFavs.php';
 }
-
 ?>
-
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
-
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
-
     <?php include_once 'includes/CDNs.php'; ?>
     <script src="javascript/scripts.js"></script>
     <link href="includes/stylesheet.css" rel="stylesheet" type="text/css" />
 </head>
-
 <body class='site'>
-
     <?php include_once 'includes/nav-menu.php'; ?>
     <main class='site-content'>
         <div class="profile-body desktop-profile">
@@ -60,16 +49,13 @@ and open the template in the editor.
 
                     <div class="col-lg-6 user-col ">
                         <div class="user-info profile-user-info">
-
                             <h2 class="user-name"><span class="underline"><?php echo $_SESSION["fname"] . " " . $_SESSION["lname"]; ?></span></h2>
-
-
                             <h5 class="h5-profile">Email:</h5>
 
                             <p><?php echo htmlspecialchars($_SESSION["u_email"]); ?></p>
                             <br>
                             <h5 class="h5-profile">Options:</h5>
-
+                            <form action = "" method = "post">
                             <a href="edit_details.php" class="btn sortBy ">
                                 <p style="margin-bottom: 0;">Edit Profile</p>
                             </a>
@@ -77,8 +63,9 @@ and open the template in the editor.
                             <a href="reset_password.php" class="btn sortBy ">
                                 <p style="margin-bottom: 0;">Reset Password</p>
                             </a>
-                            <input type="submit" class="btn sortBy " name="submitbutton" value="Deactivate Account" />
-
+                
+                            <input type="submit" class="btn sortBy " name="deactivateAccount" value="Deactivate Account" />
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -86,20 +73,6 @@ and open the template in the editor.
             <br>
         </div>
         <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $userID = $_SESSION['user_ID'];
-            if (isset($_POST['submitbutton'])) {
-                $query = "UPDATE user SET isActive = 0 WHERE user_ID = $userID";
-                $statement = $conn->prepare($query);
-                if ($statement->execute()) {
-                    echo "<script language = javascript>
-               deactivated();
-              </script>";
-                }
-                $recipeIngredient = $statement->fetchAll();
-                $statement->closeCursor();
-            }
-        }
         ?>
 
 
@@ -122,7 +95,7 @@ and open the template in the editor.
 
                                 <br>
                                 <h5 class="h5-profile">Options:</h5>
-
+                                <form action = "" method = "post">
                                 <a href="edit_details.php" class="btn sortBy ">
                                     <p style="margin-bottom: 0;">Edit Profile</p>
                                 </a>
@@ -130,8 +103,24 @@ and open the template in the editor.
                                 <a href="reset_password.php" class="btn sortBy ">
                                     <p style="margin-bottom: 0;">Reset Password</p>
                                 </a>
-                                <input type="submit" class="btn sortBy " name="submitbutton" value="Deactivate Account" />
-
+                                <input type="submit" class="btn sortBy " name="deactivateAccount" value="Deactivate Account" />
+                                </form>
+                                <?php
+                                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                    $userID = $_SESSION['user_ID'];
+                                    if (isset($_POST['deactivateAccount'])) {
+                                        $query = "UPDATE user SET isActive = 0 WHERE user_ID = $userID";
+                                        $statement = $conn->prepare($query);
+                                        if ($statement->execute()) {
+                                            echo "<script language = javascript>
+                                                    deactivated();
+                                                    </script>";
+                                        }
+                                        $recipeIngredient = $statement->fetchAll();
+                                        $statement->closeCursor();
+                                    }
+                                }
+                                ?>
                             </center>
                         </div>
                     </div>
@@ -142,9 +131,16 @@ and open the template in the editor.
 
 
 
+        <?php 
+        $query = "SELECT * from recipes WHERE user_ID = $userID UNION SELECT r.* FROM recipes r INNER JOIN favourites f on f.recipe_ID = r.recipe_ID WHERE f.user_ID = $userID ORDER BY 'date_created'";
+        $statement = $conn->prepare($query);
+        $statement->execute();
+        $recipeandfavs = $statement->fetchAll();
+        $statement->closeCursor();
+        $count = count($recipeandfavs);
+        ?>
 
-        
-        <div class="container-fluid carousel-recipes" <?php if (empty($recipes)) echo ' style="display:none;"'; ?>>
+        <div class="container-fluid " <?php if ($count < 3) echo ' style="display:none;"'; ?>>
             <br>
             <div class="container">
                 <h1><span class="underline">Your Recipes and Favourites</span></h1>
@@ -168,7 +164,7 @@ and open the template in the editor.
                             echo "<div class='container'>";
                             echo "<div class='row' >";
 
-                            foreach ($recipes as $recipe) :
+                            foreach ($recipeandfavs as $recipe) :
                                 if ($count % 3 == 1 && $count != 1) {
                                     echo "<div class='carousel-item'>";
                                     echo "<div class='container'>";
@@ -191,6 +187,12 @@ and open the template in the editor.
 
                                     $recipe['image'] = "images/recipes/placeholder.png";
                                 }
+                                if($recipe['isAPI'] = 1) {
+                                    $src = $recipe['image'];
+                                }
+                                else {
+                                    $src = "images/recipes/".$recipe['image'];
+                                }
 
                             ?>
 
@@ -198,9 +200,13 @@ and open the template in the editor.
 
                                 <div class="col-sm-12 col-lg-4">
                                     <div class="card home-card recipe-page-card">
-                                        <a class="stretched-link" href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"> <img src="images/recipes/<?php echo $recipe['image']; ?>" class="card-img-top" alt='dish image' height='315' width='328'></a>
+                                        <img src="images/recipes/<?php echo $recipe['image']; ?>" class="card-img-top" alt='dish image' height='315' width='328'>
                                         <div class="card-body">
                                             <h5 class="card-title"><?php echo $recipe['name']; ?></h5>
+                                            <p class="card-text" class='recipe-difficulty'> Difficulty: <?php echo $difficulty; ?> </p>
+                                            <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
+                                            </p>
+                                            <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light">View Recipe</button></a> </center>
                                         </div>
                                     </div>
                                 </div>
@@ -220,8 +226,6 @@ and open the template in the editor.
                             echo "</div>";
                             echo "</div>";
                             echo "</div>";
-
-                     
                             ?>
 
                         </div>
@@ -232,7 +236,6 @@ and open the template in the editor.
                         <a href="#inam" class="carousel-control-next" data-slide="next" <?php if (empty($count > 4)) echo ' style="display:none;"'; ?>>
                             <span class="carousel-control-next-icon"></span>
                         </a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -324,12 +327,6 @@ and open the template in the editor.
                             exit();
                         }
                         ?>
-
-
-
-
-
-
                         <br>
 
                         <?php
@@ -364,13 +361,12 @@ and open the template in the editor.
                                             <p class="card-text" class='recipe-difficulty'> Difficulty: <?php echo $difficulty; ?> </p>
                                             <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $favourite['maxTime']; ?>
                                             </p>
-                                            <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light">View Recipe</button></a> </center>
-                                            <form action="" method="post">
-                                                <button type="submit" name="removeFav" class="btn sortBy">
-                                                    <p>Delete</p>
-                                                </button>
-                                            </form>
-
+                                            <center><a href="recipe_single.php?recipe_ID=<?php echo $favourite['recipe_ID'] ?>"><button type="button" class="btn btn-light">View Recipe</button></a> </center>
+                                            <form action="delete-recipe.php" method="post" id="delete_recipe_form">
+                                            <a href="remove_from_fav.php?recipe_ID=<?php echo $favourite['recipe_ID'] ?>" class="sortBy add-my-recipe">
+                                                <p>Remove</p>
+                                            </a>
+                                        </form>
                                         </div>
                                     </div>
                                 </div>

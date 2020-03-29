@@ -16,7 +16,7 @@ require_once 'includes/database/connection.php';
 
 try {
     $userID = $_SESSION['user_ID'];
-    $query = "SELECT * FROM recipes WHERE user_ID = $userID ORDER BY date-created";
+    $query = "SELECT * FROM recipes ORDER BY 'date-created'";
     $statement2 = $conn->prepare($query);
     $statement2->bindValue(":userID", $userID);
     $statement2->execute();
@@ -141,7 +141,7 @@ and open the template in the editor.
                             <p><?php echo htmlspecialchars($_SESSION["u_email"]); ?></p>
                             <br>
                             <h5 class="h5-profile">Options:</h5>
-
+                            <form action = "" method = "post">
                             <a href="edit_details.php" class="btn sortBy ">
                                 <p style="margin-bottom: 0;">Edit Profile</p>
                             </a>
@@ -149,8 +149,8 @@ and open the template in the editor.
                             <a href="reset_password.php" class="btn sortBy ">
                                 <p style="margin-bottom: 0;">Reset Password</p>
                             </a>
-                            <input type="submit" class="btn sortBy " name="submitbutton" value="Deactivate Account" />
-
+                            <input type="submit" class="btn sortBy " name="deactivateAccount" value="Deactivate Account" />
+</form>
                         </div>
                     </div>
                 </div>
@@ -161,7 +161,7 @@ and open the template in the editor.
         <?php
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $userID = $_SESSION['user_ID'];
-            if (isset($_POST['submitbutton'])) {
+            if (isset($_POST['deactivateAccount'])) {
                 $query = "UPDATE user SET isActive = 0 WHERE user_ID = $userID";
                 $statement = $conn->prepare($query);
                 if ($statement->execute()) {
@@ -525,7 +525,7 @@ and open the template in the editor.
 
                         try {
                             $userID = $_SESSION['user_ID'];
-                            $query = "SELECT * FROM recipes WHERE user_ID = $userID";
+                            $query = "SELECT * FROM recipes ORDER BY 'date_created'";
                             $statement2 = $conn->prepare($query);
                             $statement2->bindValue(":userID", $userID);
                             $statement2->execute();
@@ -590,7 +590,7 @@ and open the template in the editor.
 
                         try {
                             $userID = $_SESSION['user_ID'];
-                            $sql = "SELECT * FROM `recipes` r INNER JOIN favourites f ON f.recipe_ID = r.recipe_ID WHERE f.user_ID = $userID";
+                            $sql = "SELECT * FROM recipes r INNER JOIN favourites f ON f.recipe_ID = r.recipe_ID WHERE f.user_ID = $userID";
                             $statement = $conn->prepare($sql);
                             $statement->execute();
                             $recipes = $statement->fetchAll();
@@ -636,6 +636,10 @@ and open the template in the editor.
                                             <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
                                             </p>
                                             <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light">View Recipe</button></a> </center>
+                                            <a href="remove_from_fav.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>&user_ID=<?php echo $userID;?>" class="sortBy add-my-recipe">
+                                                <p>Remove</p>
+                                            </a>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -688,16 +692,16 @@ and open the template in the editor.
 
                                 <br>
                                 <h5 class="h5-profile">Options:</h5>
+                                <form action = "" method = "post">
+                                    <a href="edit_details.php" class="btn sortBy ">
+                                        <p style="margin-bottom: 0;">Edit Profile</p>
+                                    </a>
 
-                                <a href="edit_details.php" class="btn sortBy ">
-                                    <p style="margin-bottom: 0;">Edit Profile</p>
-                                </a>
-
-                                <a href="reset_password.php" class="btn sortBy ">
-                                    <p style="margin-bottom: 0;">Reset Password</p>
-                                </a>
-                                <input type="submit" class="btn sortBy " name="submitbutton" value="Deactivate Account" />
-
+                                    <a href="reset_password.php" class="btn sortBy ">
+                                        <p style="margin-bottom: 0;">Reset Password</p>
+                                    </a>
+                                    <input type="submit" class="btn sortBy " name="deactivateAccount" value="Deactivate Account" />
+                                </form>
                             </center>
                         </div>
                     </div>
@@ -975,7 +979,7 @@ and open the template in the editor.
                         <div class="card-body">
 
                             <?php
-                            $query = "SELECT * FROM recipes";
+                            $query = "SELECT * FROM recipes order by 'date_created'";
                             $statement = $conn->prepare($query);
                             $statement->execute();
                             $recipes = $statement->fetchAll();
@@ -1102,11 +1106,10 @@ and open the template in the editor.
                                                 <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $favourite['maxTime']; ?>
                                                 </p>
                                                 <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light">View Recipe</button></a> </center>
-                                                <form action="" method="post">
-                                                    <button type="submit" name="removeFav" class="btn sortBy">
-                                                        <p>Delete</p>
-                                                    </button>
-                                                </form>
+                                                <a href="remove_from_fav.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>&user_ID=<?php echo $userID;?>" class="sortBy add-my-recipe">
+                                                <p>Remove</p>
+                                            </a>
+                                            </form>
 
                                             </div>
                                         </div>

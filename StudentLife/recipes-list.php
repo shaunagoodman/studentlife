@@ -199,7 +199,12 @@ try {
                                 }
 
                                 if ($recipe['isAPI'] == 1) {
-                                    $src = $recipe['image'];
+                                    if (empty($recipe['image'])) {
+                                        $src = "images/recipes/placeholder.png";
+                                    } else {
+                                       $src = $recipe['image']; 
+                                    }
+                                    
                                 } else {
                                     if (empty($recipe['image'])) {
                                         $src = "images/recipes/placeholder.png";
@@ -222,23 +227,19 @@ try {
                                 </div>
 
                                 <?php endforeach;
-                        } else {
-                            echo "<script language = javascript>
-            noRecipe();
-              </script>";
-                        }
+                        } 
                         if (isset($_POST['submit'])) {
                             $name = "";
                             $string = $_POST['something'];
                             $arraySearch = explode(" ", $string);
                             $count = count($recipes);
                             $searchString = "";
-                            if ($count < 9) {
+                            if ($count < 10) {
                                 $array = [];
                                 foreach ($arraySearch as $arr) {
                                     $searchString = $arr . "&";
                                 }
-                                $remaining = (9 - $count);
+                                $remaining = (10 - $count);
                                 $string1 = "https://api.spoonacular.com/recipes/search?query=";
                                 $string2 = "number=";
                                 $string3 = "&apiKey=53bea2eb3c79445188bc4d3f00895d15";
