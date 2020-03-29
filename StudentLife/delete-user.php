@@ -43,6 +43,7 @@ if(isset($_POST["user_ID"]) && !empty($_POST["user_ID"])){
 <head>
     <meta charset="UTF-8">
     <title>View Record</title>
+    <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
     <?php include_once 'includes/CDNs.php'; ?> 
 
 </head>
