@@ -104,7 +104,16 @@ and open the template in the editor.
                                     </button>
                                 </h5>
                             </div>
-                    
+                                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                                <div class="card-body">
+                                    <p class="faq-p" > Potluck is a feature of the website you can use when you're not sure what to cook! 
+                                    <br> It will generate a random recipe from our extensive database, and the possibilities are endless! <br>
+                                    If you see one you like, you can then add it to your favourites using the heart shaped button underneath the recipe!</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <br>
                         
                         
                         
