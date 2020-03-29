@@ -138,7 +138,25 @@ and open the template in the editor.
                         
                         <br>
                         
-          
+                        <div class="card faq-card">
+                            <div class="card-header" id="headingSix">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link stretched-link" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                                    <i class="fas fa-heart"></i> How do I add a recipe to my favourites?
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+                                <div class="card-body">
+                                    <p class="faq-p" > First you have to log in. Then under your recipe of choice you should see an orange heart shaped button. Click it and you will be told with an alert that it has been added to your favourites. <br>
+                                    You will then be brought to your favourites page where you can see all your favourite recipes!
+                
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <br>
                         
                     
                         
