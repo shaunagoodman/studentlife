@@ -15,6 +15,7 @@ include_once 'includes/database/addBlog.php';
 <head>
 	<meta charset="UTF-8">
 	<title>Post Blog</title>
+	<link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
 	<?php include_once 'includes/CDNs.php'; ?>
 </head>
 
