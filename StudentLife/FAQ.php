@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <?php
 // Initialize the session
 session_start();
@@ -188,6 +189,10 @@ and open the template in the editor.
 
                 </div>
 
+            </div>
+
+
+        </div>
 
         </main>
 
@@ -201,3 +206,4 @@ and open the template in the editor.
 
     </body>
 </html>
+=======
