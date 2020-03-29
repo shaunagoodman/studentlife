@@ -55,7 +55,7 @@ $statement->closeCursor();
             </div>
                 
                 <div class='col-lg-12 jumbo-buttons' >
-                <button class='btn btn-sm btn-light'formaction = "recipes-list.php" >Find</button>
+                <button class='btn btn-sm btn-light' formaction = "recipes-list.php" type="submit" name="submit">Search</button>
                 <button formaction = "random-recipe.php" class='btn btn-sm btn-light-invert' type="submit" name="submit" >Pot Luck?</button>
                 
                 </div>
