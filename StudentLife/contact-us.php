@@ -45,7 +45,7 @@ session_start();
 
     <meta charset="UTF-8">
     <title>Contact</title>
-
+    <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
     <?php include_once 'includes/CDNs.php'; ?>
 
     <link href="includes/stylesheet.css" rel="stylesheet" type="text/css" />

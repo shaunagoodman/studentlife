@@ -85,6 +85,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>Delete Recipe</title>
+    <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
 
 </head>
 <body class='site' >

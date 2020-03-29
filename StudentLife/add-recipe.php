@@ -17,6 +17,7 @@ include_once 'includes/database/addRecipe.php';
 <head>
     <meta charset="UTF-8">
     <title>Add Recipe</title>
+    <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
     <?php include_once 'includes/CDNs.php'; ?>
     <script src="javascript/scripts.js"></script>
     <script src="javascript/slider.js"></script>
