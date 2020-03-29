@@ -6,7 +6,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
     if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         //   **************** CHECK IF EXISTS IN FAVOURITES ****************
-        $query = "SELECT * FROM favourites WHERE recipe_ID = $recipe_ID";
+        $query = "SELECT * FROM favourites WHERE recipe_Id = $recipe_ID AND user_ID = $user";
         $statement = $conn->prepare($query);
         $statement->execute();
         $row = $statement->fetch(PDO::FETCH_ASSOC);
@@ -37,7 +37,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
             closeOnConfirm: false,   
             confirmButtonText: 'Aceptar', 
             showLoaderOnConfirm: true, }).then(function() {
-                window.location = 'recipe-list.php';
+                window.location = 'recipes-list.php';
             });;
         </script>";
         }
