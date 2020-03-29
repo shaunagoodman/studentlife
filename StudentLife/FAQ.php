@@ -134,34 +134,18 @@ session_start();
                             <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#faq-accordion">
                                 <div class="card-body">
                                     <p class="faq-p" > When creating your recipe you can upload a photo from your computer. Click the "choose file" button, then click the image you want to upload and click open. <br> This will upload the photo. Make sure the image is in JPG, JPEG or PNG format. <br>
-                                    <br>To add a video, you must upload your video to YouTube first. Once your video is uploaded, copy and paste the URL into the "video URL" box on the add recipe page. Make sure it is the URL and not the embbed code. <br> <br>It will look something like this: https://www.youtube.com/watch?v=Sj8CCd3nuUQ& <br><br>
+                                    To add a video, you must upload your video to YouTube first. Once your video is uploaded, copy and paste the URL into the "video URL" box on the add recipe page. Make sure it is the URL and not the embbed code. <br> <br>It will look something like this: https://www.youtube.com/watch?v=Sj8CCd3nuUQ& <br>
                                     Then once you have pasted it, and have entered all your other details for the recipe, click submit and you will see both the photo and video on the recipe page! 
                 
                                 </div>
                             </div>
                         </div>
-                        
-                        <br>
-                    
-                        
-                        
+                        <br>  
                     </div>
                 </div>
-
             </div>
-
-
         </div>
-
         </main>
-
-
         <?php include_once 'includes/footer.php'; ?>
-
-
-
-
-
-
     </body>
 </html>
