@@ -60,7 +60,7 @@ a.recipes{
 }
 
 .user-name{
-    margin-left:30%;
+    text-align: center;
 }
 
 
@@ -122,34 +122,36 @@ a.recipes:hover {
     transition: 0.2s;
   }
 
-  .carousel-control-next,
-  .carousel-control-prev{
-      margin-top: 10rem;
+//   .carousel-control-next,
+//   .carousel-control-prev{
+//       margin-top: 15%;
+//   }
+
+
+  @media (max-width: 991px) {
+    .carousel-control-next,
+    .carousel-control-prev {
+      display: none;
+    }
   }
 
+.carousel-control-next,
+.carousel-control-prev {
+  width: 5%;
+}
 
-  .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  height: 100px;
-  width: 100px;
-  outline: black;
-//   background-size: 100%, 100%;
-  border-radius: 50%;
-//   border: 1px solid black;
-  background-image: none;
+    background-image: url("../images/recipeasy-icons-logos/right-arrow.png");
+}
+.carousel-control-prev-icon {
+    background-image: url("../images/recipeasy-icons-logos/left-arrow.png");
 }
 
-.carousel-control-next-icon:after
-{
-  content: '>';
-  font-size: 55px;
-  color: black;
-}
+.carousel-control-next-icon, .carousel-control-prev-icon {
 
-.carousel-control-prev-icon:after {
-  content: '<';
-  font-size: 55px;
-  color: black;
+    width: 30px;
+    height: 30px;
+
 }
 
 // .prof-car-h1 {
@@ -200,3 +202,4 @@ a.recipes:hover {
     padding-left: 35%;
 }
 }
+

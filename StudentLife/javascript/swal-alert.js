@@ -68,7 +68,7 @@ function noRecipe() {
     swal({
         title: "Oops!",
         type: "fail",
-        text: "There's no recipe which matches this cuisine. Why not try another?"
+        text: "There's no recipe matching your criteria. Why not try another?"
     });
 }
 function recipeDeleted() {
@@ -81,9 +81,16 @@ function recipeDeleted() {
        window.location = 'admin.php';
    });;
 }
-// recipe noConnection() {
-//     
-// }
+function recipeAdded() {
+    swal({  title: 'Recipe Added',  
+       type: 'success',    
+       showCancelButton: false,   
+       closeOnConfirm: false,   
+       confirmButtonText: 'Aceptar', 
+       showLoaderOnConfirm: true, }).then(function() {
+           window.location = 'recipes-list.php';
+       });;
+}
 
 function commentFail() {
     swal({  title: 'Cannot post comment!',  

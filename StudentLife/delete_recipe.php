@@ -1,14 +1,16 @@
 <?php
-start_session();
+session_start();
 include_once 'includes/CDNs.php';
 // Process delete operation after confirmation
 if(isset($_POST["recipe_ID"])){
     $recipe_ID = $_POST["recipe_ID"];
 }
+if(isset($_SESSION['u_type'])){
 $u_type = $_SESSION["u_type"];
+}
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     require_once "includes/database/connection.php";
-    if(isset($_POST["submit"])){
+    if(isset($_POST["submitYes"])){
         $query = "SELECT * FROM recipesteps WHERE recipe_ID = $recipe_ID";
         $statement = $conn->prepare($query);
         $statement->execute();
@@ -99,8 +101,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <input type="hidden" name="recipe_ID" value="<?php echo trim($_GET["recipe_ID"]); ?>"/>
                             <p>Are you sure you want to delete this record?</p><br>
                             <p>
-                                <input type='submit' class="btn btn-light"  name = 'submit' value="Yes"/>
-                                <a href=" <?php $u_type = 1 ? echo 'admin.php' : 'profile.php'?> class="btn btn-default">No</a>
+                                <input type='submit' class="btn btn-light"  name = 'submitYes' value="Yes"/>
+                                <input type = 'submit' name = 'submitNo' formaction =" <?php 
+                                if ($u_type == 1) {
+                                    echo 'admin.php'; 
+                                    } else { 
+                                    echo 'profile.php';
+                                    }
+                                    ?>" class="btn btn-default" value = "No"/>
                             </p>
                         </div>
                     </form>

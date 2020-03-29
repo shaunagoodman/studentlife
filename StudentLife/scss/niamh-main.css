@@ -639,7 +639,7 @@ a.recipes {
 }
 
 .user-name {
-  margin-left: 30%;
+  text-align: center;
 }
 
 .h5-profile {
@@ -691,30 +691,29 @@ a.recipes:hover {
   transition: 0.2s;
 }
 
+@media (max-width: 991px) {
+  .carousel-control-next,
+  .carousel-control-prev {
+    display: none;
+  }
+}
+
 .carousel-control-next,
 .carousel-control-prev {
-  margin-top: 10rem;
+  width: 5%;
 }
 
-.carousel-control-prev-icon,
 .carousel-control-next-icon {
-  height: 100px;
-  width: 100px;
-  outline: black;
-  border-radius: 50%;
-  background-image: none;
+  background-image: url("../images/recipeasy-icons-logos/right-arrow.png");
 }
 
-.carousel-control-next-icon:after {
-  content: '>';
-  font-size: 55px;
-  color: black;
+.carousel-control-prev-icon {
+  background-image: url("../images/recipeasy-icons-logos/left-arrow.png");
 }
 
-.carousel-control-prev-icon:after {
-  content: '<';
-  font-size: 55px;
-  color: black;
+.carousel-control-next-icon, .carousel-control-prev-icon {
+  width: 30px;
+  height: 30px;
 }
 
 @media only screen and (min-width: 992px) {
@@ -1967,6 +1966,31 @@ td {
 
 .addBlogDiv, .addRecipesDiv, .showRecipesDiv, .showUsersDiv, .myRecipesDiv, .myFavesDiv {
   display: none;
+}
+
+@media (max-width: 957px) {
+  .admin-container {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+}
+
+@media (min-width: 992px) {
+  #accordion {
+    display: none;
+  }
+}
+
+@media (max-width: 991px) {
+  #accordion {
+    display: block;
+  }
+}
+
+button.btn-link:hover {
+  color: #EF7823 !important;
+  -webkit-transition: ease 0.3;
+  transition: ease 0.3;
 }
 
 /* Rating Star Widgets Style */

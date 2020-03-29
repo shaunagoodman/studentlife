@@ -155,7 +155,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $query = "INSERT INTO recipes (user_ID, name, image, video_name, rating, servings, maxTime, difficultyID) VALUES 
             ('$user_ID', '$recipeName', '$image', '$video_name', '$rating', '$servings', '$time', '$difficultyID')";
             $statement1 = $conn->prepare($query);
-            $statement1->execute();
+            if($statement1->execute()) {
+                echo "<script language = javascript>
+                recipeAdded();
+            </script>";
+            }
             $recipe_ID = $conn->lastInsertId();
         }
             /******************** Add to ingredients table ************************/
