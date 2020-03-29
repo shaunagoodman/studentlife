@@ -175,6 +175,7 @@ unset($conn);
 <head>
     <meta charset="UTF-8">
     <title>Update Recipe</title>
+    <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
         .wrapper{
