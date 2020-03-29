@@ -141,7 +141,13 @@ $('button').click(function(){
             <div class="spinner diagonal part-2"></div>
         </label>
         <div id="sidebarMenu">
-            <ul class="sidebarMenuInner">
+        <ul class="sidebarMenuInner">
+            <li>
+                <form class="form-inline my-2 my-lg-0" method="post" action="recipes-list.php">
+                <input class="form-control mr-sm-2" type="search" name="something" placeholder="Search" aria-label="Search" value="<?= isset($_POST['something']) ? htmlspecialchars($_POST['something']) : '' ?>">
+                <button class="btn my-2 my-sm-0" type="submit" name="submit"> </button>
+            </form>
+                </li>
                 <li> <img width="10%" src="images/recipeasy-icons-logos/home.png"> <a href="index.php">Home</a></li>
                 <li> <img width="10%" src="images/recipeasy-icons-logos/recipes.png"> <a href="recipes-list.php">All Recipes</a></li>
                 <li> <img width="10%" src="images/recipeasy-icons-logos/question.png"> <a href="recipe-api.php">Whats in my fridge?</a></li>
@@ -168,12 +174,7 @@ $('button').click(function(){
                     ?>
                 </li>
 
-                <li>
-                <form class="form-inline my-2 my-lg-0" method="post" action="recipes-list.php">
-                <input class="form-control mr-sm-2" type="search" name="something" placeholder="Search" aria-label="Search" value="<?= isset($_POST['something']) ? htmlspecialchars($_POST['something']) : '' ?>">
-                <button class="btn my-2 my-sm-0" type="submit" name="submit"> </button>
-            </form>
-                </li>
+                
 
             </ul>
         </div>
