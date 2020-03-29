@@ -30,6 +30,7 @@ if (isset($_POST['removeFav'])) {
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
+    <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
     <?php include_once 'includes/CDNs.php'; ?>
     <script src="javascript/scripts.js"></script>
     <link href="includes/stylesheet.css" rel="stylesheet" type="text/css" />
