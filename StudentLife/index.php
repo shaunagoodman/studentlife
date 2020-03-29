@@ -27,7 +27,7 @@ $statement->closeCursor();
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <link rel="icon" href="images/recipeasy-icons-logos/Capture.png">
+    <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
     <?php include_once 'includes/CDNs.php'; ?>
 
 
@@ -113,7 +113,7 @@ $statement->closeCursor();
                             <img src="images/recipes/<?php echo $recipe['image'];  ?>" class="card-img-top" alt='dish image' height='250' width='270'>
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $recipe['name'];  ?></h5>
-                                <p class="card-text">Easy to make and tatse delicious.</p>
+                                <p class="card-text">Easy to make and tastes delicious!</p>
                                 <a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>" class="btn btn-light stretched-link">More Info</a>
                             </div>
                         </div>

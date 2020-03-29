@@ -28,6 +28,7 @@ if (isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true) {
 <head>
     <meta charset="UTF-8">
     <title>My Recipes</title>
+    <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
     <?php include_once 'includes/CDNs.php'; ?>
 </head>
 

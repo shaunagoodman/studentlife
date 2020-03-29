@@ -125,7 +125,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Register</title>
-        <link rel="icon" href="images/recipeasy-icons-logos/Capture.png">
+        <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
 
 
         <link href="includes/stylesheet.css" rel="stylesheet" type="text/css"/>
