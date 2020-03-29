@@ -113,7 +113,7 @@ $statement->closeCursor();
                             <img src="images/recipes/<?php echo $recipe['image'];  ?>" class="card-img-top" alt='dish image' height='250' width='270'>
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $recipe['name'];  ?></h5>
-                                <p class="card-text">Easy to make and tatse delicious.</p>
+                                <p class="card-text">Easy to make and tastes delicious!</p>
                                 <a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>" class="btn btn-light stretched-link">More Info</a>
                             </div>
                         </div>
