@@ -32,7 +32,8 @@ if (isset($_POST['btnFav'])) {
 
 <head>
     <meta charset="UTF-8">
-    <title>Recipe</title>
+    <title>A Recipe</title>
+    <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
     <?php include_once 'includes/CDNs.php'; ?>
 </head>
 

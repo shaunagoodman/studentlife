@@ -14,7 +14,8 @@ include_once 'includes/CDNs.php';
 
 <head>
   <meta charset="UTF-8">
-  <title>Recipe API</title>
+  <title>What's in My Fridge?</title>
+  <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
   <script src="javascript/scripts.js"></script>
   <script src="javascript/api.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

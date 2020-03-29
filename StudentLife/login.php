@@ -111,7 +111,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-
+    <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
     <?php include_once 'includes/CDNs.php'; ?>
     <link rel="icon" href="images/recipeasy-icons-logos/Capture.png">
     <link href="includes/stylesheet.css" rel="stylesheet" type="text/css" />

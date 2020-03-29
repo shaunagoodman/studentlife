@@ -76,6 +76,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>Reset Password</title>
+    <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
 
 
 
