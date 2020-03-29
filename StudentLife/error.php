@@ -10,7 +10,7 @@
             margin: 0 auto;
         }
     </style>
-
+<link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
 </head>
 
 <body class='site' >

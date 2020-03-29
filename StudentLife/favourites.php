@@ -29,6 +29,7 @@ else {
 <head>
     <meta charset="UTF-8">
     <title>Favourites</title>
+    <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
     <?php include_once 'includes/CDNs.php'; ?>
     <link href="includes/stylesheet.css" rel="stylesheet" type="text/css" />
 </head>

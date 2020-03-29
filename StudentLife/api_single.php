@@ -48,6 +48,7 @@ foreach ($response['analyzedInstructions'] as $instruction) {
 <head>
     <meta charset="UTF-8">
     <title>Recipe</title>
+    <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
     <?php include_once 'includes/CDNs.php'; ?>
 </head>
 
