@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 <?php
 // Initialize the session
 session_start();
