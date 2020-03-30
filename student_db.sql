@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2020 at 02:45 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.2
+-- Generation Time: Mar 30, 2020 at 01:03 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.2.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -39,7 +39,7 @@ CREATE TABLE `blog` (
 --
 
 INSERT INTO `blog` (`blogId`, `blogTitle`, `blogContent`) VALUES
-(1, 'Dangerous Foods for Pets\r\n', 'Most people will give their pets left over food or human food as a treat but depending on what\'s in that food could really do some serious harm to your little friend. <br><br>\r\nHere is a list of foods that should never be given to your cat or dog:\r\n<br>\r\nAlcoholic beverages <br>\r\nAvocados <br>\r\nCherry pits <br>\r\nCandy (particularly chocolate—which is toxic to dogs, cats, and ferrets—and any candy containing the toxic sweetener Xylitol) <br>\r\nCoffee <br>\r\nGarlic <br>\r\nGrapes <br>\r\nGum (can cause blockages and sugar free gums may contain the toxic sweetener Xylitol) <br>\r\nMacadamia nuts <br> \r\nMoldy foods <br>\r\nMushroom plants <br>\r\nMustard seeds <br>\r\nOnions and onion powder <br>\r\nPeach pits <br>\r\nPotato leaves and stems (green parts) <br>\r\nRaisins <br>\r\nRhubarb leaves <br>\r\nSalt <br>\r\nTea <br>\r\nTomato leaves and stems <br>\r\nWalnuts <br>\r\nYeast dough <br>\r\n<br>\r\nSo now you know! Be careful with what you give your pets in future. \r\n'),
+(1, 'Title', 'Example blog'),
 (2, '3 Tasty Celebrity Recipes You’ll be Surprised by!\r\n', '\r\nHere are 3 celebrity recipes you’ll want to make straight away after reading this!\r\n\r\nOprah Winfrey’s Deviled Eggs\r\n\r\nINGREDIENTS\r\n\r\n12 large eggs\r\n3 tablespoons mayonnaise\r\n2 tablespoons mustard\r\n1 tablespoon minced sweet pickle\r\n1 dash Worcestershire sauce\r\nsalt & fresh ground pepper\r\n1 dash lemon juice\r\n1 dash horseradish sauce\r\n1 -2 dash Tabasco sauce\r\n2 tablespoons chopped parsley\r\n2 tablespoons paprika (garnish) \r\n\r\nMETHOD\r\nHard boil eggs.\r\nCut each in half lengthwise.\r\nRemove yolks and place in bowl with all other ingredients; mix well.\r\nSpoon into egg whites and sprinkle with parsley & paprika.\r\nCover and refrigerate at least one hour or more.\r\nServe chilled.\r\n\r\nPerfect for your next house gathering or office party!\r\n\r\nDolly Parton’s Coleslaw\r\n\r\nINGREDIENTS\r\n\r\n1 medium head cabbage, minced\r\n1 medium onion, finely minced\r\n1 carrot, minced (or grated)\r\n1⁄2 bell pepper, finely minced\r\n1⁄4 cup sweet pickle juice\r\n1⁄4 cup white vinegar\r\n1 tablespoon dill pickles, minced or 1 tablespoon pickle relish\r\n1 cup mayonnaise\r\n2 tablespoons sugar\r\n1⁄4 teaspoon black pepper\r\n1 teaspoon salt\r\n\r\nMETHOD\r\nMix all ingredients in large bowl. \r\nChill till ready to serve. Serves 10-12.\r\n\r\nPerfect to serve with your favourite burger or on a sandwich!\r\n\r\n\r\nBeyonce’s Guacamole\r\n\r\nINGREDIENTS\r\n\r\n2 ripe avocados (make sure they are a bit soft to the touch)\r\n1 small onion\r\n1 clove garlic (you can use a small amount of crushed garlic)\r\n1 small tomato\r\n1 1/2 Tablespoons lime juice\r\nSalt and pepper to taste\r\n Corn chip scoops\r\n\r\nMETHOD\r\n\r\nPeel avocados and remove the pit\r\nSmash with a spoon in a large bowl\r\nAdd onion, garlic and tomato, lime juice, salt and pepper\r\nMix it well\r\nCover with plastic wrap and place in the refrigerator for about 20 minutes.\r\nFill corn chips scoops with guacamole and enjoy.\r\n\r\nBeyonce’s recipe for guacamole is sure to go down a treat at your next party night!\r\n\r\nWe hope you have fun trying these celebrity recipes! \r\n'),
 (3, 'All You Need to Know About Ireland’s NO.1 Takeaway!', 'Every year, popular takeaway ordering app Just Eat hold a national takeaway awards. They have award categories for everything you can think of. From best takeaway Chinese to best takeaway Salad. \r\nBut the one every takeaway wants to bring home is the “Best Takeaway Ireland” award. And this year it was Saba To Go in Rathmines that took the trophy!\r\n\r\nSaba To Go is the sister takeaway restaurant to Saba. Both serving delicious authentic Thai food throughout Dublin. They boast a menu that they say is healthier than your average takeaway with a wide variety of Vegetarian, Gluten and Dairy Free options available.\r\n\r\nYou can order through Saba To Go’s website at sabatogo.com or from the Just Eat app! Maybe you’ll give them a try? After all they’re the countries No. 1!\r\n'),
 (4, 'Burger sold for $10,000!\r\n', 'A burger in Dubai has made headlines after being sold for $10,000. \r\nThe burger was created by Sheikh Mohammed bin Abdullah Al Thani and was auctioned off to raise money for a Breast Cancer charity in Dubai at the Eat Pink event at the Dubai Mall. \r\nWe hope that was one tasty burger! But even if not, the money still went to a great cause. Congratulations and well done to all!\r\n'),
@@ -56,7 +56,7 @@ CREATE TABLE `comments` (
   `comment_ID` int(11) NOT NULL,
   `comment` text NOT NULL,
   `senderName` varchar(50) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date` timestamp NOT NULL DEFAULT current_timestamp(),
   `recipe_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -160,6 +160,19 @@ CREATE TABLE `favourites` (
   `recipe_ID` int(11) NOT NULL,
   `user_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `favourites`
+--
+
+INSERT INTO `favourites` (`recipe_ID`, `user_ID`) VALUES
+(1366821, 126),
+(658418, 126),
+(616213, 126),
+(245370, 126),
+(706810, 126),
+(12243232, 126),
+(12243233, 126);
 
 -- --------------------------------------------------------
 
@@ -277,7 +290,60 @@ INSERT INTO `ingredients` (`ingredient_ID`, `name`, `amount`, `unit`) VALUES
 (378, 'lime juice', 118, '118.2'),
 (379, 'olive oil', 79, '78.86'),
 (380, 'pepper', 0, '0.25'),
-(381, 'salt', 1, '0.5');
+(381, 'salt', 1, '0.5'),
+(413, '', 0, 'grams'),
+(419, 'hot cocoa mix', 2, '2'),
+(420, 'milk', 237, '236.5'),
+(421, 'half and half', 118, '118.2'),
+(422, 'instant espresso', 1, '1'),
+(423, 'marshmallows', 118, '118.2'),
+(424, 'chocolate syrup', 59, '59.14'),
+(425, 'whipped cream', 1, '1'),
+(426, 'sprinkles', 1, '1'),
+(427, 'apples', 4, '4'),
+(428, 'onions', 3, '3'),
+(429, 'garlic', 3, '3'),
+(430, 'fresh rosemary', 8, '8'),
+(431, 'lemons', 4, '4'),
+(432, 'balsamic vinegar', 118, '118.2'),
+(433, 'dry seasoning rub', 1, '1'),
+(434, 'roasting chickens', 2, '2'),
+(435, 'stock', 1, '1'),
+(436, 'canned black beans', 425, '425.2'),
+(437, 'canned tomatoes', 411, '411.0'),
+(438, 'cheddar cheese', 473, '473.1'),
+(439, 'chili powder', 1, '0.5'),
+(440, 'cream', 6, '6'),
+(441, 'cumin', 1, '1'),
+(442, 'garlic powder', 1, '0.5'),
+(443, 'green onions', 6, '6'),
+(444, 'ground beef', 454, '453.5'),
+(445, 'long-grain rice', 237, '236.5'),
+(446, 'low sodium chicken b', 591, '591.4'),
+(447, 'olive oil', 2, '2'),
+(448, 'tomatoes', 6, '6'),
+(449, 'yellow onion', 59, '59.14'),
+(450, 'real bacon recipe pi', 1, '1'),
+(451, 'blueberries', 1, '1.42'),
+(452, 'lemon zest', 1, '1'),
+(453, 'lemon juice', 1, '1'),
+(454, 'minute tapioca', 30, '30'),
+(455, 'granulated sugar', 100, '100'),
+(456, 'cinnamon', 1, '0.5'),
+(457, 'egg', 1, '1'),
+(458, 'milk', 1, '1'),
+(459, 'balsamic vinegar', 1, '1'),
+(460, 'bay leaf', 1, '1'),
+(461, 'black pepper', 1, '0.5'),
+(462, 'chicken stock', 59, '59.14'),
+(463, 'figs', 227, '226.7'),
+(464, 'fresh rosemary', 1, '1'),
+(465, 'honey', 1, '1'),
+(466, 'lamb rib chops', 85, '85.04'),
+(467, 'olive oil', 1, '1'),
+(468, 'salt', 1, '0.75'),
+(469, 'shallots', 59, '59.14'),
+(470, 'shiraz', 118, '118.2');
 
 -- --------------------------------------------------------
 
@@ -289,6 +355,27 @@ CREATE TABLE `recipecuisine` (
   `recipe_ID` int(11) NOT NULL,
   `cuisine_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `recipecuisine`
+--
+
+INSERT INTO `recipecuisine` (`recipe_ID`, `cuisine_ID`) VALUES
+(245370, 2),
+(245370, 3),
+(245370, 8),
+(245370, 9),
+(12243234, 2),
+(12243234, 3),
+(12243232, 2),
+(12243232, 3),
+(12243233, 3),
+(1366821, 2),
+(706810, 3),
+(616213, 20),
+(1366821, 9),
+(12243238, 9),
+(12243238, 8);
 
 -- --------------------------------------------------------
 
@@ -340,7 +427,59 @@ INSERT INTO `recipeingredient` (`recipe_ID`, `ingredient_ID`) VALUES
 (12243238, 331),
 (12243238, 332),
 (12243238, 333),
-(12243238, 334);
+(12243238, 334),
+(1366821, 419),
+(1366821, 420),
+(1366821, 421),
+(1366821, 422),
+(1366821, 423),
+(1366821, 424),
+(1366821, 425),
+(1366821, 426),
+(658418, 427),
+(658418, 428),
+(658418, 429),
+(658418, 430),
+(658418, 431),
+(658418, 432),
+(658418, 433),
+(658418, 434),
+(658418, 435),
+(616213, 436),
+(616213, 437),
+(616213, 438),
+(616213, 439),
+(616213, 440),
+(616213, 441),
+(616213, 442),
+(616213, 443),
+(616213, 444),
+(616213, 445),
+(616213, 446),
+(616213, 447),
+(616213, 448),
+(616213, 449),
+(245370, 450),
+(245370, 451),
+(245370, 452),
+(245370, 453),
+(245370, 454),
+(245370, 455),
+(245370, 456),
+(245370, 457),
+(245370, 458),
+(706810, 459),
+(706810, 460),
+(706810, 461),
+(706810, 462),
+(706810, 463),
+(706810, 464),
+(706810, 465),
+(706810, 466),
+(706810, 467),
+(706810, 468),
+(706810, 469),
+(706810, 470);
 
 -- --------------------------------------------------------
 
@@ -358,7 +497,7 @@ CREATE TABLE `recipes` (
   `servings` int(11) NOT NULL,
   `maxTime` time NOT NULL,
   `difficultyID` int(11) DEFAULT NULL,
-  `date_created` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  `date_created` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
   `isAPI` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -367,6 +506,11 @@ CREATE TABLE `recipes` (
 --
 
 INSERT INTO `recipes` (`recipe_ID`, `user_ID`, `name`, `image`, `video_name`, `rating`, `servings`, `maxTime`, `difficultyID`, `date_created`, `isAPI`) VALUES
+(245370, 126, 'Blueberry Pie', 'https://spoonacular.com/recipeImages/245370-556x370.jpg', NULL, NULL, 8, '02:00:00', NULL, '2020-03-29 00:29:51.654322', 1),
+(616213, 126, 'One Pan Burrito Bowls', 'https://spoonacular.com/recipeImages/616213-556x370.jpg', NULL, NULL, 6, '00:45:00', NULL, '2020-03-29 00:27:01.401214', 1),
+(658418, 126, 'Roast Chicken with Apples and Rosemary', 'https://spoonacular.com/recipeImages/658418-556x370.jpg', NULL, NULL, 8, '00:45:00', NULL, '2020-03-29 00:25:18.180427', 1),
+(706810, 126, 'Lamb Chops with Fresh Fig Pan Sauce', 'https://spoonacular.com/recipeImages/706810-556x370.jpg', NULL, NULL, 6, '00:45:00', NULL, '2020-03-29 00:31:38.271547', 1),
+(1366821, 126, 'Hot Cocaccino', 'https://spoonacular.com/recipeImages/1366821-556x370.jpg', NULL, NULL, 2, '00:45:00', NULL, '2020-03-29 00:24:58.847425', 1),
 (12243232, 127, 'Cheese and Bacon Omelette', '277316.jpg', 'fWl3wW_M2Co', 3, 1, '00:10:00', 1, '2020-03-26 14:52:50.839297', 0),
 (12243233, 127, 'Chicken and Broccoli Pasta Bake', '200411.jpg', 'OqfYBxCZWV4', 3, 2, '00:45:00', 2, '2020-03-26 14:57:32.705514', 0),
 (12243234, 127, 'Breakfast Berry and Banana Smoothie', '213540.jpg', 'KP-AHMbSiBk', 5, 1, '00:10:00', 1, '2020-03-26 15:01:02.185227', 0),
@@ -395,7 +539,12 @@ INSERT INTO `recipesteps` (`recipe_ID`, `steps_ID`) VALUES
 (12243234, 86),
 (12243235, 87),
 (12243236, 88),
-(12243238, 90);
+(12243238, 90),
+(1366821, 107),
+(658418, 108),
+(616213, 109),
+(245370, 110),
+(706810, 111);
 
 -- --------------------------------------------------------
 
@@ -430,7 +579,12 @@ INSERT INTO `steps` (`steps_ID`, `description`) VALUES
 (98, '1. Whisk together first 5 ingredients. Gradually whisk in 1/3 cup olive oil until blended. '),
 (99, ''),
 (100, ''),
-(101, '');
+(101, ''),
+(107, '1. Heat milk and half and half in medium saucepan until very hot; remove from heat. 2. Add hot cocoa mix and instant coffee.  Stir well and pour into mugs or cups. 3. Top with mini marshmallows, then drizzle chocolate syrup over marshmallows.  Top with whipped topping and spinkles/cocoa powder. '),
+(108, '1. Preheat oven to 400 degrees.  Position a rack in the lower third of the oven.  Rinse the chicken, then dry it very well with paper towels, inside and out. 2. Place apples, rosemary, 3 lemons, onions, and garlic in a single layer in shallow roasting pan. Season with salt and pepper. Toss well and pour in the vinegar. Season the chicken well with the rub and place breast-side-up on top of the veggies and fruits. 3. Put the rest of the veggies and fruit in the cavity of the chicken. 4. Roast for 30 minutes, until the breast is firm and just beginning to brown in spots. Using tongs, turn the chicken breast-down and roast for 20 minutes longer, until the skin is lightly browned and the thermometer registers 175 to 18 5. Tilt the chicken to drain the cavity juices into the pan and remove the goodies from the inside and bottom of pan.  Now transfer the bird to a cutting board. 6. Remove the rack from the pan and spoon off the fat. Set the pan over high heat. 7. Add the stock and cook, scraping up any browned bits and leftover pieces of goodies. Squeeze the last lemon to release the juices. Carve the chicken and pass the chunky jus at the table. '),
+(109, '1. Saute onions in 1 tablespoon of olive oil until they start to soften. 2. Add beef to pan and cook over medium high heat until no longer pink.Move beef to one side of pan, in the other side of the pan add an additional tablespoon of olive oil and saut uncooked rice for about 2 minutes or just until some grains start to turn golden brown.Stir in black beans, canned tomatoes, chicken broth, garlic powder, chili powder and cumin.Bring to a simmer, cover and reduce heat to low. Cook about 20 minutes or until rice is tender.Sprinkle with cheese, recover and let set for 2-3 off heat to melt cheese. 3. Garnish with fresh tomatoes, green onions, sour cream and guacamole. '),
+(110, '1. Remove a dough disk from refrigerator and let sit for 5 to 10 minutes to take the chill off. 2. Place it on a lightly floured clean, flat surface. 3. Roll it out into a circle about 13 inches wide. 4. Place the rolled out dough on to a 9-inch pie pan. Trim the edges to 1/2 inch over the edge of the plan. 5. Place in the refrigerator to chill. 6. Make the blueberry filling:  7. Place the blueberries, sugar, cornstarch (or flour or quick tapioca), cinnamon, lemon zest, and lemon juice in a large bowl. Gently stir them so that all of the blueberries are coated with some sugar and flour. 8. Fill the bottom crust with the berries:  9. Remove the bottom crust from the refrigerator and place the sugar coated berries into the pan. 10. Roll out the second dough disk to the same size and thickness as the first. 11. Place on top of the berry filling. 12. Tuck the top dough over and under the edge of the bottom dough, and crimp the edges with your fingers. 13. Place in refrigerator while you make the egg wash. 14. oven to 425°F. 15. Whisk egg and milk together to make an egg wash.  16. Brush the top crust with egg wash. Score the pie on the top with several cuts (so steam can escape while cooking). 17. Bake:  18. Place the pie on the middle rack of the oven with a foil or Silpat lined baking pan positioned on the lower rack to catch any filling that may bubble over. 19. Bake for 20 minutes at 425°. Reduce heat to 350°F and bake for 30 to 40 minutes more or until juices are bubbling and have thickened. 20. Transfer to a wire rack to cool. 21. Let cool completely before serving. '),
+(111, '1. Preheat oven to 40 2. Heat a medium saucepan over medium-low heat. 3. Add 2 teaspoons extra-virgin olive oil; swirl to coat. 4. Add shallots; cook for 7 minutes or until tender, stirring frequently. 5. Add figs; mash with a potato masher to break them up. Cook for 3 minutes or until figs start to break down, stirring frequently. Stir in 1/4 teaspoon salt and 1/4 teaspoon black pepper. 6. Increase heat to medium-high. 7. Add wine; boil for 1 minute. Stir in stock and bay leaf. Reduce the heat to medium-low; simmer 10 minutes or until sauce thickens, stirring occasionally. 8. Add honey and vinegar; simmer 5 minutes. 9. Remove from heat; discard bay leaf. Stir in rosemary; cover and keep sauce warm. 10. Heat a large cast-iron skillet over medium-high heat. 11. Brush lamb with remaining 1 teaspoon oil; sprinkle evenly with remaining 1/2 teaspoon salt and 1/4 teaspoon pepper. 12. Add lamb to skillet; sear 2 minutes on each side. 13. Place pan in oven; bake at 400 for 4 minutes (for medium-rare) or until desired degree of doneness. 14. Remove pan from oven; remove lamb from pan. 15. Let lamb stand for 5 minutes before serving. 16. Serve with sauce. ');
 
 -- --------------------------------------------------------
 
@@ -455,7 +609,6 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`user_ID`, `u_type`, `fname`, `lname`, `u_email`, `u_password`, `isActive`) VALUES
 (102, 1, 'Shauna', 'Goodman', 'shauna@dkit.ie', '$2y$10$ZHP2tg/08x1qqmUjbU4ZU.MdupaNng0.Hr1atPh0N7Bwi8iEm0mxm', 1),
 (105, 0, 'Simon', 'Smith', 'simonsmith@gmail.com', '$2y$10$V3mG0lP0.ohlCZVTRNlkJeZsszhIJKes3KvvxeWz8ePAX81EB2cmu', 0),
-(114, 0, 'Mary', 'Finnegan', 'maryfinnegan@iol.ie', '$2y$10$d7Znl8yogoPuTELlOk88W.f36/ThUqX4DgpCnwZNdfGV//KikDKwy', 0),
 (117, 1, 'Admin', '', 'adminstudentlife@gmail.com', 'StudentLife2020@', 0),
 (118, 0, 'Mateusz', 'Kowalski', 'matiorex5@gmail.com', 'Student123', 0),
 (122, 1, 'Mateusz', 'Kowalski', 'matiorex15@gmail.com', '$2y$10$S9.tZHzH4Jnyr4hrDhnx7ORhVrGCOWPDqxedfJFYWLeRyxmi9Lffa', 0),
@@ -463,7 +616,8 @@ INSERT INTO `user` (`user_ID`, `u_type`, `fname`, `lname`, `u_email`, `u_passwor
 (124, 1, 'Niamh', 'Curran', 'niamhthefabulous@gmail.com', '$2y$10$hSKcFK30wbRPpZkK/vhkWejHU8Ei4Xsbo63UmUgHzPD.KOXkLWLYC', 1),
 (125, 0, 'Emmet', 'Curran', 'emmet@gmail.com', '$2y$10$JMVxj/R1tlYlbVOikSXyGurKhquu09Q7JxnfFt7cZ4Qbx58IU4nEO', 1),
 (126, 0, 'Steven', 'Riordan', 'stevo@iol.ie', '$2y$10$65UD3K4yltgZDqhTly4GYe3Dw9Sgeyv7SBAa1E7P6tG46rmNRQI3K', 1),
-(127, 1, 'Orlaith', 'Hanlon', 'orlaithhanlon@gmail.com', '$2y$10$ueSDjkoYM0er1vJJ6hlTpexydFO7TE0lZK4PWyjxnzQCevHn6hk1G', 1);
+(127, 1, 'Orlaith', 'Hanlon', 'orlaithhanlon@gmail.com', '$2y$10$ueSDjkoYM0er1vJJ6hlTpexydFO7TE0lZK4PWyjxnzQCevHn6hk1G', 1),
+(128, 0, 'Shauna', 'Goodman', 'shaunashauna@dkit.ie', '$2y$10$iP0/AonxlkX16xWUd6y3suIzK1AIFp3bW37X4T6pBI5nFibBWmEJu', 1);
 
 --
 -- Indexes for dumped tables
@@ -568,7 +722,7 @@ ALTER TABLE `blog`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `comment_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `contact`
@@ -586,25 +740,25 @@ ALTER TABLE `cuisine`
 -- AUTO_INCREMENT for table `ingredients`
 --
 ALTER TABLE `ingredients`
-  MODIFY `ingredient_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=386;
+  MODIFY `ingredient_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=472;
 
 --
 -- AUTO_INCREMENT for table `recipes`
 --
 ALTER TABLE `recipes`
-  MODIFY `recipe_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12243243;
+  MODIFY `recipe_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12243254;
 
 --
 -- AUTO_INCREMENT for table `steps`
 --
 ALTER TABLE `steps`
-  MODIFY `steps_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `steps_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+  MODIFY `user_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
 
 --
 -- Constraints for dumped tables
