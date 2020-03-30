@@ -125,8 +125,43 @@ include_once 'includes/database/addRecipe.php';
                 </select>
                 <span class="help-block"><?php echo $difficultyID_err; ?></span>
             </div>
+            <div class="form-group col-lg-2 col-md-6">
+                <label>Cuisine</label><br>
+                <select id="cuisine" name="cuisine">
+                    <option value="1">African </option>
+                    <option value="2">America</option>
+                    <option value="3">British</option>
+                    <option value="4">Cajun </option>
+                    <option value="5">Caribbean</option>
+                    <option value="6">Chinese</option>
+                    <option value="7">Eastern European </option>
+                    <option value="8">European</option>
+                    <option value="9">French</option>
+                    <option value="10">German </option>
+                    <option value="11">Green</option>
+                    <option value="12">Indian</option>
+                    <option value="13">Irish</option>
+                    <option value="14">Italian</option>
+                    <option value="15">Japanese</option>
+                    <option value="16">Jewish</option>
+                    <option value="17">Korean</option>
+                    <option value="18">Latin American</option>
+                    <option value="19">Mediterranean</option>
+                    <option value="20">Mexican</option>
+                    <option value="21">Middle Eastern</option>
+                    <option value="22">Nordic</option>
+                    <option value="23">Southern</option>
+                    <option value="24">Spanish</option>
+                    <option value="25">Thai</option>
+                </select>
+            </div>
 
-            <div class="form-group col-lg-3 col-md-6 <?php echo (!empty($rating_err)) ? 'has-error' : ''; ?>">
+
+        </div>
+        <div class='row' >
+        
+
+        <div class="form-group col-md-3 col-md-6 <?php echo (!empty($rating_err)) ? 'has-error' : ''; ?>">
                 <label>Rating</label><br>
                 <fieldset class="rating">
                     <input type="radio" id="star5" name="rating" value="5" /><label for="star5" >5 stars</label>
@@ -137,12 +172,6 @@ include_once 'includes/database/addRecipe.php';
                 </fieldset>
   
             </div>
-
-        </div>
-        <div class='row' >
-        
-
-           
 
             <div class="form-group col-md-4 ">
                 <label>Image</label>
