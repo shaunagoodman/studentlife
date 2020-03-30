@@ -16,7 +16,6 @@ and open the template in the editor.
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
     <script src="javascript/nav.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="javascript/search-toggle.js"></script>
 
 
