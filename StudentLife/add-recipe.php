@@ -161,7 +161,7 @@ include_once 'includes/database/addRecipe.php';
         <div class='row' >
         
 
-        <div class="form-group col-lg-3 col-md-6 <?php echo (!empty($rating_err)) ? 'has-error' : ''; ?>">
+        <div class="form-group col-md-3 col-md-6 <?php echo (!empty($rating_err)) ? 'has-error' : ''; ?>">
                 <label>Rating</label><br>
                 <fieldset class="rating">
                     <input type="radio" id="star5" name="rating" value="5" /><label for="star5" >5 stars</label>
