@@ -21,8 +21,40 @@ and open the template in the editor.
 
 <!-- MOBILE NAV MENU -->
 
+
+<style>
+
+@media (max-width: 990px) {
+    .logo-img1{
+        width: 110%;
+    }
+    
+}
+
+@media (max-width: 880px) {
+    .logo-img1{
+        width: 125%;
+    }
+}
+@media (max-width: 767px) {
+    .logo-img1{
+        width: 135%;
+    }
+}
+
+@media (max-width: 660px) {
+    .logo-img1{
+        width: 160%;
+    }
+}
+        </style>
+
 <nav class='mobileNav'>
-        <div class="header"></div>
+        <div class="header">
+        <center>
+                <a class="navbar-brand" href="index.php"><img src="images/recipeasy-icons-logos/new-logo-white.png" class="d-inline-block align-top logo-img1" alt="recipeasy-logo" /> </a>
+            </center>
+        </div>
         <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
         <label for="openSidebarMenu" class="sidebarIconToggle">
             <div class="spinner diagonal part-1"></div>

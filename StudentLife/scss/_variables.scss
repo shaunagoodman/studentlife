@@ -19,6 +19,11 @@ $grey: #727272;
     font-style: $style;
     font-weight: $weight;
   }
+  @mixin mont-heavy-font( $family: 'Montserrat' , $weight: 600 , $style: normal ) {
+    font-family: $family ,  sans-serif;
+    font-style: $style;
+    font-weight: $weight;
+  }
 
   @mixin heading-font( $family: 'Ubuntu' ,  $style: normal ) {
     font-family: $family ,  sans-serif;

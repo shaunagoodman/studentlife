@@ -37,37 +37,36 @@ $statement->closeCursor();
 
 <body class='site'>
 
-<?php include_once 'includes/mobile-nav.php'; ?>
-    
+    <?php include_once 'includes/mobile-nav.php'; ?>
+
 
     <div class="jumbotron jumbotron-fluid">
         <?php include_once 'includes/index-nav.php'; ?>
         <div class="container jumbo-title">
             <h1 class="display-4 jumbo-text">Find a Recipe</h1>
-            <h4 class='jumbo-text' >Or try our Pot Luck!</h4>
+            <h4 class='jumbo-text'>Or try our Pot Luck!</h4>
             <form class="form-inline" method="post">
-            <div class='row' >   
-            <div class='col-lg-12' >
+                <div class='row'>
+                    <div class='col-lg-12'>
 
-                <input class="form-control mr-sm-2" type="search" name="something" placeholder="Search" aria-label="Search" value="<?= isset($_POST['something']) ? htmlspecialchars($_POST['something']) : '' ?>">
-                <button formaction = "recipes-list.php" style="visibility: hidden;" type="submit" name="submit"></button>
+                        <input class="form-control mr-sm-2" type="search" name="something" placeholder="Search" aria-label="Search" value="<?= isset($_POST['something']) ? htmlspecialchars($_POST['something']) : '' ?>">
+                        <button formaction="recipes-list.php" style="visibility: hidden;" type="submit" name="submit"></button>
 
-            </div>
-                
-                <div class='col-lg-12 jumbo-buttons' >
-                <button class='btn btn-sm btn-light' formaction = "recipes-list.php" type="submit" name="submit">Search</button>
-                <button formaction = "random-recipe.php" class='btn btn-sm btn-light-invert' type="submit" name="submit" >Pot Luck?</button>
-                
+                    </div>
+
+                    <div class='col-lg-12 jumbo-buttons'  >
+                        <button class='btn btn-sm btn-light' formaction="recipes-list.php" type="submit" name="submit">Search</button>
+                        <button formaction="random-recipe.php" style="margin-right: 7%;" class='btn btn-sm btn-light-invert' type="submit" name="submit">Pot Luck?</button>
+                    </div>
                 </div>
-            </div>
-            <div id="startchange"></div>
-            </form>  
+                <div id="startchange"></div>
+            </form>
         </div>
     </div>
-    
+
 
     <main class='site-content'>
-        <div class="container first-home-container " >
+        <div class="container first-home-container ">
 
             <div class="row">
 
@@ -100,24 +99,24 @@ $statement->closeCursor();
         </div>
         <div class='container third-home-container'>
 
-            <div class="row">
+            <div class="row no-gutters">
 
                 <div class="col-lg-12">
                     <h1 class="home-title1"> <span class="underline"> Latest Recipes</span></h1>
-                    
+
                 </div>
                 <?php foreach ($recipes as $recipe) :
                 ?>
 
-                    <div class="col-lg-3 col-md-6 bottom-home ">
+                    <div class="col-lg-3 col-md-6 bottom-home  d-flex align-items-stretch ">
 
-                        <div class="card home-card test-card hvr-shadow">
+                        <div class="card home-card test-card hvr-shadow" style="margin-left: 2%; margin-right: 2%;" >
 
                             <img src="images/recipes/<?php echo $recipe['image'];  ?>" class="card-img-top" alt='dish image' height='250' width='270'>
-                            <div class="card-body">
+                            <div class="card-body d-flex flex-column align-item-center">
                                 <h5 class="card-title"><?php echo $recipe['name'];  ?></h5>
                                 <p class="card-text">Easy to make and tastes delicious!</p>
-                                <a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>" class="btn btn-light stretched-link">More Info</a>
+                                <a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>" class="btn btn-light stretched-link  card-button" >More Info</a>
                             </div>
                         </div>
                     </div>
@@ -127,4 +126,5 @@ $statement->closeCursor();
     </main>
     <?php include_once 'includes/footer.php'; ?>
 </body>
+
 </html>
