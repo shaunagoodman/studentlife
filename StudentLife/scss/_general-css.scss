@@ -1,8 +1,5 @@
 /* *************************** GENERAL CSS *****************************     */
 
-/* --------------- MIXINS HELLO------------------     */
-
-/* ------------------------------------*/
 h1 {
   @include heading-font;
 }
@@ -26,6 +23,11 @@ h6 {
 p {
   @include mont-medium-font;
 }
+
+th {
+  @include mont-heavy-font;
+}
+
 
 input.sortBy {
   @include mont-medium-font;
@@ -117,6 +119,25 @@ body {
 .site-content {
   flex: 1;
 }
+
+.card-button {
+  margin-top: auto;
+  margin-right: auto;
+  margin-left: auto;
+}
+.card-img-top{
+  object-fit: cover
+}
+.card{
+  flex-basis: 100%;
+}
+
+// @media (max-width: 1199px) {
+//   .card-img-top{
+//     object-fit: cover
+//   }
+// }
+
 
 .card-body {
   box-shadow: -1px 17px 16px -5px rgba(122, 122, 122, 0.52);

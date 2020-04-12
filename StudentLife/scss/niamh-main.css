@@ -1,7 +1,5 @@
 /* **********************VARIABLES STYLES****************************/
 /* *************************** GENERAL CSS *****************************     */
-/* --------------- MIXINS HELLO------------------     */
-/* ------------------------------------*/
 h1 {
   font-family: "Ubuntu", sans-serif;
   font-style: normal;
@@ -41,6 +39,12 @@ p {
   font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: 400;
+}
+
+th {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 600;
 }
 
 input.sortBy {
@@ -145,6 +149,22 @@ body {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+}
+
+.card-button {
+  margin-top: auto;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.card-img-top {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.card {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
 }
 
 .card-body {
@@ -277,20 +297,6 @@ a.carousel-recipe:hover {
 
 /*  ********************** 3rd CONTAINER **********************    */
 /*  ********************** CSS CARDS - HOME PAGE **********************    */
-@media (max-width: 991px) {
-  .home-card {
-    width: 80%;
-    margin-left: 15%;
-  }
-}
-
-@media (max-width: 670px) {
-  .home-card {
-    width: 80%;
-    margin-left: 10%;
-  }
-}
-
 /*  ********************** CSS FOR NAV **********************    */
 @media (min-width: 991px) {
   nav {
@@ -920,6 +926,20 @@ label {
 .sub-menu {
   padding-top: 2.5%;
   border-bottom: 1px solid #EF7823;
+}
+
+@media only screen and (max-width: 860px) {
+  .sub-menu {
+    padding-top: 3.5%;
+    border-bottom: 1px solid #EF7823;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .sub-menu {
+    padding-top: 5%;
+    border-bottom: 1px solid #EF7823;
+  }
 }
 
 .allRecipes-h1 {
@@ -1561,7 +1581,7 @@ button.btn-link:hover {
 }
 
 footer {
-  background-color: #f29e4c;
+  background-color: #EF7823;
 }
 
 .details {
@@ -1901,14 +1921,37 @@ button.myLink.active {
           box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
 }
 
-.table1,
+/* ***************ADMIN CSS************ */
+/* TABLE CSS */
+table,
 tr,
-td {
-  border: 1px solid !important;
+td,
+.th1 {
+  border-bottom: 1px solid !important;
   border-color: #f29e4c !important;
   -webkit-box-pack: center !important;
       -ms-flex-pack: center !important;
           justify-content: center !important;
+}
+
+table {
+  border: 1px solid #f29e4c !important;
+}
+
+table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #f29e4c !important;
+  border-top: 1px solid #f29e4c !important;
+}
+
+.table-hover > tbody > tr:hover {
+  background-color: #f29f4c48;
+}
+
+td .p {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 @media (min-width: 1125px) {
@@ -1984,6 +2027,7 @@ td {
 @media (max-width: 991px) {
   #accordion {
     display: block;
+    margin-bottom: 5%;
   }
 }
 

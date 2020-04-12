@@ -24,21 +24,19 @@ and open the template in the editor.
 
 <body>
 
-<style>
+    <style>
+        nav {
+            background-color: #EF7823 !important;
+            /* padding-bottom: 10% */
+        }
 
-
-nav {
-  background-color: #EF7823 !important;
-  /* padding-bottom: 10% */
-}
-
-/* .form-inline{
+        /* .form-inline{
     width: 100px;
 } */
-</style>
+    </style>
 
 
-<!-- <script>
+    <!-- <script>
 
 $('button').click(function(){
     $('input').animate({width: 'toggle'});
@@ -70,7 +68,7 @@ $('button').click(function(){
                     <a class="nav-link" href="recipe-api.php">Whats in my fridge?</a>
                 </li>
 
-                
+
                 <!-- <li class=" nav-hover nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Recipes </a>
@@ -116,11 +114,11 @@ $('button').click(function(){
                 </li>
             </ul>
 
-            <div class="box" >
-            <form class="form-inline my-2 my-lg-0 " method="post" action="recipes-list.php">
-                <input class="form-control mr-sm-2" type="search" name="something" placeholder="Search" aria-label="Search" value="<?= isset($_POST['something']) ? htmlspecialchars($_POST['something']) : '' ?>">
-                <button style="visibility: hidden;" type="submit" name="submit"></button>
-            </form>
+            <div class="box">
+                <form class="form-inline my-2 my-lg-0 " method="post" action="recipes-list.php">
+                    <input class="form-control mr-sm-2" type="search" name="something" placeholder="Search" aria-label="Search" value="<?= isset($_POST['something']) ? htmlspecialchars($_POST['something']) : '' ?>">
+                    <button style="visibility: hidden;" type="submit" name="submit"></button>
+                </form>
             </div>
             <button class="btn my-2 my-sm-0 slide-toggle"> <img src="images/recipeasy-icons-logos/white-search.png" class="d-inline-block align-top" alt="" /></button>
         </div>
@@ -129,10 +127,43 @@ $('button').click(function(){
 
 
 
-<!-- MOBILE NAV MENU -->
+    <!-- MOBILE NAV MENU -->
 
-<nav class='mobileNav'>
-        <div class="header"></div>
+
+    <style>
+
+@media (max-width: 990px) {
+    .logo-img1{
+        width: 110%;
+    }
+    
+}
+
+@media (max-width: 880px) {
+    .logo-img1{
+        width: 125%;
+    }
+}
+@media (max-width: 767px) {
+    .logo-img1{
+        width: 135%;
+    }
+}
+
+@media (max-width: 660px) {
+    .logo-img1{
+        width: 160%;
+    }
+}
+        </style>
+
+
+    <nav class='mobileNav'>
+        <div class="header">
+            <center>
+                <a class="navbar-brand" href="index.php"><img src="images/recipeasy-icons-logos/new-logo-white.png" class="d-inline-block align-top logo-img1" alt="recipeasy-logo" /> </a>
+            </center>
+        </div>
         <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
         <label for="openSidebarMenu" class="sidebarIconToggle">
             <div class="spinner diagonal part-1"></div>
@@ -140,12 +171,12 @@ $('button').click(function(){
             <div class="spinner diagonal part-2"></div>
         </label>
         <div id="sidebarMenu">
-        <ul class="sidebarMenuInner">
-            <li>
-                <form class="form-inline my-2 my-lg-0" method="post" action="recipes-list.php">
-                <input class="form-control mr-sm-2" type="search" name="something" placeholder="Search" aria-label="Search" value="<?= isset($_POST['something']) ? htmlspecialchars($_POST['something']) : '' ?>">
-                <button class="btn my-2 my-sm-0" type="submit" name="submit"> </button>
-            </form>
+            <ul class="sidebarMenuInner">
+                <li>
+                    <form class="form-inline my-2 my-lg-0" method="post" action="recipes-list.php">
+                        <input class="form-control mr-sm-2" type="search" name="something" placeholder="Search" aria-label="Search" value="<?= isset($_POST['something']) ? htmlspecialchars($_POST['something']) : '' ?>">
+                        <button class="btn my-2 my-sm-0" type="submit" name="submit"> </button>
+                    </form>
                 </li>
                 <li> <img width="10%" src="images/recipeasy-icons-logos/home.png"> <a href="index.php">Home</a></li>
                 <li> <img width="10%" src="images/recipeasy-icons-logos/recipes.png"> <a href="recipes-list.php">All Recipes</a></li>
@@ -173,7 +204,7 @@ $('button').click(function(){
                     ?>
                 </li>
 
-                
+
 
             </ul>
         </div>
