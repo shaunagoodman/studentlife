@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2020 at 01:03 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.2.26
+-- Generation Time: Apr 12, 2020 at 09:29 PM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -70,7 +70,8 @@ INSERT INTO `comments` (`comment_ID`, `comment`, `senderName`, `date`, `recipe_I
 (19, 'Ohh cheesy!', 'Steven', '2020-03-27 17:01:37', 12243232),
 (20, 'Oh cheesy oh so nice', 'Steven', '2020-03-27 17:02:05', 12243232),
 (21, 'Comment\r\n', 'Steven', '2020-03-28 13:38:04', 12243234),
-(22, 'Anoother Comment', 'Steven', '2020-03-28 13:38:47', 12243234);
+(22, 'Anoother Comment', 'Steven', '2020-03-28 13:38:47', 12243234),
+(34, 'I love this recipe!', 'Ger', '2020-03-30 12:11:19', 12243234);
 
 -- --------------------------------------------------------
 
@@ -167,12 +168,12 @@ CREATE TABLE `favourites` (
 
 INSERT INTO `favourites` (`recipe_ID`, `user_ID`) VALUES
 (1366821, 126),
-(658418, 126),
 (616213, 126),
 (245370, 126),
 (706810, 126),
 (12243232, 126),
-(12243233, 126);
+(12243233, 126),
+(245370, 124);
 
 -- --------------------------------------------------------
 
@@ -300,15 +301,6 @@ INSERT INTO `ingredients` (`ingredient_ID`, `name`, `amount`, `unit`) VALUES
 (424, 'chocolate syrup', 59, '59.14'),
 (425, 'whipped cream', 1, '1'),
 (426, 'sprinkles', 1, '1'),
-(427, 'apples', 4, '4'),
-(428, 'onions', 3, '3'),
-(429, 'garlic', 3, '3'),
-(430, 'fresh rosemary', 8, '8'),
-(431, 'lemons', 4, '4'),
-(432, 'balsamic vinegar', 118, '118.2'),
-(433, 'dry seasoning rub', 1, '1'),
-(434, 'roasting chickens', 2, '2'),
-(435, 'stock', 1, '1'),
 (436, 'canned black beans', 425, '425.2'),
 (437, 'canned tomatoes', 411, '411.0'),
 (438, 'cheddar cheese', 473, '473.1'),
@@ -436,15 +428,6 @@ INSERT INTO `recipeingredient` (`recipe_ID`, `ingredient_ID`) VALUES
 (1366821, 424),
 (1366821, 425),
 (1366821, 426),
-(658418, 427),
-(658418, 428),
-(658418, 429),
-(658418, 430),
-(658418, 431),
-(658418, 432),
-(658418, 433),
-(658418, 434),
-(658418, 435),
 (616213, 436),
 (616213, 437),
 (616213, 438),
@@ -508,14 +491,13 @@ CREATE TABLE `recipes` (
 INSERT INTO `recipes` (`recipe_ID`, `user_ID`, `name`, `image`, `video_name`, `rating`, `servings`, `maxTime`, `difficultyID`, `date_created`, `isAPI`) VALUES
 (245370, 126, 'Blueberry Pie', 'https://spoonacular.com/recipeImages/245370-556x370.jpg', NULL, NULL, 8, '02:00:00', NULL, '2020-03-29 00:29:51.654322', 1),
 (616213, 126, 'One Pan Burrito Bowls', 'https://spoonacular.com/recipeImages/616213-556x370.jpg', NULL, NULL, 6, '00:45:00', NULL, '2020-03-29 00:27:01.401214', 1),
-(658418, 126, 'Roast Chicken with Apples and Rosemary', 'https://spoonacular.com/recipeImages/658418-556x370.jpg', NULL, NULL, 8, '00:45:00', NULL, '2020-03-29 00:25:18.180427', 1),
 (706810, 126, 'Lamb Chops with Fresh Fig Pan Sauce', 'https://spoonacular.com/recipeImages/706810-556x370.jpg', NULL, NULL, 6, '00:45:00', NULL, '2020-03-29 00:31:38.271547', 1),
 (1366821, 126, 'Hot Cocaccino', 'https://spoonacular.com/recipeImages/1366821-556x370.jpg', NULL, NULL, 2, '00:45:00', NULL, '2020-03-29 00:24:58.847425', 1),
-(12243232, 127, 'Cheese and Bacon Omelette', '277316.jpg', 'fWl3wW_M2Co', 3, 1, '00:10:00', 1, '2020-03-26 14:52:50.839297', 0),
+(12243232, 127, 'Cheese and Bacon Omelette', 'omelette1.jpg', 'fWl3wW_M2Co', 3, 1, '00:10:00', 1, '2020-04-12 12:57:19.981716', 0),
 (12243233, 127, 'Chicken and Broccoli Pasta Bake', '200411.jpg', 'OqfYBxCZWV4', 3, 2, '00:45:00', 2, '2020-03-26 14:57:32.705514', 0),
 (12243234, 127, 'Breakfast Berry and Banana Smoothie', '213540.jpg', 'KP-AHMbSiBk', 5, 1, '00:10:00', 1, '2020-03-26 15:01:02.185227', 0),
 (12243235, 127, 'Prawn Stirfry', '108912.jpg', 'Sj8CCd3nuUQ', 5, 1, '00:30:00', 2, '2020-03-26 15:13:06.042427', 0),
-(12243236, 127, 'Pancakes', '695030.jpg', 'Wtk9VstvYXk', 4, 1, '00:10:00', 1, '2020-03-26 15:16:13.400244', 0),
+(12243236, 127, 'Pancakes', 'pancakes1.jpg', 'Wtk9VstvYXk', 4, 1, '00:10:00', 1, '2020-04-12 12:56:23.580158', 0),
 (12243238, 102, 'Oven Baked Risotto', '718573.jpg', '4NWIs5X7JIM', 0, 2, '00:45:00', 1, '2020-03-26 17:49:33.152178', 0);
 
 -- --------------------------------------------------------
@@ -541,7 +523,6 @@ INSERT INTO `recipesteps` (`recipe_ID`, `steps_ID`) VALUES
 (12243236, 88),
 (12243238, 90),
 (1366821, 107),
-(658418, 108),
 (616213, 109),
 (245370, 110),
 (706810, 111);
@@ -581,9 +562,8 @@ INSERT INTO `steps` (`steps_ID`, `description`) VALUES
 (100, ''),
 (101, ''),
 (107, '1. Heat milk and half and half in medium saucepan until very hot; remove from heat. 2. Add hot cocoa mix and instant coffee.  Stir well and pour into mugs or cups. 3. Top with mini marshmallows, then drizzle chocolate syrup over marshmallows.  Top with whipped topping and spinkles/cocoa powder. '),
-(108, '1. Preheat oven to 400 degrees.  Position a rack in the lower third of the oven.  Rinse the chicken, then dry it very well with paper towels, inside and out. 2. Place apples, rosemary, 3 lemons, onions, and garlic in a single layer in shallow roasting pan. Season with salt and pepper. Toss well and pour in the vinegar. Season the chicken well with the rub and place breast-side-up on top of the veggies and fruits. 3. Put the rest of the veggies and fruit in the cavity of the chicken. 4. Roast for 30 minutes, until the breast is firm and just beginning to brown in spots. Using tongs, turn the chicken breast-down and roast for 20 minutes longer, until the skin is lightly browned and the thermometer registers 175 to 18 5. Tilt the chicken to drain the cavity juices into the pan and remove the goodies from the inside and bottom of pan.  Now transfer the bird to a cutting board. 6. Remove the rack from the pan and spoon off the fat. Set the pan over high heat. 7. Add the stock and cook, scraping up any browned bits and leftover pieces of goodies. Squeeze the last lemon to release the juices. Carve the chicken and pass the chunky jus at the table. '),
 (109, '1. Saute onions in 1 tablespoon of olive oil until they start to soften. 2. Add beef to pan and cook over medium high heat until no longer pink.Move beef to one side of pan, in the other side of the pan add an additional tablespoon of olive oil and saut uncooked rice for about 2 minutes or just until some grains start to turn golden brown.Stir in black beans, canned tomatoes, chicken broth, garlic powder, chili powder and cumin.Bring to a simmer, cover and reduce heat to low. Cook about 20 minutes or until rice is tender.Sprinkle with cheese, recover and let set for 2-3 off heat to melt cheese. 3. Garnish with fresh tomatoes, green onions, sour cream and guacamole. '),
-(110, '1. Remove a dough disk from refrigerator and let sit for 5 to 10 minutes to take the chill off. 2. Place it on a lightly floured clean, flat surface. 3. Roll it out into a circle about 13 inches wide. 4. Place the rolled out dough on to a 9-inch pie pan. Trim the edges to 1/2 inch over the edge of the plan. 5. Place in the refrigerator to chill. 6. Make the blueberry filling:  7. Place the blueberries, sugar, cornstarch (or flour or quick tapioca), cinnamon, lemon zest, and lemon juice in a large bowl. Gently stir them so that all of the blueberries are coated with some sugar and flour. 8. Fill the bottom crust with the berries:  9. Remove the bottom crust from the refrigerator and place the sugar coated berries into the pan. 10. Roll out the second dough disk to the same size and thickness as the first. 11. Place on top of the berry filling. 12. Tuck the top dough over and under the edge of the bottom dough, and crimp the edges with your fingers. 13. Place in refrigerator while you make the egg wash. 14. oven to 425°F. 15. Whisk egg and milk together to make an egg wash.  16. Brush the top crust with egg wash. Score the pie on the top with several cuts (so steam can escape while cooking). 17. Bake:  18. Place the pie on the middle rack of the oven with a foil or Silpat lined baking pan positioned on the lower rack to catch any filling that may bubble over. 19. Bake for 20 minutes at 425°. Reduce heat to 350°F and bake for 30 to 40 minutes more or until juices are bubbling and have thickened. 20. Transfer to a wire rack to cool. 21. Let cool completely before serving. '),
+(110, '1. Remove a dough disk from refrigerator and let sit for 5 to 10 minutes to take the chill off. 2. Place it on a lightly floured clean, flat surface. 3. Roll it out into a circle about 13 inches wide. 4. Place the rolled out dough on to a 9-inch pie pan. Trim the edges to 1/2 inch over the edge of the plan. 5. Place in the refrigerator to chill. 6. Make the blueberry filling:  7. Place the blueberries, sugar, cornstarch (or flour or quick tapioca), cinnamon, lemon zest, and lemon juice in a large bowl. Gently stir them so that all of the blueberries are coated with some sugar and flour. 8. Fill the bottom crust with the berries:  9. Remove the bottom crust from the refrigerator and place the sugar coated berries into the pan. 10. Roll out the second dough disk to the same size and thickness as the first. 11. Place on top of the berry filling. 12. Tuck the top dough over and under the edge of the bottom dough, and crimp the edges with your fingers. 13. Place in refrigerator while you make the egg wash. 14. oven to 425°F. 15. Whisk egg and milk together to make an egg wash.  16. Brush the top crust with egg wash. Score the pie on the top with several cuts (so steam can escape while cooking). 17. Bake:  18. Place the pie on the middle rack of the oven with a foil or Silpat lined baking pan positioned on the lower rack to catch any filling that may bubble over. 19. Bake for 20 minutes at 425°. Reduce heat to 350°F and bake for 30 to 40 minutes more or until juices are bubbling and have thickened. 20. Transfer to a wire rack to cool. 21. Let cool completely before serving. '),
 (111, '1. Preheat oven to 40 2. Heat a medium saucepan over medium-low heat. 3. Add 2 teaspoons extra-virgin olive oil; swirl to coat. 4. Add shallots; cook for 7 minutes or until tender, stirring frequently. 5. Add figs; mash with a potato masher to break them up. Cook for 3 minutes or until figs start to break down, stirring frequently. Stir in 1/4 teaspoon salt and 1/4 teaspoon black pepper. 6. Increase heat to medium-high. 7. Add wine; boil for 1 minute. Stir in stock and bay leaf. Reduce the heat to medium-low; simmer 10 minutes or until sauce thickens, stirring occasionally. 8. Add honey and vinegar; simmer 5 minutes. 9. Remove from heat; discard bay leaf. Stir in rosemary; cover and keep sauce warm. 10. Heat a large cast-iron skillet over medium-high heat. 11. Brush lamb with remaining 1 teaspoon oil; sprinkle evenly with remaining 1/2 teaspoon salt and 1/4 teaspoon pepper. 12. Add lamb to skillet; sear 2 minutes on each side. 13. Place pan in oven; bake at 400 for 4 minutes (for medium-rare) or until desired degree of doneness. 14. Remove pan from oven; remove lamb from pan. 15. Let lamb stand for 5 minutes before serving. 16. Serve with sauce. ');
 
 -- --------------------------------------------------------
@@ -614,7 +594,6 @@ INSERT INTO `user` (`user_ID`, `u_type`, `fname`, `lname`, `u_email`, `u_passwor
 (122, 1, 'Mateusz', 'Kowalski', 'matiorex15@gmail.com', '$2y$10$S9.tZHzH4Jnyr4hrDhnx7ORhVrGCOWPDqxedfJFYWLeRyxmi9Lffa', 0),
 (123, 0, 'Orlaith', 'Hanlon', 'orlaithhanlon@hotmail.com', '$2y$10$knC3pNZ.TYjMxu6mA3JWb.74A1UOKLTcT1YheDM6/e7XfOioohuiG', 0),
 (124, 1, 'Niamh', 'Curran', 'niamhthefabulous@gmail.com', '$2y$10$hSKcFK30wbRPpZkK/vhkWejHU8Ei4Xsbo63UmUgHzPD.KOXkLWLYC', 1),
-(125, 0, 'Emmet', 'Curran', 'emmet@gmail.com', '$2y$10$JMVxj/R1tlYlbVOikSXyGurKhquu09Q7JxnfFt7cZ4Qbx58IU4nEO', 1),
 (126, 0, 'Steven', 'Riordan', 'stevo@iol.ie', '$2y$10$65UD3K4yltgZDqhTly4GYe3Dw9Sgeyv7SBAa1E7P6tG46rmNRQI3K', 1),
 (127, 1, 'Orlaith', 'Hanlon', 'orlaithhanlon@gmail.com', '$2y$10$ueSDjkoYM0er1vJJ6hlTpexydFO7TE0lZK4PWyjxnzQCevHn6hk1G', 1),
 (128, 0, 'Shauna', 'Goodman', 'shaunashauna@dkit.ie', '$2y$10$iP0/AonxlkX16xWUd6y3suIzK1AIFp3bW37X4T6pBI5nFibBWmEJu', 1);
@@ -722,7 +701,7 @@ ALTER TABLE `blog`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `comment_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `contact`
