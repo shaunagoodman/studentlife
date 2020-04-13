@@ -111,6 +111,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
     <?php include_once 'includes/CDNs.php'; ?>
     <link rel="icon" href="images/recipeasy-icons-logos/Capture.png">
@@ -130,7 +131,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 
-    <center> <img src="images/recipeasy-icons-logos/new-logo-black.png" class="d-inline-block align-top" alt="recipeasy-logo" style='width:45%' /> </center>
+    <center> <img src="images/recipeasy-icons-logos/new-logo-black.png" class="d-inline-block signup-logo align-top" alt="recipeasy-logo" style='width:45%' /> </center>
 
 
     <form class="login-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">

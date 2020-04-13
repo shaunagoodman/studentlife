@@ -17,6 +17,7 @@ include_once 'includes/database/addBlog.php';
 	<title>Post Blog</title>
 	<link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
 	<?php include_once 'includes/CDNs.php'; ?>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body class='site' >

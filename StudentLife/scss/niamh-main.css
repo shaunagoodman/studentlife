@@ -2151,6 +2151,12 @@ button.addBut.active {
   padding-top: 2%;
 }
 
+@media (max-width: 767px) {
+  .signup-logo {
+    margin-top: 7%;
+  }
+}
+
 /* *********************** API SINGLE RECIPE RELATED CSS **********************    */
 .ingredientsTitle {
   display: none;
