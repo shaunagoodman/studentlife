@@ -74,6 +74,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>All Recipes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
     <?php include_once 'includes/CDNs.php';  ?>
 

@@ -15,6 +15,7 @@ include_once 'includes/CDNs.php';
 <head>
   <meta charset="UTF-8">
   <title>What's in My Fridge?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
   <script src="javascript/scripts.js"></script>
   <script src="javascript/api.js"></script>

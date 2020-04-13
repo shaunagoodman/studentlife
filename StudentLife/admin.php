@@ -49,6 +49,7 @@ and open the template in the editor.
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Profile</title>
     <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
     <?php include_once 'includes/CDNs.php'; ?>
