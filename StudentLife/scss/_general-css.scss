@@ -3,6 +3,17 @@
 h1 {
   @include heading-font;
 }
+@media (max-width: 424px) {
+  h1 {
+    @include heading-font-mobile;
+  }
+}
+
+@media (max-width: 344px) {
+  h1 {
+    @include heading-font-mobile-xs;
+  }
+}
 
 h2 {
   @include heading-weighted-font;
@@ -50,6 +61,18 @@ body {
 @media (max-width: 991px) {
   main {
     margin-top: 7%;
+  }
+}
+
+@media (max-width: 540px) {
+  .container {
+    margin-top: 5%;
+  }
+}
+
+@media (max-width: 450px) {
+  .container {
+    margin-top: 10%;
   }
 }
 

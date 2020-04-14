@@ -135,6 +135,7 @@ $('button').click(function(){
 @media (max-width: 990px) {
     .logo-img1{
         width: 110%;
+        margin-left: 20%;
     }
     
 }
@@ -142,17 +143,37 @@ $('button').click(function(){
 @media (max-width: 880px) {
     .logo-img1{
         width: 125%;
+        margin-left: 20%;
     }
 }
 @media (max-width: 767px) {
     .logo-img1{
         width: 135%;
+        margin-left: 20%;
     }
 }
 
+@media (max-width: 700px) {
+    .logo-img1{
+        margin-left: 20%;
+    }
+}
 @media (max-width: 660px) {
     .logo-img1{
-        width: 160%;
+        width: 180%;
+        margin-left: 30%;
+    }
+}
+@media (max-width: 560px) {
+    .logo-img1{
+        width: 200%;
+        margin-left: 30%;
+    }
+}
+@media (max-width: 440px) {
+    .logo-img1{
+        width: 240%;
+        margin-left: 30%;
     }
 }
         </style>
@@ -160,9 +181,9 @@ $('button').click(function(){
 
     <nav class='mobileNav'>
         <div class="header">
-            <center>
+            
                 <a class="navbar-brand" href="index.php"><img src="images/recipeasy-icons-logos/new-logo-white.png" class="d-inline-block align-top logo-img1" alt="recipeasy-logo" /> </a>
-            </center>
+            
         </div>
         <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
         <label for="openSidebarMenu" class="sidebarIconToggle">
