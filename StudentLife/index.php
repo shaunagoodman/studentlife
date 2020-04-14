@@ -109,9 +109,7 @@ $statement->closeCursor();
                 ?>
 
                     <div class="col-lg-3 col-md-6 bottom-home  d-flex align-items-stretch ">
-
                         <div class="card home-card test-card hvr-shadow" style="margin-left: 2%; margin-right: 2%;" >
-
                             <img src="images/recipes/<?php echo $recipe['image'];  ?>" class="card-img-top" alt='dish image' height='250' width='270'>
                             <div class="card-body d-flex flex-column align-item-center">
                                 <h5 class="card-title"><?php echo $recipe['name'];  ?></h5>

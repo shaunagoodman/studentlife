@@ -33,12 +33,12 @@ and open the template in the editor.
 
 </head>
 
-<body class='site' >
+<body class='site'>
 	<?php include_once 'includes/nav-menu.php'; ?>
-	<main class='site-content' >
-	<div class="container">
+	<main class='site-content'>
+		<div class="container">
 
-		<!-- <div class='sub-menu'>
+			<!-- <div class='sub-menu'>
 			<div style='text-align: right'>
 				<ul class='diff-list' id='ul-difficulty-list'>
 					<li class='li-diff-list'> <a href='add_blog.php'>Add New Post </a></li>
@@ -49,29 +49,33 @@ and open the template in the editor.
 
 
 
-		<h1 class="allRecipes-h1"><span class="underline">Blogs</span></h1>
+			<h1 class="allRecipes-h1"><span class="underline">Blogs</span></h1>
 
 
-		<!-- <p><a href="add_blog.php"><button type="button" class="btn btn-light">New Blog Post</button></a></p> -->
+			<!-- <p><a href="add_blog.php"><button type="button" class="btn btn-light">New Blog Post</button></a></p> -->
 
-		<div class='row'>
-			<?php foreach ($blog as $blogs) { ?>
-				<div class="col-lg-4 bottom-home ">
-					<div class="hvr-shadow card home-card test-card">
-						<div class="card-body">
-							<h5 class="card-title"><?php echo $blogs['blogTitle']; ?></h5>
-							<p class="card-text">To read more click</p>
-							<a href="blog_single.php?blogId=<?php echo $blogs['blogId'] ?>"><button type="button" class="btn btn-light btn-sm">View Post</button></a>
+			<div class='row'>
+				<?php foreach ($blog as $blogs) { ?>
+					<div class="col-lg-4 bottom-home  d-flex align-items-stretch ">
+						<div class="hvr-shadow card home-card test-card">
+							<div class="card-body d-flex flex-column align-item-center">
+								<h5 class="card-title"><?php echo $blogs['blogTitle']; ?></h5>
+								<p class="card-text">
+									<?php
+										echo substr($blogs['blogContent'], 0, 100);
+									?>
+								</p>
+								<a href="blog_single.php?blogId=<?php echo $blogs['blogId'] ?>" class="btn btn-light btn-sm card-button">View Post</a>
+							</div>
 						</div>
 					</div>
-				</div>
-				<br>
-			<?php } ?>
-			<br> <br>
+					<br>
+				<?php } ?>
+				<br> <br>
+			</div>
 		</div>
-	</div>
 
-	<?php include_once 'includes/footer.php'; ?>
+		<?php include_once 'includes/footer.php'; ?>
 	</main>
 </body>
 
