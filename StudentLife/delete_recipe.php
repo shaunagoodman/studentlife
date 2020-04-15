@@ -11,6 +11,12 @@ $u_type = $_SESSION["u_type"];
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     require_once "includes/database/connection.php";
     if(isset($_POST["submitYes"])){
+        $query1 = "DELETE * FROM recipecuisine WHERE recipe_ID = $recipe_ID";
+        $statement = $conn->prepare($query1);
+        $statement->execute();
+        $recipesteps = $statement->fetchAll();
+        $statement->closeCursor();
+
         $query = "SELECT * FROM recipesteps WHERE recipe_ID = $recipe_ID";
         $statement = $conn->prepare($query);
         $statement->execute();
@@ -84,7 +90,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete Recipe</title>
+    <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
 
 </head>
 <body class='site' >

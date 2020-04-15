@@ -30,6 +30,8 @@ if (isset($_POST['removeFav'])) {
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
     <?php include_once 'includes/CDNs.php'; ?>
     <script src="javascript/scripts.js"></script>
     <link href="includes/stylesheet.css" rel="stylesheet" type="text/css" />
@@ -183,14 +185,14 @@ if (isset($_POST['removeFav'])) {
 
                                     $difficulty = "No difficulty selected.";
                                 }
-                                if (empty($recipe['image'])) {
 
-                                    $recipe['image'] = "images/recipes/placeholder.png";
-                                }
-                                if($recipe['isAPI'] = 1) {
+                                if($recipe['isAPI'] == 1) {
                                     $src = $recipe['image'];
                                 }
                                 else {
+                                    if (empty($recipe['image'])) {
+                                       $src = "images/recipes/placeholder.png";
+                                    }
                                     $src = "images/recipes/".$recipe['image'];
                                 }
 
@@ -198,15 +200,11 @@ if (isset($_POST['removeFav'])) {
 
                                 <!-- DISPLAY SECTION ONE -->
 
-                                <div class="col-sm-12 col-lg-4">
-                                    <div class="card home-card recipe-page-card">
-                                        <img src="images/recipes/<?php echo $recipe['image']; ?>" class="card-img-top" alt='dish image' height='315' width='328'>
-                                        <div class="card-body">
+                                <div class="col-sm-12 col-lg-4 d-flex align-items-stretch">
+                                    <div class="card home-card recipe-page-card hvr-shadow">
+                                    <a class="stretched-link" href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>">    <img src="<?php echo $src ?>" class="card-img-top" alt='dish image' height='315' width='328'></a>
+                                        <div class="card-body d-flex flex-column align-item-center">
                                             <h5 class="card-title"><?php echo $recipe['name']; ?></h5>
-                                            <p class="card-text" class='recipe-difficulty'> Difficulty: <?php echo $difficulty; ?> </p>
-                                            <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
-                                            </p>
-                                            <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light">View Recipe</button></a> </center>
                                         </div>
                                     </div>
                                 </div>
@@ -229,11 +227,11 @@ if (isset($_POST['removeFav'])) {
                             ?>
 
                         </div>
-                        <a href="#inam" class="carousel-control-prev" data-slide="prev" <?php if (empty($count > 4)) echo ' style="display:none;"'; ?>>
+                        <a href="#inam" class="carousel-control-prev" data-slide="prev" <?php if ($count < 3) echo ' style="display:none;"'; ?>>
                             <span class="carousel-control-prev-icon"></span>
                         </a>
 
-                        <a href="#inam" class="carousel-control-next" data-slide="next" <?php if (empty($count > 4)) echo ' style="display:none;"'; ?>>
+                        <a href="#inam" class="carousel-control-next" data-slide="next" <?php if ($count < 3) echo ' style="display:none;"'; ?>>
                             <span class="carousel-control-next-icon"></span>
                         </a>
                     </div>
@@ -265,7 +263,7 @@ if (isset($_POST['removeFav'])) {
                         <h5>Can't get enough of creating new recipes? Why not create more of your own unique recipes <a class='add-my-recipe' href="add-recipe.php"> here </a>?</h5>
                         <br>
                         <?php
-                        echo "<div class='row' >";
+                        echo "<div class='row no-gutters' >";
                         foreach ($recipes as $recipe) :
                             if ($recipe['difficultyID'] == 1) {
                                 $difficulty = "Easy";
@@ -281,15 +279,16 @@ if (isset($_POST['removeFav'])) {
                             }
                         ?>
 
-                            <div class="col-lg-4 col-md-6 bottom-home ">
+                            <div class="col-lg-4 col-md-6 bottom-home d-flex align-items-stretch">
                                 <div class="card home-card recipe-page-card">
                                     <img src="images/recipes/<?php echo $recipe['image']; ?>" class="card-img-top" alt='dish image' height='315' width='328'>
-                                    <div class="card-body">
+                                    <div class="card-body d-flex flex-column align-item-center">
                                         <h5 class="card-title"><?php echo $recipe['name'];  ?></h5>
                                         <p class="card-text" class='recipe-difficulty'> Difficulty: <?php echo $difficulty; ?> </p>
                                         <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
                                         </p>
-                                        <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light">View Recipe</button></a> </center>
+                                        
+                                        <a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>" class="btn btn-light card-button">View Recipe</a> 
                                         <form action="delete-recipe.php" method="post" id="delete_recipe_form">
                                             <a href="delete_recipe.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>" class="sortBy add-my-recipe">
                                                 <p>Delete</p>

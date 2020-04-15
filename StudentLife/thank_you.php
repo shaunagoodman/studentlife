@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Thank You</title>
-<!-- <link href="images/favicon.ico" rel="icon"> -->
+<link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
 
 <?php include_once 'includes/CDNs.php'; ?>
 

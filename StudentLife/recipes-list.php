@@ -74,6 +74,8 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>All Recipes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
     <?php include_once 'includes/CDNs.php';  ?>
 
 </head>
@@ -185,7 +187,7 @@ try {
                     <!-- ********************************CARD DIV************************************* -->
                     <div class='col-lg-9'>
                         <?php
-                        echo "<div class='row' >";
+                        echo "<div class='row no-gutters' >";
                         if (!empty($recipes)) {
                             foreach ($recipes as $recipe) :
                                 if ($recipe['difficultyID'] == 1) {
@@ -213,15 +215,15 @@ try {
                                     }
                                 }
                         ?>
-                                <div class="col-lg-6 recipe-page-cards bottom-home ">
+                                <div class="col-lg-6 recipe-page-cards bottom-home d-flex align-items-stretch">
                                     <div class="card home-card recipe-page-card hvr-shadow">
                                         <img src="<?php echo $src; ?>" class="card-img-top" alt='dish image' height='315' width='328'>
-                                        <div class="card-body">
+                                        <div class="card-body d-flex flex-column align-item-center">
                                             <h5 class="card-title"><?php echo $recipe['name'];  ?></h5>
                                             <p class="card-text" class='recipe-difficulty'> Difficulty: <?php echo $difficulty; ?> </p>
                                             <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
                                             </p>
-                                            <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light stretched-link">View Recipe</button></a> </center>
+                                           <a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>" class="btn btn-light stretched-link card-button" >View Recipe</a> 
                                         </div>
                                     </div>
                                 </div>

@@ -30,6 +30,8 @@ and open the template in the editor.
 <head>
     <meta charset="UTF-8">
     <title>All Users</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
     <?php include_once 'includes/CDNs.php'; ?>
 </head>
 
@@ -42,46 +44,47 @@ and open the template in the editor.
 
 
 
-
-            <table class="table1">
-                <tr>
-                    <th class="th1">User ID</th>
-                    <th class="th1">First Name</th>
-                    <th class="th1">Last Name </th>
-                    <th class="th1">Email</th>
-                    <th class="th1">Delete</th>
-                </tr>
-                <?php foreach ($user as $users) : ?>
+<div class="table-responsive" >
+            <table class="table table-hover">
+                <thead>
                     <tr>
-                        <td class="td1">
-                            <p><?php echo $users['user_ID']; ?></p>
-                        </td>
-                        <td class="td1">
-                            <p><?php echo $users['fname']; ?></p>
-                        </td>
-                        <td class="td1">
-                            <p><?php echo $users['lname']; ?></p>
-                        </td>
-                        <td class="td1">
-                            <p><?php echo $users['u_email']; ?></p>
-                        </td>
-                        <td class="td1">
-
-                            <form action="delete-user.php" method="post" id="delete_user_form">
-                                <a href="delete-user.php?user_ID=<?php echo $users['user_ID'] ?>" class="add-my-recipe">Delete</a>
-                            </form>
-                        </td>
-
-
-                        <!-- <td class="td1"><form action="edit_user_form.php" method="post"
-                                                      id="edit_user_form">
-                                        <input type="hidden" name="user_id"
-                                               value="// echo $users['user_ID']; ">
-                                        <input class="btn btn-sm btn-light-invert" type="submit" value="Edit">
-                                    </form></td> -->
+                        <th>User ID</th>
+                        <th>First Name</th>
+                        <th>Last Name </th>
+                        <th>Email</th>
+                        <th>Delete</th>
                     </tr>
-                <?php endforeach; ?>
+                </thead>
+                <tbody>
+                    <?php foreach ($user as $users) : ?>
+                        <tr>
+                            <th class="th1">
+                                <?php echo $users['user_ID']; ?>
+                            </th>
+                            <td>
+                                <p><?php echo $users['fname']; ?></p>
+                            </td>
+                            <td>
+                                <p><?php echo $users['lname']; ?></p>
+                            </td>
+                            <td>
+                                <p><?php echo $users['u_email']; ?></p>
+                            </td>
+                            <td>
+
+                                <form action="delete-user.php" method="post" id="delete_user_form">
+                                    <a href="delete-user.php?user_ID=<?php echo $users['user_ID'] ?>" class="add-my-recipe" style="justify-content: center;
+
+display: flex;" ><i class="fas fa-trash-alt fa-lg"></i></a>
+                                </form>
+                            </td>
+
+
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
             </table>
+</div>
             <br>
             <br>
 

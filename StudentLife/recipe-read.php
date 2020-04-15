@@ -56,6 +56,8 @@ if(isset($_GET["recipe_ID"]) && !empty(trim($_GET["recipe_ID"]))){
 <head>
     <meta charset="UTF-8">
     <title>View Record</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
         .wrapper{

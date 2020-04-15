@@ -14,7 +14,9 @@ include_once 'includes/CDNs.php';
 
 <head>
   <meta charset="UTF-8">
-  <title>Recipe API</title>
+  <title>What's in My Fridge?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
   <script src="javascript/scripts.js"></script>
   <script src="javascript/api.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -42,7 +44,7 @@ include_once 'includes/CDNs.php';
           </div>
 
           <!-- <input data-role="tagsinput" class="form-control api-form-control" name='ingredients' id='ingredients' type="text" placeholder="eggs, milk, butter"> -->
-          <p> <input class='checkbox-api' type="checkbox" id="addTime" onClick="toggleTime()" />Add Time Limit (If you do not set a limit it will defualt to 10 mins).</p>
+          <p> <input class='checkbox-api' type="checkbox" id="addTime" onClick="toggleTime()" />Add Time Limit (If you do not set a limit it will default to 10 mins).</p>
 
 
           <!--TIME -->

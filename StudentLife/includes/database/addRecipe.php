@@ -102,6 +102,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST["difficulty"])) {
             $difficultyID = $_POST["difficulty"];  // Storing Selected Value In Variable
         }
+        if (isset($_POST["cuisine"])) {
+            $cuisineID = $_POST["cuisine"];  // Storing Selected Value In Variable
+        }
 
         $names = [];
         $measures = [];
@@ -161,6 +164,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </script>";
             }
             $recipe_ID = $conn->lastInsertId();
+        }
+        if($cuisineID != "") {
+            $query = "INSERT INTO recipecuisine (recipe_ID, cuisine_ID) VALUES ($recipe_ID, $cuisineID)";
+            $statement = $conn->prepare($query);
+            $statement->execute();
+            $statement->closeCursor();
         }
             /******************** Add to ingredients table ************************/
                 $count = count($names);

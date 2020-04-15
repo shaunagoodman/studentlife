@@ -125,7 +125,8 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Register</title>
-        <link rel="icon" href="images/recipeasy-icons-logos/Capture.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
 
 
         <link href="includes/stylesheet.css" rel="stylesheet" type="text/css"/>
@@ -136,7 +137,7 @@ and open the template in the editor.
 <div class="container" >
 
 
-<center> <img src="images/recipeasy-icons-logos/new-logo-black.png" class="d-inline-block align-top" alt="recipeasy-logo" style='width:45%' /> </center>
+<center> <img src="images/recipeasy-icons-logos/new-logo-black.png" class="d-inline-block align-top signup-logo" alt="recipeasy-logo" style='width:45%' /> </center>
 
 
 
