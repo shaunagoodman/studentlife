@@ -13,7 +13,21 @@ if(isset($_POST['btnFav'])) {
     include_once 'includes/database/APItoDatabase.php';
 }
 $url = "https://api.spoonacular.com/recipes/" . $recipe_ID . "/information?apiKey=53bea2eb3c79445188bc4d3f00895d15";
-$response = json_decode(file_get_contents($url), true);
+$curl = curl_init();
+curl_setopt_array($curl, array(
+    CURLOPT_URL => $url,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "GET",
+    CURLOPT_HTTPHEADER => array(
+        "cache-control: no-cache"
+    ),
+    )); 
+    $response = curl_exec($curl);
+    $response = json_decode($response, true);
+    $err = curl_error($curl);
+    curl_close($curl);
 $title =  $response["title"];
 $servings =  $response["servings"];
 $image = $response["image"];
