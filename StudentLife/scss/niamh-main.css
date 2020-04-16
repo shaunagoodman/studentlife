@@ -1,10 +1,24 @@
 /* **********************VARIABLES STYLES****************************/
 /* *************************** GENERAL CSS *****************************     */
-/* --------------- MIXINS HELLO------------------     */
-/* ------------------------------------*/
 h1 {
   font-family: "Ubuntu", sans-serif;
   font-style: normal;
+}
+
+@media (max-width: 424px) {
+  h1 {
+    font-family: "Ubuntu", sans-serif;
+    font-style: normal;
+    font-size: 200%;
+  }
+}
+
+@media (max-width: 344px) {
+  h1 {
+    font-family: "Ubuntu", sans-serif;
+    font-style: normal;
+    font-size: 150%;
+  }
 }
 
 h2 {
@@ -43,6 +57,12 @@ p {
   font-weight: 400;
 }
 
+th {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+}
+
 input.sortBy {
   font-family: "Montserrat", sans-serif;
   font-style: normal;
@@ -66,6 +86,18 @@ body {
 @media (max-width: 991px) {
   main {
     margin-top: 7%;
+  }
+}
+
+@media (max-width: 540px) {
+  .container {
+    margin-top: 5%;
+  }
+}
+
+@media (max-width: 450px) {
+  .container {
+    margin-top: 10%;
   }
 }
 
@@ -145,6 +177,22 @@ body {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+}
+
+.card-button {
+  margin-top: auto;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.card-img-top {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.card {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
 }
 
 .card-body {
@@ -277,20 +325,6 @@ a.carousel-recipe:hover {
 
 /*  ********************** 3rd CONTAINER **********************    */
 /*  ********************** CSS CARDS - HOME PAGE **********************    */
-@media (max-width: 991px) {
-  .home-card {
-    width: 80%;
-    margin-left: 15%;
-  }
-}
-
-@media (max-width: 670px) {
-  .home-card {
-    width: 80%;
-    margin-left: 10%;
-  }
-}
-
 /*  ********************** CSS FOR NAV **********************    */
 @media (min-width: 991px) {
   nav {
@@ -922,6 +956,20 @@ label {
   border-bottom: 1px solid #EF7823;
 }
 
+@media only screen and (max-width: 860px) {
+  .sub-menu {
+    padding-top: 3.5%;
+    border-bottom: 1px solid #EF7823;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .sub-menu {
+    padding-top: 5%;
+    border-bottom: 1px solid #EF7823;
+  }
+}
+
 .allRecipes-h1 {
   padding-top: 3%;
 }
@@ -1108,6 +1156,17 @@ li.li-cuisine-list > a:hover {
   max-width: 100%;
   max-height: 100%;
   display: block;
+  width: 40rem;
+  height: 25rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+@media (min-width: 1200px) {
+  .single-recipe-pic {
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
 }
 
 .single-recipe-line {
@@ -1135,6 +1194,24 @@ li.li-cuisine-list > a:hover {
           flex-direction: column;
 }
 
+@media (max-width: 991px) {
+  .comment-video-div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+}
+
+@media (max-width: 991px) {
+  .single-recipe-h4 {
+    font-size: 130%;
+  }
+}
+
 @media (max-width: 990px) {
   .comment-div {
     margin-left: 0% !important;
@@ -1151,7 +1228,7 @@ li.li-cuisine-list > a:hover {
 .video-container::after {
   padding-top: 56.25%;
   display: block;
-  content: '';
+  content: "";
 }
 
 .video-container iframe {
@@ -1561,7 +1638,7 @@ button.btn-link:hover {
 }
 
 footer {
-  background-color: #f29e4c;
+  background-color: #EF7823;
 }
 
 .details {
@@ -1901,14 +1978,37 @@ button.myLink.active {
           box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
 }
 
-.table1,
+/* ***************ADMIN CSS************ */
+/* TABLE CSS */
+table,
 tr,
-td {
-  border: 1px solid !important;
+td,
+.th1 {
+  border-bottom: 1px solid !important;
   border-color: #f29e4c !important;
   -webkit-box-pack: center !important;
       -ms-flex-pack: center !important;
           justify-content: center !important;
+}
+
+table {
+  border: 1px solid #f29e4c !important;
+}
+
+table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #f29e4c !important;
+  border-top: 1px solid #f29e4c !important;
+}
+
+.table-hover > tbody > tr:hover {
+  background-color: #f29f4c48;
+}
+
+td .p {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 @media (min-width: 1125px) {
@@ -1968,13 +2068,6 @@ td {
   display: none;
 }
 
-@media (max-width: 957px) {
-  .admin-container {
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-  }
-}
-
 @media (min-width: 992px) {
   #accordion {
     display: none;
@@ -1984,6 +2077,7 @@ td {
 @media (max-width: 991px) {
   #accordion {
     display: block;
+    margin-bottom: 5%;
   }
 }
 
@@ -2105,6 +2199,12 @@ button.addBut.active {
   margin-left: 25%;
   margin-right: 25%;
   padding-top: 2%;
+}
+
+@media (max-width: 767px) {
+  .signup-logo {
+    margin-top: 7%;
+  }
 }
 
 /* *********************** API SINGLE RECIPE RELATED CSS **********************    */

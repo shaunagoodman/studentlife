@@ -49,6 +49,7 @@ and open the template in the editor.
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Profile</title>
     <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
     <?php include_once 'includes/CDNs.php'; ?>
@@ -408,38 +409,44 @@ and open the template in the editor.
 
                     <h2 class="allRecipes-h1"><span class="underline">View All Users</span></h2>
 
-                    <table class="table1">
+                    <div class="table-responsive " >
+                    <table class="table table-hover  ">
+                        <thead>
                         <tr>
-                            <th class="th1">User ID</th>
-                            <th class="th1">First Name</th>
-                            <th class="th1">Last Name </th>
-                            <th class="th1">Email</th>
-                            <th class="th1">Delete</th>
+                            <th>User ID</th>
+                            <th>First Name</th>
+                            <th>Last Name </th>
+                            <th>Email</th>
+                            <th>Delete</th>
                         </tr>
+                        </thead>
+                        <tbody>
                         <?php foreach ($user as $users) : ?>
                             <tr>
-                                <td class="td1">
+                            <th class="th1">
                                     <p><?php echo $users['user_ID']; ?></p>
-                                </td>
-                                <td class="td1">
+                                </th>
+                                <td>
                                     <p><?php echo $users['fname']; ?></p>
                                 </td>
-                                <td class="td1">
+                                <td>
                                     <p><?php echo $users['lname']; ?></p>
                                 </td>
-                                <td class="td1">
+                                <td>
                                     <p><?php echo $users['u_email']; ?></p>
                                 </td>
-                                <td class="td1">
+                                <td>
 
                                     <form action="delete-user.php" method="post" id="delete_user_form">
-                                        <a href="delete-user.php?user_ID=<?php echo $users['user_ID'] ?>" class="add-my-recipe">Delete</a>
+                                        <a href="delete-user.php?user_ID=<?php echo $users['user_ID'] ?>" class="add-my-recipe"style="justify-content: center;
+
+display: flex;" ><i class="fas fa-trash-alt fa-lg"></i></a>
                                     </form>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
                     </table>
-
+                    </div>
 
                 </div>
 
@@ -457,56 +464,63 @@ and open the template in the editor.
 
                     <h2 class='allRecipes-h1'><span class="underline">View All Recipe</span></h2>
 
-                    <table class="table1">
+                    <div class="table-responsive" >
+                    <table class="table table-hover">
+                    <thead>
                         <tr>
-                            <th class="th1">Recipe ID</th>
-                            <th class="th1">Recipe Name</th>
-                            <th class="th1">Servings </th>
-                            <th class="th1">Time</th>
-                            <th class="th1">Ratings</th>
-                            <th class="th1">Difficulty</th>
-                            <th class="th1">Image</th>
-                            <th class="th1">Video</th>
-                            <th class="th1">Delete</th>
+                            <th>ID</th>
+                            <th>Recipe Name</th>
+                            <th>Servings </th>
+                            <th>Time</th>
+                            <th>Ratings</th>
+                            <th>Difficulty</th>
+                            <th>Image</th>
+                            <th>Video</th>
+                            <th>Delete</th>
                         </tr>
+                    </thead>
+                    <tbody>
                         <?php foreach ($recipes as $recipe) : ?>
                             <tr>
-                                <td class="td1">
-                                    <p><?php echo $recipe['recipe_ID']; ?></p>
-                                </td>
-                                <td class="td1">
+                                <th class="th1">
+                                    <?php echo $recipe['recipe_ID']; ?>
+                                </th>
+                                <td>
                                     <p><?php echo $recipe['name']; ?></p>
                                 </td>
-                                <td class="td1">
+                                <td>
                                     <p><?php echo $recipe['servings']; ?></p>
                                 </td>
-                                <td class="td1">
+                                <td>
                                     <p><?php echo $recipe['maxTime']; ?></p>
                                 </td>
-                                <td class="td1">
+                                <td>
                                     <p><?php echo $recipe['rating']; ?></p>
                                 </td>
-                                <td class="td1">
+                                <td>
                                     <p><?php echo $recipe['difficultyID']; ?></p>
                                 </td>
-                                <td class="td1">
+                                <td>
                                     <p><?php echo $recipe['image']; ?></p>
+                                   
                                 </td>
-                                <td class="td1">
+                                <td>
                                     <p><?php echo $recipe['video_name']; ?></p>
                                 </td>
-                                <td class="td1">
+                                <td>
 
                                     <form action="delete-recipe.php" method="post" id="delete_recipe_form">
-                                        <a href="delete_recipe.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>" class="add-my-recipe">Delete</a>
+                                        <a href="delete_recipe.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>" class="add-my-recipe" style="justify-content: center;
+display: flex;" ><i class="fas fa-trash-alt fa-lg"></i></a>
                                     </form>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
+                    </tbody>
                     </table>
 
 
-
+                    </div>
 
 
                 </div>
@@ -538,7 +552,7 @@ and open the template in the editor.
                         }
 
 
-                        echo "<div class='row' >";
+                        echo "<div class='row no-gutters' >";
                         foreach ($recipes as $recipe) :
                             if ($recipe['difficultyID'] == 1) {
                                 $difficulty = "Easy";
@@ -559,15 +573,15 @@ and open the template in the editor.
                             }
                         ?>
 
-                            <div class="col-lg-4 bottom-home ">
+                            <div class="col-lg-4 bottom-home d-flex align-items-stretch">
                                 <div class="card home-card recipe-page-card">
                                     <img src="<?php echo $src; ?>" class="card-img-top" alt='dish image' height='315' width='328'>
-                                    <div class="card-body">
+                                    <div class="card-body d-flex flex-column align-item-center">
                                         <h5 class="card-title"><?php echo $recipe['name'];  ?></h5>
                                         <p class="card-text" class='recipe-difficulty'> Difficulty: <?php echo $difficulty; ?> </p>
                                         <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
                                         </p>
-                                        <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light">View Recipe</button></a> </center>
+                                        <a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"class="btn btn-light card-button">View Recipe</a> 
                                     </div>
                                 </div>
                             </div>
@@ -604,7 +618,7 @@ and open the template in the editor.
                         <br>
 
                         <?php
-                        echo "<div class='row' >";
+                        echo "<div class='row no-gutters' >";
                         //get the results from the $products variable(using a loop)
                         if ($recipes != null) {
                             foreach ($recipes as $recipe) :
@@ -627,16 +641,16 @@ and open the template in the editor.
                                 }
                         ?>
 
-                                <div class="col-lg-4 bottom-home ">
+                                <div class="col-lg-4 bottom-home d-flex align-items-stretch">
                                     <div class="card home-card recipe-page-card">
                                         <img src="<?php echo $src; ?>" class="card-img-top" alt='dish image' height='315' width='328'>
-                                        <div class="card-body">
+                                        <div class="card-body d-flex flex-column align-item-center">
                                             <h5 class="card-title"><?php echo $recipe['name'];  ?></h5>
                                             <p class="card-text" class='recipe-difficulty'> Difficulty: <?php echo $difficulty; ?> </p>
                                             <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $recipe['maxTime']; ?>
                                             </p>
-                                            <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light">View Recipe</button></a> </center>
-                                            <a href="remove_from_fav.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>&user_ID=<?php echo $userID;?>" class="sortBy add-my-recipe">
+                                            <center><a href="recipe_single.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>"><button type="button" class="btn btn-light card-button">View Recipe</button></a> </center>
+                                            <a href="remove_from_fav.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>&user_ID=<?php echo $userID;?>" class="sortBy add-my-recipe ">
                                                 <p>Remove</p>
                                             </a>
                                             </form>
@@ -932,38 +946,45 @@ and open the template in the editor.
                     </div>
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                         <div class="card-body">
-                            <table class="table1">
+                        <div class="table-responsive" >
+                            <table class="table">
+                                <thead>
                                 <tr>
-                                    <th class="th1">User ID</th>
-                                    <th class="th1">First Name</th>
-                                    <th class="th1">Last Name </th>
-                                    <th class="th1">Email</th>
-                                    <th class="th1">Delete</th>
+                                    <th>User ID</th>
+                                    <th>First Name</th>
+                                    <th>Last Name </th>
+                                    <th>Email</th>
+                                    <th>Delete</th>
                                 </tr>
+                                </thead>
+                                <tbody>
                                 <?php foreach ($user as $users) : ?>
                                     <tr>
-                                        <td class="td1">
+                                        <th class="th1">
                                             <p><?php echo $users['user_ID']; ?></p>
                                         </td>
-                                        <td class="td1">
+                                        <td>
                                             <p><?php echo $users['fname']; ?></p>
                                         </td>
-                                        <td class="td1">
+                                        <td>
                                             <p><?php echo $users['lname']; ?></p>
                                         </td>
-                                        <td class="td1">
+                                        <td>
                                             <p><?php echo $users['u_email']; ?></p>
                                         </td>
-                                        <td class="td1">
+                                        <td>
 
                                             <form action="delete-user.php" method="post" id="delete_user_form">
-                                                <a href="delete-user.php?user_ID=<?php echo $users['user_ID'] ?>" class="add-my-recipe">Delete</a>
+                                                <a href="delete-user.php?user_ID=<?php echo $users['user_ID'] ?>" class="add-my-recipe"style="justify-content: center;
+display: flex;" ><i class="fas fa-trash-alt fa-lg"></i></a>
                                             </form>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
+                                </tbody>
                             </table>
                         </div>
+                    </div>
                     </div>
                 </div>
 
@@ -989,53 +1010,60 @@ and open the template in the editor.
 
                             <h2 class='allRecipes-h1'><span class="underline">View All Recipe</span></h2>
 
-                            <table class="table1" style="background-color: white;">
-                                <tr>
-                                    <th class="th1">Recipe ID</th>
-                                    <th class="th1">Recipe Name</th>
-                                    <th class="th1">Servings </th>
-                                    <th class="th1">Time</th>
-                                    <th class="th1">Ratings</th>
-                                    <th class="th1">Difficulty</th>
-                                    <th class="th1">Image</th>
-                                    <th class="th1">Video</th>
-                                    <th class="th1">Delete</th>
+                            <div class="table-responsive" >
+                            <table class="table table-hover" style="background-color: white;">
+                            <thead> 
+                            <tr>
+                                    <th>Recipe ID</th>
+                                    <th>Recipe Name</th>
+                                    <th>Servings </th>
+                                    <th>Time</th>
+                                    <th>Ratings</th>
+                                    <th>Difficulty</th>
+                                    <th>Image</th>
+                                    <th>Video</th>
+                                    <th>Delete</th>
                                 </tr>
+                            </thead>
+                            <tbody>
                                 <?php foreach ($recipes as $recipe) : ?>
                                     <tr>
-                                        <td class="td1">
+                                        <th class="th1">
                                             <p><?php echo $recipe['recipe_ID']; ?></p>
-                                        </td>
-                                        <td class="td1">
+                                        </th>
+                                        <td>
                                             <p><?php echo $recipe['name']; ?></p>
                                         </td>
-                                        <td class="td1">
+                                        <td>
                                             <p><?php echo $recipe['servings']; ?></p>
                                         </td>
-                                        <td class="td1">
+                                        <td>
                                             <p><?php echo $recipe['maxTime']; ?></p>
                                         </td>
-                                        <td class="td1">
+                                        <td>
                                             <p><?php echo $recipe['rating']; ?></p>
                                         </td>
-                                        <td class="td1">
+                                        <td>
                                             <p><?php echo $recipe['difficultyID']; ?></p>
                                         </td>
-                                        <td class="td1">
+                                        <td>
                                             <p><?php echo $recipe['image']; ?></p>
                                         </td>
-                                        <td class="td1">
+                                        <td>
                                             <p><?php echo $recipe['video_name']; ?></p>
                                         </td>
-                                        <td class="td1">
+                                        <td>
 
                                             <form action="delete-recipe.php" method="post" id="delete_recipe_form">
-                                                <a href="delete_recipe.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>" class="add-my-recipe">Delete</a>
+                                                <a href="delete_recipe.php?recipe_ID=<?php echo $recipe['recipe_ID'] ?>" class="add-my-recipe"style="justify-content: center;
+display: flex;" ><i class="fas fa-trash-alt fa-lg"></i></a>
                                             </form>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
+                            </tbody>
                             </table>
+                        </div>
                         </div>
                     </div>
                 </div>

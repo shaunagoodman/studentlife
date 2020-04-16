@@ -33,6 +33,7 @@ if (isset($_POST['btnFav'])) {
 <head>
     <meta charset="UTF-8">
     <title>A Recipe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="images/recipeasy-icons-logos/small-logo.png">
     <?php include_once 'includes/CDNs.php'; ?>
 </head>
@@ -80,9 +81,9 @@ if (isset($_POST['btnFav'])) {
 
                     <div class='col-md-5 single-recipe-topRow '>
                         <br><br>
-                        <h4> <img src='images/recipeasy-icons-logos/gauge.png' style='margin-right:1.5%' alt='clock icon' height='35' width='35'><strong>Difficulty: </strong><?php echo $difficulty ?> </h4>
-                        <h4> <br> <img src='images/recipeasy-icons-logos/knife-fork.png' style='margin-right:1.5%' alt='clock icon' height='35' width='35'><strong>Servings:</strong> <?php echo $recipe['servings'] ?> </h4>
-                        <h4> <br> <img src='images/recipeasy-icons-logos/clock.png' style='margin-right:1.5%' alt='clock icon' height='30' width='30'><strong>Cooking Time: </strong><?php echo $time ?> minutes </h4>
+                        <h4 class='single-recipe-h4' > <img src='images/recipeasy-icons-logos/gauge.png' style='margin-right:1.5%' alt='clock icon' height='35' width='35'><strong>Difficulty: </strong><?php echo $difficulty ?> </h4>
+                        <h4 class='single-recipe-h4'> <br> <img src='images/recipeasy-icons-logos/knife-fork.png' style='margin-right:1.5%' alt='clock icon' height='35' width='35'><strong>Servings:</strong> <?php echo $recipe['servings'] ?> </h4>
+                        <h4 class='single-recipe-h4'> <br> <img src='images/recipeasy-icons-logos/clock.png' style='margin-right:1.5%' alt='clock icon' height='30' width='30'><strong>Cooking Time: </strong><?php echo $time ?> minutes </h4>
 
                     </div>
 
@@ -205,7 +206,7 @@ if (isset($_POST['btnFav'])) {
 
 
                 <!--CORRECT VERSION --->
-                <div class="row">
+                <div class="row comment-video-div">
                     <div class='col-lg-5 comment-div' <?php if (empty($recipe["video_name"])) echo ' style="margin-left: 30%"'; ?>>
                         <h3>Comments</h3>
                         <div>

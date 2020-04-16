@@ -1,9 +1,32 @@
-.table1,
+/* ***************ADMIN CSS************ */
+/* TABLE CSS */
+
+
+table,
 tr,
-td {
-  border: 1px solid !important;
+td,
+.th1 {
+  border-bottom: 1px solid !important;
   border-color: $lightOrange !important;
   justify-content: center !important;
+}
+
+table{
+  border: 1px solid $lightOrange !important;
+}
+
+table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid $lightOrange!important;
+  border-top:1px solid $lightOrange!important;
+}
+
+.table-hover> tbody> tr:hover{
+  background-color:#f29f4c48;
+}
+
+td .p{
+  align-items: center;
 }
 
 @media (min-width: 1125px) {
@@ -53,12 +76,12 @@ td {
   display: none;
 }
 
-@media (max-width: 957px) {
- .admin-container {
-    padding-left: 0px!important;
-    padding-right: 0px!important;
-  }
-}
+// @media (max-width: 957px) {
+//  .admin-container {
+//     padding-left: 0px!important;
+//     padding-right: 0px!important;
+//   }
+// }
 @media (min-width: 992px) {
   #accordion{
     display: none;
@@ -68,6 +91,7 @@ td {
 @media (max-width: 991px) {
   #accordion{
     display: block;
+    margin-bottom: 5%;
   }
  }
 
