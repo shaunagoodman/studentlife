@@ -246,32 +246,76 @@ try {
                                 $string2 = "number=";
                                 $string3 = "&apiKey=53bea2eb3c79445188bc4d3f00895d15";
                                 $url = $string1 . $searchString . $string2 . $remaining . $string3;
-                                $response = json_decode(file_get_contents($url), true);
+                                $curl = curl_init();
+                                curl_setopt_array($curl, array(
+                                    CURLOPT_URL => $url,
+                                    CURLOPT_RETURNTRANSFER => true,
+                                    CURLOPT_TIMEOUT => 30,
+                                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                    CURLOPT_CUSTOMREQUEST => "GET",
+                                    CURLOPT_HTTPHEADER => array(
+                                      "cache-control: no-cache"
+                                    ),
+                                  )); 
+                                  $response = curl_exec($curl);
+                                  $response = json_decode($response, true);
+                                  $err = curl_error($curl);
+                                  curl_close($curl);
                                 foreach ($response['results'] as $data) {
                                     array_push($array, $data['id']);
                                 }
-                                foreach ($array as $a) {
-                                    $url = "https://api.spoonacular.com/recipes/" . $a . "/information?apiKey=53bea2eb3c79445188bc4d3f00895d15";
-                                    $response = json_decode(file_get_contents($url), true);
-                                    $name =  $response["title"];
-                                    $servings =  $response["servings"];
-                                    $image = $response["image"];
-                                    $maxTime = $response["readyInMinutes"];
-                                ?>
-                                    <div class="col-lg-6 hvr-shadow bottom-home ">
-                                        <div class="card home-card recipe-page-card">
-                                            <img src="<?php echo $image; ?>" class="card-img-top" alt='dish image' height='315' width='328'>
-                                            <div class="card-body">
-                                                <h5 class="card-title"><?php echo $name;  ?></h5>
-                                                <p class="card-text" class='recipe-difficulty'> Difficulty: No difficulty.</p>
-                                                <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $maxTime; ?> minutes
-                                                </p>
-                                                <center><a href="api_single.php?recipe_ID=<?php echo $a ?>"><button type="button" class="btn btn-light stretched-link">View Recipe</button></a> </center>
+                                if (!empty($array)) {
+                                    foreach ($array as $a) {
+                                        $url = "https://api.spoonacular.com/recipes/" . $a . "/information?apiKey=53bea2eb3c79445188bc4d3f00895d15";
+                                        $curl = curl_init();
+                                    curl_setopt_array($curl, array(
+                                        CURLOPT_URL => $url,
+                                        CURLOPT_RETURNTRANSFER => true,
+                                        CURLOPT_TIMEOUT => 30,
+                                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                        CURLOPT_CUSTOMREQUEST => "GET",
+                                        CURLOPT_HTTPHEADER => array(
+                                          "cache-control: no-cache"
+                                        ),
+                                      )); 
+                                      $response = curl_exec($curl);
+                                      $response = json_decode($response, true);
+                                      $err = curl_error($curl);
+                                      curl_close($curl);
+                                        $name =  $response["title"];
+                                        $servings =  $response["servings"];
+                                        $image = $response["image"];
+                                        $maxTime = $response["readyInMinutes"];
+                                    ?>
+                                        <div class="col-lg-6 hvr-shadow bottom-home ">
+                                            <div class="card home-card recipe-page-card">
+                                                <img src="<?php echo $image; ?>" class="card-img-top" alt='dish image' height='315' width='328'>
+                                                <div class="card-body">
+                                                    <h5 class="card-title"><?php echo $name;  ?></h5>
+                                                    <p class="card-text" class='recipe-difficulty'> Difficulty: No difficulty.</p>
+                                                    <p class="card-text" class='recipe-time'> <img src='images/recipeasy-icons-logos/clock.png' style='margin-bottom:0.3%' alt='clock icon' height='25' width='25'> Time: <?php echo $maxTime; ?> minutes
+                                                    </p>
+                                                    <center><a href="api_single.php?recipe_ID=<?php echo $a ?>"><button type="button" class="btn btn-light stretched-link">View Recipe</button></a> </center>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                        <?php
+                                    <?php
+                                    }
+                                } 
+                                if(empty($array) && $count == 0) {
+                                    echo "<script language = javascript>
+                        swal({  title: 'No Recipes Available!',  
+                            text: 'Unfortunately, we have no recipes matching your criteria. Why not browse our selection?',
+                        type: 'failure',    
+                        showCancelButton: false,   
+                        closeOnConfirm: false,   
+                        confirmButtonText: 'Aceptar', 
+                        showLoaderOnConfirm: true, }).then(function() {
+                            window.location = 'recipes-list.php';
+                        });;
+                    </script>";
                                 }
+
                             }
                         }
                         echo "</div>";
