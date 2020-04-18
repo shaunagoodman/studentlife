@@ -69,6 +69,13 @@ and open the template in the editor.
         margin-left: 30%;
     }
 }
+@media (max-width: 430px) {
+    .logo-img1{
+        width: 240%;
+        margin-left: 33%;
+    }
+
+}
         </style>
 
 
