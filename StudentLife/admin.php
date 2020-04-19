@@ -273,7 +273,7 @@ and open the template in the editor.
                             <div class="form-group col-lg-3 col-md-6 <?php echo (!empty($maxTime_err)) ? 'has-error' : ''; ?>">
                                 <label>Max Time</label> <br>
                                 <input onchange="displayTime()" type="range" min="1" max="60" value="10" id="maxTime" name="maxTime" />
-                                <p><span id="timeArea"> <?= isset($_POST['maxTime']) ? $_POST['maxTime'] : '10 minutes' ?>10 minutes</span></p>
+                                <p><span id="timeArea"> <?= isset($_POST['maxTime']) ? $_POST['maxTime'] : '10 minutes' ?></span></p>
                             </div>
 
                             <div class="form-group col-lg-2 col-md-6 <?php echo (!empty($difficultyID_err)) ? 'has-error' : ''; ?>">
@@ -309,6 +309,36 @@ and open the template in the editor.
                                 <input class="input-group " type="file" name="image" accept="image/*" />
 
                             </div>
+                            <div class="form-group col-lg-2 col-md-4">
+                <label>Cuisine</label><br>
+                <select id="cuisine" name="cuisine">
+                    <option value="1">African </option>
+                    <option value="2">America</option>
+                    <option value="3">British</option>
+                    <option value="4">Cajun </option>
+                    <option value="5">Caribbean</option>
+                    <option value="6">Chinese</option>
+                    <option value="7">Eastern European </option>
+                    <option value="8">European</option>
+                    <option value="9">French</option>
+                    <option value="10">German </option>
+                    <option value="11">Green</option>
+                    <option value="12">Indian</option>
+                    <option value="13">Irish</option>
+                    <option value="14">Italian</option>
+                    <option value="15">Japanese</option>
+                    <option value="16">Jewish</option>
+                    <option value="17">Korean</option>
+                    <option value="18">Latin American</option>
+                    <option value="19">Mediterranean</option>
+                    <option value="20">Mexican</option>
+                    <option value="21">Middle Eastern</option>
+                    <option value="22">Nordic</option>
+                    <option value="23">Southern</option>
+                    <option value="24">Spanish</option>
+                    <option value="25">Thai</option>
+                </select>
+            </div>
 
                         </div>
 
@@ -824,7 +854,7 @@ display: flex;" ><i class="fas fa-trash-alt fa-lg"></i></a>
                                     <div class="form-group col-lg-3 col-md-6 <?php echo (!empty($maxTime_err)) ? 'has-error' : ''; ?>">
                                         <label>Max Time</label> <br>
                                         <input onchange="displayTime()" type="range" min="1" max="60" value="10" id="maxTime" name="maxTime" />
-                                        <p><span id="timeArea"> <?= isset($_POST['maxTime']) ? $_POST['maxTime'] : '10 minutes' ?>10 minutes</span></p>
+                                        <p><span id="timeArea"> <?= isset($_POST['maxTime']) ? $_POST['maxTime'] : '10 minutes' ?></span></p>
                                     </div>
 
                                     <div class="form-group col-lg-2 col-md-6 <?php echo (!empty($difficultyID_err)) ? 'has-error' : ''; ?>">
@@ -855,6 +885,35 @@ display: flex;" ><i class="fas fa-trash-alt fa-lg"></i></a>
                                         <label>Image</label>
                                         <input class="input-group " type="file" name="image" accept="image/*" />
                                     </div>
+                                    <div class="form-group col-md-4">
+                <label>Cuisine</label><br>
+                <select id="cuisine" name="cuisine">
+                    <option value="1">African </option>
+                    <option value="2">America</option>
+                    <option value="3">British</option>
+                    <option value="4">Cajun </option>
+                    <option value="5">Caribbean</option>
+                    <option value="6">Chinese</option>
+                    <option value="7">Eastern European </option>
+                    <option value="8">European</option>
+                    <option value="9">French</option>
+                    <option value="10">German </option>
+                    <option value="11">Green</option>
+                    <option value="12">Indian</option>
+                    <option value="13">Irish</option>
+                    <option value="14">Italian</option>
+                    <option value="15">Japanese</option>
+                    <option value="16">Jewish</option>
+                    <option value="17">Korean</option>
+                    <option value="18">Latin American</option>
+                    <option value="19">Mediterranean</option>
+                    <option value="20">Mexican</option>
+                    <option value="21">Middle Eastern</option>
+                    <option value="22">Nordic</option>
+                    <option value="23">Southern</option>
+                    <option value="24">Spanish</option>
+                    <option value="25">Thai</option>
+                </select>
                                 </div>
                                 <div class='row'>
                                     <div id="addedIngredient" class="col-md-6 form-group <?php echo (!empty($ingredient_err)) ? 'has-error' : ''; ?>">
