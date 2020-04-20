@@ -39,6 +39,14 @@ if (isset($_POST['btnFav'])) {
 </head>
 
 <body class='site'>
+
+    <style>
+        li {
+            list-style: none;
+        }
+
+  
+    </style>
     <?php include_once 'includes/nav-menu.php'; ?>
     <main class='site-content'>
         <div class='container'>
@@ -69,21 +77,21 @@ if (isset($_POST['btnFav'])) {
                 $timestamp = strtotime($maxTime);
                 $time = date('i', $timestamp);
             ?>
-                <h2 class="heading allRecipes-h1"><span class="underline"><?php echo $recipe['name'] ?></span> </h2>
+                <h2 class="heading allRecipes-h1" data-aos="fade-right" data-aos-once="true" data-aos-duration="1000"><span class="underline"><?php echo $recipe['name'] ?></span> </h2>
 
                 <div class=row>
                     <div class='col-md-7 single-recipe-topRow'>
-                        <img class='single-recipe-pic' src='<?php echo $src;  ?>' alt='dish image'>
+                        <img data-aos="fade-right" data-aos-once="true" data-aos-duration="1000" class='single-recipe-pic' src='<?php echo $src;  ?>' alt='dish image'>
                         <form class="faveForm" action="" method="POST">
-                            <button id="myFave" class="myLink btn" type="submit" name="btnFav" alt="favourite me!"> </button>
+                            <button data-aos="fade-in" data-aos-once="true" data-aos-duration="1000" id="myFave" class="myLink btn" type="submit" name="btnFav" alt="favourite me!"> </button>
                         </form>
                     </div>
 
                     <div class='col-md-5 single-recipe-topRow '>
                         <br><br>
-                        <h4 class='single-recipe-h4' > <img src='images/recipeasy-icons-logos/gauge.png' style='margin-right:1.5%' alt='clock icon' height='35' width='35'><strong>Difficulty: </strong><?php echo $difficulty ?> </h4>
-                        <h4 class='single-recipe-h4'> <br> <img src='images/recipeasy-icons-logos/knife-fork.png' style='margin-right:1.5%' alt='clock icon' height='35' width='35'><strong>Servings:</strong> <?php echo $recipe['servings'] ?> </h4>
-                        <h4 class='single-recipe-h4'> <br> <img src='images/recipeasy-icons-logos/clock.png' style='margin-right:1.5%' alt='clock icon' height='30' width='30'><strong>Cooking Time: </strong><?php echo $time ?> minutes </h4>
+                        <h4 data-aos="fade-left" data-aos-once="true" data-aos-duration="1000" class='single-recipe-h4'> <img src='images/recipeasy-icons-logos/gauge.png' style='margin-right:1.5%' alt='clock icon' height='35' width='35'><strong>Difficulty: </strong><?php echo $difficulty ?> </h4>
+                        <h4 data-aos="fade-left" data-aos-once="true" data-aos-duration="1000" class='single-recipe-h4'> <br> <img src='images/recipeasy-icons-logos/knife-fork.png' style='margin-right:1.5%' alt='clock icon' height='35' width='35'><strong>Servings:</strong> <?php echo $recipe['servings'] ?> </h4>
+                        <h4 data-aos="fade-left" data-aos-once="true" data-aos-duration="1000" class='single-recipe-h4'> <br> <img src='images/recipeasy-icons-logos/clock.png' style='margin-right:1.5%' alt='clock icon' height='30' width='30'><strong>Cooking Time: </strong><?php echo $time ?> minutes </h4>
 
                     </div>
 
@@ -91,7 +99,7 @@ if (isset($_POST['btnFav'])) {
 
 
                         <!-- DESKTOP -->
-                        <div class='ingredientsDeskTitle'>
+                        <div data-aos="fade-in" data-aos-once="true" data-aos-duration="1000" class='ingredientsDeskTitle'>
                             <h5> <strong>Ingredients: </strong></h5>
                         </div>
                         <!-- MOBILE -->
@@ -105,7 +113,7 @@ if (isset($_POST['btnFav'])) {
 
                         <!-- <h5> <strong>Ingredients: </strong></h5> -->
 
-                        <div class='ingredientsDiv'>
+                        <div data-aos="fade-in" data-aos-once="true" data-aos-duration="1000" class='ingredientsDiv'>
                             <?php foreach ($recipes as $recipe) :
                                 $queryrecipeings = 'SELECT * FROM recipeingredient WHERE recipe_ID=:recipe_ID';
                                 $statement4 = $conn->prepare($queryrecipeings);
@@ -125,23 +133,23 @@ if (isset($_POST['btnFav'])) {
                                 ?>
 
                                     <?php foreach ($ingredients as $ingredient) : ?>
-                                        <p><?php echo $ingredient['name'] ?> <?php echo $ingredient['amount'] ?> <?php echo $ingredient['unit'] ?></p><?php endforeach; ?>
-                      
-                    <?php endforeach; ?>
+                                        <li class="ingredientsLi" data-aos="fade-in" data-aos-once="true" data-aos-duration="1000"> - <?php echo $ingredient['name'] ?> <?php echo $ingredient['amount'] ?> <?php echo $ingredient['unit'] ?></li><?php endforeach; ?>
 
-                <?php endforeach; ?>
+                                <?php endforeach; ?>
 
-  </div>
+                            <?php endforeach; ?>
 
-                <?php foreach ($steps as $step) :
+                        </div>
 
-                    $querydesc = 'SELECT * FROM steps WHERE steps_ID=:steps_ID';
-                    $statement5 = $conn->prepare($querydesc);
-                    $statement5->bindValue(':steps_ID', $step["steps_ID"]);
-                    $statement5->execute();
-                    $descriptions = $statement5->fetchAll();
-                    $statement5->closeCursor();
-                ?>
+                        <?php foreach ($steps as $step) :
+
+                            $querydesc = 'SELECT * FROM steps WHERE steps_ID=:steps_ID';
+                            $statement5 = $conn->prepare($querydesc);
+                            $statement5->bindValue(':steps_ID', $step["steps_ID"]);
+                            $statement5->execute();
+                            $descriptions = $statement5->fetchAll();
+                            $statement5->closeCursor();
+                        ?>
 
                     </div>
                     <div class="col-lg-8 col-md-7 col-12">
@@ -152,7 +160,7 @@ if (isset($_POST['btnFav'])) {
 
                             <!-- <h5><strong>Method: </strong></h5> -->
                             <!-- DESKTOP -->
-                            <div class='methodDeskTitle'>
+                            <div data-aos="fade-in" data-aos-once="true" data-aos-duration="1000" class='methodDeskTitle'>
                                 <h5> <strong>Method: </strong></h5>
                             </div>
                             <!-- MOBILE -->
@@ -162,11 +170,11 @@ if (isset($_POST['btnFav'])) {
                                 </h5>
                             </div>
 
-                            <div class="methodDiv">
+                            <div  class="methodDiv">
 
 
 
-                                <p><?php echo $description['description'] ?></p>
+                                <p data-aos="fade-in" data-aos-once="true" data-aos-duration="1000" ><?php echo $description['description'] ?></p>
                             </div>
                         <?php endforeach; ?>
                     <?php endforeach; ?>
@@ -207,7 +215,7 @@ if (isset($_POST['btnFav'])) {
 
                 <!--CORRECT VERSION --->
                 <div class="row comment-video-div">
-                    <div class='col-lg-5 comment-div' <?php if (empty($recipe["video_name"])) echo ' style="margin-left: 30%"'; ?>>
+                    <div data-aos="fade-right" data-aos-once="true" data-aos-duration="1000" class='col-lg-5 comment-div' <?php if (empty($recipe["video_name"])) echo ' style="margin-left: 30%"'; ?>>
                         <h3>Comments</h3>
                         <div>
                             <?php
@@ -250,7 +258,7 @@ if (isset($_POST['btnFav'])) {
                     </div>
 
 
-                    <div class='col-lg-7 video-container' <?php if (empty($recipe["video_name"])) echo ' style="display:none;"'; ?>>
+                    <div data-aos="fade-left" data-aos-once="true" data-aos-duration="1000" class='col-lg-7 video-container' <?php if (empty($recipe["video_name"])) echo ' style="display:none;"'; ?>>
                         <h3>Video Tutorial</h3>
 
                         <iframe width="600" height="338" src="https://www.youtube.com/embed/<?php echo $recipe["video_name"] ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
