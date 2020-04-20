@@ -131,23 +131,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 
-    <center> <img src="images/recipeasy-icons-logos/new-logo-black.png" class="d-inline-block signup-logo align-top" alt="recipeasy-logo" style='width:45%' /> </center>
+    <center> <img data-aos="fade-in" data-aos-once="true" data-aos-duration="1000" src="images/recipeasy-icons-logos/new-logo-black.png" class="d-inline-block signup-logo align-top" alt="recipeasy-logo" style='width:45%' /> </center>
 
 
     <form class="login-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
     <fieldset>
         <div class='form-row' >
-        <div class="form-group col-lg-12  <?php echo (!empty($u_email_err)) ? 'has-error' : ''; ?>">
+        <div data-aos="fade-in" data-aos-once="true" data-aos-delay="50" data-aos-duration="1000" class="form-group col-lg-12  <?php echo (!empty($u_email_err)) ? 'has-error' : ''; ?>">
                 <label>Email</label>
                 <input type="text" name="u_email" class="form-control" value="<?php echo $u_email; ?>">
                 <span class="help-block"><?php echo $u_email_err; ?></span>
             </div>    
-            <div class="form-group col-lg-12 <?php echo (!empty($u_password_err)) ? 'has-error' : ''; ?>">
+            <div data-aos="fade-in" data-aos-once="true" data-aos-delay="100" data-aos-duration="1000"class="form-group col-lg-12 <?php echo (!empty($u_password_err)) ? 'has-error' : ''; ?>">
                 <label>Password</label>
                 <input type="password" name="u_password" class="form-control">
                 <span class="help-block"><?php echo $u_password_err; ?></span>
             </div>
-            <div class="form-group col-lg-12">
+            <div data-aos="fade-in" data-aos-once="true" data-aos-delay="150" data-aos-duration="1000" class="form-group col-lg-12">
                 <input type="submit" class="btn btn-light" value="Login">
             </div>
             <p>Don't have an account? <a href="sign-up.php" class="here-link">Sign up now</a>.</p>

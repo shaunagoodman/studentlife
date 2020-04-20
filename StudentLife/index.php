@@ -37,15 +37,16 @@ $statement->closeCursor();
 
 <body class='site'>
 
+
     <?php include_once 'includes/mobile-nav.php'; ?>
 
 
     <div class="jumbotron jumbotron-fluid">
         <?php include_once 'includes/index-nav.php'; ?>
         <div class="container jumbo-title">
-            <h1 class="display-4 jumbo-text">Find a Recipe</h1>
-            <h4 class='jumbo-text'>Or try our Pot Luck!</h4>
-            <form class="form-inline" method="post">
+            <h1 data-aos="fade-right" data-aos-once="true" data-aos-delay="100" data-aos-duration="1000" class="display-4 jumbo-text">Find a Recipe</h1>
+            <h4 data-aos="fade-right" data-aos-once="true" data-aos-delay="100" data-aos-duration="1000" class='jumbo-text'>Or try our Pot Luck!</h4>
+            <form data-aos="fade-left" data-aos-once="true" data-aos-delay="100" data-aos-duration="1000" class="form-inline" method="post">
                 <div class='row'>
                     <div class='col-lg-12'>
 
@@ -71,24 +72,24 @@ $statement->closeCursor();
             <div class="row">
 
                 <div class="col-lg-12">
-                    <h1 class="home-title1"> <span class="underline"> Our Features </span> </h1>
+                    <h1 class="home-title1" data-aos="fade-right" data-aos-once="true" data-aos-duration="1000"> <span class="underline"> Our Features </span> </h1>
                     <!-- <hr class='home-hr1' align="left"> -->
                     <br> <br>
 
                     <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-12 text-center icon-padding">
+                        <div class="col-lg-4 col-md-4 col-sm-12 text-center icon-padding" data-aos="fade-up" data-aos-once="true"   data-aos-duration="1000">
                             <img class='home-icons' src="images/recipeasy-icons-logos/burger.png">
                             <h3>Find Easy Recipes and Save them</h3>
                             <p>100's of simple and cheap to make recipes at your finger tips! </p>
                         </div>
 
-                        <div class="col-lg-4 col-md-4 col-sm-12 text-center icon-padding">
+                        <div class="col-lg-4 col-md-4 col-sm-12 text-center icon-padding" data-aos="fade-up" data-aos-once="true" data-aos-delay="100" data-aos-duration="1000">
                             <img class='home-icons' src="images/recipeasy-icons-logos/fridge.png">
                             <h3>Whats in your fridge?</h3>
                             <p>Just put in the ingredient you have and find recipes you can make there and then</p>
                         </div>
 
-                        <div class="col-lg-4 col-md-4 col-sm-12 text-center icon-padding">
+                        <div class="col-lg-4 col-md-4 col-sm-12 text-center icon-padding" data-aos="fade-up" data-aos-once="true" data-aos-delay="200" data-aos-duration="1000">
                             <img class='home-icons' src="images/recipeasy-icons-logos/platter.png">
                             <h3>Random Recipe Generator</h3>
                             <p>Want to find something new and exciting to cook?</p>
@@ -102,14 +103,14 @@ $statement->closeCursor();
             <div class="row no-gutters">
 
                 <div class="col-lg-12">
-                    <h1 class="home-title1"> <span class="underline"> Latest Recipes</span></h1>
+                    <h1 class="home-title1"> <span class="underline" data-aos="fade-right" data-aos-once="true" data-aos-duration="1000"> Latest Recipes</span></h1>
 
                 </div>
                 <?php foreach ($recipes as $recipe) :
                 ?>
 
                     <div class="col-lg-3 col-md-6 bottom-home  d-flex align-items-stretch ">
-                        <div class="card home-card test-card hvr-shadow" style="margin-left: 2%; margin-right: 2%;" >
+                        <div class="card home-card test-card hvr-shadow" style="margin-left: 2%; margin-right: 2%;" data-aos="fade-in" data-aos-once="true" data-aos-duration="1000" >
                             <img src="images/recipes/<?php echo $recipe['image'];  ?>" class="card-img-top" alt='dish image' height='250' width='270'>
                             <div class="card-body d-flex flex-column align-item-center">
                                 <h5 class="card-title"><?php echo $recipe['name'];  ?></h5>

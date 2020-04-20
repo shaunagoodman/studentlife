@@ -57,6 +57,12 @@ p {
   font-weight: 400;
 }
 
+.ingredientsLi {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
 th {
   font-family: "Montserrat", sans-serif;
   font-style: normal;
@@ -130,6 +136,14 @@ body {
   border-radius: 50px;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
+}
+
+@media (max-width: 430px) {
+  .sign-up-btn {
+    font-weight: 400;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
 }
 
 .btn.btn-light-invert:hover,
@@ -1597,6 +1611,10 @@ button.btn-link:hover {
   color: #FB6107;
 }
 
+.fa-utensils, .fa-pen-square, .fa-heart, .fa-photo-video {
+  color: #FB6107;
+}
+
 /* *********************** FOOTER CSS **********************    */
 @media only screen and (min-width: 992px) {
   footer#small-footer {
@@ -2277,6 +2295,30 @@ button.addBut.active {
   .fa3.active {
     -webkit-transform: rotateZ(0deg);
             transform: rotateZ(0deg);
+  }
+}
+
+/* **********************ANIMATION STYLES****************************/
+[data-aos="new-animation"] {
+  opacity: 0;
+  -webkit-transition-property: opacity, -webkit-transform;
+  transition-property: opacity, -webkit-transform;
+  transition-property: transform, opacity;
+  transition-property: transform, opacity, -webkit-transform;
+}
+
+[data-aos="new-animation"].aos-animate {
+  opacity: 1;
+}
+
+@media screen and (min-width: 768px) {
+  [data-aos="new-animation"] {
+    -webkit-transform: translateX(100px);
+            transform: translateX(100px);
+  }
+  [data-aos="new-animation"].aos-animate {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
   }
 }
 /*# sourceMappingURL=niamh-main.css.map */

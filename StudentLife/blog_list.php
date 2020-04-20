@@ -56,7 +56,7 @@ and open the template in the editor.
 
 			<div class='row'>
 				<?php foreach ($blog as $blogs) { ?>
-					<div class="col-lg-4 bottom-home  d-flex align-items-stretch ">
+					<div class="col-lg-4 bottom-home  d-flex align-items-stretch "  data-aos="fade-in" data-aos-once="true"  data-aos-anchor-placement="top-bottom" data-aos-duration="1000">
 						<div class="hvr-shadow card home-card test-card">
 							<div class="card-body d-flex flex-column align-item-center">
 								<h5 class="card-title"><?php echo $blogs['blogTitle']; ?></h5>
