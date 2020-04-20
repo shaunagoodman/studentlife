@@ -34,6 +34,9 @@ h6 {
 p {
   @include mont-medium-font;
 }
+.ingredientsLi {
+  @include mont-medium-font;
+}
 
 th {
   @include mont-heavy-font;

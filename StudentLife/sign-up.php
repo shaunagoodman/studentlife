@@ -137,7 +137,7 @@ and open the template in the editor.
 <div class="container" >
 
 
-<center> <img src="images/recipeasy-icons-logos/new-logo-black.png" class="d-inline-block align-top signup-logo" alt="recipeasy-logo" style='width:45%' /> </center>
+<center> <img data-aos="fade-in" data-aos-once="true" data-aos-duration="1000" src="images/recipeasy-icons-logos/new-logo-black.png" class="d-inline-block align-top signup-logo" alt="recipeasy-logo" style='width:45%' /> </center>
 
 
 
@@ -146,33 +146,36 @@ and open the template in the editor.
             
 <fieldset>
         <div class="form-row">
-            <div class="form-group col-md-6 <?php echo (!empty($fname_err)) ? 'has-error' : ''; ?>">
+            
+            <div data-aos="fade-in" data-aos-once="true" data-aos-delay="50" data-aos-duration="1000" class="form-group col-md-6 <?php echo (!empty($fname_err)) ? 'has-error' : ''; ?>">
                 <label>First Name</label>
                 <input type="text" name="fname" class="form-control" value="<?php echo $fname; ?>">
                 <span class="help-block"><?php echo $fname_err; ?></span>
             </div>
-            <div class="form-group col-md-6 <?php echo (!empty($lname_err)) ? 'has-error' : ''; ?>">
+            <div data-aos="fade-in" data-aos-once="true" data-aos-delay="50" data-aos-duration="1000" class="form-group col-md-6 <?php echo (!empty($lname_err)) ? 'has-error' : ''; ?>">
                 <label>Last Name</label>
                 <input type="text" name="lname" class="form-control" value="<?php echo $lname; ?>">
                 <span class="help-block"><?php echo $lname_err; ?></span>
             </div>   
-            <div class="form-group col-md-12 <?php echo (!empty($u_email_err)) ? 'has-error' : ''; ?>"> 
+          
+            <div data-aos="fade-in" data-aos-once="true" data-aos-delay="100" data-aos-duration="1000" class="form-group col-md-12 <?php echo (!empty($u_email_err)) ? 'has-error' : ''; ?>"> 
             <label>Email</label>
                 <input type="text" name="u_email" class="form-control" value="<?php echo $u_email; ?>">
                 <span class="help-block"><?php echo $u_email_err; ?></span>
             </div>
-            <div class="form-group col-md-6 <?php echo (!empty($u_password_err)) ? 'has-error' : ''; ?>">
+            
+            <div data-aos="fade-in" data-aos-once="true" data-aos-delay="150" data-aos-duration="1000" class="form-group col-md-6 <?php echo (!empty($u_password_err)) ? 'has-error' : ''; ?>">
                 <label>Password</label>
                 <input type="password" name="u_password" class="form-control" value="<?php echo $u_password; ?>">
                 <span class="help-block"><?php echo $u_password_err; ?></span>
             </div>
-            <div class="form-group col-md-6 <?php echo (!empty($confirm_u_password_err)) ? 'has-error' : ''; ?>">
+            <div data-aos="fade-in" data-aos-once="true" data-aos-delay="150" data-aos-duration="1000" class="form-group col-md-6 <?php echo (!empty($confirm_u_password_err)) ? 'has-error' : ''; ?>">
                 <label>Confirm password</label>
                 <input type="password" name="confirm_u_password" class="form-control" value="<?php echo $confirm_u_password; ?>">
                 <span class="help-block"><?php echo $confirm_u_password_err; ?></span>
             </div>
             <div class="form-group col-md-12">
-            <button type="submit" name="submit" value=" Submit " class="btn btn-light sign-up-btn btn-sm">
+            <button  type="submit" name="submit" value=" Submit " class="btn btn-light sign-up-btn btn-sm">
                     Register</button>
                 <input type="reset" class="btn btn-light sign-up-btn btn-sm" value="Reset">
             </div>
