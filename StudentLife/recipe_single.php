@@ -171,10 +171,15 @@ if (isset($_POST['btnFav'])) {
                             </div>
 
                             <div  class="methodDiv">
+                            <?php
+                            $re = "/\h+(?=\d+\.\h+)/m";
+                            $subst = '<br>';
+                            $str = $description['description'];
+                            $result = preg_replace($re, $subst, $str);
 
+                            ?>
 
-
-                                <p data-aos="fade-in" data-aos-once="true" data-aos-duration="1000" ><?php echo $description['description'] ?></p>
+                                <p data-aos="fade-in" data-aos-once="true" data-aos-duration="1000" ><?php echo $result ?></p>
                             </div>
                         <?php endforeach; ?>
                     <?php endforeach; ?>
