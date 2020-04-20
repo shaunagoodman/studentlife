@@ -31,11 +31,11 @@ include_once 'includes/CDNs.php';
 
     <div class="container">
       <br>
-      <h1><span class="underline">What's in your fridge?</span></h1>
+      <h1 data-aos="fade-in" data-aos-once="true" data-aos-duration="1000"><span class="underline" >What's in your fridge?</span></h1>
 
-      <p>Can't decide what to make? Just enter below what food you have at home and we'll give you some delicious
+      <p data-aos="fade-in" data-aos-once="true" data-aos-delay="100" data-aos-duration="1000">Can't decide what to make? Just enter below what food you have at home and we'll give you some delicious
         recipes that you can make with them! <i>Note: Press enter after each ingredient is typed.</i></p>
-      <div class="col-md-12 recipe-api">
+      <div data-aos="fade-in" data-aos-once="true" data-aos-delay="200" data-aos-duration="1000" class="col-md-12 recipe-api">
         <div class='api-div1'>
           <div id="ingredientsList">
             <ul id="list1"></ul>

@@ -112,23 +112,23 @@ try {
 
             <div class='container'>
 
-                <h1 class="allRecipes-h1"><span class="underline">All Recipes </span></h1>
+                <h1 class="allRecipes-h1" id="sort" data-aos="fade-in" data-aos-once="true" data-aos-duration="1000"><span class="underline">All Recipes </span></h1>
 
 
                 <div class='row'>
 
                     <!-- ********************************SORT BY DIV************************************* -->
-                    <div class='col-lg-3'>
+                    <div class='col-lg-3' data-aos="fade-right" data-aos-once="true" data-aos-duration="1300">
 
                         <div class='row surround-filter-div'>
                             <div class='col-sm-6 col-lg-12'>
-                                <div class="sortTitle">
+                                <div class="sortTitle ">
                                     <h4><i class="fa fa-chevron-right" aria-hidden="true"></i>
                                         <span class='sortSpan'> Sort By </span></h4>
 
                                 </div>
 
-                                <div class="sortDiv ">
+                                <div class="sortDiv">
                                     <div class='form-sort'>
                                         <form method="POST">
                                             <!-- <label>Max Time</label> -->
@@ -166,7 +166,7 @@ try {
                                     <?php
                                     echo "<ul class='cuisine-list' id='ul-cuisine-list' >";
                                     foreach ($cuisine as $c) :
-                                        echo "<li class='li-cuisine-list'>";
+                                        echo "<li class='li-cuisine-list '>";
                                         echo "<a class='cuisine-menu-a' href='recipes-list.php?cuisine_ID=" . $c['cuisine_ID'] . "'>";
                                         echo $c['name'];
                                         echo "</a>";
@@ -185,7 +185,7 @@ try {
                     </div>
 
                     <!-- ********************************CARD DIV************************************* -->
-                    <div class='col-lg-9'>
+                    <div class='col-lg-9'data-aos="fade-left" data-aos-once="true" data-aos-duration="1600">
                         <?php
                         echo "<div class='row no-gutters' >";
                         if (!empty($recipes)) {
