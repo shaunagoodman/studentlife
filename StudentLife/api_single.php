@@ -202,7 +202,7 @@ foreach ($response['analyzedInstructions'] as $instruction) {
                             if (!empty($comments)) {
                                 foreach ($comments as $comment) :
                                     $date = $comment['date'];
-                                    $newDate = date("d.m.Y H:i:s", strtotime($date));
+                                    $newDate = date("F j, Y", strtotime($date));
                             ?>
                                     <h5 style="color: #EF7823;"> <?php echo $comment['senderName']; ?></h5>
                                     <p style="font-size: 85%; color: #727272; margin-top: -2%;"> <?php echo $newDate ?> </p>
