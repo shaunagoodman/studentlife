@@ -35,7 +35,7 @@ and open the template in the editor.
                         <img src="images/icons-logos/phone-white.png" width="5%" alt=""/>  Number: +353 863505611
                     </li>
                     <li class="footer-links" >
-                        <img src="images/icons-logos/letter-white.png" width="5%" alt=""/>  Email: studentlife@info.com
+                        <img src="images/icons-logos/letter-white.png" width="5%" alt=""/>  Email: recipeasy@info.com
                     </li>
                 </ul>
                  
@@ -44,11 +44,11 @@ and open the template in the editor.
             <div  class="col-md-4  footer-content social-links ">
                 <center>
                 
-                <a href="https://www.facebook.com/" class="facebook"><span style="font-size: 30px; color: white;"><i class="fab fa-facebook-square"></i></span> </a>    
+                <a href="https://www.youtube.com/channel/UCpsvxaQk_7H9ncde37Dh-Ag" class="facebook"><span style="font-size: 30px; color: white;"><i class="fab fa-youtube"></i></span> </a>    
                 
-                <a href="https://twitter.com/" class="twitter"> <span style="font-size: 30px; color: white;"><i class="fab fa-twitter-square"></i></span></a>
+                <a href="https://www.instagram.com/recipeasytutorials/" class="twitter"> <span style="font-size: 30px; color: white;"><i class="fab fa-instagram"></i></span></a>
                 
-                <a href="https://ie.linkedin.com/" class="linkedin"> <span style="font-size: 30px; color: white;"><i class="fab fa-linkedin"></i></span></a>
+
                 <br>
                 <img src="images/recipeasy-icons-logos/new-logo-white.png" class="d-inline-block align-top" alt="recipeasy-logo" style='width:80%' />
                 <p class="footer-links" >© 2019 Recipeasy | All Rights Reserved </p>
@@ -93,12 +93,9 @@ and open the template in the editor.
             <div  class="col-md-12  footer-content social-links ">
                 <center>
                 
-                <a href="https://www.facebook.com/" class="facebook"><span style="font-size: 30px; color: white;"><i class="fab fa-facebook-square"></i></span> </a>    
+                <a href="https://www.youtube.com/channel/UCpsvxaQk_7H9ncde37Dh-Ag" class="facebook"><span style="font-size: 30px; color: white;"><i class="fab fa-youtube"></i></span> </a>    
                 
-                <a href="https://twitter.com/" class="twitter"> <span style="font-size: 30px; color: white;"><i class="fab fa-twitter-square"></i></span></a>
-                
-                <a href="https://ie.linkedin.com/" class="linkedin"> <span style="font-size: 30px; color: white;"><i class="fab fa-linkedin"></i></span></a>
-                
+                <a href="https://www.instagram.com/recipeasytutorials/" class="twitter"> <span style="font-size: 30px; color: white;"><i class="fab fa-instagram"></i></span></a>
                 
                 </center>
             </div>
@@ -124,9 +121,9 @@ and open the template in the editor.
                  <div class="col-md-12 footer-content footer-ul" >
                      <center>
                 
-                         <p class="footer-links footer-contact-details" >  <img src="images/icons-logos/phone-white.png" width="5%" alt=""/>  Number: +353 863505611   <img src="images/icons-logos/letter-white.png" width="5%" alt=""/> Email: studentlife@info.com </p>
+                         <p class="footer-links footer-contact-details" >  <img src="images/icons-logos/phone-white.png" width="5%" alt=""/>  Number: +353 863505611   <img src="images/icons-logos/letter-white.png" width="5%" alt=""/> Email: recipeasy@info.com </p>
                          
-                         <p class="footer-links footer-contact-details-tiny" >  <img src="images/icons-logos/phone-white.png" width="5%" alt=""/>  Number: +353 863505611  </p> <p class="footer-links footer-contact-details-tiny"> <img src="images/icons-logos/letter-white.png" width="5%" alt=""/> Email: studentlife@info.com </p>
+                         <p class="footer-links footer-contact-details-tiny" >  <img src="images/icons-logos/phone-white.png" width="5%" alt=""/>  Number: +353 863505611  </p> <p class="footer-links footer-contact-details-tiny"> <img src="images/icons-logos/letter-white.png" width="5%" alt=""/> Email: recipeasy@info.com </p>
                          
                          <img src="images/recipeasy-icons-logos/new-logo-white.png" class="d-inline-block align-top" alt="recipeasy-logo" style='width:50%' />
                     
